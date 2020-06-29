@@ -1,10 +1,13 @@
 package de.byteleaf.companyon.user.entity
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document
 
-
-class UserEntity(@Id var lateinit: Long) {
-
-    var firstName: String? = null
-    var lastName: String? = null
+@Document(collection = "users")
+data class UserEntity(
+        var firstName: String? = null,
+        var lastName: String? = null
+) {
+    @Id
+    var id: Long = 0
 }
