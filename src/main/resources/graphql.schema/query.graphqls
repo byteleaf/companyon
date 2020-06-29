@@ -1,0 +1,5 @@
+scalar Long
+
+type Query {
+    currentUser: User!
+}

@@ -1,0 +1,15 @@
+mutation createUser($input: UserInput!) {
+    createUser(input: $input) {
+        id,
+        firstName,
+        secondName
+    }
+}
+
+# Variables
+{
+    "input": {
+        "firstName": "Jeff",
+        "secondName": "Bytezos"
+    }
+}
