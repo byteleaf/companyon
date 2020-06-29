@@ -1,0 +1,16 @@
+mutation updateUser($input: UserInput!, $id: ID!) {
+    updateUser(id: $id, input: $input) {
+        id,
+        firstName,
+        secondName
+    }
+}
+
+# Variables
+{
+    "input": {
+        "firstName": "Jeff",
+        "secondName": "Bytezos"
+    },
+    "id": 123
+}

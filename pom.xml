@@ -17,7 +17,7 @@
     </parent>
 
     <dependencies>
-        <!--Kotlin dependencies -->
+        <!-- Kotlin dependencies -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
@@ -42,7 +42,7 @@
             <artifactId>graphql-java-tools</artifactId>
             <version>5.2.4</version>
         </dependency>
-        <!-- Other dependencies -->
+        <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -154,7 +154,6 @@
                 <configuration>
                     <useFile>false</useFile>
                     <includes>
-                        <include>**/*Test.java</include>
                         <include>**/*Spec.java</include>
                     </includes>
                 </configuration>

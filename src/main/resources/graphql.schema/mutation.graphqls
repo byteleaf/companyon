@@ -1,5 +1,5 @@
 
 type Mutation {
     createUser(input: UserInput!): User!
-    updateUser(id: Long, input: UserInput!): User!
+    updateUser(id: ID!, input: UserInput!): User!
 }
