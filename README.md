@@ -4,7 +4,7 @@
 
 ## Setup
 
-[Click here to see more details](test.md)
+[Click here to see more details](documentation/setup.md)
 
 ## TODO
 
