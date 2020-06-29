@@ -1,4 +1,4 @@
 input UserInput {
     firstName: String!
-    secondName: String!
+    lastName: String!
 }

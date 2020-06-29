@@ -2,7 +2,7 @@ mutation createUser($input: UserInput!) {
     createUser(input: $input) {
         id,
         firstName,
-        secondName
+        lastName
     }
 }
 
@@ -10,6 +10,6 @@ mutation createUser($input: UserInput!) {
 {
     "input": {
         "firstName": "Jeff",
-        "secondName": "Bytezos"
+        "lastName": "Bytezos"
     }
 }

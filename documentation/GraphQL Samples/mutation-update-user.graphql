@@ -2,7 +2,7 @@ mutation updateUser($input: UserInput!, $id: ID!) {
     updateUser(id: $id, input: $input) {
         id,
         firstName,
-        secondName
+        lastName
     }
 }
 
@@ -10,7 +10,7 @@ mutation updateUser($input: UserInput!, $id: ID!) {
 {
     "input": {
         "firstName": "Jeff",
-        "secondName": "Bytezos"
+        "lastName": "Bytezos"
     },
     "id": 123
 }
