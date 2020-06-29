@@ -3,7 +3,8 @@
 
 
 ## Setup
-[Click here to see more details](documentation/01 Setup.md)
+
+[Click here to see more details](test.md)
 
 ## TODO
 
