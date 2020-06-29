@@ -2,4 +2,5 @@ type User {
     id: Long!
     firstName: String!
     lastName: String!
+    avatarUrl: String
 }
