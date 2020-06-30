@@ -13,7 +13,13 @@ class UserMutationResolver : GraphQLMutationResolver {
     @Autowired
     private lateinit var userService: UserService;
 
-    fun updateUser(id: Long, input: UserInput): User = userService.updateUser(id, input)
+    fun updateUser(id: Long, input: UserInput): User = userService.update(id, input)
 
-    fun createUser(input: UserInput): User = userService.createUser(input)
+    fun createUser(input: UserInput): User = userService.create(input)
+
+    // TODO implement Skalar Void: https://byteleaf.atlassian.net/browse/COM-36
+    fun deleteUser(id: Long): Boolean {
+        userService.delete(id)
+        return true
+    }
 }

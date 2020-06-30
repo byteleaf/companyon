@@ -1,0 +1,8 @@
+mutation deleteUser($id: ID!) {
+    deleteUser(id: $id)
+}
+
+# Variables
+{
+    "id": 15
+}

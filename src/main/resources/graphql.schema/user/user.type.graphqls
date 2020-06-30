@@ -1,6 +1,8 @@
 type User {
-    id: Long!
-    firstName: String!
-    lastName: String!
+    id: ID!
+    firstName: String
+    lastName: String
     avatarUrl: String
+    signature: ID
+    avatar: ID
 }

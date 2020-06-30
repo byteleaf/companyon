@@ -1,4 +1,7 @@
 input UserInput {
-    firstName: String!
-    lastName: String!
+    firstName: String
+    lastName: String
+    avatarUrl: String
+    signature: ID
+    avatar: ID
 }

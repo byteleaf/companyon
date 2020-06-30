@@ -14,4 +14,8 @@ class UserQueryResolver : GraphQLQueryResolver {
     private lateinit var userService: UserService;
 
     fun getCurrentUser(): User = userService.getCurrentUser()
+
+    fun getUser(id: Long): User = userService.get(id)
+
+    fun getUsers(): List<User> = userService.getAll()
 }
