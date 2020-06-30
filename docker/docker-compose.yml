@@ -1,0 +1,13 @@
+version: '3'
+services:
+  database:
+    image: mongo:latest
+    container_name: 'mongo-container'
+    environment:
+      - MONGO_INITDB_DATABASE=companyon
+   #   - MONGO_INITDB_ROOT_USERNAME=jeff
+    #  - MONGO_INITDB_ROOT_PASSWORD=bytezos
+    #volumes:
+    #  - ./local-data:/data/db
+    ports:
+      - 27017:27017
