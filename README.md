@@ -13,8 +13,6 @@
 + Login username & passwort
 
 
-getTimeLogsByUser(id: ID!)
-6:26
-getTimeLogsByCompany(id: ID!)
-6:26
-getTimeLogsByProject(id: ID!)
+timeLogsByUser(id: ID!)
+timeLogsByCompany(id: ID!)
+timeLogsByProject(id: ID!)
