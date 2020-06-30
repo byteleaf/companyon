@@ -1,1 +1,0 @@
-docker-compose -f docker/mongo-db-local.yaml up

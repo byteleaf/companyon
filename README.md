@@ -18,3 +18,9 @@ getTimeLogsByUser(id: ID!)
 getTimeLogsByCompany(id: ID!)
 6:26
 getTimeLogsByProject(id: ID!)
+
+type File {
+  id: ID!
+  url: string!
+  mimetype: string!
+}

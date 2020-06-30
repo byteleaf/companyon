@@ -22,5 +22,4 @@ class IdGeneratorService {
                 IdGeneratorEntity::class.java)
         return if (!Objects.isNull(counter)) counter!!.seq else 1
     }
-
 }
