@@ -1,5 +1,7 @@
 package de.byteleaf.companyon
 
+import de.byteleaf.companyon.fileupload.dto.File
+import de.byteleaf.companyon.fileupload.dto.input.FileInput
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,8 +16,10 @@ class SampleData : ApplicationRunner {
     private lateinit var userService: UserService
 
     override fun run(args: ApplicationArguments) {
-        userService.create(UserInput("Jeff", "Bytezos", "https://profile-images.xing.com/images/e9347adcf390f13f4809c7b08653a73b-2/simon-ittmann.1024x1024.jpg"))
-        userService.create(UserInput("Crack", "Bytezos", "https://media.graphcms.com/resize=width:100/25QFLjz6RZOUejx8DBD6"))
-        userService.create(UserInput("Manuel", "Neuer", "https://images.sportbuzzer.de/v1/photos/raw/munich-germany-january-25-manuel-neuer-of-fc-bayern-muenchen-runs-during-the-bun/large-16-9"))
+        val file = FileInput("file-id", "https://reshape.sport1.de/c/t/B718E483-EDB8-4F18-86B9-0CDCADDB840E/640x400", "image/jpeg")
+        userService.deleteAll()
+        userService.create(UserInput("Jeff", "Bytezos", file, file))
+        userService.create(UserInput("Crack", "Bytezos", file, file))
+        userService.create(UserInput("Manuel", "Neuer", file, file))
     }
 }

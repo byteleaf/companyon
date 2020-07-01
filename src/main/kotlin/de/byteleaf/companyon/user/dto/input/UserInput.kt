@@ -1,8 +1,9 @@
 package de.byteleaf.companyon.user.dto.input
 
+import de.byteleaf.companyon.fileupload.dto.input.FileInput
+
 data class UserInput(var firstName: String? = null,
                      var lastName: String? = null,
-                     var avatarUrl: String? = null,
-                     var signature: Long? = null,
-                     val avatar: Long? = null
+                     var signature: FileInput? = null,
+                     val avatar: FileInput? = null
 )

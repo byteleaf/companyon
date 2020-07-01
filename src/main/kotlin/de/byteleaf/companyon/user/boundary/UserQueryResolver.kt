@@ -15,7 +15,7 @@ class UserQueryResolver : GraphQLQueryResolver {
 
     fun getCurrentUser(): User = userService.getCurrentUser()
 
-    fun getUser(id: Long): User = userService.get(id)
+    fun getUser(id: String): User = userService.get(id)
 
-    fun getUsers(): List<User> = userService.getAll()
+    fun getUsers(): List<User> = userService.findAll()
 }

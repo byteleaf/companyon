@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.common.configuration
 
 import org.modelmapper.ModelMapper
+import org.modelmapper.PropertyMap
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -18,9 +19,7 @@ class ModelMapperConfiguration {
         return modelMapper
     }
 
-    // TODO
-//    companion object {
-//        private fun addKindInputDTOListConverter(mapper: ModelMapper) {
+//    private fun addKindInputDTOListConverter(mapper: ModelMapper) {
 //            mapper.addMappings(
 //                    object : PropertyMap<StammdatenInputDTO?, Kunde?>() {
 //                        protected fun configure() {
@@ -29,6 +28,9 @@ class ModelMapperConfiguration {
 //                        }
 //                    })
 //        }
+
+    // TODO
+//    companion object {
 //
 //        private fun addStringLocalDateConverter(mapper: ModelMapper) {
 //            mapper.addMappings(

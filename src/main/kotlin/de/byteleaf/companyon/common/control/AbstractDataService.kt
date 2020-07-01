@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.repository.MongoRepository
 
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
-abstract class AbstractDataService<E: AbstractEntity, O, I, R: MongoRepository<E, Long>> {
+abstract class AbstractDataService<E : AbstractEntity, O, I, R : MongoRepository<E, String>> {
 
     @Autowired
     protected lateinit var repository: R
+
     @Autowired
     protected lateinit var modelMapper: ModelMapper
-    @Autowired
-    private lateinit var idGeneratorService: IdGeneratorService
 
     private val POSITION_E = 0;
     private val POSITION_O = 1;
@@ -22,24 +21,23 @@ abstract class AbstractDataService<E: AbstractEntity, O, I, R: MongoRepository<E
 
     @Suppress("UNCHECKED_CAST")
     private fun inputToEntity(input: I): E = modelMapper.map(input, genericSupportUtil.getClassFromGeneric(this, POSITION_E) as Class<E>)
+
     @Suppress("UNCHECKED_CAST")
     private fun entityToOutput(entity: E): O = modelMapper.map(entity, genericSupportUtil.getClassFromGeneric(this, POSITION_O)) as O
 
-    fun create(input: I): O {
-        val entity= inputToEntity(input)
-        entity.id = idGeneratorService.generateId()
-        return entityToOutput(repository.insert(entity))
-    }
+    fun create(input: I): O = entityToOutput(repository.insert(inputToEntity(input)))
 
-    fun update(id: Long, input: I): O {
+    fun update(id: String, input: I): O {
         val entity = inputToEntity(input)
         entity.id = id
         return entityToOutput(repository.save(entity))
     }
 
-    fun get(id: Long): O = entityToOutput(repository.findById(id).get())
+    fun get(id: String): O = entityToOutput(repository.findById(id).get())
 
-    fun delete(id: Long) = repository.deleteById(id)
+    fun delete(id: String) = repository.deleteById(id)
 
-    fun getAll() = repository.findAll().map { entityToOutput(it) }
+    fun findAll() = repository.findAll().map { entityToOutput(it) }
+
+    fun deleteAll() = repository.deleteAll()
 }

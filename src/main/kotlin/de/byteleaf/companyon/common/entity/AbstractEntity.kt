@@ -4,5 +4,5 @@ import org.springframework.data.annotation.Id
 
 abstract class AbstractEntity {
     @Id
-    var id: Long = 0
+    var id: String? = null
 }

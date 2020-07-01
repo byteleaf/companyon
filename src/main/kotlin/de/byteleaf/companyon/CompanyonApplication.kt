@@ -7,7 +7,5 @@ import org.springframework.boot.runApplication
 class CompanyonApplication
 
 fun main(args: Array<String>) {
-    runApplication<CompanyonApplication>(*args) {
-
-    }
+    runApplication<CompanyonApplication>(*args)
 }

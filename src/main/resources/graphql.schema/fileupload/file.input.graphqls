@@ -1,0 +1,6 @@
+
+input FileInput {
+    id: String!,
+    url: String!,
+    mimeType: String!
+}
