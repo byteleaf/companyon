@@ -6,7 +6,7 @@
 
     <groupId>de.byteleaf</groupId>
     <artifactId>companyon</artifactId>
-    <version>1.0.0</version>
+    <version>1.0-SNAPSHOT</version>
     <properties>
         <kotlin.version>1.3.72</kotlin.version>
     </properties>
