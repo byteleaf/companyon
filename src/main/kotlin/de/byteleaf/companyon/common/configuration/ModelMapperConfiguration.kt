@@ -22,18 +22,18 @@ class ModelMapperConfiguration {
     }
 
 
-    private fun fileInputToFile(mapper: ModelMapper) {
-        val p = PropertyMap<FileInput, File> {
-
-        }
-
-        mapper.addMappings(PropertyMap<FileInput?, File?>() {
-                    fun configure() {
-                        `when` { ctx -> ctx.getSource() != null }
-                                .map(source) to File::javaClass
-                    }
-                })
-    }
+//    private fun fileInputToFile(mapper: ModelMapper) {
+//        val p = PropertyMap<FileInput, File> {
+//
+//        }
+//
+//        mapper.addMappings(PropertyMap<FileInput?, File?>() {
+//                    fun configure() {
+//                        `when` { ctx -> ctx.getSource() != null }
+//                                .map(source) to File::javaClass
+//                    }
+//                })
+//    }
 
     // TODO
 //    companion object {
