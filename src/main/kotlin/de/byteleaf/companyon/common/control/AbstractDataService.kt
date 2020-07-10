@@ -26,7 +26,7 @@ abstract class AbstractDataService<E : AbstractEntity, O, I, R : MongoRepository
     private fun entityToOutput(entity: E): O = modelMapper.map(entity, genericSupportUtil.getClassFromGeneric(this, POSITION_O)) as O
 
     fun create(input: I): O = entityToOutput(repository.insert(inputToEntity(input)))
-
+    
     fun update(id: String, input: I): O {
         val entity = inputToEntity(input)
         entity.id = id

@@ -1,10 +1,11 @@
 package de.byteleaf.companyon.common.configuration
 
+import de.byteleaf.companyon.fileupload.dto.File
+import de.byteleaf.companyon.fileupload.dto.input.FileInput
 import org.modelmapper.ModelMapper
 import org.modelmapper.PropertyMap
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-
 
 @Configuration
 class ModelMapperConfiguration {
@@ -15,19 +16,24 @@ class ModelMapperConfiguration {
         modelMapper.getConfiguration()
                 .setSkipNullEnabled(true)
                 .setFieldMatchingEnabled(true)
-        //addKindInputDTOListConverter(modelMapper)
+            //    .setMatchingStrategy(MatchingStrategies.LOOSE)
+        //fileInputToFile(modelMapper)
         return modelMapper
     }
 
-//    private fun addKindInputDTOListConverter(mapper: ModelMapper) {
-//            mapper.addMappings(
-//                    object : PropertyMap<StammdatenInputDTO?, Kunde?>() {
-//                        protected fun configure() {
-//                            `when` { ctx -> ctx.getSource() != null }.using(KindInputDTOListConverter())
-//                                    .map(source.getKinder()).setKinder(null)
-//                        }
-//                    })
-//        }
+
+    private fun fileInputToFile(mapper: ModelMapper) {
+        val p = PropertyMap<FileInput, File> {
+
+        }
+
+        mapper.addMappings(PropertyMap<FileInput?, File?>() {
+                    fun configure() {
+                        `when` { ctx -> ctx.getSource() != null }
+                                .map(source) to File::javaClass
+                    }
+                })
+    }
 
     // TODO
 //    companion object {
