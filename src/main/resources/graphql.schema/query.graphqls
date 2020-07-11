@@ -5,4 +5,6 @@ type Query {
     users: [User!]!
     company(id: ID!): Company!
     companies: [Company!]!
+    project(id: ID!): Project!
+    projects: [Project!]!
 }

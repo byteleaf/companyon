@@ -3,6 +3,8 @@ package de.byteleaf.companyon
 import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
+import de.byteleaf.companyon.project.control.ProjectService
+import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,6 +19,8 @@ class SampleData : ApplicationRunner {
     private lateinit var userService: UserService
     @Autowired
     private lateinit var companyService: CompanyService
+    @Autowired
+    private lateinit var projectService: ProjectService
 
     override fun run(args: ApplicationArguments) {
         val file = FileMetaInput("file-id", "https://reshape.sport1.de/c/t/B718E483-EDB8-4F18-86B9-0CDCADDB840E/640x400", "image/jpeg")
@@ -27,5 +31,8 @@ class SampleData : ApplicationRunner {
 
         companyService.create(CompanyInput("Rainer Langer GmbH"))
         companyService.create(CompanyInput("Tali Schleif-irgendwas AG"))
+
+        projectService.create(ProjectInput("Interhypen"))
+        projectService.create(ProjectInput("Talos mit Gabor"))
     }
 }
