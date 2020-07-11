@@ -5,7 +5,6 @@ import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 
 @Service
@@ -15,10 +14,6 @@ class UserService : AbstractDataService<UserEntity, User, UserInput, UserReposit
      * To get the current logged in user
      */
     fun getCurrentUser(): User {
-        val auth = SecurityContextHolder.getContext().authentication.authorities
-        val cred = SecurityContextHolder.getContext().authentication.credentials
-        println(auth)
-
         return findAll().get(0)
     }
 }
