@@ -1,9 +1,10 @@
 package de.byteleaf.companyon
 
+import com.oembedler.moon.graphql.boot.GraphQLWebAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication
+@SpringBootApplication(exclude = [GraphQLWebAutoConfiguration::class])
 class CompanyonApplication
 
 fun main(args: Array<String>) {

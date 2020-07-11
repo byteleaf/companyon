@@ -1,7 +1,7 @@
 version: '3'
 services:
   database:
-    image: mongo:latest
+    image: mongo:4.2.8
     container_name: 'mongo-container'
     environment:
       MONGO_INITDB_DATABASE: companyon
