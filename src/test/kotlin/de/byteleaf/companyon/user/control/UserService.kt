@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import de.byteleaf.companyon.user.dto.User
 
 @SpringBootTest
-class DeepRecursiveTest {
+class UserServiceTest {
 
     @Test
     fun getCurrentUser() {
