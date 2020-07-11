@@ -2,5 +2,9 @@
 type Query {
     currentUser: User!
     user(id: ID!): User!
-    users: [User]!
+    users: [User!]!
+    company(id: ID!): Company!
+    companies: [Company!]!
+    project(id: ID!): Project!
+    projects: [Project!]!
 }

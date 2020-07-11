@@ -1,5 +1,5 @@
 
-input FileInput {
+input FileMetaInput {
     id: String!,
     url: String!,
     mimeType: String!
