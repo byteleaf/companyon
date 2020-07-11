@@ -17,8 +17,10 @@ class SampleData : ApplicationRunner {
 
     @Autowired
     private lateinit var userService: UserService
+
     @Autowired
     private lateinit var companyService: CompanyService
+
     @Autowired
     private lateinit var projectService: ProjectService
 
@@ -29,9 +31,12 @@ class SampleData : ApplicationRunner {
         userService.create(UserInput("Crack", "Bytezos", file, file))
         userService.create(UserInput("Manuel", "Neuer", file, file))
 
+
+        companyService.deleteAll()
         companyService.create(CompanyInput("Rainer Langer GmbH"))
         companyService.create(CompanyInput("Tali Schleif-irgendwas AG"))
 
+        projectService.deleteAll()
         projectService.create(ProjectInput("Interhypen"))
         projectService.create(ProjectInput("Talos mit Gabor"))
     }
