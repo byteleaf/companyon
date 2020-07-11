@@ -36,6 +36,8 @@ services:
     image: postgres:12.3-alpine
     container_name:
       postgres
+    volumes:
+      - ./db/postgres/init:/docker-entrypoint-initdb.d/
     networks:
       - oauth-internal
     environment:
