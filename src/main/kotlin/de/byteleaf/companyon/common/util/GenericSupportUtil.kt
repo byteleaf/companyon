@@ -4,8 +4,7 @@ import de.byteleaf.companyon.common.control.AbstractDataService
 import org.springframework.stereotype.Service
 import java.lang.reflect.ParameterizedType
 
-@Service
-class GenericSupportUtil {
+object GenericSupportUtil {
 
     /**
      * To get the class of any generic from the [parentJavaCls] Object

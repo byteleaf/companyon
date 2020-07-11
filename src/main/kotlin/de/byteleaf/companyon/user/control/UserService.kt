@@ -7,6 +7,7 @@ import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
 import org.springframework.stereotype.Service
 
+
 @Service
 class UserService : AbstractDataService<UserEntity, User, UserInput, UserRepository>() {
 
