@@ -1,10 +1,8 @@
 package de.byteleaf.companyon
 
 import de.byteleaf.companyon.company.control.CompanyService
-import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
 import de.byteleaf.companyon.project.control.ProjectService
-import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,8 +15,10 @@ class SampleData : ApplicationRunner {
 
     @Autowired
     private lateinit var userService: UserService
+
     @Autowired
     private lateinit var companyService: CompanyService
+
     @Autowired
     private lateinit var projectService: ProjectService
 
@@ -29,10 +29,10 @@ class SampleData : ApplicationRunner {
         userService.create(UserInput("Crack", "Bytezos", file, file))
         userService.create(UserInput("Manuel", "Neuer", file, file))
 
-        companyService.create(CompanyInput("Rainer Langer GmbH"))
-        companyService.create(CompanyInput("Tali Schleif-irgendwas AG"))
+        //companyService.create(CompanyInput("Rainer Langer GmbH"))
+        //companyService.create(CompanyInput("Tali Schleif-irgendwas AG"))
 
-        projectService.create(ProjectInput("Interhypen"))
-        projectService.create(ProjectInput("Talos mit Gabor"))
+        //projectService.create(ProjectInput("Interhypen"))
+        //projectService.create(ProjectInput("Talos mit Gabor"))
     }
 }
