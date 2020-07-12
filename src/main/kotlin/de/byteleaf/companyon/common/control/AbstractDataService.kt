@@ -26,7 +26,7 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
 
     open fun create(input: I): O = entityToOutput(repository.insert(inputToEntity(input)))
 
-    fun update(id: String, input: I): O {
+    open fun update(id: String, input: I): O {
         val entity = inputToEntity(input)
         entity.id = id
         return entityToOutput(repository.save(entity))
@@ -34,9 +34,9 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
 
     fun get(id: String): O = entityToOutput(repository.findById(id).get())
 
-    fun delete(id: String) = repository.deleteById(id)
+    open fun delete(id: String) = repository.deleteById(id)
 
     fun findAll() = repository.findAll().map { entityToOutput(it) }
 
-    fun deleteAll() = repository.deleteAll()
+    open fun deleteAll() = repository.deleteAll()
 }
