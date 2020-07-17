@@ -16,8 +16,7 @@ class ProjectMutationResolver : GraphQLMutationResolver {
     fun updateProject(id: String, input: ProjectInput): Project = projectService.update(id, input)
 
     fun createProject(input: ProjectInput): Project = projectService.create(input)
-
-    // TODO implement Skalar Void: https://byteleaf.atlassian.net/browse/COM-36
+    
     fun deleteProject(id: String): Boolean {
         projectService.delete(id)
         return true

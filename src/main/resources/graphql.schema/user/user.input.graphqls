@@ -1,6 +1,6 @@
 input UserInput {
-    firstName: String
-    lastName: String
+    firstName: String!
+    lastName: String!
     signature: FileMetaInput
     avatar: FileMetaInput
 }

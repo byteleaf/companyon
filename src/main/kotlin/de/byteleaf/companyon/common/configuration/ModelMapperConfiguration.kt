@@ -11,6 +11,7 @@ class ModelMapperConfiguration {
     fun createModelMapper(): ModelMapper {
         val modelMapper = ModelMapper()
         modelMapper.configuration
+                .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
                 .setSkipNullEnabled(true).isFieldMatchingEnabled = true
         return modelMapper
     }
