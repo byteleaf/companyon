@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller
 class UserQueryResolver : GraphQLQueryResolver {
 
     @Autowired
-    private lateinit var userService: UserService;
+    private lateinit var userService: UserService
 
     fun getCurrentUser(): User = userService.getCurrentUser()
 

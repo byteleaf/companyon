@@ -7,7 +7,8 @@
 [Click here to see more details](documentation/setup.md)
 
 ##
-Run without IDE via Maven
+
+## Run without IDE via Maven
 
 ```
 mvn spring-boot:run

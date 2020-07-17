@@ -10,9 +10,8 @@ class ModelMapperConfiguration {
     @Bean
     fun createModelMapper(): ModelMapper {
         val modelMapper = ModelMapper()
-        modelMapper.getConfiguration()
-                .setSkipNullEnabled(true)
-                .setFieldMatchingEnabled(true)
+        modelMapper.configuration
+                .setSkipNullEnabled(true).isFieldMatchingEnabled = true
         return modelMapper
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller
 class CompanyQueryResolver : GraphQLQueryResolver {
 
     @Autowired
-    private lateinit var companyService: CompanyService;
+    private lateinit var companyService: CompanyService
 
     fun getCompany(id: String): Company = companyService.get(id)
 
