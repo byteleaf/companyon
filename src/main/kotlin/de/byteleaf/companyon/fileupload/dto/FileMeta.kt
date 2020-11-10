@@ -1,6 +1,6 @@
-package de.byteleaf.companyon.fileupload.dto.input
+package de.byteleaf.companyon.fileupload.dto
 
-data class FileInput(
+data class FileMeta(
         var id: String? = null,
         var url: String? = null,
         var mimeType: String? = null

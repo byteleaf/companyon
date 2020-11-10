@@ -1,5 +1,5 @@
 
-type File {
+type FileMeta {
     id: String!,
     url: String!,
     mimeType: String!

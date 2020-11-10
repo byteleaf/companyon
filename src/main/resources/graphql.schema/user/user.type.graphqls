@@ -1,7 +1,7 @@
 type User {
     id: ID!
-    firstName: String
-    lastName: String
-    signature: File
-    avatar: File
+    firstName: String!
+    lastName: String!
+    signature: FileMeta
+    avatar: FileMeta
 }

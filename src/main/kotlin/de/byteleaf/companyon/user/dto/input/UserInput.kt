@@ -1,9 +1,10 @@
 package de.byteleaf.companyon.user.dto.input
 
-import de.byteleaf.companyon.fileupload.dto.input.FileInput
+import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
 
-data class UserInput(var firstName: String? = null,
-                     var lastName: String? = null,
-                     var signature: FileInput? = null,
-                     val avatar: FileInput? = null
+
+data class UserInput(val firstName: String,
+                     val lastName: String,
+                     var signature: FileMetaInput,
+                     var avatar: FileMetaInput
 )

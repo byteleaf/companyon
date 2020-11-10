@@ -11,13 +11,12 @@ import org.springframework.stereotype.Controller
 class UserMutationResolver : GraphQLMutationResolver {
 
     @Autowired
-    private lateinit var userService: UserService;
+    private lateinit var userService: UserService
 
     fun updateUser(id: String, input: UserInput): User = userService.update(id, input)
 
     fun createUser(input: UserInput): User = userService.create(input)
-
-    // TODO implement Skalar Void: https://byteleaf.atlassian.net/browse/COM-36
+    
     fun deleteUser(id: String): Boolean {
         userService.delete(id)
         return true
