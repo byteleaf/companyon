@@ -8,6 +8,7 @@ import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
@@ -20,6 +21,9 @@ class SampleData : ApplicationRunner {
         const val MIME_TYPE = "image/jpeg"
     }
 
+    @Value("\${skip-sample-data:false}")
+    private var skipSampleData = false
+
     @Autowired
     private lateinit var userService: UserService
 
@@ -30,6 +34,9 @@ class SampleData : ApplicationRunner {
     private lateinit var projectService: ProjectService
 
     override fun run(args: ApplicationArguments) {
+        if (skipSampleData) {
+            return
+        }
 
         val file1 = FileMetaInput(FILE_ID,
                 "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80", MIME_TYPE)
@@ -56,6 +63,6 @@ class SampleData : ApplicationRunner {
         projectService.deleteAll()
         projectService.create(ProjectInput("Project A"))
         projectService.create(ProjectInput("Project B"))
-        
+
     }
 }

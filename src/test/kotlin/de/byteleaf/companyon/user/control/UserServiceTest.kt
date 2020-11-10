@@ -1,18 +1,18 @@
 package de.byteleaf.companyon.user.control
 
 import de.byteleaf.companyon.CompanyonTextContextConfiguration
+import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
+import de.byteleaf.companyon.user.dto.input.UserInput
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.junit.jupiter.SpringExtension
-
 
 @DataMongoTest
-@ExtendWith(SpringExtension::class)
 @ContextConfiguration(classes = [CompanyonTextContextConfiguration::class])
+@ActiveProfiles("test")
 class UserServiceTest {
 
     @Autowired
@@ -20,9 +20,14 @@ class UserServiceTest {
 
     @Test
     fun getCurrentUser() {
+        val emptyFileMeta = FileMetaInput("", "", "")
+        val newUser = UserInput("Joseph", "Bytezos", emptyFileMeta, emptyFileMeta)
+
+        userService.create(newUser)
+
         val currentUser = userService.getCurrentUser()
 
-        assertEquals("Jeff", currentUser.firstName)
-        assertEquals("Bytezos", currentUser.lastName)
+        assertEquals(newUser.firstName, currentUser.firstName)
+        assertEquals(newUser.lastName, currentUser.lastName)
     }
 }
