@@ -5,19 +5,17 @@ import org.springframework.context.annotation.Profile
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter
-
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 
 @Profile("!non-sec & !test")
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-@EnableResourceServer
-class OAuth2ResourceServerConfiguration : ResourceServerConfigurerAdapter() {
+class OAuth2ResourceServerConfiguration : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
                 .antMatchers("/graphql").authenticated()
+                .and().oauth2ResourceServer().jwt()
     }
 }

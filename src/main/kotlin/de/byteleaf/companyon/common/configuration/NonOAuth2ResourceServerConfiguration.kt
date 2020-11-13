@@ -4,18 +4,17 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 
 
 @Profile("non-sec", "test")
 @Configuration
 @EnableWebSecurity
-@EnableResourceServer
-class NonOAuth2ResourceServerConfiguration : ResourceServerConfigurerAdapter() {
+class NonOAuth2ResourceServerConfiguration : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
+                .and().csrf { csrf -> csrf.disable() }
     }
 }
