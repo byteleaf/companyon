@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.user.control
 
 import de.byteleaf.companyon.CompanyonTextContextConfiguration
+import de.byteleaf.companyon.common.WithMockCustomUser
 import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -19,9 +20,17 @@ class UserServiceTest {
     private lateinit var userService: UserService
 
     @Test
+    @WithMockCustomUser("oauth2Sub", "Joseph", "Bytezos")
     fun getCurrentUser() {
         val emptyFileMeta = FileMetaInput("", "", "")
-        val newUser = UserInput("Joseph", "Bytezos", emptyFileMeta, emptyFileMeta)
+        val newUser = UserInput(
+                "oauth2Sub",
+                "Joseph",
+                "Bytezos",
+                "joseph@bytezos.de",
+                emptyFileMeta,
+                emptyFileMeta
+        )
 
         userService.create(newUser)
 
