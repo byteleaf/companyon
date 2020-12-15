@@ -19,10 +19,10 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
     private val POSITION_O = 1
 
     @Suppress("UNCHECKED_CAST")
-    private fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_E) as Class<E>)
+    protected fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_E) as Class<E>)
 
     @Suppress("UNCHECKED_CAST")
-    private fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_O)) as O
+    protected fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_O)) as O
 
     fun create(input: I): O = entityToOutput(repository.insert(inputToEntity(input)))
 
