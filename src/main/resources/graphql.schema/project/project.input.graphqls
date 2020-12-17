@@ -1,4 +1,5 @@
 
 input ProjectInput {
-    name: String!
+    name: String!,
+    company: ID!
 }

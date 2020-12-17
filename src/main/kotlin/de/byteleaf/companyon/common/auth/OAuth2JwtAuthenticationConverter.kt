@@ -36,8 +36,8 @@ class OAuth2JwtAuthenticationConverter(
 
         val createDBUser = userService.create(UserInput(
                 map["sub"] as String,
-                map["given_name"] as String,
-                map["family_name"] as String,
+                map["given_name"] as? String ?: "",
+                map["family_name"] as? String ?: "",
                 map["email"] as String,
                 FileMetaInput("", "", ""),
                 null
