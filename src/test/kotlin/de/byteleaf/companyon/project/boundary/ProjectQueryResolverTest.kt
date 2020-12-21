@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.graphql.spring.boot.test.GraphQLTest
 import com.graphql.spring.boot.test.GraphQLTestTemplate
 import de.byteleaf.companyon.common.AbstractGraphQLTest
+import de.byteleaf.companyon.company.entity.CompanyEntity
 import de.byteleaf.companyon.project.entity.ProjectEntity
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -19,7 +20,7 @@ class ProjectQueryResolverTest : AbstractGraphQLTest() {
 
     @Test
     fun testGetProject() {
-        val project = ProjectEntity("Companyon")
+        val project = ProjectEntity("Companyon", CompanyEntity("byteleaf"))
         project.id = "1337"
 
         doReturn(Optional.of(project)).`when`(projectRepository).findById(eq(project.id!!))

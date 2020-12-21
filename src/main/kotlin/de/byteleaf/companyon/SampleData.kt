@@ -40,12 +40,16 @@ class SampleData : ApplicationRunner {
 
 
         companyService.deleteAll()
-        companyService.create(CompanyInput("Company A Ltd."))
-        companyService.create(CompanyInput("Company B Ltd."))
+
+        val companyA = companyService.create(CompanyInput("Company A Ltd."))
+        val companyB = companyService.create(CompanyInput("Company B Ltd."))
 
         projectService.deleteAll()
-        projectService.create(ProjectInput("Project A"))
-        projectService.create(ProjectInput("Project B"))
+        projectService.create(ProjectInput("Project A", companyA.id!!))
+        projectService.create(ProjectInput("Project B", companyA.id!!))
+
+        projectService.create(ProjectInput("Project C", companyB.id!!))
+        projectService.create(ProjectInput("Project D", companyB.id!!))
 
     }
 }

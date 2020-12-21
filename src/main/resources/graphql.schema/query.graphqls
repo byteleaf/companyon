@@ -1,10 +1,10 @@
 
 type Query {
     currentUser: User!
-    user(id: ID!): User!
+    user(id: ID!): User
     users: [User!]!
-    company(id: ID!): Company!
+    company(id: ID!): Company
     companies: [Company!]!
-    project(id: ID!): Project!
+    project(id: ID!): Project
     projects: [Project!]!
 }

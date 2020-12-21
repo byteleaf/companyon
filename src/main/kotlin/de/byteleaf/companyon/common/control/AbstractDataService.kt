@@ -32,7 +32,9 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
         return entityToOutput(repository.save(entity))
     }
 
-    fun get(id: String): O = entityToOutput(repository.findById(id).get())
+    fun get(id: String): O? = repository.findById(id)
+            .map { entityToOutput(it) }
+            .orElse(null)
 
     fun delete(id: String) = repository.deleteById(id)
 
