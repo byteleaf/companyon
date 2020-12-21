@@ -15,24 +15,26 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
     @Autowired
     protected lateinit var modelMapper: ModelMapper
 
-    private val POSITION_E = 0;
-    private val POSITION_O = 1;
+    private val POSITION_E = 0
+    private val POSITION_O = 1
 
     @Suppress("UNCHECKED_CAST")
-    private fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_E) as Class<E>)
+    protected fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_E) as Class<E>)
 
     @Suppress("UNCHECKED_CAST")
-    private fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_O)) as O
+    protected fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_O)) as O
 
     fun create(input: I): O = entityToOutput(repository.insert(inputToEntity(input)))
-    
+
     fun update(id: String, input: I): O {
         val entity = inputToEntity(input)
         entity.id = id
         return entityToOutput(repository.save(entity))
     }
 
-    fun get(id: String): O = entityToOutput(repository.findById(id).get())
+    fun get(id: String): O? = repository.findById(id)
+            .map { entityToOutput(it) }
+            .orElse(null)
 
     fun delete(id: String) = repository.deleteById(id)
 

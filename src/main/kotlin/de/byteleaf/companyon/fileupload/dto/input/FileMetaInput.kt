@@ -1,7 +1,9 @@
 package de.byteleaf.companyon.fileupload.dto.input
 
+import de.byteleaf.companyon.common.configuration.NoArgConstructor
+
+@NoArgConstructor
 data class FileMetaInput(
-        var id: String? = null,
-        var url: String? = null,
-        var mimeType: String? = null
-)
+        val id: String,
+        val url: String,
+        val mimeType: String)

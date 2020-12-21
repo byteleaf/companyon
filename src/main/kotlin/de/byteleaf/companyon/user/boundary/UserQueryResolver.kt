@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.user.boundary
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver
+import de.byteleaf.companyon.common.boundary.GraphQLQueryResolver
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.beans.factory.annotation.Autowired
@@ -8,14 +8,14 @@ import org.springframework.stereotype.Controller
 
 
 @Controller
-class UserQueryResolver : GraphQLQueryResolver {
+class UserQueryResolver : GraphQLQueryResolver() {
 
     @Autowired
-    private lateinit var userService: UserService;
+    private lateinit var userService: UserService
 
     fun getCurrentUser(): User = userService.getCurrentUser()
 
-    fun getUser(id: String): User = userService.get(id)
+    fun getUser(id: String): User? = throwIfEmpty(userService.get(id), mapOf("id" to id))
 
     fun getUsers(): List<User> = userService.findAll()
 }

@@ -2,8 +2,12 @@ package de.byteleaf.companyon.user.dto.input
 
 import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
 
-data class UserInput(var firstName: String? = null,
-                     var lastName: String? = null,
-                     var signature: FileMetaInput? = null,
-                     var avatar: FileMetaInput? = null
+
+data class UserInput(
+        val oauth2Subject: String,
+        val firstName: String,
+        val lastName: String,
+        val email: String,
+        val signature: FileMetaInput,
+        val avatar: FileMetaInput?
 )

@@ -1,3 +1,5 @@
 package de.byteleaf.companyon.project.dto.input
 
-data class ProjectInput(var name: String? = null)
+typealias CompanyID = String
+
+data class ProjectInput(val name: String, val company: CompanyID)

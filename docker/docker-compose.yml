@@ -1,7 +1,7 @@
 version: '3'
 services:
   database:
-    image: mongo:latest
+    image: mongo:4.2.8
     container_name: 'mongo-container'
     environment:
       MONGO_INITDB_DATABASE: companyon
@@ -13,37 +13,3 @@ services:
       - 8081:8081
     environment:
       ME_CONFIG_MONGODB_SERVER: database
-
-  oauth2:
-    image: jboss/keycloak:10.0.2
-    container_name:
-      oauth2
-    ports:
-      - 8180:8080
-    networks:
-      - oauth-internal
-    env_file:
-      - keycloak/keycloak.env
-    environment:
-      - DB_VENDOR=POSTGRES
-      - DB_ADDR=postgres
-      - DB_DATABASE=keycloak
-      - DB_USER=keycloak
-      - DB_SCHEMA=public
-      - DB_PASSWORD=password
-
-  oauth2-db:
-    image: postgres:12.3-alpine
-    container_name:
-      postgres
-    volumes:
-      - ./db/postgres/init:/docker-entrypoint-initdb.d/
-    networks:
-      - oauth-internal
-    environment:
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: keycloak
-
-networks:
-  oauth-internal:

@@ -2,12 +2,11 @@ package de.byteleaf.companyon
 
 import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.company.dto.input.CompanyInput
-import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
 import de.byteleaf.companyon.project.control.ProjectService
 import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.user.control.UserService
-import de.byteleaf.companyon.user.dto.input.UserInput
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
@@ -15,24 +14,42 @@ import org.springframework.stereotype.Component
 @Component
 class SampleData : ApplicationRunner {
 
+    companion object {
+        const val FILE_ID = "file-id"
+        const val MIME_TYPE = "image/jpeg"
+    }
+
+    @Value("\${skip-sample-data:false}")
+    private var skipSampleData = false
+
     @Autowired
     private lateinit var userService: UserService
+
     @Autowired
     private lateinit var companyService: CompanyService
+
     @Autowired
     private lateinit var projectService: ProjectService
 
     override fun run(args: ApplicationArguments) {
-        val file = FileMetaInput("file-id", "https://reshape.sport1.de/c/t/B718E483-EDB8-4F18-86B9-0CDCADDB840E/640x400", "image/jpeg")
+        if (skipSampleData) {
+            return
+        }
+
         userService.deleteAll()
-        userService.create(UserInput("Jeff", "Bytezos", file, file))
-        userService.create(UserInput("Crack", "Bytezos", file, file))
-        userService.create(UserInput("Manuel", "Neuer", file, file))
 
-        companyService.create(CompanyInput("Rainer Langer GmbH"))
-        companyService.create(CompanyInput("Tali Schleif-irgendwas AG"))
 
-        projectService.create(ProjectInput("Interhypen"))
-        projectService.create(ProjectInput("Talos mit Gabor"))
+        companyService.deleteAll()
+
+        val companyA = companyService.create(CompanyInput("Company A Ltd."))
+        val companyB = companyService.create(CompanyInput("Company B Ltd."))
+
+        projectService.deleteAll()
+        projectService.create(ProjectInput("Project A", companyA.id!!))
+        projectService.create(ProjectInput("Project B", companyA.id!!))
+
+        projectService.create(ProjectInput("Project C", companyB.id!!))
+        projectService.create(ProjectInput("Project D", companyB.id!!))
+
     }
 }

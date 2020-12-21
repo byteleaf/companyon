@@ -1,5 +1,6 @@
 
 type Project {
     id: ID!,
-    name: String!
+    name: String!,
+    company: Company!
 }

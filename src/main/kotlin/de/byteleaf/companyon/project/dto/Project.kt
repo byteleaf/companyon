@@ -1,5 +1,8 @@
 package de.byteleaf.companyon.project.dto
 
+import de.byteleaf.companyon.common.configuration.NoArgConstructor
 import de.byteleaf.companyon.common.dto.BaseDTO
+import de.byteleaf.companyon.company.dto.Company
 
-data class Project(var name: String? = null): BaseDTO()
+@NoArgConstructor
+data class Project(val name: String, val company: Company) : BaseDTO()
