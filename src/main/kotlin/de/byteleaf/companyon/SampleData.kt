@@ -38,7 +38,6 @@ class SampleData : ApplicationRunner {
 
         userService.deleteAll()
 
-
         companyService.deleteAll()
 
         val companyA = companyService.create(CompanyInput("Company A Ltd."))
@@ -50,6 +49,5 @@ class SampleData : ApplicationRunner {
 
         projectService.create(ProjectInput("Project C", companyB.id!!))
         projectService.create(ProjectInput("Project D", companyB.id!!))
-
     }
 }

@@ -1,12 +1,12 @@
 
 type Mutation {
-    createUser(input: UserInput!): User!
-    updateUser(id: ID!, input: UserInput!): User!
-    deleteUser(id: ID!): Boolean!
-    createCompany(input: CompanyInput!): Company!
-    updateCompany(id: ID!, input: CompanyInput!): Company!
-    deleteCompany(id: ID!): Boolean!
-    createProject(input: ProjectInput!): Project!
-    updateProject(id: ID!, input: ProjectInput!): Project!
-    deleteProject(id: ID!): Boolean!
+#    createUser(input: UserInput!): User!
+#    updateUser(id: ID!, input: UserInput!): User!
+#    deleteUser(id: ID!): Boolean!
+#    createCompany(input: CompanyInput!): Company!
+#    updateCompany(id: ID!, input: CompanyInput!): Company!
+#    deleteCompany(id: ID!): Boolean!
+#    createProject(input: ProjectInput!): Project!
+#    updateProject(id: ID!, input: ProjectInput!): Project!
+#    deleteProject(id: ID!): Boolean!
 }

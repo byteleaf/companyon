@@ -1,9 +1,9 @@
 package de.byteleaf.companyon.company.boundary
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.input.CompanyInput
+import graphql.kickstart.tools.GraphQLMutationResolver
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 
