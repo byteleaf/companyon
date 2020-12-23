@@ -41,4 +41,6 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
     fun findAll() = repository.findAll().map { entityToOutput(it) }
 
     fun deleteAll() = repository.deleteAll()
+
+
 }

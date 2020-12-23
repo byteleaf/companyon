@@ -8,4 +8,9 @@ import de.byteleaf.companyon.project.respository.ProjectRepository
 import org.springframework.stereotype.Service
 
 @Service
-class ProjectService : AbstractDataService<ProjectEntity, Project, ProjectInput, ProjectRepository>()
+class ProjectService : AbstractDataService<ProjectEntity, Project, ProjectInput, ProjectRepository>() {
+
+    public fun deleteByCompany(companyId: String) {
+        repository.deleteByCompany(companyId)
+    }
+}
