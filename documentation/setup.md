@@ -21,4 +21,8 @@ Create and start a local docker container with a mongo db:
 
 ### Mongo-Express
 
-[http://localhost:8081](http://localhost:8099)
+[Open mongo express](http://localhost:8099)
+
+## GraphQL Playground
+
+[Open graphql playground](http://localhost:8080/playground)]

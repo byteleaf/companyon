@@ -6,7 +6,7 @@
 
 [Click here to see more details](documentation/setup.md)
 
-##
+
 
 ## Run without IDE via Maven
 

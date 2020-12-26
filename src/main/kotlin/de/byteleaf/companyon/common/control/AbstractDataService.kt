@@ -1,10 +1,14 @@
 package de.byteleaf.companyon.common.control
 
 import de.byteleaf.companyon.common.entity.BaseEntity
+import de.byteleaf.companyon.common.event.EntityDeletedEvent
+import de.byteleaf.companyon.common.event.EventEntityType
 import de.byteleaf.companyon.common.util.GenericSupportUtil
 import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.data.mongodb.repository.MongoRepository
+
 
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
 abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, String>> {
@@ -14,6 +18,9 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
 
     @Autowired
     protected lateinit var modelMapper: ModelMapper
+
+    @Autowired
+    protected lateinit var applicationEventPublisher: ApplicationEventPublisher
 
     private val POSITION_E = 0
     private val POSITION_O = 1
@@ -36,11 +43,14 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
             .map { entityToOutput(it) }
             .orElse(null)
 
-    fun delete(id: String) = repository.deleteById(id)
+    fun delete(id: String) {
+       // repository.deleteById(id)
+        val cls = GenericSupportUtil.getClassFromGeneric(this, POSITION_E)
+        applicationEventPublisher.publishEvent(EntityDeletedEvent(cls, id))
+    }
 
     fun findAll() = repository.findAll().map { entityToOutput(it) }
 
     fun deleteAll() = repository.deleteAll()
-
 
 }

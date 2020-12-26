@@ -22,7 +22,6 @@ class CompanyMutationResolver : GraphQLMutationResolver {
 
     fun deleteCompany(id: String): Boolean {
         companyService.delete(id)
-        projectService.deleteByCompany(id)
         return true
     }
 }
