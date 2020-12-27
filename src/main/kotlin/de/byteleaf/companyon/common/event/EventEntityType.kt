@@ -1,5 +1,8 @@
 package de.byteleaf.companyon.common.event
 
 enum class EventEntityType {
-    COMPANY
+    COMPANY,
+    PROJECT,
+    USER,
+
 }

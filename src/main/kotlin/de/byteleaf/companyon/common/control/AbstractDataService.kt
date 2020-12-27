@@ -46,11 +46,15 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
     fun delete(id: String) {
        // repository.deleteById(id)
         val cls = GenericSupportUtil.getClassFromGeneric(this, POSITION_E)
-        applicationEventPublisher.publishEvent(EntityDeletedEvent(cls, id))
+       // applicationEventPublisher.publishEvent(EntityDeletedEvent(cls, id))
     }
 
     fun findAll() = repository.findAll().map { entityToOutput(it) }
 
     fun deleteAll() = repository.deleteAll()
 
+    /**
+     * The type of the entity to make event listener conditions possible
+     */
+    abstract fun getEventEntityType() : EventEntityType
 }
