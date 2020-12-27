@@ -1,0 +1,6 @@
+query GetCompanies {
+    companies {
+        id
+        name
+    }
+}

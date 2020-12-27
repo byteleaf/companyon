@@ -43,10 +43,11 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
             .map { entityToOutput(it) }
             .orElse(null)
 
-    fun delete(id: String) {
+    fun delete(id: String): String {
        // repository.deleteById(id)
         val cls = GenericSupportUtil.getClassFromGeneric(this, POSITION_E)
        // applicationEventPublisher.publishEvent(EntityDeletedEvent(cls, id))
+        return id
     }
 
     fun findAll() = repository.findAll().map { entityToOutput(it) }

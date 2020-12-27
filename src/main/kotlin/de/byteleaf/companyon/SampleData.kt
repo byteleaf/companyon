@@ -55,7 +55,5 @@ class SampleData : ApplicationRunner {
 
         projectService.create(ProjectInput("Project C", companyB.id!!))
         projectService.create(ProjectInput("Project D", companyB.id!!))
-
-        applicationEventPublisher.publishEvent(EntityDeletedEvent<CompanyEntity>(EventEntityType.COMPANY, "4", CompanyEntity("32")))
     }
 }
