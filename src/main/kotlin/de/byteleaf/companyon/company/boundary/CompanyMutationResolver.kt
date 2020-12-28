@@ -17,5 +17,5 @@ class CompanyMutationResolver : GraphQLMutationResolver {
 
     fun createCompany(input: CompanyInput): Company = companyService.create(input)
 
-    fun deleteCompany(id: String): String = companyService.delete(id)
+    fun deleteCompany(id: String): Company = companyService.delete(id)
 }

@@ -17,8 +17,8 @@ class ProjectService : AbstractDataService<ProjectEntity, Project, ProjectInput,
     override fun getEntityType(): EntityType = EntityType.PROJECT
 
     @EventListener(condition = "#event.entityType == T(de.byteleaf.companyon.common.entity.EntityType).COMPANY")
-    fun deleteByCompany(event: EntityDeletedEvent) {
-        repository.deleteByCompany(event.id)
+    fun deleteByCompany(event: EntityDeletedEvent<*>) {
+        repository.deleteByCompany(event.entity.id!!)
     }
 
     fun findByCompany(companyId: String): List<Project> = repository.findByCompany(companyId).map { entityToOutput(it) }

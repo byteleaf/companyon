@@ -19,12 +19,7 @@ class ProjectMutationResolver : GraphQLMutationResolver {
 
     fun updateProject(id: String, input: ProjectInput): Project = projectService.update(id, input)
 
-    fun createProject(input: ProjectInput): Project {
-        return projectService.create(input)
-    }
+    fun createProject(input: ProjectInput): Project = projectService.create(input)
 
-    fun deleteProject(id: String): Boolean {
-        projectService.delete(id)
-        return true
-    }
+    fun deleteProject(id: String): Project = projectService.delete(id)
 }

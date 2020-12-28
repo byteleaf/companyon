@@ -1,3 +1,5 @@
 mutation DeleteCompany($id: ID!) {
-    deleteCompany(id: $id)
+    deleteCompany(id: $id) {
+        id
+    }
 }
