@@ -1,0 +1,27 @@
+{
+  "errors": [
+    {
+      "message": "Error code: ENTITY_NOT_FOUND. Entity with id 5fea0e5749378d5689e915b6 and type COMPANY could not be found.",
+      "locations": [
+        {
+          "line": 2,
+          "column": 5
+        }
+      ],
+      "path": [
+        "company"
+      ],
+      "extensions": {
+        "entityId": "5fea0e5749378d5689e915b6",
+        "entityType": "COMPANY",
+        "code": "ENTITY_NOT_FOUND",
+        "message": "Error code: ENTITY_NOT_FOUND. Entity with id 5fea0e5749378d5689e915b6 and type COMPANY could not be found.",
+        "classification": "DataFetchingException"
+      }
+    }
+  ],
+  "data": {
+    "company": null
+  }
+}
+

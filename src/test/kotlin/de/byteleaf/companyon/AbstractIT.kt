@@ -18,7 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureDataMongo
-open class AbstractIntegrationTest(val gqlFolder: String) {
+open class AbstractIT(val gqlFolder: String) {
 
     @Autowired
     protected lateinit var companyService: CompanyService
@@ -32,6 +32,16 @@ open class AbstractIntegrationTest(val gqlFolder: String) {
     @Suppress("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     protected lateinit var graphQLTestTemplate: GraphQLTestTemplate
+
+    protected fun performGQLByIdAndInput(gqlOperation: String, id: String, inputPayload: String): GraphQLResponse =
+            performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }")
+
+    protected fun performGQLByInput(gqlOperation: String, inputPayload: String): GraphQLResponse =
+            performGQL(gqlOperation, "{ \"input\": $inputPayload }")
+
+    protected fun performGQLById(gqlOperation: String, id: String): GraphQLResponse =
+            performGQL(gqlOperation, "{ \"id\": \"$id\" }")
+
 
     protected fun performGQL(gqlOperation: String, payload: String? = null): GraphQLResponse {
         val response = graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload))

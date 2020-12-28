@@ -1,5 +1,7 @@
 package de.byteleaf.companyon.common.configuration
 
-// TODO why needed?
+/**
+ * Is needed by the ModelMapper
+ */
 @Target(AnnotationTarget.CLASS)
 annotation class NoArgConstructor

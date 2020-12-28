@@ -1,16 +1,14 @@
 package de.byteleaf.companyon.common.control
 
 import de.byteleaf.companyon.common.entity.BaseEntity
-import de.byteleaf.companyon.common.event.EntityDeletedEvent
 import de.byteleaf.companyon.common.entity.EntityType
-import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.common.error.exception.EntityNotFoundException
+import de.byteleaf.companyon.common.event.EntityDeletedEvent
 import de.byteleaf.companyon.common.util.GenericSupportUtil
 import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.data.mongodb.repository.MongoRepository
-
 
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
 abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, String>> {
@@ -42,7 +40,7 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
     }
 
     fun get(id: String): O = repository.findById(id).map { entityToOutput(it) }
-            .orElseThrow { EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND, id, getEntityType()) }
+            .orElseThrow { EntityNotFoundException(id, getEntityType()) }
 
     fun delete(id: String): String {
         // TODO not present?
