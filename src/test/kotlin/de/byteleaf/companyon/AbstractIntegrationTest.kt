@@ -5,14 +5,19 @@ import com.fasterxml.jackson.databind.node.ObjectNode
 import com.graphql.spring.boot.test.GraphQLResponse
 import com.graphql.spring.boot.test.GraphQLTestTemplate
 import de.byteleaf.companyon.company.control.CompanyService
-import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.control.ProjectService
-import de.byteleaf.companyon.project.dto.input.ProjectInput
 import org.assertj.core.api.Assertions.assertThat
-import org.springframework.beans.factory.InitializingBean
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Component
+import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.junit.jupiter.SpringExtension
 
+@ExtendWith(SpringExtension::class)
+@ActiveProfiles("test")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureDataMongo
 open class AbstractIntegrationTest(val gqlFolder: String) {
 
     @Autowired
@@ -26,10 +31,10 @@ open class AbstractIntegrationTest(val gqlFolder: String) {
 
     @Suppress("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private lateinit var graphQLTestTemplate: GraphQLTestTemplate
+    protected lateinit var graphQLTestTemplate: GraphQLTestTemplate
 
-    protected fun performGQL(gqlOperation: String, variables: ObjectNode? = null): GraphQLResponse {
-        val response = graphQLTestTemplate.perform("graphql/$gqlFolder/$gqlOperation.graphql", variables)
+    protected fun performGQL(gqlOperation: String, payload: String? = null): GraphQLResponse {
+        val response = graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload))
         assertThat(response.isOk).isTrue()
         assertThat(response.readTree().hasNonNull("errors"))
                 .describedAs("response has errors")
@@ -37,16 +42,15 @@ open class AbstractIntegrationTest(val gqlFolder: String) {
         return response
     }
 
-    protected fun restTestData() {
+    protected fun getGQLResource(gqlOperation: String): String = "graphql/$gqlFolder/$gqlOperation.graphql"
+
+    protected fun parseJSON(payload: String? = null): ObjectNode? {
+        if (payload != null) return objectMapper.readTree(payload) as ObjectNode?
+        return null
+    }
+
+    protected fun clearDB() {
         companyService.deleteAll()
-        val companyA = companyService.create(CompanyInput("Company A Ltd."))
-        val companyB = companyService.create(CompanyInput("Company B Ltd."))
-
         projectService.deleteAll()
-        projectService.create(ProjectInput("Project A", companyA.id!!))
-        projectService.create(ProjectInput("Project B", companyA.id!!))
-
-        projectService.create(ProjectInput("Project C", companyB.id!!))
-        projectService.create(ProjectInput("Project D", companyB.id!!))
     }
 }

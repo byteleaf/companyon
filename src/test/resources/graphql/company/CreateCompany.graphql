@@ -1,5 +1,5 @@
-query GetCompany($id: ID!) {
-    company(id: $id) {
+mutation CreateCompany($input: CompanyInput!) {
+    createCompany(input: $input) {
         id
         name
     }

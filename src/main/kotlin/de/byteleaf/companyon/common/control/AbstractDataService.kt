@@ -2,7 +2,9 @@ package de.byteleaf.companyon.common.control
 
 import de.byteleaf.companyon.common.entity.BaseEntity
 import de.byteleaf.companyon.common.event.EntityDeletedEvent
-import de.byteleaf.companyon.common.event.EventEntityType
+import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.error.ErrorCode
+import de.byteleaf.companyon.common.error.exception.EntityNotFoundException
 import de.byteleaf.companyon.common.util.GenericSupportUtil
 import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -39,14 +41,13 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
         return entityToOutput(repository.save(entity))
     }
 
-    fun get(id: String): O? = repository.findById(id)
-            .map { entityToOutput(it) }
-            .orElse(null)
+    fun get(id: String): O = repository.findById(id).map { entityToOutput(it) }
+            .orElseThrow { EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND, id, getEntityType()) }
 
     fun delete(id: String): String {
-       // repository.deleteById(id)
-        val cls = GenericSupportUtil.getClassFromGeneric(this, POSITION_E)
-       // applicationEventPublisher.publishEvent(EntityDeletedEvent(cls, id))
+        // TODO not present?
+        repository.deleteById(id)
+        applicationEventPublisher.publishEvent(EntityDeletedEvent(getEntityType(), id))
         return id
     }
 
@@ -57,5 +58,5 @@ abstract class AbstractDataService<E : BaseEntity, O, I, R : MongoRepository<E, 
     /**
      * The type of the entity to make event listener conditions possible
      */
-    abstract fun getEventEntityType() : EventEntityType
+    abstract fun getEntityType() : EntityType
 }

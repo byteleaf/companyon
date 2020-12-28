@@ -2,7 +2,7 @@ package de.byteleaf.companyon.user.control
 
 import de.byteleaf.companyon.common.auth.OAuth2AuthenticationToken
 import de.byteleaf.companyon.common.control.AbstractDataService
-import de.byteleaf.companyon.common.event.EventEntityType
+import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service
 @Service
 class UserService : AbstractDataService<UserEntity, User, UserInput, UserRepository>() {
 
-    override fun getEventEntityType(): EventEntityType = EventEntityType.USER
+    override fun getEntityType(): EntityType = EntityType.USER
 
     /**
      * To get the current logged in user

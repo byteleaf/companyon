@@ -1,5 +1,5 @@
 package de.byteleaf.companyon.common.event
 
-import de.byteleaf.companyon.common.entity.BaseEntity
+import de.byteleaf.companyon.common.entity.EntityType
 
-data class EntityDeletedEvent<T: BaseEntity>(val entityType: EventEntityType, val id: String, val entity: T)
+data class EntityDeletedEvent(val entityType: EntityType, val id: String)

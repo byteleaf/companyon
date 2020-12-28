@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class ObjectMapperConfig {
 
-    // TODO
+    // TODO remove
 //    @Bean
 //    fun objectMapper(): ObjectMapper {
 //        val mapper = ObjectMapper()
