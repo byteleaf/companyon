@@ -1,4 +1,4 @@
 type CompanyUpdate {
-    type: UpdateType!,
+    type: EntityUpdateType!,
     entity: Company!
 }

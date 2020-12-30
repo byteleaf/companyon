@@ -1,4 +1,4 @@
-enum UpdateType {
+enum EntityUpdateType {
     DELETED,
     UPDATED,
     CREATED

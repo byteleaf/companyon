@@ -12,7 +12,5 @@ class CompanySubscriptionResolver : GraphQLSubscriptionResolver {
     @Autowired
     private lateinit var companyService: CompanyService
 
-    fun companyUpdated(): Publisher<CompanyUpdated> {
-        return companyService.getPublisher()
-    }
+    fun companyUpdated(): Publisher<CompanyUpdated> = companyService.getPublisher()
 }

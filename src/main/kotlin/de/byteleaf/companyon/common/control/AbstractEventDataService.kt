@@ -2,6 +2,7 @@ package de.byteleaf.companyon.common.control
 
 import de.byteleaf.companyon.common.dto.BaseDTO
 import de.byteleaf.companyon.common.dto.BaseUpdatedDTO
+import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.BaseEntity
 import de.byteleaf.companyon.common.event.EntityEvent
 import de.byteleaf.companyon.common.util.GenericSupportUtil
@@ -10,15 +11,12 @@ import io.reactivex.rxjava3.core.Emitter
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observables.ConnectableObservable
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.event.EventListener
 import org.springframework.data.mongodb.repository.MongoRepository
 
 abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpdatedDTO<O>, I, R : MongoRepository<E, String>> : AbstractDataService<E, O, I, R>() {
 
     private val POSITION_ENTITY_UPDATED_DTO = 2
-
     private var eventEmitter: Emitter<U>? = null
     private var eventPublisher: Flowable<U>? = null
 
@@ -41,7 +39,7 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
             val updatedEntity = GenericSupportUtil.createInstanceFromGeneric<U>(this, POSITION_ENTITY_UPDATED_DTO)
             @Suppress("UNCHECKED_CAST")
             updatedEntity.entity = event.entity as O
-            updatedEntity.type = event.eventType
+            updatedEntity.type = EntityUpdateType.getByEventType(event.eventType)
             eventEmitter!!.onNext(updatedEntity)
         }
     }

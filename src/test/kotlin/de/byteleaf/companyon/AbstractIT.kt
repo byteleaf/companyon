@@ -3,6 +3,7 @@ package de.byteleaf.companyon
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.graphql.spring.boot.test.GraphQLResponse
+import com.graphql.spring.boot.test.GraphQLTestSubscription
 import com.graphql.spring.boot.test.GraphQLTestTemplate
 import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.project.control.ProjectService
@@ -33,6 +34,10 @@ open class AbstractIT(val gqlFolder: String) {
     @Autowired
     protected lateinit var graphQLTestTemplate: GraphQLTestTemplate
 
+    @Suppress("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    protected lateinit var graphQLTestSubscription : GraphQLTestSubscription
+
     protected fun performGQLByIdAndInput(gqlOperation: String, id: String, inputPayload: String): GraphQLResponse =
             performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }")
 
@@ -51,6 +56,15 @@ open class AbstractIT(val gqlFolder: String) {
                 .isFalse()
         return response
     }
+
+//    protected fun performGQLSubscription(gqlOperation: String, payload: String? = null): GraphQLResponse {
+//        val response = graphQLTestSubscription.perform(getGQLResource(gqlOperation), parseJSON(payload))
+//        assertThat(response.isOk).isTrue()
+//        assertThat(response.readTree().hasNonNull("errors"))
+//                .describedAs("response has errors")
+//                .isFalse()
+//        return response
+//    }
 
     protected fun getGQLResource(gqlOperation: String): String = "graphql/$gqlFolder/$gqlOperation.graphql"
 

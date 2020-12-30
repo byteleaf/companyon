@@ -9,31 +9,31 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.test.context.ActiveProfiles
 
-@DataMongoTest
-@ActiveProfiles("test")
-class UserServiceTest {
-
-    @Autowired
-    private lateinit var userService: UserService
-
-    @Test
-    @WithMockCustomUser("oauth2Sub", "Joseph", "Bytezos")
-    fun getCurrentUser() {
-        val emptyFileMeta = FileMetaInput("", "", "")
-        val newUser = UserInput(
-                "oauth2Sub",
-                "Joseph",
-                "Bytezos",
-                "joseph@bytezos.de",
-                emptyFileMeta,
-                emptyFileMeta
-        )
-
-        userService.create(newUser)
-
-        val currentUser = userService.getCurrentUser()
-
-        assertEquals(newUser.firstName, currentUser.firstName)
-        assertEquals(newUser.lastName, currentUser.lastName)
-    }
-}
+//@DataMongoTest
+//@ActiveProfiles("test")
+//class UserServiceTest {
+//
+//    @Autowired
+//    private lateinit var userService: UserService
+//
+//    @Test
+//    @WithMockCustomUser("oauth2Sub", "Joseph", "Bytezos")
+//    fun getCurrentUser() {
+//        val emptyFileMeta = FileMetaInput("", "", "")
+//        val newUser = UserInput(
+//                "oauth2Sub",
+//                "Joseph",
+//                "Bytezos",
+//                "joseph@bytezos.de",
+//                emptyFileMeta,
+//                emptyFileMeta
+//        )
+//
+//        userService.create(newUser)
+//
+//        val currentUser = userService.getCurrentUser()
+//
+//        assertEquals(newUser.firstName, currentUser.firstName)
+//        assertEquals(newUser.lastName, currentUser.lastName)
+//    }
+//}

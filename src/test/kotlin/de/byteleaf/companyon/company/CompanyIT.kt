@@ -4,9 +4,11 @@ import de.byteleaf.companyon.AbstractIT
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.dto.input.ProjectInput
+import graphql.ExecutionResult
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+
 
 class CompanyIT : AbstractIT("company") {
 
@@ -53,6 +55,15 @@ class CompanyIT : AbstractIT("company") {
         val response = performGQLByIdAndInput("UpdateCompany", company.id!!, "{ \"name\": \"New name\"}")
         val updatedCompany = response.get("$.data.updateCompany", Company::class.java)
         assertThat(updatedCompany.name).isEqualTo("New name")
+    }
+
+    @Test
+    fun testSubscriptions() {
+        val company = seedTestCompany()
+        val response = graphQLTestSubscription.start(getGQLResource("CompanyUpdatedSubscription"))
+        // TODO delete company
+        val response2 = response.awaitAndGetNextResponse(5000, true)
+        val rr = 99
     }
 
     private fun seedTestCompany(): Company {
