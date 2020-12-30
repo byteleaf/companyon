@@ -39,6 +39,11 @@
             <artifactId>jackson-module-kotlin</artifactId>
             <version>${jackson-module-kotlin.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava3</groupId>
+            <artifactId>rxkotlin</artifactId>
+            <version>3.0.1</version>
+        </dependency>
         <!-- GraphQL dependencies -->
         <dependency>
             <groupId>com.graphql-java-kickstart</groupId>

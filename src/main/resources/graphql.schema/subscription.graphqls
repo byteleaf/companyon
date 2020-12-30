@@ -1,4 +1,9 @@
-#type Subscription {
-#
-#    companyUpdates: Company!
-#}
+enum UpdateType {
+    DELETED,
+    UPDATED,
+    CREATED
+}
+
+type Subscription {
+   companyUpdated: CompanyUpdate!
+}

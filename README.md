@@ -24,9 +24,7 @@ mvn spring-boot:run -Dspring-boot.run.profiles=non-sec
 
 ## TODO
 
-+ Add documentation
-
-+ Login username & passwort
++ Unsubscribe Flowable?
 
 type File {
   id: ID!

@@ -23,14 +23,14 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     @Autowired
     protected lateinit var applicationEventPublisher: ApplicationEventPublisher
 
-    private val POSITION_E = 0
-    private val POSITION_O = 1
+    private val POSITION_ENTITY = 0
+    private val POSITION_OUTPUT_DTO = 1
 
     @Suppress("UNCHECKED_CAST")
-    protected fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_E) as Class<E>)
+    protected fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_ENTITY) as Class<E>)
 
     @Suppress("UNCHECKED_CAST")
-    protected fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_O)) as O
+    protected fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_OUTPUT_DTO)) as O
 
     fun create(input: I): O = entityToOutput(repository.insert(inputToEntity(input)))
 

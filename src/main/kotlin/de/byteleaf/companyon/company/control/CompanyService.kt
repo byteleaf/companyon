@@ -1,14 +1,18 @@
 package de.byteleaf.companyon.company.control
 
-import de.byteleaf.companyon.common.control.AbstractDataService
+import de.byteleaf.companyon.common.control.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.company.dto.Company
+import de.byteleaf.companyon.company.dto.CompanyUpdated
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.entity.CompanyEntity
 import de.byteleaf.companyon.company.respository.CompanyRepository
 import org.springframework.stereotype.Service
+import kotlin.reflect.KClass
+
 
 @Service
-class CompanyService : AbstractDataService<CompanyEntity, Company, CompanyInput, CompanyRepository>() {
+class CompanyService : AbstractEventDataService<CompanyEntity, Company, CompanyUpdated, CompanyInput, CompanyRepository>() {
     override fun getEntityType(): EntityType = EntityType.COMPANY
+
 }

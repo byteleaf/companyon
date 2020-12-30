@@ -1,9 +1,9 @@
-package de.byteleaf.companyon.common.dto
+package de.byteleaf.companyon.common.event
 
 /**
  * The update type for subscriptions
  */
-enum class UpdateType {
+enum class EventType {
     DELETED,
     UPDATED,
     CREATED

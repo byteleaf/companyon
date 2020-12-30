@@ -4,5 +4,4 @@ enum class EntityType {
     COMPANY,
     PROJECT,
     USER,
-
 }
