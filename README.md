@@ -26,6 +26,8 @@ mvn spring-boot:run -Dspring-boot.run.profiles=non-sec
 
 + Unsubscribe Flowable?
 
++ .isFieldMatchingEnabled = true // change to false  companyId will be mapped to field id in the entity -> not so nice ;)
+
 type File {
   id: ID!
   url: string!

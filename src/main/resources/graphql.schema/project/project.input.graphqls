@@ -1,5 +1,5 @@
-
 input ProjectInput {
     name: String!,
-    company: ID!
+    company: ID!,
+    state: ProjectState,
 }

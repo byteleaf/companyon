@@ -13,5 +13,5 @@ interface ProjectRepository : MongoRepository<ProjectEntity, String> {
     fun deleteByCompany(companyId: String)
 
     @Query
-    fun findByCompany(companyId: String): List<ProjectEntity>
+    fun findByCompanyIn(companies: Collection<String>): List<ProjectEntity>
 }

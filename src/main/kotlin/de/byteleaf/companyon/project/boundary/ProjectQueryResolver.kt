@@ -14,5 +14,5 @@ class ProjectQueryResolver : GraphQLQueryResolver {
 
     fun getProject(id: String): Project? = getProject(id)
 
-    fun getProjects(): List<Project> = projectService.findAll()
+    fun getProjects(companies: Collection<String>?): List<Project> = projectService.findAll()
 }

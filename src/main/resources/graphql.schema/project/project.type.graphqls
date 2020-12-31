@@ -1,6 +1,14 @@
+enum ProjectState {
+    PLANNED,
+    RUNNING,
+    COMPLETED,
+    CANCELED,
+    POST_PROCESSING,
+}
 
 type Project {
     id: ID!,
     name: String!,
+    state: ProjectState!,
     company: Company!
 }

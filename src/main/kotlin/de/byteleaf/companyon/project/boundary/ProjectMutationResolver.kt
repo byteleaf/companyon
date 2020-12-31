@@ -11,11 +11,9 @@ import org.springframework.stereotype.Controller
 
 @Controller
 class ProjectMutationResolver : GraphQLMutationResolver {
-    @Autowired
-    private lateinit var projectService: ProjectService
 
     @Autowired
-    private lateinit var companyService: CompanyService
+    private lateinit var projectService: ProjectService
 
     fun updateProject(id: String, input: ProjectInput): Project = projectService.update(id, input)
 

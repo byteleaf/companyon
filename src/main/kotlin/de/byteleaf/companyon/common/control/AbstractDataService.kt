@@ -27,7 +27,7 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     private val POSITION_OUTPUT_DTO = 1
 
     @Suppress("UNCHECKED_CAST")
-    protected fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_ENTITY) as Class<E>)
+    protected open fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_ENTITY) as Class<E>)
 
     @Suppress("UNCHECKED_CAST")
     protected fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_OUTPUT_DTO)) as O
@@ -36,9 +36,11 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
 
     fun update(id: String, input: I): O {
         val entity = inputToEntity(input)
-        entity.id = id
+        entity.id = id // make sure the url id will be used!
         return entityToOutput(repository.save(entity))
     }
+
+    fun getEntity(id: String): E = repository.findById(id).orElseThrow { EntityNotFoundException(id, getEntityType()) }
 
     fun get(id: String): O = repository.findById(id).map { entityToOutput(it) }
             .orElseThrow { EntityNotFoundException(id, getEntityType()) }

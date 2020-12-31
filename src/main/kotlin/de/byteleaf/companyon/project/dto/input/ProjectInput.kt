@@ -1,5 +1,5 @@
 package de.byteleaf.companyon.project.dto.input
 
-typealias CompanyID = String
+import de.byteleaf.companyon.project.entity.ProjectState
 
-data class ProjectInput(val name: String, val company: CompanyID)
+data class ProjectInput(val name: String, val company: String, val state: ProjectState = ProjectState.PLANNED)

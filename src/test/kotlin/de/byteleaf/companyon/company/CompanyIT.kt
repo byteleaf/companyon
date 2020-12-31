@@ -6,9 +6,13 @@ import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.CompanyUpdated
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.dto.input.ProjectInput
+import de.byteleaf.companyon.project.respository.ProjectRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 
 
 class CompanyIT : AbstractIT("company") {
@@ -39,7 +43,7 @@ class CompanyIT : AbstractIT("company") {
     @Test
     fun deleteCompany() {
         val company = seedTestCompany()
-        assertThat(projectService.findByCompany(company.id!!).size).isEqualTo(2)
+        assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(2)
         performGQLById("DeleteCompany", company.id!!)
         // Make sure company is not existing anymore
         val response = graphQLTestTemplate.perform(getGQLResource("GetCompany"), parseJSON("{ \"id\": \"${company.id}\" }"))
@@ -47,7 +51,7 @@ class CompanyIT : AbstractIT("company") {
         assertThat(response.get("$.errors[0].extensions.entityType")).isEqualTo("COMPANY")
         assertThat(response.get("$.errors[0].extensions.code")).isEqualTo("ENTITY_NOT_FOUND")
         // Check if projects assigned to this company have been deleted too!
-        assertThat(projectService.findByCompany(company.id!!).size).isEqualTo(0)
+        assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(0)
     }
 
     @Test

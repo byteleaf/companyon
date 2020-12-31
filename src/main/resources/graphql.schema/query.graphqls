@@ -3,7 +3,7 @@ type Query {
     company(id: ID!): Company
     companies: [Company!]!
     project(id: ID!): Project
-    projects: [Project!]!
+    projects(companies: [ID!]): [Project!]!
 #    currentUser: User!
 #    user(id: ID!): User
 #    users: [User!]!
