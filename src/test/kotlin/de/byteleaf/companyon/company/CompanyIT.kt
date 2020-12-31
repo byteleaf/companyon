@@ -61,7 +61,7 @@ class CompanyIT : AbstractIT("company") {
     @Test
     fun companyUpdatedSubscription() {
         val company = seedTestCompany()
-        val companyUpdated = performGQLSubscription("CompanyUpdatedSubscription", { companyService.delete(company.id!!) })
+        val companyUpdated = performGQLSubscription("CompanyUpdateSubscription", { companyService.delete(company.id!!) })
                 .get("$.data.companyUpdated", CompanyUpdate::class.java)
         assertThat(companyUpdated.type).isEqualTo(EntityUpdateType.DELETED)
         assertThat(companyUpdated.entity!!.id).isEqualTo(company.id)

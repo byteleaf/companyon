@@ -1,4 +1,4 @@
-type ProjectUpdate {
-    type: EntityUpdateType!,
-    entity: Project!
-}
+#type ProjectUpdate {
+#    type: EntityUpdateType!,
+#    entity: Project!
+#}

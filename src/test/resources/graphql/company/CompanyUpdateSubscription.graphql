@@ -1,5 +1,5 @@
 subscription {
-    companyUpdated {
+    companyUpdate {
         type,
         entity {
             id,
