@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test
 
 class CompanyIT : AbstractIT("company") {
 
+    private val targetClass = Company::class.java
+
     @BeforeEach
     fun init() {
         clearDB()
@@ -22,17 +24,17 @@ class CompanyIT : AbstractIT("company") {
     fun getCompanies() {
         seedTestCompany()
         val response = performGQL("GetCompanies")
-        val companies = response.getList("$.data.companies", Company::class.java)
+        val companies = response.getList("$.data.companies", targetClass)
         assertThat(companies.size).isEqualTo(1)
     }
 
     @Test
     fun createCompany() {
         val createdCompany = performGQLByInput("CreateCompany", "{ \"name\": \"A\" }")
-                .get("$.data.createCompany", Company::class.java)
+                .get("$.data.createCompany", targetClass)
         assertThat(createdCompany.name).isEqualTo("A")
         // Check if really existing
-        val getResponse = performGQLById("GetCompany", createdCompany.id!!).get("$.data.company", Company::class.java)
+        val getResponse = performGQLById("GetCompany", createdCompany.id!!).get("$.data.company", targetClass)
         assertThat(getResponse.name).isEqualTo("A")
     }
 
@@ -54,7 +56,7 @@ class CompanyIT : AbstractIT("company") {
     fun updateCompany() {
         val company = seedTestCompany()
         val response = performGQLByIdAndInput("UpdateCompany", company.id!!, "{ \"name\": \"New name\"}")
-        val updatedCompany = response.get("$.data.updateCompany", Company::class.java)
+        val updatedCompany = response.get("$.data.updateCompany", targetClass)
         assertThat(updatedCompany.name).isEqualTo("New name")
     }
 
@@ -62,7 +64,7 @@ class CompanyIT : AbstractIT("company") {
     fun companyUpdatedSubscription() {
         val company = seedTestCompany()
         val companyUpdated = performGQLSubscription("CompanyUpdateSubscription", { companyService.delete(company.id!!) })
-                .get("$.data.companyUpdated", CompanyUpdate::class.java)
+                .get("$.data.companyUpdate", CompanyUpdate::class.java)
         assertThat(companyUpdated.type).isEqualTo(EntityUpdateType.DELETED)
         assertThat(companyUpdated.entity!!.id).isEqualTo(company.id)
     }

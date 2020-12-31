@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class ProjectIT : AbstractIT("project") {
 
+    private val targetClass = Project::class.java
+
     @BeforeEach
     fun init() {
         clearDB()
@@ -25,21 +27,22 @@ class ProjectIT : AbstractIT("project") {
     @Test
     fun getProjects() {
         seedTestProjects()
-        val projects = performGQL("GetProjects").getList("$.data.projects", Project::class.java)
+        val projects = performGQL("GetProjects").getList("$.data.projects", targetClass)
         Assertions.assertThat(projects.size).isEqualTo(2)
         // Filtered by company
         val companyId = projects.get(0).company.id
-        val projectsFiltered = performGQL("GetProjects", "{ \"companies\": [\"$companyId\"] }").getList("$.data.projects", Project::class.java)
+        val projectsFiltered = performGQL("GetProjects", "{ \"companies\": [\"$companyId\"] }").getList("$.data.projects", targetClass)
         Assertions.assertThat(projectsFiltered.size).isEqualTo(1)
     }
 
     @Test
     fun createProject() {
-        val createdCompany = performGQLByInput("CreateCompany", "{ \"name\": \"A\" }")
-                .get("$.data.createCompany", Company::class.java)
-        Assertions.assertThat(createdCompany.name).isEqualTo("A")
+        val createdProject = performGQLByInput("CreateProject", "{ \"name\": \"A\", company }")
+                .get("$.data.createCompany",targetClass)
+        Assertions.assertThat(createdProject.name).isEqualTo("A")
+        Assertions.assertThat(createdProject.state).isEqualTo(ProjectState.PLANNED)
         // Check if really existing
-        val getResponse = performGQLById("GetCompany", createdCompany.id!!).get("$.data.company", Company::class.java)
+        val getResponse = performGQLById("GetProject", createdProject.id!!).get("$.data.project", targetClass)
         Assertions.assertThat(getResponse.name).isEqualTo("A")
     }
 
