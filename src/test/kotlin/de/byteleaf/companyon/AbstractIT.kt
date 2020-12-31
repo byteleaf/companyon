@@ -14,12 +14,14 @@ import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataM
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 @ExtendWith(SpringExtension::class)
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureDataMongo
-open class AbstractIT(val gqlFolder: String) {
+abstract class AbstractIT(val gqlFolder: String) {
 
     @Autowired
     protected lateinit var companyService: CompanyService
@@ -36,7 +38,7 @@ open class AbstractIT(val gqlFolder: String) {
 
     @Suppress("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    protected lateinit var graphQLTestSubscription : GraphQLTestSubscription
+    protected lateinit var graphQLTestSubscription: GraphQLTestSubscription
 
     protected fun performGQLByIdAndInput(gqlOperation: String, id: String, inputPayload: String): GraphQLResponse =
             performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }")
@@ -48,23 +50,22 @@ open class AbstractIT(val gqlFolder: String) {
             performGQL(gqlOperation, "{ \"id\": \"$id\" }")
 
 
-    protected fun performGQL(gqlOperation: String, payload: String? = null): GraphQLResponse {
-        val response = graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload))
+    protected fun performGQL(gqlOperation: String, payload: String? = null): GraphQLResponse =
+            validateResponse(graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload)))
+
+    protected fun performGQLSubscription(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null): GraphQLResponse {
+        val firstResponse = graphQLTestSubscription.start(getGQLResource(gqlOperation))
+        Executors.newScheduledThreadPool(1).schedule(eventFunc, 100, TimeUnit.MILLISECONDS)
+        return validateResponse(firstResponse.awaitAndGetNextResponse(5000, true))
+    }
+
+    protected fun validateResponse(response: GraphQLResponse): GraphQLResponse {
         assertThat(response.isOk).isTrue()
         assertThat(response.readTree().hasNonNull("errors"))
                 .describedAs("response has errors")
                 .isFalse()
         return response
     }
-
-//    protected fun performGQLSubscription(gqlOperation: String, payload: String? = null): GraphQLResponse {
-//        val response = graphQLTestSubscription.perform(getGQLResource(gqlOperation), parseJSON(payload))
-//        assertThat(response.isOk).isTrue()
-//        assertThat(response.readTree().hasNonNull("errors"))
-//                .describedAs("response has errors")
-//                .isFalse()
-//        return response
-//    }
 
     protected fun getGQLResource(gqlOperation: String): String = "graphql/$gqlFolder/$gqlOperation.graphql"
 

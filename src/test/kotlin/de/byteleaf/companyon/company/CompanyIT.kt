@@ -1,10 +1,11 @@
 package de.byteleaf.companyon.company
 
 import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.company.dto.Company
+import de.byteleaf.companyon.company.dto.CompanyUpdated
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.dto.input.ProjectInput
-import graphql.ExecutionResult
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -58,12 +59,12 @@ class CompanyIT : AbstractIT("company") {
     }
 
     @Test
-    fun testSubscriptions() {
+    fun companyUpdatedSubscription() {
         val company = seedTestCompany()
-        val response = graphQLTestSubscription.start(getGQLResource("CompanyUpdatedSubscription"))
-        // TODO delete company
-        val response2 = response.awaitAndGetNextResponse(5000, true)
-        val rr = 99
+        val companyUpdated = performGQLSubscription("CompanyUpdatedSubscription", { companyService.delete(company.id!!) })
+                .get("$.data.companyUpdated", CompanyUpdated::class.java)
+        assertThat(companyUpdated.type).isEqualTo(EntityUpdateType.DELETED)
+        assertThat(companyUpdated.entity!!.id).isEqualTo(company.id)
     }
 
     private fun seedTestCompany(): Company {
