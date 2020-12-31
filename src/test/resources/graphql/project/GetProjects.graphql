@@ -1,5 +1,5 @@
-query GetProjects {
-    projects {
+query GetProjects($companies: [ID!]) {
+    projects(companies: $companies) {
         id
         name,
         state,
