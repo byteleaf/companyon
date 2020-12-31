@@ -1,4 +1,3 @@
-
 type Query {
     company(id: ID!): Company
     companies: [Company!]!

@@ -1,9 +1,7 @@
 package de.byteleaf.companyon.project
 
 import de.byteleaf.companyon.AbstractIT
-import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.company.dto.Company
-import de.byteleaf.companyon.company.dto.CompanyUpdated
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.input.ProjectInput
@@ -44,6 +42,8 @@ class ProjectIT : AbstractIT("project") {
         val getResponse = performGQLById("GetCompany", createdCompany.id!!).get("$.data.company", Company::class.java)
         Assertions.assertThat(getResponse.name).isEqualTo("A")
     }
+
+    // create project with invalid company
 //
 //    @Test
 //    fun deleteCompany() {

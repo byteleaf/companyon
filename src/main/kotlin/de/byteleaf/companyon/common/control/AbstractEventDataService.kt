@@ -1,7 +1,7 @@
 package de.byteleaf.companyon.common.control
 
 import de.byteleaf.companyon.common.dto.BaseDTO
-import de.byteleaf.companyon.common.dto.BaseUpdatedDTO
+import de.byteleaf.companyon.common.dto.BaseUpdateDTO
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.BaseEntity
 import de.byteleaf.companyon.common.event.EntityEvent
@@ -14,7 +14,7 @@ import io.reactivex.rxjava3.observables.ConnectableObservable
 import org.springframework.context.event.EventListener
 import org.springframework.data.mongodb.repository.MongoRepository
 
-abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpdatedDTO<O>, I, R : MongoRepository<E, String>> : AbstractDataService<E, O, I, R>() {
+abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpdateDTO<O>, I, R : MongoRepository<E, String>> : AbstractDataService<E, O, I, R>() {
 
     private val POSITION_ENTITY_UPDATED_DTO = 2
     private var eventEmitter: Emitter<U>? = null

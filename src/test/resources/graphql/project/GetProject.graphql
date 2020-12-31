@@ -1,6 +1,11 @@
-query GetCompany($id: ID!) {
-    company(id: $id) {
+query GetProject($id: ID!) {
+    project(id: $id) {
         id
-        name
+        name,
+        state,
+        company {
+            id,
+            name
+        }
     }
 }

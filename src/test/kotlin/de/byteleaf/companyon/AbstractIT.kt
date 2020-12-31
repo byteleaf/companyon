@@ -40,23 +40,26 @@ abstract class AbstractIT(val gqlFolder: String) {
     @Autowired
     protected lateinit var graphQLTestSubscription: GraphQLTestSubscription
 
-    protected fun performGQLByIdAndInput(gqlOperation: String, id: String, inputPayload: String): GraphQLResponse =
-            performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }")
+    protected fun performGQLByIdAndInput(gqlOperation: String, id: String, inputPayload: String, skipValidation: Boolean = false): GraphQLResponse =
+            performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }", skipValidation)
 
-    protected fun performGQLByInput(gqlOperation: String, inputPayload: String): GraphQLResponse =
-            performGQL(gqlOperation, "{ \"input\": $inputPayload }")
+    protected fun performGQLByInput(gqlOperation: String, inputPayload: String, skipValidation: Boolean = false): GraphQLResponse =
+            performGQL(gqlOperation, "{ \"input\": $inputPayload }", skipValidation)
 
-    protected fun performGQLById(gqlOperation: String, id: String): GraphQLResponse =
-            performGQL(gqlOperation, "{ \"id\": \"$id\" }")
+    protected fun performGQLById(gqlOperation: String, id: String, skipValidation: Boolean = false): GraphQLResponse =
+            performGQL(gqlOperation, "{ \"id\": \"$id\" }", skipValidation)
 
 
-    protected fun performGQL(gqlOperation: String, payload: String? = null): GraphQLResponse =
-            validateResponse(graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload)))
+    protected fun performGQL(gqlOperation: String, payload: String? = null, skipValidation: Boolean = false): GraphQLResponse {
+            val response = graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload))
+            return if(skipValidation) response else validateResponse(response)
+    }
 
-    protected fun performGQLSubscription(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null): GraphQLResponse {
+    protected fun performGQLSubscription(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null, skipValidation: Boolean = false): GraphQLResponse {
         val firstResponse = graphQLTestSubscription.start(getGQLResource(gqlOperation))
         Executors.newScheduledThreadPool(1).schedule(eventFunc, 100, TimeUnit.MILLISECONDS)
-        return validateResponse(firstResponse.awaitAndGetNextResponse(5000, true))
+        val secondResponse = firstResponse.awaitAndGetNextResponse(5000, true)
+        return if(skipValidation) secondResponse else validateResponse(secondResponse)
     }
 
     protected fun validateResponse(response: GraphQLResponse): GraphQLResponse {

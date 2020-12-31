@@ -3,16 +3,12 @@ package de.byteleaf.companyon.company
 import de.byteleaf.companyon.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.company.dto.Company
-import de.byteleaf.companyon.company.dto.CompanyUpdated
+import de.byteleaf.companyon.company.dto.CompanyUpdate
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.dto.input.ProjectInput
-import de.byteleaf.companyon.project.respository.ProjectRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.mongodb.repository.MongoRepository
-import org.springframework.security.core.annotation.AuthenticationPrincipal
 
 
 class CompanyIT : AbstractIT("company") {
@@ -46,7 +42,7 @@ class CompanyIT : AbstractIT("company") {
         assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(2)
         performGQLById("DeleteCompany", company.id!!)
         // Make sure company is not existing anymore
-        val response = graphQLTestTemplate.perform(getGQLResource("GetCompany"), parseJSON("{ \"id\": \"${company.id}\" }"))
+        val response = performGQLById("GetCompany", company.id!!, true)
         assertThat(response.get("$.errors[0].extensions.entityId")).isEqualTo(company.id)
         assertThat(response.get("$.errors[0].extensions.entityType")).isEqualTo("COMPANY")
         assertThat(response.get("$.errors[0].extensions.code")).isEqualTo("ENTITY_NOT_FOUND")
@@ -66,7 +62,7 @@ class CompanyIT : AbstractIT("company") {
     fun companyUpdatedSubscription() {
         val company = seedTestCompany()
         val companyUpdated = performGQLSubscription("CompanyUpdatedSubscription", { companyService.delete(company.id!!) })
-                .get("$.data.companyUpdated", CompanyUpdated::class.java)
+                .get("$.data.companyUpdated", CompanyUpdate::class.java)
         assertThat(companyUpdated.type).isEqualTo(EntityUpdateType.DELETED)
         assertThat(companyUpdated.entity!!.id).isEqualTo(company.id)
     }
