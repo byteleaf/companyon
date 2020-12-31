@@ -1,5 +1,5 @@
 package de.byteleaf.companyon.project.dto
 
-// TODO
-class ProjectUpdated {
-}
+import de.byteleaf.companyon.common.dto.BaseUpdatedDTO
+
+class ProjectUpdated : BaseUpdatedDTO<Project>()

@@ -29,21 +29,21 @@ class ProjectIT : AbstractIT("project") {
         seedTestProjects()
         val projects = performGQL("GetProjects").getList("$.data.projects", Project::class.java)
         Assertions.assertThat(projects.size).isEqualTo(2)
-        // Filtered
+        // Filtered by company
         val companyId = projects.get(0).company.id
         val projectsFiltered = performGQL("GetProjects", "{ \"companies\": [\"$companyId\"] }").getList("$.data.projects", Project::class.java)
         Assertions.assertThat(projectsFiltered.size).isEqualTo(1)
     }
 
-//    @Test
-//    fun createCompany() {
-//        val createdCompany = performGQLByInput("CreateCompany", "{ \"name\": \"A\" }")
-//                .get("$.data.createCompany", Company::class.java)
-//        Assertions.assertThat(createdCompany.name).isEqualTo("A")
-//        // Check if really existing
-//        val getResponse = performGQLById("GetCompany", createdCompany.id!!).get("$.data.company", Company::class.java)
-//        Assertions.assertThat(getResponse.name).isEqualTo("A")
-//    }
+    @Test
+    fun createProject() {
+        val createdCompany = performGQLByInput("CreateCompany", "{ \"name\": \"A\" }")
+                .get("$.data.createCompany", Company::class.java)
+        Assertions.assertThat(createdCompany.name).isEqualTo("A")
+        // Check if really existing
+        val getResponse = performGQLById("GetCompany", createdCompany.id!!).get("$.data.company", Company::class.java)
+        Assertions.assertThat(getResponse.name).isEqualTo("A")
+    }
 //
 //    @Test
 //    fun deleteCompany() {
