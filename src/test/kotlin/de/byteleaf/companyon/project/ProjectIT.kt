@@ -1,6 +1,8 @@
 package de.byteleaf.companyon.project
 
 import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.dto.Project
@@ -37,8 +39,9 @@ class ProjectIT : AbstractIT("project") {
 
     @Test
     fun createProject() {
-        val createdProject = performGQLByInput("CreateProject", "{ \"name\": \"A\", company }")
-                .get("$.data.createCompany",targetClass)
+        val companyId = seedTestProjects().get(0).company.id
+        val createdProject = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"$companyId\" }")
+                .get("$.data.createProject",targetClass)
         Assertions.assertThat(createdProject.name).isEqualTo("A")
         Assertions.assertThat(createdProject.state).isEqualTo(ProjectState.PLANNED)
         // Check if really existing
@@ -46,8 +49,12 @@ class ProjectIT : AbstractIT("project") {
         Assertions.assertThat(getResponse.name).isEqualTo("A")
     }
 
-    // create project with invalid company
-//
+    @Test
+    fun createProjectWithNotExistingCompany() {
+        val response = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"INVALID\" }", true)
+        expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, "INVALID")
+    }
+
 //    @Test
 //    fun deleteCompany() {
 //        val company = seedTestCompany()

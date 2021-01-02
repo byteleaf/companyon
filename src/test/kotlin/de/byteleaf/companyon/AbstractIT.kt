@@ -1,10 +1,13 @@
 package de.byteleaf.companyon
 
+import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.graphql.spring.boot.test.GraphQLResponse
 import com.graphql.spring.boot.test.GraphQLTestSubscription
 import com.graphql.spring.boot.test.GraphQLTestTemplate
+import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.project.control.ProjectService
 import org.assertj.core.api.Assertions.assertThat
@@ -80,5 +83,15 @@ abstract class AbstractIT(val gqlFolder: String) {
     protected fun clearDB() {
         companyService.deleteAll()
         projectService.deleteAll()
+    }
+
+
+    protected fun getErrorExtensions(response: GraphQLResponse): JsonNode = response.readTree().get("errors").get(0).get("extensions")
+
+    protected fun expectError(response: GraphQLResponse, expectedCode: ErrorCode, expectedType: EntityType, expectedId: String) {
+        val errorExtensions = getErrorExtensions(response)
+        assertThat(errorExtensions.get("code").asText()).isEqualTo(expectedCode.name)
+        assertThat(errorExtensions.get("entityType").asText()).isEqualTo(expectedType.name)
+        assertThat(errorExtensions.get("entityId").asText()).isEqualTo(expectedId)
     }
 }
