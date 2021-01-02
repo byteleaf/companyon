@@ -9,9 +9,10 @@ Update `application.properties`: Copy the domain and enter it as `rest.security.
 As an alternative, you can change the environment variable `OAUTH_URL` when starting the backend. 
 
 
-## Plugins
+## Useful plugins (Intellij)
 
-- JS GraphQL: Editor for the .graphqls files
+- [JS GraphQL](https://plugins.jetbrains.com/plugin/8097-js-graphql): Editor for the .graphqls files
+- [Maven Helper](https://plugins.jetbrains.com/plugin/7179-maven-helper)
 
 
 ## Database
