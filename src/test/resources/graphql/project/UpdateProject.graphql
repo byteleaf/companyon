@@ -1,6 +1,11 @@
 mutation UpdateProject($id: ID!, $input: ProjectInput!) {
     updateProject(id: $id, input: $input) {
         id,
-        name
+        name,
+        company {
+            id,
+            name
+        },
+        state
     }
 }

@@ -1,11 +1,13 @@
 package de.byteleaf.companyon.project
 
 import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.dto.Project
+import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.project.entity.ProjectState
 import de.byteleaf.companyon.project.respository.ProjectRepository
@@ -55,36 +57,30 @@ class ProjectIT : AbstractIT("project") {
         expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, "INVALID")
     }
 
-//    @Test
-//    fun deleteCompany() {
-//        val company = seedTestCompany()
-//        Assertions.assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(2)
-//        performGQLById("DeleteCompany", company.id!!)
-//        // Make sure company is not existing anymore
-//        val response = graphQLTestTemplate.perform(getGQLResource("GetCompany"), parseJSON("{ \"id\": \"${company.id}\" }"))
-//        Assertions.assertThat(response.get("$.errors[0].extensions.entityId")).isEqualTo(company.id)
-//        Assertions.assertThat(response.get("$.errors[0].extensions.entityType")).isEqualTo("COMPANY")
-//        Assertions.assertThat(response.get("$.errors[0].extensions.code")).isEqualTo("ENTITY_NOT_FOUND")
-//        // Check if projects assigned to this company have been deleted too!
-//        Assertions.assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(0)
-//    }
-//
-//    @Test
-//    fun updateCompany() {
-//        val company = seedTestCompany()
-//        val response = performGQLByIdAndInput("UpdateCompany", company.id!!, "{ \"name\": \"New name\"}")
-//        val updatedCompany = response.get("$.data.updateCompany", Company::class.java)
-//        Assertions.assertThat(updatedCompany.name).isEqualTo("New name")
-//    }
-//
-//    @Test
-//    fun companyUpdatedSubscription() {
-//        val company = seedTestCompany()
-//        val companyUpdated = performGQLSubscription("CompanyUpdatedSubscription", { companyService.delete(company.id!!) })
-//                .get("$.data.companyUpdated", CompanyUpdated::class.java)
-//        Assertions.assertThat(companyUpdated.type).isEqualTo(EntityUpdateType.DELETED)
-//        Assertions.assertThat(companyUpdated.entity!!.id).isEqualTo(company.id)
-//    }
+    @Test
+    fun deleteCompany() {
+        val projects = seedTestProjects()
+        Assertions.assertThat(projectService.findAll().size).isEqualTo(2)
+        performGQLById("DeleteProject", projects.get(0).id!!)
+        Assertions.assertThat(projectService.findAll().size).isEqualTo(1)
+    }
+
+    @Test
+    fun updateProject() {
+        val project = seedTestProjects().get(0)
+        val response = performGQLByIdAndInput("UpdateProject", project.id!!, "{ \"name\": \"New name\", \"company\":\"${project.company.id}\" }")
+        val updatedCompany = response.get("$.data.updateProject", targetClass)
+        Assertions.assertThat(updatedCompany.name).isEqualTo("New name")
+    }
+
+    @Test
+    fun companyUpdatedSubscription() {
+        val companyId = seedTestProjects().get(0).company.id!!
+        val projectUpdated = performGQLSubscription("ProjectUpdateSubscription", { projectService.create(ProjectInput("New project", companyId)) })
+            .get("$.data.projectUpdate", ProjectUpdate::class.java)
+        Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
+        Assertions.assertThat(projectUpdated.entity!!.name).isEqualTo("New project")
+    }
 
     private fun seedTestProjects(): List<Project> {
         val p1 = projectService.create(ProjectInput("Project A", companyService.create(CompanyInput("Company A")).id!!, ProjectState.RUNNING))

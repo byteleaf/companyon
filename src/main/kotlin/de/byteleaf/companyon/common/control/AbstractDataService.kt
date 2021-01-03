@@ -4,7 +4,9 @@ import de.byteleaf.companyon.common.dto.BaseDTO
 import de.byteleaf.companyon.common.entity.BaseEntity
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.exception.EntityNotFoundException
+import de.byteleaf.companyon.common.event.EntityCreatedEvent
 import de.byteleaf.companyon.common.event.EntityDeletedEvent
+import de.byteleaf.companyon.common.event.EntityUpdatedEvent
 import de.byteleaf.companyon.common.util.GenericSupportUtil
 import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,12 +34,18 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     @Suppress("UNCHECKED_CAST")
     protected fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_OUTPUT_DTO)) as O
 
-    fun create(input: I): O = entityToOutput(repository.insert(inputToEntity(input)))
+    fun create(input: I): O {
+        val dto = entityToOutput(repository.insert(inputToEntity(input)))
+        applicationEventPublisher.publishEvent(EntityCreatedEvent(getEntityType(), dto))
+        return dto
+    }
 
     fun update(id: String, input: I): O {
         val entity = inputToEntity(input)
         entity.id = id // make sure the url id will be used!
-        return entityToOutput(repository.save(entity))
+        val dto = entityToOutput(repository.save(entity))
+        applicationEventPublisher.publishEvent(EntityUpdatedEvent(getEntityType(), dto))
+        return dto
     }
 
     fun getEntity(id: String): E = repository.findById(id).orElseThrow { EntityNotFoundException(id, getEntityType()) }

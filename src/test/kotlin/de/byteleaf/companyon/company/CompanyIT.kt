@@ -2,6 +2,8 @@ package de.byteleaf.companyon.company
 
 import de.byteleaf.companyon.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
+import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.CompanyUpdate
 import de.byteleaf.companyon.company.dto.input.CompanyInput
@@ -45,9 +47,7 @@ class CompanyIT : AbstractIT("company") {
         performGQLById("DeleteCompany", company.id!!)
         // Make sure company is not existing anymore
         val response = performGQLById("GetCompany", company.id!!, true)
-        assertThat(response.get("$.errors[0].extensions.entityId")).isEqualTo(company.id)
-        assertThat(response.get("$.errors[0].extensions.entityType")).isEqualTo("COMPANY")
-        assertThat(response.get("$.errors[0].extensions.code")).isEqualTo("ENTITY_NOT_FOUND")
+        expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, company.id!!)
         // Check if projects assigned to this company have been deleted too!
         assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(0)
     }
