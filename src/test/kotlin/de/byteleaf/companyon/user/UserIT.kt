@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.user
 
 import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.common.WithMockCustomUser
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.assertj.core.api.Assertions
@@ -22,18 +23,23 @@ class UserIT : AbstractIT("user") {
         val projects = performGQL("GetUsers").getList("$.data.users", targetClass)
         Assertions.assertThat(projects.size).isEqualTo(1)
     }
-//
-//    @Test
-//    fun createProject() {
-//        val companyId = seedTestProjects().get(0).company.id
-//        val createdProject = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"$companyId\" }")
-//            .get("$.data.createProject",targetClass)
-//        Assertions.assertThat(createdProject.name).isEqualTo("A")
-//        Assertions.assertThat(createdProject.state).isEqualTo(ProjectState.PLANNED)
-//        // Check if really existing
-//        val getResponse = performGQLById("GetProject", createdProject.id!!).get("$.data.project", targetClass)
-//        Assertions.assertThat(getResponse.name).isEqualTo("A")
-//    }
+
+    @Test
+    fun getUser() {
+        val createdUser = seedTestUser()
+        val response = performGQLById("GetUser", createdUser.id!!).get("$.data.user", targetClass)
+        Assertions.assertThat(response.email).isEqualTo("hans@byteleaf.de")
+    }
+
+    // TODO fix
+    @Test
+    @WithMockCustomUser("oauth2Sub", "Joseph", "Bytezos", "josef@byteleaf.de")
+    fun getCurrentUser() {
+        val response = performGQL("GetCurrentUser").get("$.data.currentUser", targetClass)
+        Assertions.assertThat(response.email).isEqualTo("josef@byteleaf.de")
+    }
+
+    //    @WithMockCustomUser("oauth2Sub", "Joseph", "Bytezos")
 //
 //    @Test
 //    fun createProjectWithNotExistingCompany() {

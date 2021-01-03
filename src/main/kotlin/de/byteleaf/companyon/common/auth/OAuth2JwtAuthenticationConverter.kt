@@ -1,6 +1,5 @@
 package de.byteleaf.companyon.common.auth
 
-import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,6 +9,7 @@ import org.springframework.core.convert.converter.Converter
 import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.stereotype.Component
 
+// TODO implement Test
 @Component
 class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToken> {
 

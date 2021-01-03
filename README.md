@@ -28,6 +28,8 @@ mvn spring-boot:run -Dspring-boot.run.profiles=non-sec
 
 + .isFieldMatchingEnabled = true // change to false  companyId will be mapped to field id in the entity -> not so nice ;)
 
++ createUser needed? 
+
 type File {
   id: ID!
   url: string!

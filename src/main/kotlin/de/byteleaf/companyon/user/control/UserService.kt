@@ -23,9 +23,11 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
      * To get the current logged in user
      */
     fun getCurrentUser(): User {
+        val context = SecurityContextHolder.getContext()
         val authentication = SecurityContextHolder.getContext().authentication
 
         if (authentication !is OAuth2AuthenticationToken) {
+            // TODO convert to graphql error
             throw object : AuthenticationException("Authentication is not an OAuth2 token") {}
         }
 
