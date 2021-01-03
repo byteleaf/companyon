@@ -8,5 +8,5 @@ annotation class WithMockCustomUser(
         val oauth2Subject: String = "oauth2Subject",
         val firstName: String = "Jeff",
         val lastName: String = "Bytezos",
-        val email: String = ""
+        val email: String = "jeff@byteleaf.de"
 )

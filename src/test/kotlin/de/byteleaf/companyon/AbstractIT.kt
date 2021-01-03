@@ -10,6 +10,7 @@ import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.project.control.ProjectService
+import de.byteleaf.companyon.user.control.UserService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,6 +32,9 @@ abstract class AbstractIT(val gqlFolder: String) {
 
     @Autowired
     protected lateinit var projectService: ProjectService
+
+    @Autowired
+    protected lateinit var userService: UserService
 
     @Autowired
     protected lateinit var objectMapper: ObjectMapper
@@ -81,8 +85,9 @@ abstract class AbstractIT(val gqlFolder: String) {
     }
 
     protected fun clearDB() {
-        companyService.deleteAll()
         projectService.deleteAll()
+        companyService.deleteAll()
+        userService.deleteAll()
     }
 
 

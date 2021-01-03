@@ -1,0 +1,14 @@
+subscription {
+    projectUpdate {
+        type,
+        entity {
+            id,
+            name,
+            company {
+                id,
+                name
+            },
+            state
+        }
+    }
+}

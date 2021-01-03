@@ -17,7 +17,7 @@ class ProjectResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSu
     @Autowired
     private lateinit var projectService: ProjectService
 
-    fun getProject(id: String): Project? = projectService.get(id)
+    fun getProject(id: String): Project = projectService.get(id)
 
     fun getProjects(companies: Collection<String>?): List<Project> = projectService.findAll(companies)
 

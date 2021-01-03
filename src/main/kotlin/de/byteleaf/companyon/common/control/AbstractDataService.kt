@@ -34,7 +34,7 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     @Suppress("UNCHECKED_CAST")
     protected fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_OUTPUT_DTO)) as O
 
-    fun create(input: I): O {
+    open fun create(input: I): O {
         val dto = entityToOutput(repository.insert(inputToEntity(input)))
         applicationEventPublisher.publishEvent(EntityCreatedEvent(getEntityType(), dto))
         return dto

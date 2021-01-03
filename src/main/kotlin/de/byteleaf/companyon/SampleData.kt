@@ -17,12 +17,6 @@ import org.springframework.stereotype.Component
 @Component
 class SampleData : ApplicationRunner {
 
-    // TODO remove
-    companion object {
-        const val FILE_ID = "file-id"
-        const val MIME_TYPE = "image/jpeg"
-    }
-
     @Value("\${skip-sample-data:false}")
     private var skipSampleData = false
 

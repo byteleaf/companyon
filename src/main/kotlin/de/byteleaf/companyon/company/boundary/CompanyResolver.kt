@@ -17,7 +17,7 @@ class CompanyResolver : GraphQLMutationResolver, GraphQLQueryResolver, GraphQLSu
     @Autowired
     private lateinit var companyService: CompanyService
 
-    fun getCompany(id: String): Company? = companyService.get(id)
+    fun getCompany(id: String): Company = companyService.get(id)
 
     fun getCompanies(): List<Company> = companyService.findAll()
 

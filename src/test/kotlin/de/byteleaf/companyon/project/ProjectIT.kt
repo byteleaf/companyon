@@ -25,9 +25,6 @@ class ProjectIT : AbstractIT("project") {
         clearDB()
     }
 
-    @Autowired
-    protected lateinit var repository: ProjectRepository
-
     @Test
     fun getProjects() {
         seedTestProjects()

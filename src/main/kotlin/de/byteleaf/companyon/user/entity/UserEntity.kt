@@ -8,10 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document
 @NoArgConstructor
 @Document(collection = "users")
 data class UserEntity(
-        val oauth2Subject: String,
+        var oauth2Subject: String? = null,
         val firstName: String,
         val lastName: String,
         val email: String,
-        val signature: FileMeta,
+        val signature: FileMeta?,
         val avatar: FileMeta?
 ) : BaseEntity()
