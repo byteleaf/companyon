@@ -4,17 +4,15 @@ import de.byteleaf.companyon.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
-import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.project.entity.ProjectState
-import de.byteleaf.companyon.project.respository.ProjectRepository
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
+
 
 class ProjectIT : AbstractIT("project") {
 

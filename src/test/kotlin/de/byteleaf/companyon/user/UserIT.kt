@@ -43,38 +43,6 @@ class UserIT : AbstractIT("user") {
         Assertions.assertThat(response.email).isEqualTo("josef@byteleaf.de")
     }
 
-//
-//    @Test
-//    fun createProjectWithNotExistingCompany() {
-//        val response = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"INVALID\" }", true)
-//        expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, "INVALID")
-//    }
-//
-//    @Test
-//    fun deleteCompany() {
-//        val projects = seedTestProjects()
-//        Assertions.assertThat(projectService.findAll().size).isEqualTo(2)
-//        performGQLById("DeleteProject", projects.get(0).id!!)
-//        Assertions.assertThat(projectService.findAll().size).isEqualTo(1)
-//    }
-//
-//    @Test
-//    fun updateProject() {
-//        val project = seedTestProjects().get(0)
-//        val response = performGQLByIdAndInput("UpdateProject", project.id!!, "{ \"name\": \"New name\", \"company\":\"${project.company.id}\" }")
-//        val updatedCompany = response.get("$.data.updateProject", targetClass)
-//        Assertions.assertThat(updatedCompany.name).isEqualTo("New name")
-//    }
-//
-//    @Test
-//    fun companyUpdatedSubscription() {
-//        val companyId = seedTestProjects().get(0).company.id!!
-//        val projectUpdated = performGQLSubscription("ProjectUpdateSubscription", { projectService.create(ProjectInput("New project", companyId)) })
-//            .get("$.data.projectUpdate", ProjectUpdate::class.java)
-//        Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
-//        Assertions.assertThat(projectUpdated.entity!!.name).isEqualTo("New project")
-//    }
-//
     private fun mockCurrentUser() {
         val user = User("Joseph", "Bytezos", "josef@byteleaf.de", null, null)
         user.id = "test-id"
