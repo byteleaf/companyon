@@ -219,6 +219,7 @@
                     <useFile>false</useFile>
                     <failIfNoTests>true</failIfNoTests>
                     <includes>
+                        <include>**/*IT.*</include>
                         <include>**/*Test.*</include>
                     </includes>
                 </configuration>

@@ -71,7 +71,7 @@ class ProjectIT : AbstractIT("project") {
     }
 
     @Test
-    fun companyUpdatedSubscription() {
+    fun projectUpdatedSubscription() {
         val companyId = seedTestProjects().get(0).company.id!!
         val projectUpdated = performGQLSubscription("ProjectUpdateSubscription", { projectService.create(ProjectInput("New project", companyId)) })
             .get("$.data.projectUpdate", ProjectUpdate::class.java)

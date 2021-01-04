@@ -9,6 +9,7 @@ import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
@@ -17,21 +18,17 @@ import org.springframework.stereotype.Service
 @Service
 class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserInput, UserRepository>() {
 
+    @Autowired
+    private lateinit var securityService: SecurityService
+
     override fun getEntityType(): EntityType = EntityType.USER
 
     /**
      * To get the current logged in user
      */
     fun getCurrentUser(): User {
-        val context = SecurityContextHolder.getContext()
-        val authentication = SecurityContextHolder.getContext().authentication
-
-        if (authentication !is OAuth2AuthenticationToken) {
-            // TODO convert to graphql error
-            throw object : AuthenticationException("Authentication is not an OAuth2 token") {}
-        }
-
-        return authentication.principal
+        // TODO What happens if the user data changes ? how to keep this call up to date ;)
+        return securityService.getPrincipal()
     }
 
     fun byOAuth2Subject(oauth2Subject: String): User? {

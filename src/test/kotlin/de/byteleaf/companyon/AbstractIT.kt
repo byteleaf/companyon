@@ -63,6 +63,7 @@ abstract class AbstractIT(val gqlFolder: String) {
     }
 
     protected fun performGQLSubscription(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null, skipValidation: Boolean = false): GraphQLResponse {
+        graphQLTestSubscription.reset()
         val firstResponse = graphQLTestSubscription.start(getGQLResource(gqlOperation))
         Executors.newScheduledThreadPool(1).schedule(eventFunc, 100, TimeUnit.MILLISECONDS)
         val secondResponse = firstResponse.awaitAndGetNextResponse(5000, true)
