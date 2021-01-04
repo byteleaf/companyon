@@ -19,15 +19,4 @@ class UserResolver  : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSubs
     fun getUser(id: String): User = userService.get(id)
 
     fun getCurrentUser(): User = userService.getCurrentUser()
-//
-//    fun getUser(id: String): User? = userService.get(id)
-
-//    fun updateUser(id: String, input: UserInput): User = userService.update(id, input)
-//
-//    fun createUser(input: UserInput): User = userService.create(input)
-//
-//    fun deleteUser(id: String): Boolean {
-//        userService.delete(id)
-//        return true
-//    }
 }

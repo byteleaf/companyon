@@ -30,11 +30,8 @@ mvn spring-boot:run -Dspring-boot.run.profiles=non-sec
 
 + createUser needed? 
 
-type File {
-  id: ID!
-  url: string!
-  mimetype: string!
-}
++ getCurrentUser: What happens if the user data changes? how to keep this call up to date ;)
+
 timeLogsByUser(id: ID!)
 timeLogsByCompany(id: ID!)
 timeLogsByProject(id: ID!)

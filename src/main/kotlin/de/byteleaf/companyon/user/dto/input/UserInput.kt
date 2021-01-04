@@ -8,6 +8,6 @@ data class UserInput(
         val firstName: String,
         val lastName: String,
         val email: String,
-        val signature: FileMetaInput? = null,
-        val avatar: FileMetaInput? = null
+        var signature: FileMetaInput? = null,
+        var avatar: FileMetaInput? = null
 )

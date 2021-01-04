@@ -8,13 +8,8 @@ enum class EntityUpdateType(val eventType: EventType) {
     CREATED(EventType.CREATED);
 
     companion object {
-        fun getByEventType(targetEventType: EventType): EntityUpdateType {
-            for (entry in EntityUpdateType.values()) {
-                if (entry.eventType == targetEventType) {
-                    return entry
-                }
-            }
-            throw RuntimeException("No matching EntityUpdateType found for this event")
-        }
+        fun getByEventType(targetEventType: EventType): EntityUpdateType =
+            values().find { it.eventType == targetEventType }
+                ?: throw RuntimeException("No matching EntityUpdateType found for this event")
     }
 }

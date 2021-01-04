@@ -22,7 +22,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-@ExtendWith(SpringExtension::class)
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureDataMongo

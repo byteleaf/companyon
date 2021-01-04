@@ -18,7 +18,7 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
 
     private val POSITION_ENTITY_UPDATED_DTO = 2
     private var eventEmitter: Emitter<U>? = null
-    private var eventPublisher: Flowable<U>? = null
+    private var eventPublisher: Flowable<U>
 
     init {
         @Suppress("UNCHECKED_CAST")
@@ -29,8 +29,7 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
     }
 
     fun getPublisher(): Flowable<U> {
-        // TODO add filter for roles & rights
-        return eventPublisher!!
+        return eventPublisher
     }
 
     @EventListener

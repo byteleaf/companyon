@@ -42,7 +42,7 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
 
     fun update(id: String, input: I): O {
         val entity = inputToEntity(input)
-        entity.id = id // make sure the url id will be used!
+        entity.id = id
         val dto = entityToOutput(repository.save(entity))
         applicationEventPublisher.publishEvent(EntityUpdatedEvent(getEntityType(), dto))
         return dto
