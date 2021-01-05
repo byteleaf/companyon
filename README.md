@@ -6,30 +6,32 @@
 
 [Click here to see more details](documentation/setup.md)
 
-##
+## How to start
 
-## Run without IDE via Maven
-
+**Run without IDE via Maven**
 ```
 mvn spring-boot:run
 ```
 
-Without security
+**Without security**
 ```
 mvn spring-boot:run -Dspring-boot.run.profiles=non-sec
 ```
 
+## Error handling
+
+[Click here to read more about the error handling](documentation/error-handling.md)
+
 ## TODO
 
-+ Add documentation
++ Unsubscribe Flowable?
 
-+ Login username & passwort
++ .isFieldMatchingEnabled = true // change to false  companyId will be mapped to field id in the entity -> not so nice ;)
 
-type File {
-  id: ID!
-  url: string!
-  mimetype: string!
-}
++ createUser needed? 
+
++ getCurrentUser: What happens if the user data changes? how to keep this call up to date ;)
+
 timeLogsByUser(id: ID!)
 timeLogsByCompany(id: ID!)
 timeLogsByProject(id: ID!)

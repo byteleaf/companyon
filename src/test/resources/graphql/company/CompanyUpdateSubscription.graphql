@@ -1,0 +1,9 @@
+subscription {
+    companyUpdate {
+        type,
+        entity {
+            id,
+            name
+        }
+    }
+}

@@ -1,0 +1,11 @@
+query GetProjects($companies: [ID!]) {
+    projects(companies: $companies) {
+        id
+        name,
+        state,
+        company {
+            id,
+            name
+        }
+    }
+}

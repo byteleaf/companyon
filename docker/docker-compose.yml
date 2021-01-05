@@ -10,6 +10,6 @@ services:
   mongo-express:
     image: mongo-express
     ports:
-      - 8081:8081
+      - 8099:8081
     environment:
       ME_CONFIG_MONGODB_SERVER: database

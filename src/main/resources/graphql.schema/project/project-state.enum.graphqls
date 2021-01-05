@@ -1,0 +1,7 @@
+enum ProjectState {
+    PLANNED,
+    RUNNING,
+    COMPLETED,
+    CANCELED,
+    POST_PROCESSING,
+}

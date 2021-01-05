@@ -6,10 +6,9 @@ import de.byteleaf.companyon.fileupload.dto.FileMeta
 
 @NoArgConstructor
 data class User(
-        val oauth2Subject: String,
         val firstName: String,
         val lastName: String,
         val email: String,
-        val signature: FileMeta,
+        val signature: FileMeta?,
         val avatar: FileMeta?
 ) : BaseDTO()

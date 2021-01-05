@@ -1,5 +1,7 @@
 package de.byteleaf.companyon
 
+import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.event.EntityDeletedEvent
 import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.control.ProjectService
@@ -9,15 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Component
 
 @Component
 class SampleData : ApplicationRunner {
-
-    companion object {
-        const val FILE_ID = "file-id"
-        const val MIME_TYPE = "image/jpeg"
-    }
 
     @Value("\${skip-sample-data:false}")
     private var skipSampleData = false
@@ -38,7 +36,6 @@ class SampleData : ApplicationRunner {
 
         userService.deleteAll()
 
-
         companyService.deleteAll()
 
         val companyA = companyService.create(CompanyInput("Company A Ltd."))
@@ -50,6 +47,5 @@ class SampleData : ApplicationRunner {
 
         projectService.create(ProjectInput("Project C", companyB.id!!))
         projectService.create(ProjectInput("Project D", companyB.id!!))
-
     }
 }

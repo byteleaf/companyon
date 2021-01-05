@@ -9,9 +9,10 @@ Update `application.properties`: Copy the domain and enter it as `rest.security.
 As an alternative, you can change the environment variable `OAUTH_URL` when starting the backend. 
 
 
-## Plugins
+## Useful plugins (Intellij)
 
-- JS GraphQL: Editor for the .graphqls files
+- [JS GraphQL](https://plugins.jetbrains.com/plugin/8097-js-graphql): Editor for the .graphqls files
+- [Maven Helper](https://plugins.jetbrains.com/plugin/7179-maven-helper)
 
 
 ## Database
@@ -21,4 +22,8 @@ Create and start a local docker container with a mongo db:
 
 ### Mongo-Express
 
-[http://localhost:8081](http://localhost:8081)
+[Open mongo express](http://localhost:8099)
+
+## GraphQL Playground
+
+[Open graphql playground](http://localhost:8080/playground)]

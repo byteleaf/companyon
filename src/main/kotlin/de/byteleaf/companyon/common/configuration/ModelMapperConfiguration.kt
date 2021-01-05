@@ -1,6 +1,5 @@
 package de.byteleaf.companyon.common.configuration
 
-import de.byteleaf.companyon.project.converter.ProjectInputToEntityConverter
 import org.modelmapper.ModelMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,11 +13,8 @@ class ModelMapperConfiguration {
         val modelMapper = ModelMapper()
         modelMapper.configuration
                 .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
-                .setSkipNullEnabled(true).isFieldMatchingEnabled = true
-
-        val projectInputToEntityConverter = ProjectInputToEntityConverter()
-
-        modelMapper.addConverter(projectInputToEntityConverter)
+                .setSkipNullEnabled(true)
+                .isFieldMatchingEnabled = true // TODO remove this option -> can make problems
 
         return modelMapper
     }
