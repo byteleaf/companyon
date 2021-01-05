@@ -28,15 +28,19 @@ class ProjectIT : AbstractIT("project") {
         seedTestProjects()
         val projects = performGQL("GetProjects").getList("$.data.projects", targetClass)
         Assertions.assertThat(projects.size).isEqualTo(2)
-        // Filtered by company
-        val companyId = projects.get(0).company.id
+    }
+
+    @Test
+    fun getProjectsFilteredByCompany() {
+        val projects = seedTestProjects()
+        val companyId = projects[0].company.id
         val projectsFiltered = performGQL("GetProjects", "{ \"companies\": [\"$companyId\"] }").getList("$.data.projects", targetClass)
         Assertions.assertThat(projectsFiltered.size).isEqualTo(1)
     }
 
     @Test
     fun createProject() {
-        val companyId = seedTestProjects().get(0).company.id
+        val companyId = seedTestProjects()[0].company.id
         val createdProject = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"$companyId\" }")
                 .get("$.data.createProject",targetClass)
         Assertions.assertThat(createdProject.name).isEqualTo("A")
@@ -56,13 +60,13 @@ class ProjectIT : AbstractIT("project") {
     fun deleteCompany() {
         val projects = seedTestProjects()
         Assertions.assertThat(projectService.findAll().size).isEqualTo(2)
-        performGQLById("DeleteProject", projects.get(0).id!!)
+        performGQLById("DeleteProject", projects[0].id!!)
         Assertions.assertThat(projectService.findAll().size).isEqualTo(1)
     }
 
     @Test
     fun updateProject() {
-        val project = seedTestProjects().get(0)
+        val project = seedTestProjects()[0]
         val response = performGQLByIdAndInput("UpdateProject", project.id!!, "{ \"name\": \"New name\", \"company\":\"${project.company.id}\" }")
         val updatedCompany = response.get("$.data.updateProject", targetClass)
         Assertions.assertThat(updatedCompany.name).isEqualTo("New name")
@@ -70,7 +74,7 @@ class ProjectIT : AbstractIT("project") {
 
     @Test
     fun projectUpdatedSubscription() {
-        val companyId = seedTestProjects().get(0).company.id!!
+        val companyId = seedTestProjects()[0].company.id!!
         val projectUpdated = performGQLSubscription("ProjectUpdateSubscription", { projectService.create(ProjectInput("New project", companyId)) })
             .get("$.data.projectUpdate", ProjectUpdate::class.java)
         Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)

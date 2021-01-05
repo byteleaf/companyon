@@ -12,9 +12,11 @@ import de.byteleaf.companyon.project.respository.ProjectRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
-class ProjectService : AbstractEventDataService<ProjectEntity, Project, ProjectUpdate, ProjectInput, ProjectRepository>() {
+class ProjectService :
+    AbstractEventDataService<ProjectEntity, Project, ProjectUpdate, ProjectInput, ProjectRepository>() {
 
     override fun getEntityType(): EntityType = EntityType.PROJECT
 
@@ -29,8 +31,9 @@ class ProjectService : AbstractEventDataService<ProjectEntity, Project, ProjectU
         repository.deleteByCompany(event.entity.id!!)
     }
 
-    fun findAll(companies: Collection<String>?): List<Project> = if(companies != null)
-        repository.findByCompanyIn(companies).map { entityToOutput(it) } else super.findAll()
+    fun findAll(companies: Collection<String>?): List<Project> =
+        Optional.ofNullable(companies).map { repository.findByCompanyIn(it).map { entityToOutput(it) } }
+            .orElseGet { super.findAll() }
 
     override fun inputToEntity(input: ProjectInput): ProjectEntity {
         val entity = modelMapper.map(input, ProjectEntity::class.java)
