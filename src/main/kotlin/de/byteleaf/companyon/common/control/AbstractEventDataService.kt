@@ -34,6 +34,7 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
 
     @EventListener
     fun onEntityEvent(event: EntityEvent<*>) {
+        val t = getEntityType()
         if(event.entityType === getEntityType()) {
             val updatedEntity = GenericSupportUtil.createInstanceFromGeneric<U>(this, POSITION_ENTITY_UPDATED_DTO)
             @Suppress("UNCHECKED_CAST")

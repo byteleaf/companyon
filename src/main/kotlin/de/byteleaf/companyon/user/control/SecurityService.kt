@@ -1,17 +1,12 @@
 package de.byteleaf.companyon.user.control
 
 import de.byteleaf.companyon.common.auth.OAuth2AuthenticationToken
-import de.byteleaf.companyon.user.dto.User
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.core.env.Environment
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
-import org.springframework.core.env.Environment
-
-import org.springframework.beans.factory.annotation.Autowired
-
-
-
 
 @Service
 class SecurityService {

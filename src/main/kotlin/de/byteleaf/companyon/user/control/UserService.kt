@@ -35,6 +35,16 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
         return entityToOutput(result)
     }
 
+    /**
+     * try to find a user by email
+     */
+    fun findByEmailAndUpdateOAuthSubject(email: String, oauth2Subject: String): User? {
+        val entity = repository.findByEmailIgnoreCase(email) ?: return null
+        entity.oauth2Subject = oauth2Subject
+        repository.save(entity)
+        return entityToOutput(entity)
+    }
+
     override fun create(input: UserInput): User = create(input, null)
 
     fun create(input: UserInput, oauth2Subject: String? = null): User {

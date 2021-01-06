@@ -1,8 +1,5 @@
 package de.byteleaf.companyon.user.boundary
 
-import de.byteleaf.companyon.company.dto.Company
-import de.byteleaf.companyon.company.dto.CompanyUpdate
-import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserUpdate

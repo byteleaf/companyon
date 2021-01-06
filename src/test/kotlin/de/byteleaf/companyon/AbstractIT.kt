@@ -8,17 +8,12 @@ import com.graphql.spring.boot.test.GraphQLTestSubscription
 import com.graphql.spring.boot.test.GraphQLTestTemplate
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
-import de.byteleaf.companyon.company.control.CompanyService
-import de.byteleaf.companyon.project.control.ProjectService
-import de.byteleaf.companyon.user.control.UserService
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ActiveProfiles
-import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -28,15 +23,6 @@ import java.util.concurrent.TimeUnit
 // needed, otherwise embedded mongo db will produce a "Could not start process: <EOF>" after executing multiple tests in a row
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 abstract class AbstractIT(val gqlFolder: String) {
-
-    @Autowired
-    protected lateinit var companyService: CompanyService
-
-    @Autowired
-    protected lateinit var projectService: ProjectService
-
-    @Autowired
-    protected lateinit var userService: UserService
 
     @Autowired
     protected lateinit var objectMapper: ObjectMapper
@@ -104,13 +90,6 @@ abstract class AbstractIT(val gqlFolder: String) {
         if (payload != null) return objectMapper.readTree(payload) as ObjectNode?
         return null
     }
-
-    protected fun clearDB() {
-        projectService.deleteAll()
-        companyService.deleteAll()
-        userService.deleteAll()
-    }
-
 
     protected fun getErrorExtensions(response: GraphQLResponse): JsonNode =
         response.readTree().get("errors").get(0).get("extensions")
