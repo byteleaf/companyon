@@ -8,14 +8,15 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.mock.mockito.MockBean
 
 class UserIT : AbstractIT("user") {
 
     private val targetClass = User::class.java
 
-    @MockBean
-    private lateinit var securityService: SecurityService
+    @Value("\${app.non-sec-oauth2-subject}")
+    private lateinit var nonSecOAuth2Subject: String
 
     @BeforeEach
     fun init() {
@@ -39,16 +40,15 @@ class UserIT : AbstractIT("user") {
 
     @Test
     fun getCurrentUser() {
+        userService.create(UserInput("Sample", "Non-Sec-User", "sample@byteleaf.de"), nonSecOAuth2Subject)
         val response = performGQL("GetCurrentUser").get("$.data.currentUser", targetClass)
         Assertions.assertThat(response.email).isEqualTo("josef@byteleaf.de")
     }
 
     private fun mockCurrentUser() {
-        val user = User("Joseph", "Bytezos", "josef@byteleaf.de", null, null)
-        user.id = "test-id"
-        Mockito.`when`(securityService.getPrincipal()).thenReturn(user)
+        userService.create(UserInput("Sample", "Non-Sec-User", "sample@byteleaf.de"), nonSecOAuth2Subject)
     }
 
     private fun seedTestUser(): User =
-        userService.create(UserInput("oauth2Subject1", "Hans", "Bytezos", "hans@byteleaf.de"))
+        userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de"))
 }

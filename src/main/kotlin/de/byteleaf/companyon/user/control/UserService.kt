@@ -27,13 +27,11 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
      * To get the current logged in user
      */
     fun getCurrentUser(): User {
-        // TODO What happens if the user data changes ? how to keep this call up to date ;)
-        return securityService.getPrincipal()
+        return findByOauth2Subject(securityService.getCurrentAuth2Subject())!!
     }
 
-    fun byOAuth2Subject(oauth2Subject: String): User? {
+    fun findByOauth2Subject(oauth2Subject: String): User? {
         val result = repository.findByOauth2Subject(oauth2Subject) ?: return null
-
         return entityToOutput(result)
     }
 

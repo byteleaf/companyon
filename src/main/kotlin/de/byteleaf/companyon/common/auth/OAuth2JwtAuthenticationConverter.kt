@@ -9,7 +9,6 @@ import org.springframework.core.convert.converter.Converter
 import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.stereotype.Component
 
-// TODO implement Test
 @Component
 class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToken> {
 
@@ -21,7 +20,7 @@ class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToke
 
     override fun convert(source: Jwt): OAuth2AuthenticationToken? {
         val oauth2Subject = source.getClaimAsString("sub")
-        val dbUser = userService.byOAuth2Subject(source.getClaimAsString("sub"))
+        val dbUser = userService.findByOauth2Subject(source.getClaimAsString("sub"))
 
         if (dbUser != null) {
             return OAuth2AuthenticationToken.create(dbUser, source.claims)
@@ -41,7 +40,6 @@ class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToke
 
         val createDBUser = userService.create(
             UserInput(
-                map["sub"] as String,
                 map["given_name"] as? String ?: "",
                 map["family_name"] as? String ?: "",
                 map["email"] as String
