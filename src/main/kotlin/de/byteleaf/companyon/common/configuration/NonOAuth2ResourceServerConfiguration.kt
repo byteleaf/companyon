@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 
 
-@Profile("non-sec", "test")
+@Profile("non-sec")
 @Configuration
 @EnableWebSecurity
 class NonOAuth2ResourceServerConfiguration : WebSecurityConfigurerAdapter() {

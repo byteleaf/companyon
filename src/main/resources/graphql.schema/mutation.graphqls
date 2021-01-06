@@ -1,8 +1,14 @@
 type Mutation {
+    # company
     createCompany(input: CompanyInput!): Company!
     updateCompany(id: ID!, input: CompanyInput!): Company!
     deleteCompany(id: ID!): Company!
+    # project
     createProject(input: ProjectInput!): Project!
     updateProject(id: ID!, input: ProjectInput!): Project!
     deleteProject(id: ID!): Project!
+    # user
+    createUser(input: UserInput!): User!
+    updateUser(id: ID!, input: ProjectInput!): User!
+    deleteUser(id: ID!): User!
 }

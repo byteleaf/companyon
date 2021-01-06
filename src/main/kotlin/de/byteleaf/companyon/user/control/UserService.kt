@@ -40,7 +40,7 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
     fun create(input: UserInput, oauth2Subject: String? = null): User {
         val entity = inputToEntity(input)
         entity.oauth2Subject = oauth2Subject
-        val dto = entityToOutput(repository.insert(inputToEntity(input)))
+        val dto = entityToOutput(repository.insert(entity))
         applicationEventPublisher.publishEvent(EntityCreatedEvent(getEntityType(), dto))
         return dto
     }

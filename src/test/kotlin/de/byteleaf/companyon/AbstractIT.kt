@@ -22,7 +22,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-@ActiveProfiles("test")
+@ActiveProfiles(profiles = ["test", "non-sec"])
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureDataMongo
 // needed, otherwise embedded mongo db will produce a "Could not start process: <EOF>" after executing multiple tests in a row
@@ -49,34 +49,52 @@ abstract class AbstractIT(val gqlFolder: String) {
     @Autowired
     protected lateinit var graphQLTestSubscription: GraphQLTestSubscription
 
-    protected fun performGQLByIdAndInput(gqlOperation: String, id: String, inputPayload: String, skipValidation: Boolean = false): GraphQLResponse =
-            performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }", skipValidation)
+    protected fun performGQLByIdAndInput(
+        gqlOperation: String,
+        id: String,
+        inputPayload: String,
+        skipValidation: Boolean = false
+    ): GraphQLResponse =
+        performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }", skipValidation)
 
-    protected fun performGQLByInput(gqlOperation: String, inputPayload: String, skipValidation: Boolean = false): GraphQLResponse =
-            performGQL(gqlOperation, "{ \"input\": $inputPayload }", skipValidation)
+    protected fun performGQLByInput(
+        gqlOperation: String,
+        inputPayload: String,
+        skipValidation: Boolean = false
+    ): GraphQLResponse =
+        performGQL(gqlOperation, "{ \"input\": $inputPayload }", skipValidation)
 
     protected fun performGQLById(gqlOperation: String, id: String, skipValidation: Boolean = false): GraphQLResponse =
-            performGQL(gqlOperation, "{ \"id\": \"$id\" }", skipValidation)
+        performGQL(gqlOperation, "{ \"id\": \"$id\" }", skipValidation)
 
 
-    protected fun performGQL(gqlOperation: String, payload: String? = null, skipValidation: Boolean = false): GraphQLResponse {
-            val response = graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload))
-            return if(skipValidation) response else validateResponse(response)
+    protected fun performGQL(
+        gqlOperation: String,
+        payload: String? = null,
+        skipValidation: Boolean = false
+    ): GraphQLResponse {
+        val response = graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload))
+        return if (skipValidation) response else validateResponse(response)
     }
 
-    protected fun performGQLSubscription(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null, skipValidation: Boolean = false): GraphQLResponse {
+    protected fun performGQLSubscription(
+        gqlOperation: String,
+        eventFunc: () -> Unit,
+        payload: String? = null,
+        skipValidation: Boolean = false
+    ): GraphQLResponse {
         graphQLTestSubscription.reset()
         val firstResponse = graphQLTestSubscription.start(getGQLResource(gqlOperation))
         Executors.newScheduledThreadPool(1).schedule(eventFunc, 100, TimeUnit.MILLISECONDS)
         val secondResponse = firstResponse.awaitAndGetNextResponse(5000, true)
-        return if(skipValidation) secondResponse else validateResponse(secondResponse)
+        return if (skipValidation) secondResponse else validateResponse(secondResponse)
     }
 
     protected fun validateResponse(response: GraphQLResponse): GraphQLResponse {
         assertThat(response.isOk).isTrue()
         assertThat(response.readTree().hasNonNull("errors"))
-                .describedAs("response has errors")
-                .isFalse()
+            .describedAs("response has errors")
+            .isFalse()
         return response
     }
 
@@ -94,9 +112,15 @@ abstract class AbstractIT(val gqlFolder: String) {
     }
 
 
-    protected fun getErrorExtensions(response: GraphQLResponse): JsonNode = response.readTree().get("errors").get(0).get("extensions")
+    protected fun getErrorExtensions(response: GraphQLResponse): JsonNode =
+        response.readTree().get("errors").get(0).get("extensions")
 
-    protected fun expectError(response: GraphQLResponse, expectedCode: ErrorCode, expectedType: EntityType, expectedId: String) {
+    protected fun expectError(
+        response: GraphQLResponse,
+        expectedCode: ErrorCode,
+        expectedType: EntityType,
+        expectedId: String
+    ) {
         val errorExtensions = getErrorExtensions(response)
         assertThat(errorExtensions.get("code").asText()).isEqualTo(expectedCode.name)
         assertThat(errorExtensions.get("entityType").asText()).isEqualTo(expectedType.name)

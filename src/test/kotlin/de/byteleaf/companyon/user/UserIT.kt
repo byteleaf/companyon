@@ -20,7 +20,6 @@ class UserIT : AbstractIT("user") {
 
     @BeforeEach
     fun init() {
-        mockCurrentUser()
         clearDB()
     }
 
@@ -40,13 +39,9 @@ class UserIT : AbstractIT("user") {
 
     @Test
     fun getCurrentUser() {
-        userService.create(UserInput("Sample", "Non-Sec-User", "sample@byteleaf.de"), nonSecOAuth2Subject)
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), nonSecOAuth2Subject)
         val response = performGQL("GetCurrentUser").get("$.data.currentUser", targetClass)
-        Assertions.assertThat(response.email).isEqualTo("josef@byteleaf.de")
-    }
-
-    private fun mockCurrentUser() {
-        userService.create(UserInput("Sample", "Non-Sec-User", "sample@byteleaf.de"), nonSecOAuth2Subject)
+        Assertions.assertThat(response.email).isEqualTo("jeff@byteleaf.de")
     }
 
     private fun seedTestUser(): User =

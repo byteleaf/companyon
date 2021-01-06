@@ -6,6 +6,12 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
+import org.springframework.core.env.Environment
+
+import org.springframework.beans.factory.annotation.Autowired
+
+
+
 
 @Service
 class SecurityService {
@@ -13,17 +19,17 @@ class SecurityService {
     @Value("\${app.non-sec-oauth2-subject}")
     private lateinit var nonSecOAuth2Subject: String
 
-    @Value("\${spring.profiles.active}")
-    private lateinit var activeProfile: String
+    @Autowired
+    private lateinit var env: Environment
 
     fun getCurrentAuth2Subject(): String {
-        if(listOf("test", "non-sec").contains(activeProfile)) return nonSecOAuth2Subject
+        if(env.activeProfiles.contains("non-sec")) return nonSecOAuth2Subject
 
         val authentication = SecurityContextHolder.getContext().authentication
         if (authentication !is OAuth2AuthenticationToken) {
             // TODO convert to graphql error
             throw object : AuthenticationException("Authentication is not an OAuth2 token") {}
         }
-        return authentication.principal.oAuth2Subject!!
+        return authentication.principal.oauth2Subject!!
     }
 }

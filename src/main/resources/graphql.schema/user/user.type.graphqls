@@ -1,6 +1,5 @@
 type User {
     id: ID!
-    oAuth2Subject: String,
     firstName: String!
     lastName: String!
     email: String!
