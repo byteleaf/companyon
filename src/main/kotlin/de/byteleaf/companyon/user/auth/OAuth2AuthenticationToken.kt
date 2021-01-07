@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.common.auth
+package de.byteleaf.companyon.user.auth
 
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.security.authentication.AbstractAuthenticationToken

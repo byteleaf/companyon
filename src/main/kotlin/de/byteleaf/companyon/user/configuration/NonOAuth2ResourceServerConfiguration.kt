@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.common.configuration
+package de.byteleaf.companyon.user.configuration
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile

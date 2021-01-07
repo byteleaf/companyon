@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.common.auth
+package de.byteleaf.companyon.user.auth
 
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
@@ -8,7 +8,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.core.convert.converter.Converter
 import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.stereotype.Component
-import java.lang.IllegalStateException
 
 @Component
 class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToken> {
@@ -19,7 +18,7 @@ class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToke
     @Autowired
     private lateinit var userService: UserService
 
-    override fun convert(source: Jwt): OAuth2AuthenticationToken? {
+    override fun convert(source: Jwt): OAuth2AuthenticationToken {
         val oauth2Subject = source.getClaimAsString("sub")
 
         // Try to find the user by the oauth subject in the database
@@ -28,24 +27,13 @@ class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToke
 
         val userInfo = loadUserInfo(source.tokenValue)
 
-        /**
-         *  Try to find the user by email. A new created user who never logged in could only be found by the email address!
-         */
+        // Try to find the user by email. A new created user who never logged in could only be found by the email address!
         val dbUserEmail = userService.findByEmailAndUpdateOAuthSubject(userInfo["email"] as String, oauth2Subject)
         if (dbUserEmail != null) {
             return OAuth2AuthenticationToken.create(dbUserEmail, source.claims)
         }
 
-        val createDBUser = userService.create(
-            UserInput(
-                userInfo["given_name"] as? String ?: "",
-                userInfo["family_name"] as? String ?: "",
-                userInfo["email"] as String
-            ),
-            oauth2Subject
-        )
-
-        return OAuth2AuthenticationToken.create(createDBUser, source.claims)
+        throw Exception("Your not allowed to use this application")
     }
 
 
@@ -55,7 +43,8 @@ class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToke
             .build()
 
         @Suppress("UNCHECKED_CAST")
-        return restTemplate.getForEntity(userInfoUri, Map::class.java).body as Map<String, String>? ?: throw Exception("Can't load user meta data from")
+        return restTemplate.getForEntity(userInfoUri, Map::class.java).body as Map<String, String>?
+            ?: throw Exception("Can't load user meta data from")
     }
 
 }
