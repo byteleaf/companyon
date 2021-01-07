@@ -20,7 +20,7 @@ class OAuth2ResourceServerConfiguration : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
-                .antMatchers("/**").authenticated()
+                .antMatchers("/graphql").authenticated()
                 .and().oauth2ResourceServer().jwt()
                 .jwtAuthenticationConverter(jwtConverter)
     }
