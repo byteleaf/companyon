@@ -6,6 +6,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.resource.PathResourceResolver
 
+/**
+ * Configures a fallback so we can do the routing on the client-side.
+ */
 @Configuration
 class ServeStaticContentConfiguration : WebMvcConfigurer {
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
