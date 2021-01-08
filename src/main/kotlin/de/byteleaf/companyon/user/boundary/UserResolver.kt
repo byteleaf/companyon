@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.user.boundary
 
+import de.byteleaf.companyon.security.control.SecurityContextService
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserUpdate
@@ -15,12 +16,14 @@ import org.springframework.stereotype.Controller
 class UserResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSubscriptionResolver {
     @Autowired
     private lateinit var userService: UserService
+    @Autowired
+    private lateinit var securityContextService: SecurityContextService
 
     fun getUsers(): List<User> = userService.findAll()
 
     fun getUser(id: String): User = userService.get(id)
 
-    fun getCurrentUser(): User = userService.getCurrentUser()
+    fun getCurrentUser(): User = securityContextService.getCurrentUser()
 
     fun createUser(input: UserInput): User = userService.create(input)
 

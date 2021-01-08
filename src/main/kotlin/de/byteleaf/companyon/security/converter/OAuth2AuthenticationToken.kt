@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.auth.converter
+package de.byteleaf.companyon.security.converter
 
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.security.authentication.AbstractAuthenticationToken

@@ -1,6 +1,6 @@
-package de.byteleaf.companyon.auth.converter
+package de.byteleaf.companyon.security.converter
 
-import de.byteleaf.companyon.auth.control.AuthInfoService
+import de.byteleaf.companyon.security.control.AuthInfoService
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.assertj.core.api.Assertions

@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.user.control
 
+import de.byteleaf.companyon.security.control.SecurityContextService
 import de.byteleaf.companyon.common.control.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.event.EntityCreatedEvent
@@ -18,16 +19,9 @@ import org.springframework.stereotype.Service
 class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserInput, UserRepository>() {
 
     @Autowired
-    private lateinit var securityService: SecurityService
+    private lateinit var securityService: SecurityContextService
 
     override fun getEntityType(): EntityType = EntityType.USER
-
-    /**
-     * To get the current logged in user
-     */
-    fun getCurrentUser(): User {
-        return findByOauth2Subject(securityService.getCurrentAuth2Subject())!!
-    }
 
     fun findByOauth2Subject(oauth2Subject: String): User? {
         val result = repository.findByOauth2Subject(oauth2Subject) ?: return null
