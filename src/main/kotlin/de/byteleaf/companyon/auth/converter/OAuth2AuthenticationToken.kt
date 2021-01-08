@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.user.auth
+package de.byteleaf.companyon.auth.converter
 
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.security.authentication.AbstractAuthenticationToken
@@ -19,10 +19,8 @@ class OAuth2AuthenticationToken private constructor(
     companion object {
         internal fun create(user: User, details: Any): OAuth2AuthenticationToken {
             val result = OAuth2AuthenticationToken(user, null)
-
             result.isAuthenticated = true
             result.details = details
-
             return result
         }
     }

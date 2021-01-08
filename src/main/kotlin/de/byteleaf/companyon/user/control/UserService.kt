@@ -9,6 +9,8 @@ import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.authentication.InsufficientAuthenticationException
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 
@@ -33,10 +35,12 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
     }
 
     /**
-     * try to find a user by email
+     * Tries to find a new user by email address. If the user already has oauth subject an error
+     * will be thrown, it will only work for users without subject.
      */
-    fun findByEmailAndUpdateOAuthSubject(email: String, oauth2Subject: String): User? {
-        val entity = repository.findByEmailIgnoreCase(email) ?: return null
+    fun activateNewUser(email: String, oauth2Subject: String): User {
+        val entity = repository.findByEmailIgnoreCase(email) ?: throw UsernameNotFoundException("No user found for email address: $email")
+        if(entity.oauth2Subject != null) throw InsufficientAuthenticationException("A user with email address $email is already existing")
         entity.oauth2Subject = oauth2Subject
         repository.save(entity)
         return entityToOutput(entity)

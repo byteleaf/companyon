@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.user.control
 
-import de.byteleaf.companyon.user.auth.OAuth2AuthenticationToken
+import de.byteleaf.companyon.auth.converter.OAuth2AuthenticationToken
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.env.Environment

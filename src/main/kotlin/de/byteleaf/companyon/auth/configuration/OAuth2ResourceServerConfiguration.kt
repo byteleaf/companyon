@@ -1,6 +1,6 @@
-package de.byteleaf.companyon.user.configuration
+package de.byteleaf.companyon.auth.configuration
 
-import de.byteleaf.companyon.user.auth.OAuth2JwtAuthenticationConverter
+import de.byteleaf.companyon.auth.converter.OAuth2JwtAuthenticationConverter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile

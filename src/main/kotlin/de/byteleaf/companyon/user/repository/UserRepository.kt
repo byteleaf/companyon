@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.repository.Query
 interface UserRepository : MongoRepository<UserEntity, String> {
     @Query
     fun findByOauth2Subject(oauth2Subject: String): UserEntity?
+
     @Query
     fun findByEmailIgnoreCase(email: String): UserEntity?
 }
