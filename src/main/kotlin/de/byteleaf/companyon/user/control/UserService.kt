@@ -1,6 +1,5 @@
 package de.byteleaf.companyon.user.control
 
-import de.byteleaf.companyon.security.control.SecurityContextService
 import de.byteleaf.companyon.common.control.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.event.EntityCreatedEvent
@@ -9,7 +8,6 @@ import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.InsufficientAuthenticationException
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
@@ -17,9 +15,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserInput, UserRepository>() {
-
-    @Autowired
-    private lateinit var securityService: SecurityContextService
 
     override fun getEntityType(): EntityType = EntityType.USER
 

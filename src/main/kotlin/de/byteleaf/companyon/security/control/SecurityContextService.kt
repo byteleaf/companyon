@@ -1,7 +1,7 @@
 package de.byteleaf.companyon.security.control
 
-import de.byteleaf.companyon.security.converter.OAuth2AuthenticationToken
 import de.byteleaf.companyon.common.error.exception.FatalException
+import de.byteleaf.companyon.security.converter.OAuth2AuthenticationToken
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.beans.factory.annotation.Autowired

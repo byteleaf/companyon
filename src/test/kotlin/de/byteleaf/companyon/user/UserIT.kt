@@ -42,13 +42,6 @@ class UserIT : AbstractIT("user") {
     }
 
     @Test
-    fun getCurrentUser() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), nonSecOAuth2Subject)
-        val response = performGQL("GetCurrentUser").get("$.data.currentUser", targetClass)
-        Assertions.assertThat(response.email).isEqualTo("jeff@byteleaf.de")
-    }
-
-    @Test
     fun deleteUser() {
         val createdUser = seedTestUser()
         Assertions.assertThat(userService.findAll().size).isEqualTo(1)
