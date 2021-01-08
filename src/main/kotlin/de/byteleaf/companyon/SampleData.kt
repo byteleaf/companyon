@@ -54,7 +54,10 @@ class SampleData : ApplicationRunner {
 
         // Users
         userService.deleteAll()
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), nonSecOAuth2Subject)
-
+        userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de"))
+        userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de"))
+        userService.create(UserInput("Anthony", "Potdevin", "anthony.potdevin@byteleaf.de"))
+        userService.create(UserInput("Paul", "Tolstoi", "paul.tolstoi@byteleaf.de"))
+        userService.create(UserInput("Stefan", "Sauterleute", "stefan.sauterleute@byteleaf.de"))
     }
 }
