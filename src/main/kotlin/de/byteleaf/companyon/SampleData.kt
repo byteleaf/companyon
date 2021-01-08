@@ -54,6 +54,8 @@ class SampleData : ApplicationRunner {
 
         // Users
         userService.deleteAll()
+        // will be used as current used if securtiy is disabled
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), nonSecOAuth2Subject)
         userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de"))
         userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de"))
         userService.create(UserInput("Anthony", "Potdevin", "anthony.potdevin@byteleaf.de"))
