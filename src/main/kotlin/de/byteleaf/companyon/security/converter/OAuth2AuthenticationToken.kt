@@ -3,6 +3,7 @@ package de.byteleaf.companyon.security.converter
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.security.authentication.AbstractAuthenticationToken
 import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 
 class OAuth2AuthenticationToken private constructor(
         private val principal: User,
@@ -20,7 +21,7 @@ class OAuth2AuthenticationToken private constructor(
         internal fun create(user: User, details: Any): OAuth2AuthenticationToken {
 
 
-            val result = OAuth2AuthenticationToken(user, null)
+            val result = OAuth2AuthenticationToken(user, listOf(SimpleGrantedAuthority("ADMIN")))
             result.isAuthenticated = true
             result.details = details
             return result

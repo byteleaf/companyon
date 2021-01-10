@@ -8,8 +8,6 @@ import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
-import org.springframework.security.access.annotation.Secured
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.authentication.InsufficientAuthenticationException
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
@@ -30,15 +28,14 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
      * will be thrown, it will only work for users without subject.
      */
     fun activateNewUser(email: String, oauth2Subject: String): User {
-        val entity = repository.findByEmailIgnoreCase(email) ?: throw UsernameNotFoundException("No user found for email address: $email")
-        if(entity.oauth2Subject != null) throw InsufficientAuthenticationException("A user with email address $email is already existing")
+        val entity = repository.findByEmailIgnoreCase(email)
+            ?: throw UsernameNotFoundException("No user found for email address: $email")
+        if (entity.oauth2Subject != null) throw InsufficientAuthenticationException("A user with email address $email is already existing")
         entity.oauth2Subject = oauth2Subject
         repository.save(entity)
         return entityToOutput(entity)
     }
 
-    @PreAuthorize("hasRole('ROLE_VIEWER_123')")
-    @Secured("ROLE_VIEWER12")
     override fun create(input: UserInput): User = create(input, null)
 
     fun create(input: UserInput, oauth2Subject: String? = null): User {

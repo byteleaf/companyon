@@ -60,7 +60,7 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
         return dto
     }
 
-    fun findAll() = repository.findAll().map { entityToOutput(it) }
+    open fun findAll() = repository.findAll().map { entityToOutput(it) }
 
     fun deleteAll() = repository.deleteAll()
 
