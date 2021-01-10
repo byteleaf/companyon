@@ -8,7 +8,6 @@ import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.InsufficientAuthenticationException
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
@@ -17,17 +16,7 @@ import org.springframework.stereotype.Service
 @Service
 class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserInput, UserRepository>() {
 
-    @Autowired
-    private lateinit var securityService: SecurityService
-
     override fun getEntityType(): EntityType = EntityType.USER
-
-    /**
-     * To get the current logged in user
-     */
-    fun getCurrentUser(): User {
-        return findByOauth2Subject(securityService.getCurrentAuth2Subject())!!
-    }
 
     fun findByOauth2Subject(oauth2Subject: String): User? {
         val result = repository.findByOauth2Subject(oauth2Subject) ?: return null

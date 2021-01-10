@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.auth.control
+package de.byteleaf.companyon.security.control
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder

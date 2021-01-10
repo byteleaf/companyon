@@ -20,8 +20,6 @@ class UserResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSubsc
 
     fun getUser(id: String): User = userService.get(id)
 
-    fun getCurrentUser(): User = userService.getCurrentUser()
-
     fun createUser(input: UserInput): User = userService.create(input)
 
     fun updateUser(id: String, input: UserInput): User = userService.update(id, input)
