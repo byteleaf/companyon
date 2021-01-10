@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.security.test.context.support.WithAnonymousUser
 
 class UserIT : AbstractIT("user") {
 
@@ -57,7 +58,6 @@ class UserIT : AbstractIT("user") {
         Assertions.assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
     }
 
-
     @Test
     fun createUser() {
         val createdEntity = performGQLByInput("CreateUser", "{ \"email\": \"jeff@byteleaf.de\", \"firstName\": \"a\", \"lastName\": \"b\" }")
@@ -71,12 +71,12 @@ class UserIT : AbstractIT("user") {
     @Test
     fun updatedSubscription() {
         val user = seedTestUser()
-        val projectUpdated = performGQLSubscription("UserUpdateSubscription", { userService.update(user.id!!, UserInput("a", "b", "c")) }
+        val projectUpdated = performGQLSubscription("UserUpdateSubscription", { userService.update(user.id!!, UserInput("a", "b", "c", false)) }
         ).get("$.data.userUpdate", UserUpdate::class.java)
         Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.UPDATED)
         Assertions.assertThat(projectUpdated.entity!!.lastName).isEqualTo("b")
     }
 
     private fun seedTestUser(): User =
-        userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de"))
+        userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de", false))
 }

@@ -9,6 +9,7 @@ import graphql.kickstart.tools.GraphQLQueryResolver
 import graphql.kickstart.tools.GraphQLSubscriptionResolver
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Controller
 
 @Controller
@@ -20,6 +21,7 @@ class UserResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSubsc
 
     fun getUser(id: String): User = userService.get(id)
 
+    @PreAuthorize("hasRole('ROLE_VIEWER')")
     fun createUser(input: UserInput): User = userService.create(input)
 
     fun updateUser(id: String, input: UserInput): User = userService.update(id, input)

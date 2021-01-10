@@ -12,6 +12,7 @@ data class UserEntity(
         val firstName: String,
         val lastName: String,
         val email: String,
+        val admin: Boolean,
         val signature: FileMeta?,
         val avatar: FileMeta?
 ) : BaseEntity()

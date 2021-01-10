@@ -27,7 +27,7 @@ class SecurityIT : AbstractIT("security") {
 
     @Test
     fun getCurrentUser() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), nonSecOAuth2Subject)
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), nonSecOAuth2Subject)
         val response = performGQL("GetCurrentUser").get("$.data.currentUser", User::class.java)
         Assertions.assertThat(response.email).isEqualTo("jeff@byteleaf.de")
     }

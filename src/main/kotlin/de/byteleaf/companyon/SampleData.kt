@@ -50,11 +50,11 @@ class SampleData : ApplicationRunner {
         // Users
         userService.deleteAll()
         // will be used as current used if securtiy is disabled
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), nonSecOAuth2Subject)
-        userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de"))
-        userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de"))
-        userService.create(UserInput("Anthony", "Potdevin", "anthony.potdevin@byteleaf.de"))
-        userService.create(UserInput("Paul", "Tolstoi", "paul.tolstoi@byteleaf.de"))
-        userService.create(UserInput("Stefan", "Sauterleute", "stefan.sauterleute@byteleaf.de"))
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), nonSecOAuth2Subject)
+        userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de", true))
+        userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de", true))
+        userService.create(UserInput("Anthony", "Potdevin", "anthony.potdevin@byteleaf.de", true))
+        userService.create(UserInput("Paul", "Tolstoi", "paul.tolstoi@byteleaf.de", true))
+        userService.create(UserInput("Stefan", "Sauterleute", "stefan.sauterleute@byteleaf.de", true))
     }
 }

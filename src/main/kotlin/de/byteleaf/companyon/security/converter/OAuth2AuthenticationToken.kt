@@ -18,6 +18,8 @@ class OAuth2AuthenticationToken private constructor(
 
     companion object {
         internal fun create(user: User, details: Any): OAuth2AuthenticationToken {
+
+
             val result = OAuth2AuthenticationToken(user, null)
             result.isAuthenticated = true
             result.details = details

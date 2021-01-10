@@ -10,6 +10,7 @@ data class User(
     val firstName: String,
     val lastName: String,
     val email: String,
+    val admin: Boolean = false,
     val signature: FileMeta?,
     val avatar: FileMeta?
 ) : BaseDTO()

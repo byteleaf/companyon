@@ -43,14 +43,14 @@ class OAuth2JwtAuthenticationConverterTest {
 
     @Test
     fun authenticateByOAuthSubject() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), "test-subject")
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), "test-subject")
         val userToken = converter.convert(JwtMock("test-subject"))
         Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun activateNewUser() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"))
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true))
         val userToken = converter.convert(JwtMock("test-subject"))
         Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
         // Check if the subject was updated
@@ -65,7 +65,7 @@ class OAuth2JwtAuthenticationConverterTest {
 
     @Test
     fun loginAsExistingUser() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), "test-subject")
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), "test-subject")
         assertThrows<InsufficientAuthenticationException> {converter.convert(JwtMock("other-subject"))  }
     }
 }
