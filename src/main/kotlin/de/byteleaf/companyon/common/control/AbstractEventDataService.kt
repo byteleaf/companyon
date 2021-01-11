@@ -14,11 +14,12 @@ import io.reactivex.rxjava3.observables.ConnectableObservable
 import org.springframework.context.event.EventListener
 import org.springframework.data.mongodb.repository.MongoRepository
 
-abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpdateDTO<O>, I, R : MongoRepository<E, String>> : AbstractDataService<E, O, I, R>() {
+abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpdateDTO<O>, I, R : MongoRepository<E, String>> :
+    AbstractDataService<E, O, I, R>() {
 
     private val POSITION_ENTITY_UPDATED_DTO = 2
     private var eventEmitter: Emitter<U>? = null
-    private var eventPublisher: Flowable<U>
+    private lateinit var eventPublisher: Flowable<U>
 
     init {
         @Suppress("UNCHECKED_CAST")
@@ -34,7 +35,7 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
 
     @EventListener
     fun onEntityEvent(event: EntityEvent<*>) {
-        if(event.entityType === getEntityType()) {
+        if (event.entityType === getEntityType()) {
             val updatedEntity = GenericSupportUtil.createInstanceFromGeneric<U>(this, POSITION_ENTITY_UPDATED_DTO)
             @Suppress("UNCHECKED_CAST")
             updatedEntity.entity = event.entity as O
