@@ -13,17 +13,33 @@ import org.springframework.web.servlet.resource.PathResourceResolver
 class ServeStaticContentConfiguration : WebMvcConfigurer {
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
         registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/public/")
+                // path to frontend must always come last, otherwise we will override files from e.g. GraphQL playground
+                .addResourceLocations("classpath:/static/", "classpath:/public/", "classpath:/frontend/")
                 .resourceChain(true)
                 .addResolver(object : PathResourceResolver() {
-                    override fun getResource(resourcePath: String, location: Resource): Resource {
+                    override fun getResource(resourcePath: String, location: Resource): Resource? {
                         val requestedResource = location.createRelative(resourcePath)
 
-                        // the routing is done on the client side, if the resource doesn't exist,
-                        // let the client handle everything
-                        return if (requestedResource.exists() && requestedResource.isReadable) {
-                            requestedResource
-                        } else location.createRelative("/index.html")
+                        /*
+                         * the routing is done on the client side, if the resource doesn't exist,
+                         * let the client handle everything
+                         */
+                        if (requestedResource.exists() && requestedResource.isReadable) {
+                            return requestedResource
+                        }
+
+                        /*
+                         * make sure we only fallback if the file actually exists,
+                         * thus all resource locations are checked first,
+                         * and only in the end we serve our frontend code/fallback file
+                         */
+                        val fallbackResource = location.createRelative("/index.html");
+
+                        if (fallbackResource.exists() && fallbackResource.isReadable) {
+                            return requestedResource
+                        }
+
+                        return null
                     }
                 })
     }
