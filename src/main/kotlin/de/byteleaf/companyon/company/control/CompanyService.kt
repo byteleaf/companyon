@@ -16,7 +16,7 @@ open class CompanyService : AbstractEventDataService<CompanyEntity, Company, Com
     override fun getEntityType(): EntityType = EntityType.COMPANY
 
     @Secured("ROLE_ADMIN")
-    open override fun findAll(): List<Company> {
+    open public override fun findAll(): List<Company> {
         return super.findAll()
     }
 }
