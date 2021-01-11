@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.security.boundary
 
+import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.project.control.ProjectService
 import de.byteleaf.companyon.user.control.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class CtrlTEST {
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @Autowired
+    private lateinit var companyService: CompanyService
+
     @GetMapping("test")
-    fun test() = 8
+    fun test() = companyService.findAll()
 
     @GetMapping("test2")
-    fun test2() = 7
+    fun test2() = companyService.findAll()
 }
