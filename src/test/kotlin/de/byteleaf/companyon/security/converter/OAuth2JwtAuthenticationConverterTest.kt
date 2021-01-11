@@ -26,6 +26,7 @@ import org.springframework.test.context.ActiveProfiles
 class OAuth2JwtAuthenticationConverterTest {
 
 
+    private val TEST_SUBJECT = "test-subject"
     @MockBean
     private lateinit var authInfoService: AuthInfoService
 
@@ -43,29 +44,29 @@ class OAuth2JwtAuthenticationConverterTest {
 
     @Test
     fun authenticateByOAuthSubject() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), "test-subject")
-        val userToken = converter.convert(JwtMock("test-subject"))
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), TEST_SUBJECT)
+        val userToken = converter.convert(JwtMock(TEST_SUBJECT))
         Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun activateNewUser() {
         userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"))
-        val userToken = converter.convert(JwtMock("test-subject"))
+        val userToken = converter.convert(JwtMock(TEST_SUBJECT))
         Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
         // Check if the subject was updated
-        val updatedUser = userService.findByOauth2Subject("test-subject")
+        val updatedUser = userService.findByOauth2Subject(TEST_SUBJECT)
         Assertions.assertThat(updatedUser!!.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun activateNewUserEmailNotFound() {
-        assertThrows<UsernameNotFoundException> {converter.convert(JwtMock("test-subject"))  }
+        assertThrows<UsernameNotFoundException> {converter.convert(JwtMock(TEST_SUBJECT))  }
     }
 
     @Test
     fun loginAsExistingUser() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), "test-subject")
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), TEST_SUBJECT)
         assertThrows<InsufficientAuthenticationException> {converter.convert(JwtMock("other-subject"))  }
     }
 }
