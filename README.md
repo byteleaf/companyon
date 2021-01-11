@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d414a11497004ef58e797d483f08b03a)](https://www.codacy.com/gh/byteleaf/companyon-backend/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=byteleaf/companyon-backend&amp;utm_campaign=Badge_Grade)
+
 # Companyon
 
 
