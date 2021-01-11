@@ -12,10 +12,11 @@ import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Repository
+import org.springframework.stereotype.Service
 
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
-@Repository
 abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepository<E, String>> {
 
     @Autowired

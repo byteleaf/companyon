@@ -19,7 +19,7 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
 
     private val POSITION_ENTITY_UPDATED_DTO = 2
     private var eventEmitter: Emitter<U>? = null
-    private lateinit var eventPublisher: Flowable<U>
+    private var eventPublisher: Flowable<U>
 
     init {
         @Suppress("UNCHECKED_CAST")

@@ -15,8 +15,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class ProjectService :
-    AbstractEventDataService<ProjectEntity, Project, ProjectUpdate, ProjectInput, ProjectRepository>() {
+class ProjectService : AbstractEventDataService<ProjectEntity, Project, ProjectUpdate, ProjectInput, ProjectRepository>() {
 
     override fun getEntityType(): EntityType = EntityType.PROJECT
 

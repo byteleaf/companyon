@@ -10,19 +10,19 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration
 
 @Configuration
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 class MethodSecurityConfiguration : GlobalMethodSecurityConfiguration() {
 
-    @Autowired
-    private lateinit var permissionEvaluatorProxy: PermissionEvaluatorProxy
-
-    @Autowired
-    private lateinit var applicationContext: ApplicationContext
-
-    override fun createExpressionHandler(): MethodSecurityExpressionHandler {
-        val expressionHandler = DefaultMethodSecurityExpressionHandler()
-        expressionHandler.setPermissionEvaluator(permissionEvaluatorProxy)
-        expressionHandler.setApplicationContext(applicationContext)
-        return expressionHandler
-    }
+//    @Autowired
+//    private lateinit var permissionEvaluatorProxy: PermissionEvaluatorProxy
+//
+//    @Autowired
+//    private lateinit var applicationContext: ApplicationContext
+//
+//    override fun createExpressionHandler(): MethodSecurityExpressionHandler {
+//        val expressionHandler = DefaultMethodSecurityExpressionHandler()
+//        expressionHandler.setPermissionEvaluator(permissionEvaluatorProxy)
+//        expressionHandler.setApplicationContext(applicationContext)
+//        return expressionHandler
+//    }
 }
