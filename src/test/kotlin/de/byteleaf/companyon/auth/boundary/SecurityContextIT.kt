@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.security.boundary
+package de.byteleaf.companyon.auth.boundary
 
 import de.byteleaf.companyon.AbstractIT
 import de.byteleaf.companyon.user.control.UserService
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 
 
-class SecurityIT : AbstractIT("security") {
+class SecurityContextIT : AbstractIT("security") {
 
 
     @Value("\${app.non-sec-oauth2-subject}")

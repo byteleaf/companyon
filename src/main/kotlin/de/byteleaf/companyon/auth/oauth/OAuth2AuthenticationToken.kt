@@ -1,12 +1,13 @@
-package de.byteleaf.companyon.security.oauth
+package de.byteleaf.companyon.auth.oauth
+
 
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.security.authentication.AbstractAuthenticationToken
 import org.springframework.security.core.GrantedAuthority
 
 class OAuth2AuthenticationToken private constructor(
-        private val principal: User,
-        authorities: Collection<GrantedAuthority>?
+    private val principal: User,
+    authorities: Collection<GrantedAuthority>?
 ) : AbstractAuthenticationToken(authorities) {
     override fun getCredentials(): Any {
         return Any()

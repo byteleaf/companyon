@@ -1,7 +1,7 @@
-package de.byteleaf.companyon.security.control
+package de.byteleaf.companyon.auth.control
 
+import de.byteleaf.companyon.auth.oauth.OAuth2AuthenticationToken
 import de.byteleaf.companyon.common.error.exception.FatalException
-import de.byteleaf.companyon.security.oauth.OAuth2AuthenticationToken
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,7 +26,7 @@ class SecurityContextService {
      * To get the current logged in user
      */
     fun getCurrentUser(): User {
-        if(env.activeProfiles.contains("non-sec")) return userService.findByOauth2Subject(nonSecOAuth2Subject)!!
+        if(env.activeProfiles.contains("non-sec")) return userService.findByOAuth2Subject(nonSecOAuth2Subject)!!
 
         val authentication = SecurityContextHolder.getContext().authentication
         if (authentication !is OAuth2AuthenticationToken) {

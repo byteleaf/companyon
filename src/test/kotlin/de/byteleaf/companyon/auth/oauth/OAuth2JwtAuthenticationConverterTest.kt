@@ -1,6 +1,6 @@
-package de.byteleaf.companyon.security.oauth
+package de.byteleaf.companyon.auth.oauth
 
-import de.byteleaf.companyon.security.control.AuthInfoService
+import de.byteleaf.companyon.auth.control.AuthInfoService
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.assertj.core.api.Assertions
@@ -54,7 +54,7 @@ class OAuth2JwtAuthenticationConverterTest {
         val userToken = converter.convert(JwtMock("test-subject"))
         Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
         // Check if the subject was updated
-        val updatedUser = userService.findByOauth2Subject("test-subject")
+        val updatedUser = userService.findByOAuth2Subject("test-subject")
         Assertions.assertThat(updatedUser!!.email).isEqualTo("jeff@byteleaf.de")
     }
 

@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.security.control
+package de.byteleaf.companyon.auth.control
 
 import org.springframework.security.access.PermissionEvaluator
 import org.springframework.security.core.Authentication

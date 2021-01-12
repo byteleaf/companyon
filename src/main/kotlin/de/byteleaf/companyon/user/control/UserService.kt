@@ -18,7 +18,7 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
 
     override fun getEntityType(): EntityType = EntityType.USER
 
-    fun findByOauth2Subject(oauth2Subject: String): User? {
+    fun findByOAuth2Subject(oauth2Subject: String): User? {
         val result = repository.findByOauth2Subject(oauth2Subject) ?: return null
         return entityToOutput(result)
     }
@@ -28,9 +28,8 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
      * will be thrown, it will only work for users without subject.
      */
     fun activateNewUser(email: String, oauth2Subject: String): User {
-        val entity = repository.findByEmailIgnoreCase(email)
-            ?: throw UsernameNotFoundException("No user found for email address: $email")
-        if (entity.oauth2Subject != null) throw InsufficientAuthenticationException("A user with email address $email is already existing")
+        val entity = repository.findByEmailIgnoreCase(email) ?: throw UsernameNotFoundException("No user found for the delivered email address!")
+        if(entity.oauth2Subject != null) throw InsufficientAuthenticationException("A user with identical email address is already existing!")
         entity.oauth2Subject = oauth2Subject
         repository.save(entity)
         return entityToOutput(entity)

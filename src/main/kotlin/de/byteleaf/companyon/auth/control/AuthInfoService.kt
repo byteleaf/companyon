@@ -1,5 +1,6 @@
-package de.byteleaf.companyon.security.control
+package de.byteleaf.companyon.auth.control
 
+import de.byteleaf.companyon.common.error.exception.FatalException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.stereotype.Service
@@ -17,6 +18,6 @@ class AuthInfoService {
 
         @Suppress("UNCHECKED_CAST")
         return restTemplate.getForEntity(userInfoUri, Map::class.java).body as Map<String, String>?
-            ?: throw Exception("Can't load user meta data from")
+            ?: throw FatalException("Can't load user meta data from")
     }
 }
