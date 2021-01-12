@@ -7,4 +7,5 @@ enum EntityUpdateType {
 type Subscription {
     companyUpdate: CompanyUpdate!,
     projectUpdate: ProjectUpdate!
+    userUpdate: UserUpdate!
 }

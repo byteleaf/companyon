@@ -4,22 +4,32 @@ import de.byteleaf.companyon.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
+import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.CompanyUpdate
 import de.byteleaf.companyon.company.dto.input.CompanyInput
+import de.byteleaf.companyon.project.control.ProjectService
 import de.byteleaf.companyon.project.dto.input.ProjectInput
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 
 
 class CompanyIT : AbstractIT("company") {
 
     private val targetClass = Company::class.java
 
+    @Autowired
+    protected lateinit var companyService: CompanyService
+
+    @Autowired
+    protected lateinit var projectService: ProjectService
+
     @BeforeEach
     fun init() {
-        clearDB()
+        projectService.deleteAll()
+        companyService.deleteAll()
     }
 
     @Test

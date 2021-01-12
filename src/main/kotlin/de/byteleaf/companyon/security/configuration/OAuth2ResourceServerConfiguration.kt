@@ -1,6 +1,6 @@
-package de.byteleaf.companyon.common.configuration
+package de.byteleaf.companyon.security.configuration
 
-import de.byteleaf.companyon.common.auth.OAuth2JwtAuthenticationConverter
+import de.byteleaf.companyon.security.converter.OAuth2JwtAuthenticationConverter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 
-@Profile("!non-sec & !test")
+@Profile("!non-sec")
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)

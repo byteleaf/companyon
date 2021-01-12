@@ -1,26 +1,30 @@
 package de.byteleaf.companyon.user
 
 import de.byteleaf.companyon.AbstractIT
-import de.byteleaf.companyon.user.control.SecurityService
+import de.byteleaf.companyon.common.dto.EntityUpdateType
+import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.User
+import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
-import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 
 class UserIT : AbstractIT("user") {
 
     private val targetClass = User::class.java
 
-    @MockBean
-    private lateinit var securityService: SecurityService
+    @Value("\${app.non-sec-oauth2-subject}")
+    private lateinit var nonSecOAuth2Subject: String
+
+    @Autowired
+    protected lateinit var userService: UserService
 
     @BeforeEach
     fun init() {
-        mockCurrentUser()
-        clearDB()
+        userService.deleteAll()
     }
 
     @Test
@@ -38,17 +42,41 @@ class UserIT : AbstractIT("user") {
     }
 
     @Test
-    fun getCurrentUser() {
-        val response = performGQL("GetCurrentUser").get("$.data.currentUser", targetClass)
-        Assertions.assertThat(response.email).isEqualTo("josef@byteleaf.de")
+    fun deleteUser() {
+        val createdUser = seedTestUser()
+        Assertions.assertThat(userService.findAll().size).isEqualTo(1)
+        performGQLById("DeleteUser", createdUser.id!!)
+        Assertions.assertThat(userService.findAll().size).isEqualTo(0)
     }
 
-    private fun mockCurrentUser() {
-        val user = User("Joseph", "Bytezos", "josef@byteleaf.de", null, null)
-        user.id = "test-id"
-        Mockito.`when`(securityService.getPrincipal()).thenReturn(user)
+    @Test
+    fun updateUser() {
+        val user = seedTestUser()
+        val updatedEntity = performGQLByIdAndInput("UpdateUser", user.id!!, "{ \"email\": \"jeff@byteleaf.de\", \"firstName\": \"a\", \"lastName\": \"b\" }")
+            .get("$.data.updateUser", targetClass)
+        Assertions.assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
+    }
+
+
+    @Test
+    fun createUser() {
+        val createdEntity = performGQLByInput("CreateUser", "{ \"email\": \"jeff@byteleaf.de\", \"firstName\": \"a\", \"lastName\": \"b\" }")
+            .get("$.data.createUser",targetClass)
+        Assertions.assertThat(createdEntity.email).isEqualTo("jeff@byteleaf.de")
+        // Check if really existing
+        val getResponse = performGQLById("GetUser", createdEntity.id!!).get("$.data.user", targetClass)
+        Assertions.assertThat(getResponse.firstName).isEqualTo("a")
+    }
+
+    @Test
+    fun updatedSubscription() {
+        val user = seedTestUser()
+        val projectUpdated = performGQLSubscription("UserUpdateSubscription", { userService.update(user.id!!, UserInput("a", "b", "c")) }
+        ).get("$.data.userUpdate", UserUpdate::class.java)
+        Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.UPDATED)
+        Assertions.assertThat(projectUpdated.entity!!.lastName).isEqualTo("b")
     }
 
     private fun seedTestUser(): User =
-        userService.create(UserInput("oauth2Subject1", "Hans", "Bytezos", "hans@byteleaf.de"))
+        userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de"))
 }

@@ -1,0 +1,11 @@
+subscription {
+    userUpdate {
+        type,
+        entity {
+            id,
+            firstName,
+            lastName,
+            email
+        }
+    }
+}
