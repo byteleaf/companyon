@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import graphql.kickstart.tools.GraphQLQueryResolver
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.context.SecurityContextHolder
 
 
 @Controller
@@ -14,5 +15,8 @@ class SecurityResolver: GraphQLQueryResolver {
         @Autowired
         private lateinit var securityContextService: SecurityContextService
 
-        fun getCurrentUser(): User = securityContextService.getCurrentUser()
+        fun getCurrentUser(): User {
+                val ctx=SecurityContextHolder.getContext()
+                return securityContextService.getCurrentUser()
+        }
 }

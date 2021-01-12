@@ -9,6 +9,7 @@ import graphql.kickstart.tools.GraphQLQueryResolver
 import graphql.kickstart.tools.GraphQLSubscriptionResolver
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Controller
 
 @Controller
@@ -19,7 +20,7 @@ class CompanyResolver : GraphQLMutationResolver, GraphQLQueryResolver, GraphQLSu
 
     fun getCompany(id: String): Company = companyService.get(id)
 
-    fun getCompanies(): List<Company> = companyService.findAll()
+    fun getCompanies(): List<Company>  = companyService.findAll()
 
     fun createCompany(input: CompanyInput): Company = companyService.create(input)
 

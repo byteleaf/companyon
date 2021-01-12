@@ -3,6 +3,8 @@ package de.byteleaf.companyon.user.dto
 import de.byteleaf.companyon.common.configuration.NoArgConstructor
 import de.byteleaf.companyon.common.dto.BaseDTO
 import de.byteleaf.companyon.fileupload.dto.FileMeta
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 
 @NoArgConstructor
 data class User(
@@ -13,4 +15,8 @@ data class User(
     val admin: Boolean = false,
     val signature: FileMeta?,
     val avatar: FileMeta?
-) : BaseDTO()
+) : BaseDTO() {
+
+    fun getRoles(): List<GrantedAuthority> =
+        if (admin) listOf(SimpleGrantedAuthority("ADMIN")) else listOf(SimpleGrantedAuthority("USER"))
+}

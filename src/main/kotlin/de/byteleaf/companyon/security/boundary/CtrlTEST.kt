@@ -16,6 +16,7 @@ class CtrlTEST {
     @Autowired
     private lateinit var companyService: CompanyService
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("test")
     fun test() = companyService.findAll()
 

@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.security.converter
+package de.byteleaf.companyon.security.oauth
 
 import de.byteleaf.companyon.security.control.AuthInfoService
 import de.byteleaf.companyon.user.control.UserService
