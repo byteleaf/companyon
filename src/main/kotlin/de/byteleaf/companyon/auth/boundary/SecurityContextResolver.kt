@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller
 import graphql.kickstart.tools.GraphQLQueryResolver
 import org.springframework.security.core.context.SecurityContextHolder
 
-
 @Controller
 class SecurityContextResolver: GraphQLQueryResolver {
 

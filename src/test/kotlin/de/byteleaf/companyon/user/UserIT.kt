@@ -17,7 +17,7 @@ class UserIT : AbstractIT("user") {
 
     private val targetClass = User::class.java
 
-    @Value("\${app.non-sec-oauth2-subject}")
+    @Value("\${app.non-sec-user-oauth2-subject}")
     private lateinit var nonSecOAuth2Subject: String
 
     @Autowired
