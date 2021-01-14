@@ -3,6 +3,7 @@ package de.byteleaf.companyon.common.configuration
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.Resource
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.resource.PathResourceResolver
 
@@ -11,6 +12,11 @@ import org.springframework.web.servlet.resource.PathResourceResolver
  */
 @Configuration
 class ServeStaticContentConfiguration : WebMvcConfigurer {
+    override fun addViewControllers(registry: ViewControllerRegistry) {
+        registry.addViewController("/")
+                .setViewName("forward:/index.html")
+    }
+
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
         registry.addResourceHandler("/**")
                 // path to frontend must always come last, otherwise we will override files from e.g. GraphQL playground
@@ -33,10 +39,10 @@ class ServeStaticContentConfiguration : WebMvcConfigurer {
                          * thus all resource locations are checked first,
                          * and only in the end we serve our frontend code/fallback file
                          */
-                        val fallbackResource = location.createRelative("/index.html");
+                        val fallbackResource = location.createRelative("/index.html")
 
                         if (fallbackResource.exists() && fallbackResource.isReadable) {
-                            return requestedResource
+                            return fallbackResource
                         }
 
                         return null
