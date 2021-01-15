@@ -13,7 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 class NonOAuth2ResourceServerConfiguration : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests()
+        http.cors()
+                .and().authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .and().csrf { csrf -> csrf.disable() }
     }

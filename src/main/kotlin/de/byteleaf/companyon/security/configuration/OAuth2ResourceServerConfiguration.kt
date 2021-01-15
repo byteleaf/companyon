@@ -19,7 +19,8 @@ class OAuth2ResourceServerConfiguration : WebSecurityConfigurerAdapter() {
     private lateinit var jwtConverter: OAuth2JwtAuthenticationConverter
 
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests()
+        http.cors()
+                .and().authorizeRequests()
                 .antMatchers("/graphql").authenticated()
                 .and().oauth2ResourceServer().jwt()
                 .jwtAuthenticationConverter(jwtConverter)
