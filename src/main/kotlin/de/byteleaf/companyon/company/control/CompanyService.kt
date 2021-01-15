@@ -15,4 +15,5 @@ import org.springframework.stereotype.Service
 class CompanyService : AbstractEventDataService<CompanyEntity, Company, CompanyUpdate, CompanyInput, CompanyRepository>() {
     override fun getEntityType(): EntityType = EntityType.COMPANY
 
+    override fun findAll(): List<Company> = super.findAll()
 }
