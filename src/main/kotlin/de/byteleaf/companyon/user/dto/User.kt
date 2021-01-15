@@ -18,5 +18,5 @@ data class User(
 ) : BaseDTO() {
 
     fun getRoles(): List<GrantedAuthority> =
-        if (admin) listOf(SimpleGrantedAuthority("ADMIN")) else listOf(SimpleGrantedAuthority("USER"))
+        if (admin) listOf(SimpleGrantedAuthority("ROLE_ADMIN")) else listOf(SimpleGrantedAuthority("ROLE_USER"))
 }

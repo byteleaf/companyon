@@ -11,6 +11,5 @@ class SecurityContextService {
     /**
      * To get the current logged in user
      */
-    @Secured("ADMIN")
     fun getCurrentUser(): User = SecurityContextHolder.getContext().authentication.principal as User
 }

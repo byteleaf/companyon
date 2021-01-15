@@ -31,5 +31,6 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
                 .antMatchers("/**").permitAll()
                 .and().csrf { csrf -> csrf.disable() }
             .anonymous().principal(nonSecUser).authorities(nonSecUser.getRoles())
+
     }
 }
