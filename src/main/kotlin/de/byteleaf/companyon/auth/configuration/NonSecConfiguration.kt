@@ -27,7 +27,7 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
         val nonSecUser = userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", nonSecUserAdmin), nonSecUserOAuth2Subject)
-        http.authorizeRequests()
+        http.cors().and().authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .and().csrf { csrf -> csrf.disable() }
             .anonymous().principal(nonSecUser).authorities(nonSecUser.getRoles())
