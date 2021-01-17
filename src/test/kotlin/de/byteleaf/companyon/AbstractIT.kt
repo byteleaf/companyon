@@ -17,7 +17,8 @@ import org.springframework.test.context.ActiveProfiles
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-@ActiveProfiles(profiles = ["test", "non-sec"])
+// The order is important -> test is overwriting some properties
+@ActiveProfiles(profiles = ["non-sec", "test"])
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureDataMongo
 // needed, otherwise embedded mongo db will produce a "Could not start process: <EOF>" after executing multiple tests in a row
@@ -104,5 +105,10 @@ abstract class AbstractIT(val gqlFolder: String) {
         assertThat(errorExtensions.get("code").asText()).isEqualTo(expectedCode.name)
         assertThat(errorExtensions.get("entityType").asText()).isEqualTo(expectedType.name)
         assertThat(errorExtensions.get("entityId").asText()).isEqualTo(expectedId)
+    }
+
+    protected fun expectAccessDenied(response: GraphQLResponse) {
+        val errorExtensions = getErrorExtensions(response)
+        assertThat(errorExtensions.get("code").asText()).isEqualTo(ErrorCode.ACCESS_DENIED_NO_ADMIN.name)
     }
 }
