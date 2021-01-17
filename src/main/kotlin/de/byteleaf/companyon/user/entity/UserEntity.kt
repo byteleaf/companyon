@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.user.entity
 
-import de.byteleaf.companyon.common.configuration.NoArgConstructor
+import de.byteleaf.companyon.common.annotation.NoArgConstructor
 import de.byteleaf.companyon.common.entity.BaseEntity
 import de.byteleaf.companyon.fileupload.dto.FileMeta
 import org.springframework.data.mongodb.core.mapping.Document

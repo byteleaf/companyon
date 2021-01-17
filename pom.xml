@@ -162,7 +162,7 @@
                         <plugin>no-arg</plugin>
                     </compilerPlugins>
                     <pluginOptions>
-                        <option>no-arg:annotation=de.byteleaf.companyon.common.configuration.NoArgConstructor</option>
+                        <option>no-arg:annotation=de.byteleaf.companyon.common.annotation.NoArgConstructor</option>
                     </pluginOptions>
                 </configuration>
 

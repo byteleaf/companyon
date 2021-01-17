@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.common.configuration
+package de.byteleaf.companyon.common.annotation
 
 /**
  * Is needed by the ModelMapper

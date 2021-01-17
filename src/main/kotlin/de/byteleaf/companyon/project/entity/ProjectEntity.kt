@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.project.entity
 
-import de.byteleaf.companyon.common.configuration.NoArgConstructor
+import de.byteleaf.companyon.common.annotation.NoArgConstructor
 import de.byteleaf.companyon.common.entity.BaseEntity
 import de.byteleaf.companyon.company.entity.CompanyEntity
 import org.springframework.data.mongodb.core.mapping.DBRef

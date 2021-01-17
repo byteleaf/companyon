@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.user.boundary
 
+import de.byteleaf.companyon.auth.annotation.IsAdmin
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserUpdate
@@ -18,19 +19,19 @@ class UserResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSubsc
     @Autowired
     private lateinit var userService: UserService
 
-    @Secured("ROLE_ADMIN")
+    @IsAdmin
     fun getUsers(): List<User> = userService.findAll()
 
-    @Secured("ROLE_ADMIN")
+    @IsAdmin
     fun getUser(id: String): User = userService.get(id)
 
-    @Secured("ROLE_ADMIN")
+    @IsAdmin
     fun createUser(input: UserInput): User = userService.create(input)
 
-    @Secured("ROLE_ADMIN")
+    @IsAdmin
     fun updateUser(id: String, input: UserInput): User = userService.update(id, input)
 
-    @Secured("ROLE_ADMIN")
+    @IsAdmin
     fun deleteUser(id: String): User = userService.delete(id)
 
     fun userUpdate(): Publisher<UserUpdate> = userService.getPublisher()
