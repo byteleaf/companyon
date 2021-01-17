@@ -10,15 +10,10 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.security.test.context.support.WithAnonymousUser
 
 class UserIT : AbstractIT("user") {
 
     private val targetClass = User::class.java
-
-    @Value("\${app.non-sec-user-oauth2-subject}")
-    private lateinit var nonSecOAuth2Subject: String
 
     @Autowired
     protected lateinit var userService: UserService

@@ -33,6 +33,5 @@ class UserResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSubsc
     @Secured("ROLE_ADMIN")
     fun deleteUser(id: String): User = userService.delete(id)
 
-    // TODO security for publisher, @Secured("ROLE_ADMIN") not working
     fun userUpdate(): Publisher<UserUpdate> = userService.getPublisher()
 }

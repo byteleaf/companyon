@@ -43,7 +43,7 @@ class CompanyIT : AbstractIT("company") {
     @Test
     fun createCompany() {
         val createdCompany = performGQLByInput("CreateCompany", "{ \"name\": \"A\" }")
-                .get("$.data.createCompany", targetClass)
+            .get("$.data.createCompany", targetClass)
         assertThat(createdCompany.name).isEqualTo("A")
         // Check if really existing
         val getResponse = performGQLById("GetCompany", createdCompany.id!!).get("$.data.company", targetClass)
@@ -73,7 +73,8 @@ class CompanyIT : AbstractIT("company") {
     @Test
     fun companyUpdatedSubscription() {
         val company = seedTestCompany()
-        val companyUpdated = performGQLSubscription("CompanyUpdateSubscription", { companyService.delete(company.id!!) })
+        val companyUpdated =
+            performGQLSubscription("CompanyUpdateSubscription", { companyService.delete(company.id!!) })
                 .get("$.data.companyUpdate", CompanyUpdate::class.java)
         assertThat(companyUpdated.type).isEqualTo(EntityUpdateType.DELETED)
         assertThat(companyUpdated.entity!!.id).isEqualTo(company.id)
