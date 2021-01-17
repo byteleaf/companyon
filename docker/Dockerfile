@@ -23,6 +23,8 @@ RUN jar -xf ../*.jar
 
 FROM openjdk:14-alpine
 
+ENV JAVA_OPTS="-Dspring.profiles.active=prod"
+
 RUN addgroup -S spring && \
     adduser -S spring -G spring
 USER spring:spring
