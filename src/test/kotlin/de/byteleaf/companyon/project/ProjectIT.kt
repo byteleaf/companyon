@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.project
 
-import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
@@ -11,6 +11,7 @@ import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.project.entity.ProjectState
+import de.byteleaf.companyon.test.util.GQLErrorUtil
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -63,7 +64,7 @@ class ProjectIT : AbstractIT("project") {
     @Test
     fun createProjectWithNotExistingCompany() {
         val response = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"INVALID\" }", true)
-        expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, "INVALID")
+        GQLErrorUtil.expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, "INVALID")
     }
 
     @Test

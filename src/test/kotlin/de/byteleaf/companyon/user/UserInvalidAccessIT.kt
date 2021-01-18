@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.user
 
-import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.test.AbstractIT
+import de.byteleaf.companyon.test.util.GQLErrorUtil
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.junit.jupiter.api.BeforeEach
@@ -23,6 +24,6 @@ class UserInvalidAccessIT : AbstractIT("user") {
     @Test
     fun getUsers() {
         userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de", false))
-        expectAccessDenied(performGQL("GetUsers", null, true))
+        GQLErrorUtil.expectAccessDenied(performGQL("GetUsers", null, true))
     }
 }

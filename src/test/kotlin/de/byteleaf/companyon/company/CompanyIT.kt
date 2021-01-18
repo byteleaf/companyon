@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.company
 
-import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
@@ -10,6 +10,7 @@ import de.byteleaf.companyon.company.dto.CompanyUpdate
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.control.ProjectService
 import de.byteleaf.companyon.project.dto.input.ProjectInput
+import de.byteleaf.companyon.test.util.GQLErrorUtil
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -57,7 +58,7 @@ class CompanyIT : AbstractIT("company") {
         performGQLById("DeleteCompany", company.id!!)
         // Make sure company is not existing anymore
         val response = performGQLById("GetCompany", company.id!!, true)
-        expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, company.id!!)
+        GQLErrorUtil.expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, company.id!!)
         // Check if projects assigned to this company have been deleted too!
         assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(0)
     }

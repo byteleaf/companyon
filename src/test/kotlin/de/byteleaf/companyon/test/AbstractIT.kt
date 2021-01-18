@@ -1,4 +1,4 @@
-package de.byteleaf.companyon
+package de.byteleaf.companyon.test
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -8,6 +8,7 @@ import com.graphql.spring.boot.test.GraphQLTestSubscription
 import com.graphql.spring.boot.test.GraphQLTestTemplate
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
+import de.byteleaf.companyon.test.util.GQLErrorUtil
 import org.assertj.core.api.Assertions.assertThat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
@@ -61,7 +62,7 @@ abstract class AbstractIT(val gqlFolder: String) {
         skipValidation: Boolean = false
     ): GraphQLResponse {
         val response = graphQLTestTemplate.perform(getGQLResource(gqlOperation), parseJSON(payload))
-        return if (skipValidation) response else validateResponse(response)
+        return if (skipValidation) response else GQLErrorUtil.validateResponse(response)
     }
 
     protected fun performGQLSubscription(
@@ -74,15 +75,7 @@ abstract class AbstractIT(val gqlFolder: String) {
         val firstResponse = graphQLTestSubscription.start(getGQLResource(gqlOperation))
         Executors.newScheduledThreadPool(1).schedule(eventFunc, 100, TimeUnit.MILLISECONDS)
         val secondResponse = firstResponse.awaitAndGetNextResponse(5000, true)
-        return if (skipValidation) secondResponse else validateResponse(secondResponse)
-    }
-
-    protected fun validateResponse(response: GraphQLResponse): GraphQLResponse {
-        assertThat(response.isOk).isTrue()
-        assertThat(response.readTree().hasNonNull("errors"))
-            .describedAs("response has errors")
-            .isFalse()
-        return response
+        return if (skipValidation) secondResponse else GQLErrorUtil.validateResponse(secondResponse)
     }
 
     protected fun getGQLResource(gqlOperation: String): String = "graphql/$gqlFolder/$gqlOperation.graphql"
@@ -90,25 +83,5 @@ abstract class AbstractIT(val gqlFolder: String) {
     protected fun parseJSON(payload: String? = null): ObjectNode? {
         if (payload != null) return objectMapper.readTree(payload) as ObjectNode?
         return null
-    }
-
-    protected fun getErrorExtensions(response: GraphQLResponse): JsonNode =
-        response.readTree().get("errors").get(0).get("extensions")
-
-    protected fun expectError(
-        response: GraphQLResponse,
-        expectedCode: ErrorCode,
-        expectedType: EntityType,
-        expectedId: String
-    ) {
-        val errorExtensions = getErrorExtensions(response)
-        assertThat(errorExtensions.get("code").asText()).isEqualTo(expectedCode.name)
-        assertThat(errorExtensions.get("entityType").asText()).isEqualTo(expectedType.name)
-        assertThat(errorExtensions.get("entityId").asText()).isEqualTo(expectedId)
-    }
-
-    protected fun expectAccessDenied(response: GraphQLResponse) {
-        val errorExtensions = getErrorExtensions(response)
-        assertThat(errorExtensions.get("code").asText()).isEqualTo(ErrorCode.ACCESS_DENIED_NO_ADMIN.name)
     }
 }

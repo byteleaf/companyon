@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.user
 
-import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.User

@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.auth.boundary
 
-import de.byteleaf.companyon.AbstractIT
+import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.user.dto.User
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
