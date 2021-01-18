@@ -9,8 +9,6 @@ import graphql.kickstart.tools.GraphQLQueryResolver
 import graphql.kickstart.tools.GraphQLSubscriptionResolver
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.access.annotation.Secured
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Controller
 
 @Controller
