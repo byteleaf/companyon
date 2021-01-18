@@ -9,9 +9,7 @@ import de.byteleaf.companyon.company.entity.CompanyEntity
 import de.byteleaf.companyon.company.respository.CompanyRepository
 import org.springframework.stereotype.Service
 
-
 @Service
 class CompanyService : AbstractEventDataService<CompanyEntity, Company, CompanyUpdate, CompanyInput, CompanyRepository>() {
     override fun getEntityType(): EntityType = EntityType.COMPANY
-
 }

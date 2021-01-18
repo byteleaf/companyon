@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.security.control
+package de.byteleaf.companyon.auth.control
 
 import de.byteleaf.companyon.common.error.exception.FatalException
 import org.springframework.beans.factory.annotation.Value

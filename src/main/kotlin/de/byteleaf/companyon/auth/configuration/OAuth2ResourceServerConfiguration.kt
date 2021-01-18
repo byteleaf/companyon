@@ -1,6 +1,6 @@
-package de.byteleaf.companyon.security.configuration
+package de.byteleaf.companyon.auth.configuration
 
-import de.byteleaf.companyon.security.converter.OAuth2JwtAuthenticationConverter
+import de.byteleaf.companyon.auth.oauth.OAuth2JwtAuthenticationConverter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
@@ -19,8 +19,7 @@ class OAuth2ResourceServerConfiguration : WebSecurityConfigurerAdapter() {
     private lateinit var jwtConverter: OAuth2JwtAuthenticationConverter
 
     override fun configure(http: HttpSecurity) {
-        http.cors()
-                .and().authorizeRequests()
+        http.cors().and().authorizeRequests()
                 .antMatchers("/graphql").authenticated()
                 .and().oauth2ResourceServer().jwt()
                 .jwtAuthenticationConverter(jwtConverter)

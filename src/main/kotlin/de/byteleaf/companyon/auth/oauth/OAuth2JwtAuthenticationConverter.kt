@@ -1,6 +1,6 @@
-package de.byteleaf.companyon.security.converter
+package de.byteleaf.companyon.auth.oauth
 
-import de.byteleaf.companyon.security.control.AuthInfoService
+import de.byteleaf.companyon.auth.control.AuthInfoService
 import de.byteleaf.companyon.user.control.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.convert.converter.Converter
@@ -20,7 +20,7 @@ class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToke
         val oauth2Subject = source.getClaimAsString("sub")
 
         // Try to find the user by the oauth subject in the database
-        val dbUser = userService.findByOauth2Subject(oauth2Subject)
+        val dbUser = userService.findByOAuth2Subject(oauth2Subject)
         if (dbUser != null) return OAuth2AuthenticationToken.create(dbUser, source.claims)
 
         val userInfo = authInfoService.loadUserInfo(source.tokenValue)

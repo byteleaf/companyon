@@ -18,9 +18,6 @@ class SampleData : ApplicationRunner {
     @Value("\${skip-sample-data:false}")
     private var skipSampleData = false
 
-    @Value("\${app.non-sec-oauth2-subject}")
-    private lateinit var nonSecOAuth2Subject: String
-
     @Autowired
     private lateinit var userService: UserService
 
@@ -49,12 +46,13 @@ class SampleData : ApplicationRunner {
 
         // Users
         userService.deleteAll()
-        // will be used as current used if securtiy is disabled
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), nonSecOAuth2Subject)
-        userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de"))
-        userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de"))
-        userService.create(UserInput("Anthony", "Potdevin", "anthony.potdevin@byteleaf.de"))
-        userService.create(UserInput("Paul", "Tolstoi", "paul.tolstoi@byteleaf.de"))
-        userService.create(UserInput("Stefan", "Sauterleute", "stefan.sauterleute@byteleaf.de"))
+        userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de", true))
+        userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de", true))
+        userService.create(UserInput("Anthony", "Potdevin", "anthony.potdevin@byteleaf.de", true))
+        userService.create(UserInput("Paul", "Tolstoi", "paul.tolstoi@byteleaf.de", true))
+        userService.create(UserInput("Stefan", "Sauterleute", "stefan.sauterleute@byteleaf.de", true))
+
     }
+
+
 }

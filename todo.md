@@ -11,3 +11,10 @@
 timeLogsByUser(id: ID!)
 timeLogsByCompany(id: ID!)
 timeLogsByProject(id: ID!)
+
+
++ Bean validation??? value object pattern! -> code in InputDtos?
+
++ Validation event for companies etc -> page with errors?
+
++   // @PreAuthorized(hasProject('DELETE', 'input.projectId'))

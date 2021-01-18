@@ -2,6 +2,7 @@ input UserInput {
     firstName: String!
     lastName: String
     email: String!
+    admin: Boolean
     signature: FileMetaInput
     avatar: FileMetaInput
 }

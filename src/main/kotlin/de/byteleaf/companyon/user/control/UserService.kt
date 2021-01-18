@@ -11,6 +11,7 @@ import de.byteleaf.companyon.user.repository.UserRepository
 import org.springframework.security.authentication.InsufficientAuthenticationException
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
+import java.util.*
 
 
 @Service
@@ -18,7 +19,7 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
 
     override fun getEntityType(): EntityType = EntityType.USER
 
-    fun findByOauth2Subject(oauth2Subject: String): User? {
+    fun findByOAuth2Subject(oauth2Subject: String): User? {
         val result = repository.findByOauth2Subject(oauth2Subject) ?: return null
         return entityToOutput(result)
     }

@@ -1,6 +1,6 @@
-package de.byteleaf.companyon.security.converter
+package de.byteleaf.companyon.auth.oauth
 
-import de.byteleaf.companyon.security.control.AuthInfoService
+import de.byteleaf.companyon.auth.control.AuthInfoService
 import de.byteleaf.companyon.user.control.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.assertj.core.api.Assertions
@@ -26,7 +26,6 @@ import org.springframework.test.context.ActiveProfiles
 class OAuth2JwtAuthenticationConverterTest {
 
 
-    private val TEST_SUBJECT = "test-subject"
     @MockBean
     private lateinit var authInfoService: AuthInfoService
 
@@ -44,29 +43,29 @@ class OAuth2JwtAuthenticationConverterTest {
 
     @Test
     fun authenticateByOAuthSubject() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), TEST_SUBJECT)
-        val userToken = converter.convert(JwtMock(TEST_SUBJECT))
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), "test-subject")
+        val userToken = converter.convert(JwtMock("test-subject"))
         Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun activateNewUser() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"))
-        val userToken = converter.convert(JwtMock(TEST_SUBJECT))
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true))
+        val userToken = converter.convert(JwtMock("test-subject"))
         Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
         // Check if the subject was updated
-        val updatedUser = userService.findByOauth2Subject(TEST_SUBJECT)
+        val updatedUser = userService.findByOAuth2Subject("test-subject")
         Assertions.assertThat(updatedUser!!.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun activateNewUserEmailNotFound() {
-        assertThrows<UsernameNotFoundException> {converter.convert(JwtMock(TEST_SUBJECT))  }
+        assertThrows<UsernameNotFoundException> {converter.convert(JwtMock("test-subject"))  }
     }
 
     @Test
     fun loginAsExistingUser() {
-        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"), TEST_SUBJECT)
+        userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), "test-subject")
         assertThrows<InsufficientAuthenticationException> {converter.convert(JwtMock("other-subject"))  }
     }
 }

@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.security.configuration
+package de.byteleaf.companyon.auth.configuration
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
