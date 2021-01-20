@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.user.control
+package de.byteleaf.companyon.user.logic
 
 import de.byteleaf.companyon.common.control.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
@@ -11,7 +11,6 @@ import de.byteleaf.companyon.user.repository.UserRepository
 import org.springframework.security.authentication.InsufficientAuthenticationException
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
-import java.util.*
 
 
 @Service

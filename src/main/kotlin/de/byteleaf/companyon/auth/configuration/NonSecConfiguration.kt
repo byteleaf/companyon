@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.auth.configuration
 
-import de.byteleaf.companyon.user.control.UserService
+import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

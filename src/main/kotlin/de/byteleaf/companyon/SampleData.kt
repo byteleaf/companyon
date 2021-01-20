@@ -4,7 +4,7 @@ import de.byteleaf.companyon.company.control.CompanyService
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.project.control.ProjectService
 import de.byteleaf.companyon.project.dto.input.ProjectInput
-import de.byteleaf.companyon.user.control.UserService
+import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

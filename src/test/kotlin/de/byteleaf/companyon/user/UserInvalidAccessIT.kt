@@ -2,7 +2,7 @@ package de.byteleaf.companyon.user
 
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.test.util.GQLErrorUtil
-import de.byteleaf.companyon.user.control.UserService
+import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

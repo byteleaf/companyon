@@ -1,7 +1,7 @@
 package de.byteleaf.companyon.auth.oauth
 
 import de.byteleaf.companyon.auth.control.AuthInfoService
-import de.byteleaf.companyon.user.control.UserService
+import de.byteleaf.companyon.user.logic.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.convert.converter.Converter
 import org.springframework.security.oauth2.jwt.Jwt
