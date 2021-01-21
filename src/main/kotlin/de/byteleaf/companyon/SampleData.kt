@@ -47,7 +47,7 @@ class SampleData : ApplicationRunner {
         // Users
         userService.deleteAll()
         userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de", true))
-     //   userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de", true))
+        userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de", true))
         userService.create(UserInput("Anthony", "Potdevin", "anthony.potdevin@byteleaf.de", true))
         userService.create(UserInput("Paul", "Tolstoi", "paul.tolstoi@byteleaf.de", true))
         userService.create(UserInput("Stefan", "Sauterleute", "stefan.sauterleute@byteleaf.de", true))
