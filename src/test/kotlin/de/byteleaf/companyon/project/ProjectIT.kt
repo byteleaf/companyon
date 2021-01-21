@@ -4,9 +4,9 @@ import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
-import de.byteleaf.companyon.company.control.CompanyService
+import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.company.dto.input.CompanyInput
-import de.byteleaf.companyon.project.control.ProjectService
+import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.input.ProjectInput

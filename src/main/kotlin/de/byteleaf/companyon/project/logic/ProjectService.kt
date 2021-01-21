@@ -1,8 +1,8 @@
-package de.byteleaf.companyon.project.control
+package de.byteleaf.companyon.project.logic
 
 import de.byteleaf.companyon.common.control.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
-import de.byteleaf.companyon.company.control.CompanyService
+import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.input.ProjectInput

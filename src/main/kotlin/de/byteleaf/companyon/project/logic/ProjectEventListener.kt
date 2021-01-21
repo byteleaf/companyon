@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.project.control
+package de.byteleaf.companyon.project.logic
 
 import de.byteleaf.companyon.common.event.EntityDeletedEvent
 import org.springframework.beans.factory.annotation.Autowired

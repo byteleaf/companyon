@@ -1,7 +1,7 @@
 package de.byteleaf.companyon.auth.oauth
 
-import de.byteleaf.companyon.auth.control.AuthInfoService
-import de.byteleaf.companyon.user.control.UserService
+import de.byteleaf.companyon.auth.logic.AuthInfoService
+import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
@@ -13,10 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.InsufficientAuthenticationException
 import org.springframework.security.core.userdetails.UsernameNotFoundException
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException
+import org.springframework.security.oauth2.server.resource.BearerTokenError
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ActiveProfiles
+import java.lang.Exception
 
 @ActiveProfiles(profiles = ["test", "non-sec"])
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -59,13 +63,17 @@ class OAuth2JwtAuthenticationConverterTest {
     }
 
     @Test
-    fun activateNewUserEmailNotFound() {
-        assertThrows<UsernameNotFoundException> {converter.convert(JwtMock("test-subject"))  }
-    }
+    fun activateNewUserEmailNotFound() = expectOAuthError("NO_USER_FOUND_FOR_EMAIL") {converter.convert(JwtMock("test-subject"))  }
 
     @Test
     fun loginAsExistingUser() {
         userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), "test-subject")
-        assertThrows<InsufficientAuthenticationException> {converter.convert(JwtMock("other-subject"))  }
+        expectOAuthError("USER_ALREADY_EXISTING") {converter.convert(JwtMock("other-subject"))  }
+    }
+
+    private fun expectOAuthError(oauthErrorCode: String, executable: () -> kotlin.Unit) {
+        val error = assertThrows<OAuth2AuthenticationException>(executable).error as BearerTokenError
+        Assertions.assertThat(error.httpStatus).isEqualTo(HttpStatus.FORBIDDEN)
+        Assertions.assertThat(error.errorCode).isEqualTo(oauthErrorCode)
     }
 }
