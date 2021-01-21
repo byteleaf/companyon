@@ -1,11 +1,11 @@
 package de.byteleaf.companyon
 
-import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.company.dto.input.CompanyInput
-import de.byteleaf.companyon.project.logic.ProjectService
+import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.project.dto.input.ProjectInput
-import de.byteleaf.companyon.user.logic.UserService
+import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.logic.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationArguments
@@ -43,7 +43,7 @@ class SampleData : ApplicationRunner {
         projectService.create(ProjectInput("Project B", companyA.id!!))
         projectService.create(ProjectInput("Project C", companyB.id!!))
         projectService.create(ProjectInput("Project D", companyB.id!!))
-val tz = projectService.findAll()
+
         // Users
         userService.deleteAll()
         userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de", true))
