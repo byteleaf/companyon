@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.user.logic
 
-import de.byteleaf.companyon.common.control.AbstractEventDataService
+import de.byteleaf.companyon.common.logic.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.event.EntityCreatedEvent
 import de.byteleaf.companyon.user.dto.User
@@ -9,10 +9,7 @@ import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
 import org.springframework.http.HttpStatus
-import org.springframework.security.authentication.InsufficientAuthenticationException
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException
-import org.springframework.security.oauth2.core.OAuth2Error
 import org.springframework.security.oauth2.server.resource.BearerTokenError
 import org.springframework.stereotype.Service
 

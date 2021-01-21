@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.company.logic
 
-import de.byteleaf.companyon.common.control.AbstractEventDataService
+import de.byteleaf.companyon.common.logic.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.CompanyUpdate

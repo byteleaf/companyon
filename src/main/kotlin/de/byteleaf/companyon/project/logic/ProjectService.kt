@@ -1,7 +1,9 @@
 package de.byteleaf.companyon.project.logic
 
-import de.byteleaf.companyon.common.control.AbstractEventDataService
+import de.byteleaf.companyon.common.logic.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.event.EntityCreatedEvent
+import de.byteleaf.companyon.common.event.EntityDeletedEvent
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.input.ProjectInput
@@ -11,7 +13,8 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class ProjectService : AbstractEventDataService<ProjectEntity, Project, ProjectUpdate, ProjectInput, ProjectRepository>() {
+class ProjectService :
+    AbstractEventDataService<ProjectEntity, Project, ProjectUpdate, ProjectInput, ProjectRepository>() {
 
     override fun getEntityType(): EntityType = EntityType.PROJECT
 
@@ -20,6 +23,8 @@ class ProjectService : AbstractEventDataService<ProjectEntity, Project, ProjectU
             .orElseGet { super.findAll() }
 
     fun deleteByCompany(companyId: String) {
-        repository.deleteByCompany(companyId)
+        repository.deleteByCompany(companyId).forEach {
+            applicationEventPublisher.publishEvent(EntityDeletedEvent(getEntityType(), entityToOutput(it)))
+        }
     }
 }

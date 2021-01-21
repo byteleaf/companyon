@@ -1,15 +1,11 @@
 package de.byteleaf.companyon.test
 
-import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.graphql.spring.boot.test.GraphQLResponse
 import com.graphql.spring.boot.test.GraphQLTestSubscription
 import com.graphql.spring.boot.test.GraphQLTestTemplate
-import de.byteleaf.companyon.common.entity.EntityType
-import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.test.util.GQLErrorUtil
-import org.assertj.core.api.Assertions.assertThat
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
 import org.springframework.boot.test.context.SpringBootTest
@@ -78,7 +74,15 @@ abstract class AbstractIT(val gqlFolder: String) {
         return if (skipValidation) secondResponse else GQLErrorUtil.validateResponse(secondResponse)
     }
 
-    protected fun getGQLResource(gqlOperation: String): String = "graphql/$gqlFolder/$gqlOperation.graphql"
+    /**
+     * If the [gqlOperation] contains no slash the default folder will be appended
+     */
+    protected fun getGQLResource(gqlOperation: String): String {
+        if(!gqlOperation.contains("/")) {
+            return "graphql/$gqlFolder/$gqlOperation.graphql"
+        }
+        return "graphql/$gqlOperation.graphql"
+    }
 
     protected fun parseJSON(payload: String? = null): ObjectNode? {
         if (payload != null) return objectMapper.readTree(payload) as ObjectNode?
