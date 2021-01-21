@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.convert.converter.Converter
 import org.springframework.security.oauth2.jwt.Jwt
 import org.springframework.stereotype.Component
+import org.springframework.web.client.HttpClientErrorException
 
 @Component
 class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToken> {
@@ -18,6 +19,7 @@ class OAuth2JwtAuthenticationConverter : Converter<Jwt, OAuth2AuthenticationToke
 
     override fun convert(source: Jwt): OAuth2AuthenticationToken {
         val oauth2Subject = source.getClaimAsString("sub")
+
 
         // Try to find the user by the oauth subject in the database
         val dbUser = userService.findByOAuth2Subject(oauth2Subject)
