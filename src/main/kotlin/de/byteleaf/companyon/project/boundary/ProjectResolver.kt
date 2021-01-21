@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.project.boundary
 
-import de.byteleaf.companyon.project.control.ProjectService
+import de.byteleaf.companyon.project.access.ProjectAccessService
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.input.ProjectInput
@@ -15,17 +15,17 @@ import org.springframework.stereotype.Controller
 class ProjectResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSubscriptionResolver {
 
     @Autowired
-    private lateinit var projectService: ProjectService
+    private lateinit var projectAccessService: ProjectAccessService
 
-    fun getProject(id: String): Project = projectService.get(id)
+    fun getProject(id: String): Project = projectAccessService.get(id)
 
-    fun getProjects(companies: Collection<String>?): List<Project> = projectService.findAll(companies)
+    fun getProjects(companies: Collection<String>?): List<Project> = projectAccessService.findAll(companies)
 
-    fun createProject(input: ProjectInput): Project = projectService.create(input)
+    fun createProject(input: ProjectInput): Project = projectAccessService.create(input)
 
-    fun updateProject(id: String, input: ProjectInput): Project = projectService.update(id, input)
+    fun updateProject(id: String, input: ProjectInput): Project = projectAccessService.update(id, input)
 
-    fun deleteProject(id: String): Project = projectService.delete(id)
+    fun deleteProject(id: String): Project = projectAccessService.delete(id)
 
-    fun projectUpdate(): Publisher<ProjectUpdate> = projectService.getPublisher()
+    fun projectUpdate(): Publisher<ProjectUpdate> = projectAccessService.getPublisher()
 }

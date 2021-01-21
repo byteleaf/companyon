@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.company.boundary
 
-import de.byteleaf.companyon.company.control.CompanyService
+import de.byteleaf.companyon.company.access.CompanyAccessService
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.CompanyUpdate
 import de.byteleaf.companyon.company.dto.input.CompanyInput
@@ -15,17 +15,17 @@ import org.springframework.stereotype.Controller
 class CompanyResolver : GraphQLMutationResolver, GraphQLQueryResolver, GraphQLSubscriptionResolver {
 
     @Autowired
-    private lateinit var companyService: CompanyService
+    private lateinit var companyAccessService: CompanyAccessService
 
-    fun getCompany(id: String): Company = companyService.get(id)
+    fun getCompany(id: String): Company = companyAccessService.get(id)
 
-    fun getCompanies(): List<Company> = companyService.findAll()
+    fun getCompanies(): List<Company> = companyAccessService.findAll()
 
-    fun createCompany(input: CompanyInput): Company = companyService.create(input)
+    fun createCompany(input: CompanyInput): Company = companyAccessService.create(input)
 
-    fun updateCompany(id: String, input: CompanyInput): Company = companyService.update(id, input)
+    fun updateCompany(id: String, input: CompanyInput): Company = companyAccessService.update(id, input)
 
-    fun deleteCompany(id: String): Company = companyService.delete(id)
+    fun deleteCompany(id: String): Company = companyAccessService.delete(id)
 
-    fun companyUpdate(): Publisher<CompanyUpdate> = companyService.getPublisher()
+    fun companyUpdate(): Publisher<CompanyUpdate> = companyAccessService.getPublisher()
 }

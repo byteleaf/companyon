@@ -1,8 +1,8 @@
 package de.byteleaf.companyon
 
-import de.byteleaf.companyon.company.control.CompanyService
+import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.company.dto.input.CompanyInput
-import de.byteleaf.companyon.project.control.ProjectService
+import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput

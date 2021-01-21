@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.auth.oauth
 
-import de.byteleaf.companyon.auth.control.AuthInfoService
+import de.byteleaf.companyon.auth.logic.AuthInfoService
 import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import org.assertj.core.api.Assertions
