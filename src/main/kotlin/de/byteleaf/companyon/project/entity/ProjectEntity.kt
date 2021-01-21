@@ -11,5 +11,5 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class ProjectEntity(
         val name: String,
         val state: ProjectState,
-        @DBRef var company: CompanyEntity
+        var company: String
 ) : BaseEntity()

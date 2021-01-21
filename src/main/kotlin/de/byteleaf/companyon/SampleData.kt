@@ -43,7 +43,7 @@ class SampleData : ApplicationRunner {
         projectService.create(ProjectInput("Project B", companyA.id!!))
         projectService.create(ProjectInput("Project C", companyB.id!!))
         projectService.create(ProjectInput("Project D", companyB.id!!))
-
+val tz = projectService.findAll()
         // Users
         userService.deleteAll()
         userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de", true))
