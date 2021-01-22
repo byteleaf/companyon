@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.common.control
+package de.byteleaf.companyon.common.logic
 
 import de.byteleaf.companyon.common.dto.BaseDTO
 import de.byteleaf.companyon.common.entity.BaseEntity
