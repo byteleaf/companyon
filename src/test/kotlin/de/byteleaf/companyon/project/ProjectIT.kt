@@ -93,7 +93,7 @@ class ProjectIT : AbstractIT("project") {
     }
 
     private fun seedTestProjects(): List<Project> {
-        val p1 = projectService.create(ProjectInput("Project A", companyService.create(CompanyInput("Company A")).id!!, ProjectState.RUNNING))
+        val p1 = projectService.create(ProjectInput("Project A", companyService.create(CompanyInput("Company A")).id!!, ProjectState.IN_PROGRESS))
         val p2 = projectService.create(ProjectInput("Project B", companyService.create(CompanyInput("Company B")).id!!))
         return listOf(p1, p2)
     }

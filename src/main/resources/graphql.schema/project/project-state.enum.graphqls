@@ -1,6 +1,6 @@
 enum ProjectState {
     PLANNED,
-    RUNNING,
+    IN_PROGRESS,
     COMPLETED,
     CANCELED,
     POST_PROCESSING,

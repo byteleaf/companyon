@@ -2,7 +2,7 @@ package de.byteleaf.companyon.project.entity
 
 enum class ProjectState {
     PLANNED,
-    RUNNING,
+    IN_PROGRESS,
     COMPLETED,
     CANCELED,
     POST_PROCESSING,
