@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.Query
 interface ProjectRepository : MongoRepository<ProjectEntity, String> {
 
     @DeleteQuery
-    fun deleteByCompany(companyId: String)
+    fun deleteByCompany(companyId: String): List<ProjectEntity>
 
     @Query
     fun findByCompanyIn(companies: Collection<String>): List<ProjectEntity>
