@@ -13,5 +13,5 @@ class ProjectCompanyFieldResolver : GraphQLResolver<Project> {
     @Autowired
     private lateinit var companyAccessService: CompanyAccessService
 
-    fun getCompany(project: Project): Company = companyAccessService.get(project.company)
+    fun getCompany(project: Project): Company? = companyAccessService.getWithoutError(project.company)
 }

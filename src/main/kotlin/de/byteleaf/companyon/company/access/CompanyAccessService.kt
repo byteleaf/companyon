@@ -14,7 +14,9 @@ class CompanyAccessService {
     @Autowired
     private lateinit var companyService: CompanyService
 
-    fun get(id: String): Company = companyService.get(id)
+    fun get(id: String, skipError: Boolean = false): Company = companyService.get(id)
+
+    fun getWithoutError(id: String?): Company? = companyService.getWithoutError(id)
 
     fun findAll(): List<Company> = companyService.findAll()
 

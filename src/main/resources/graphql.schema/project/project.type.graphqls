@@ -2,5 +2,5 @@ type Project {
     id: ID!,
     name: String!,
     state: ProjectState!,
-    company: Company!
+    company: Company
 }

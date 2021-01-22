@@ -7,5 +7,5 @@ class ProjectGQLResponse(
     var id: String,
     var name: String,
     var state: ProjectState,
-    var company: Company
+    var company: Company?
 )

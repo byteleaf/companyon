@@ -1,8 +1,6 @@
 package de.byteleaf.companyon.project
 
 import de.byteleaf.companyon.common.dto.EntityUpdateType
-import de.byteleaf.companyon.common.entity.EntityType
-import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.project.dto.Project
@@ -12,7 +10,6 @@ import de.byteleaf.companyon.project.dto.input.ProjectInput
 import de.byteleaf.companyon.project.entity.ProjectState
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT
-import de.byteleaf.companyon.test.util.GQLErrorUtil
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -46,7 +43,8 @@ class ProjectIT : AbstractIT("project") {
     fun getProjectsFilteredByCompany() {
         val projects = seedTestProjects()
         val companyId = projects[0].company
-        val projectsFiltered = performGQL("GetProjects", "{ \"companies\": [\"$companyId\"] }").getList("$.data.projects", targetClass)
+        val projectsFiltered =
+            performGQL("GetProjects", "{ \"companies\": [\"$companyId\"] }").getList("$.data.projects", targetClass)
         Assertions.assertThat(projectsFiltered.size).isEqualTo(1)
     }
 
@@ -54,7 +52,7 @@ class ProjectIT : AbstractIT("project") {
     fun createProject() {
         val companyId = seedTestProjects()[0].company
         val createdProject = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"$companyId\" }")
-                .get("$.data.createProject",targetClass)
+            .get("$.data.createProject", targetClass)
         Assertions.assertThat(createdProject.name).isEqualTo("A")
         Assertions.assertThat(createdProject.state).isEqualTo(ProjectState.PLANNED)
         // Check if really existing
@@ -68,13 +66,7 @@ class ProjectIT : AbstractIT("project") {
     @Test
     fun getProject() {
         val getResponse = performGQLById("GetProject", seedTestProjects()[0].id!!).get("$.data.project", targetClass)
-        Assertions.assertThat(getResponse.company.name).isEqualTo("Company A")
-    }
-
-    @Test
-    fun createProjectWithNotExistingCompany() {
-        val response = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"INVALID\" }", true)
-        GQLErrorUtil.expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, "INVALID")
+        Assertions.assertThat(getResponse.company!!.name).isEqualTo("Company A")
     }
 
     @Test
@@ -88,7 +80,11 @@ class ProjectIT : AbstractIT("project") {
     @Test
     fun updateProject() {
         val project = seedTestProjects()[0]
-        val response = performGQLByIdAndInput("UpdateProject", project.id!!, "{ \"name\": \"New name\", \"company\":\"${project.company}\" }")
+        val response = performGQLByIdAndInput(
+            "UpdateProject",
+            project.id!!,
+            "{ \"name\": \"New name\", \"company\":\"${project.company}\" }"
+        )
         val updatedCompany = response.get("$.data.updateProject", targetClass)
         Assertions.assertThat(updatedCompany.name).isEqualTo("New name")
     }
@@ -96,14 +92,22 @@ class ProjectIT : AbstractIT("project") {
     @Test
     fun projectUpdatedSubscription() {
         val companyId = seedTestProjects()[0].company
-        val projectUpdated = performGQLSubscription("ProjectUpdateSubscription", { projectService.create(ProjectInput("New project", companyId)) })
+        val projectUpdated = performGQLSubscription(
+            "ProjectUpdateSubscription",
+            { projectService.create(ProjectInput("New project", companyId)) })
             .get("$.data.projectUpdate", ProjectUpdateGQLResponse::class.java)
         Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
         Assertions.assertThat(projectUpdated.entity.name).isEqualTo("New project")
     }
 
     private fun seedTestProjects(): List<Project> {
-        val p1 = projectService.create(ProjectInput("Project A", companyService.create(CompanyInput("Company A")).id!!, ProjectState.IN_PROGRESS))
+        val p1 = projectService.create(
+            ProjectInput(
+                "Project A",
+                companyService.create(CompanyInput("Company A")).id!!,
+                ProjectState.IN_PROGRESS
+            )
+        )
         val p2 = projectService.create(ProjectInput("Project B", companyService.create(CompanyInput("Company B")).id!!))
         return listOf(p1, p2)
     }
