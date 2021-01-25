@@ -6,7 +6,7 @@ import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectGQLResponse
 import de.byteleaf.companyon.project.dto.ProjectUpdateGQLResponse
-import de.byteleaf.companyon.project.dto.input.ProjectInput
+import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.entity.ProjectState
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT

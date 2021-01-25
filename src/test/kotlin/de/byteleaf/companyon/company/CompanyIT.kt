@@ -8,12 +8,10 @@ import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.CompanyUpdate
 import de.byteleaf.companyon.company.dto.input.CompanyInput
-import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.ProjectUpdateGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
-import de.byteleaf.companyon.project.dto.input.ProjectInput
+import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.test.util.GQLErrorUtil
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

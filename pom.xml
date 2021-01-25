@@ -19,6 +19,7 @@
         <graphql-spring-boot-starter.version>8.1.1</graphql-spring-boot-starter.version>
         <rxkotlin.version>3.0.1</rxkotlin.version>
         <spring-security-oauth2-autoconfigure.version>2.4.0</spring-security-oauth2-autoconfigure.version>
+        <graphql-java-extended-scalars.version>15.0.0</graphql-java-extended-scalars.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -68,6 +69,11 @@
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-java-tools</artifactId>
             <version>${graphql-java-tools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java-extended-scalars</artifactId>
+            <version>${graphql-java-extended-scalars.version}</version>
         </dependency>
         <!-- Spring dependencies -->
         <dependency>
