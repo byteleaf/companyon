@@ -8,6 +8,7 @@ import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.CompanyUpdate
 import de.byteleaf.companyon.company.dto.input.CompanyInput
+import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.ProjectUpdateGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.project.dto.input.ProjectInput
@@ -68,9 +69,10 @@ class CompanyIT : AbstractIT("company") {
     @Test
     fun deleteCompanyTestProjectSubscription() {
         val company = seedTestCompany()
-        val projectUpdated = performGQLSubscription("ProjectUpdateSubscription", { companyService.delete(company.id!!) })
-        assertThat(projectUpdated.get("$.data.projectUpdate.type")).isEqualTo(EntityUpdateType.DELETED.name)
-        assertThat(projectUpdated.get("$.data.projectUpdate.entity.name")).isEqualTo("Project A")
+        val projectUpdated = performGQLSubscription("project/ProjectUpdateSubscription", { companyService.delete(company.id!!) })
+                .get("$.data.projectUpdate", ProjectUpdateGQLResponse::class.java)
+        assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.DELETED)
+        assertThat(projectUpdated.entity.name).isEqualTo("Project A")
     }
 
     @Test
