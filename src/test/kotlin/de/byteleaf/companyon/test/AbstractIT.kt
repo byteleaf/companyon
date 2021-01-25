@@ -41,6 +41,7 @@ abstract class AbstractIT(val gqlFolder: String) {
     ): GraphQLResponse =
         performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }", skipValidation)
 
+    // TODO payload to varoables
     protected fun performGQLByInput(
         gqlOperation: String,
         inputPayload: String,
@@ -50,6 +51,13 @@ abstract class AbstractIT(val gqlFolder: String) {
 
     protected fun performGQLById(gqlOperation: String, id: String, skipValidation: Boolean = false): GraphQLResponse =
         performGQL(gqlOperation, "{ \"id\": \"$id\" }", skipValidation)
+
+
+    protected fun performGQL(
+        gqlOperation: String,
+        variables: Map<String, Any>,
+        skipValidation: Boolean = false
+    ): GraphQLResponse = performGQL(gqlOperation, objectMapper.writeValueAsString(variables), skipValidation)
 
 
     protected fun performGQL(

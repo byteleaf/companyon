@@ -7,7 +7,7 @@ class TimeLogInput(
     val user: String,
     val project: String,
     val start: OffsetDateTime,
-    val description: String?,
     val durationInMinutes: Int,
+    var description: String? = null,
     val beakInMinutes: Int = 0
 )

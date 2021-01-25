@@ -16,5 +16,5 @@ class TimeLogService :
 
     override fun getEntityType(): EntityType = EntityType.TIME_LOG
 
-    fun findTimeLogs(from: OffsetDateTime, to: OffsetDateTime, user: String?, project: String?): List<TimeLog> = repository.findTimeLogs(from, to, user, project).map { entityToOutput(it) }
+    fun findTimeLogs(from: OffsetDateTime?, to: OffsetDateTime?, userId: String?, projectId: String?): List<TimeLog> = repository.findTimeLogs(from, to, userId, projectId).map { entityToOutput(it) }
 }

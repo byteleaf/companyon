@@ -14,8 +14,8 @@ class TimeLogAccessService {
     private lateinit var timeLogService: TimeLogService
 
     // TODO isAdminOrCurrentUser
-    fun findTimeLogs(from: OffsetDateTime, to: OffsetDateTime, user: String?, project: String?): List<TimeLog> =
-        timeLogService.findTimeLogs(from, to, user, project)
+    fun findTimeLogs(from: OffsetDateTime?, to: OffsetDateTime?, userId: String?, projectId: String?): List<TimeLog> =
+        timeLogService.findTimeLogs(from, to, userId, projectId)
 
     // TODO isAdminOrCurrentUser
     fun create(input: TimeLogInput): TimeLog = timeLogService.create(input)
