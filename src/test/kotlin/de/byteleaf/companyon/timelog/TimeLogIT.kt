@@ -1,9 +1,8 @@
-package de.byteleaf.companyon.project
+package de.byteleaf.companyon.timelog
 
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.project.dto.Project
-import de.byteleaf.companyon.project.dto.ProjectGQLResponse
 import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT
@@ -47,7 +46,7 @@ class TimeLogIT : AbstractIT("time-log") {
     @Test
     fun getTimeLogsByProject() {
         val logs = seedTestTimeLogs()
-        val timeLogs = performGQL("GetTimeLogs", mapOf(Pair("project", project1.id!!))).getList("$.data.timeLogs", targetClass)
+        val timeLogs = performGQL("GetTimeLogs", mapOf(Pair("projectId", project1.id!!))).getList("$.data.timeLogs", targetClass)
         Assertions.assertThat(timeLogs.size).isEqualTo(2)
     }
 
