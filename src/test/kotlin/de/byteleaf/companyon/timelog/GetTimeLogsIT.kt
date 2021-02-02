@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
-class TimeLogIT : AbstractIT("time-log") {
+class GetTimeLogsIT : AbstractIT("time-log") {
 
     private val targetClass = TimeLog::class.java
 
@@ -41,14 +41,44 @@ class TimeLogIT : AbstractIT("time-log") {
     @BeforeEach
     fun init() {
         timeLogService.deleteAll()
+        seedTestTimeLogs()
     }
 
     @Test
-    fun getTimeLogsByProject() {
-        val logs = seedTestTimeLogs()
-        val timeLogs = performGQL("GetTimeLogs", mapOf(Pair("projectId", project1.id!!))).getList("$.data.timeLogs", targetClass)
-        Assertions.assertThat(timeLogs.size).isEqualTo(2)
+    fun getTimeLogsUserAndProject() {
+        assertTimeLogs(mapOf(), 3)
+        assertTimeLogs(mapOf(Pair("projectId", project2.id!!)), 2)
+        assertTimeLogs(mapOf(Pair("userId", user2.id!!)), 2)
+        assertTimeLogs(mapOf(Pair("projectId", project2.id!!), Pair("userId", user2.id!!)), 1)
     }
+
+    @Test
+    fun getTimeLogsFrom() {
+        assertTimeLogs(mapOf(Pair("from", "2011-12-03T10:15:30+01:00")), 3)
+        assertTimeLogs(mapOf(Pair("from", "2011-12-03T10:15:31+01:00")), 2)
+    }
+
+    @Test
+    fun getTimeLogsTo() {
+        assertTimeLogs(mapOf(Pair("to", "2011-12-03T10:15:30+01:00")), 1)
+        assertTimeLogs(mapOf(Pair("to", "2011-12-05T10:17:29+01:00")), 1)
+        assertTimeLogs(mapOf(Pair("to", "2011-12-05T10:18:30+01:00")), 3)
+    }
+
+    @Test
+    fun getTimeLogsFromTo() {
+        assertTimeLogs(mapOf(Pair("from", "2011-12-03T10:15:31+01:00"), Pair("to", "2011-12-05T10:18:29+01:00")), 1)
+        assertTimeLogs(mapOf(Pair("from", "2011-12-03T10:15:30+01:00"), Pair("to", "2011-12-05T10:18:30+01:00")), 3)
+    }
+
+    @Test
+    fun getTimeLogs() {
+        assertTimeLogs(mapOf(Pair("from", "2011-12-03T10:15:31+01:00"), Pair("to", "2011-12-05T10:18:30+01:00"), Pair("userId", user2.id!!)), 1)
+    }
+
+    private fun assertTimeLogs(parameter: Map<String, String>, expectedLogs: Int) =
+        Assertions.assertThat(performGQL("GetTimeLogs", parameter).getList("$.data.timeLogs", targetClass).size).isEqualTo(expectedLogs)
+
 
     private fun seedTestTimeLogs(): List<TimeLog> {
         user1 = userService.create(UserInput("Joe", "Byten", "joe@byteleaf.de"))
