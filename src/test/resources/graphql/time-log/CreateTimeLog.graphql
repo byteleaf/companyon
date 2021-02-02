@@ -1,0 +1,5 @@
+mutation CreateTimeLog($input: TimeLogInput!) {
+    createTimeLog(input: $input) {
+        id
+    }
+}

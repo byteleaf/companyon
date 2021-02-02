@@ -1,11 +1,11 @@
 package de.byteleaf.companyon.user
 
-import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
-import de.byteleaf.companyon.user.logic.UserService
+import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.TestPropertySource
 
 
-@TestPropertySource(properties = arrayOf("app.non-sec-user-admin=true"))
+@TestPropertySource(properties = ["app.non-sec-user-admin=true"])
 class UserIT : AbstractIT("user") {
 
     private val targetClass = User::class.java

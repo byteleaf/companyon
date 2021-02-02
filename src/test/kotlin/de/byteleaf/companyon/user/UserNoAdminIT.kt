@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 /**
  * All tests inside this class will be executed as user without ROLE_ADMIN!
  */
-class UserInvalidAccessIT : AbstractIT("user") {
+class UserNoAdminIT : AbstractIT("user") {
 
     @Autowired
     protected lateinit var userService: UserService

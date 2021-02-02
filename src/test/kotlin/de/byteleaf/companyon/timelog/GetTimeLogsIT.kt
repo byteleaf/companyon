@@ -6,6 +6,7 @@ import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT
+import de.byteleaf.companyon.test.util.DateTimeUtil
 import de.byteleaf.companyon.timelog.dto.TimeLog
 import de.byteleaf.companyon.timelog.dto.TimeLogInput
 import de.byteleaf.companyon.timelog.logic.TimeLogService
@@ -16,8 +17,6 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter
 
 class GetTimeLogsIT : AbstractIT("time-log") {
 
@@ -80,16 +79,14 @@ class GetTimeLogsIT : AbstractIT("time-log") {
         Assertions.assertThat(performGQL("GetTimeLogs", parameter).getList("$.data.timeLogs", targetClass).size).isEqualTo(expectedLogs)
 
 
-    private fun seedTestTimeLogs(): List<TimeLog> {
+    private fun seedTestTimeLogs() {
         user1 = userService.create(UserInput("Joe", "Byten", "joe@byteleaf.de"))
         user2 = userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"))
         val companyId = companyService.create(CompanyInput("Company A")).id!!
         project1 = projectService.create(ProjectInput("Project A", companyId))
         project2 = projectService.create(ProjectInput("Project B", companyId))
-        return listOf(timeLogService.create(TimeLogInput(user2.id!!, project2.id!!, getDateTime("2011-12-03T10:15:30+01:00"), 60, "a")),
-            timeLogService.create(TimeLogInput(user2.id!!, project1.id!!, getDateTime("2011-12-05T10:17:30+01:00"), 60, "b")),
-            timeLogService.create(TimeLogInput(user1.id!!, project2.id!!, getDateTime("2011-12-05T10:18:30+01:00"), 60, "c")))
+        timeLogService.create(TimeLogInput(user2.id!!, project2.id!!, DateTimeUtil.getDateTime("2011-12-03T10:15:30+01:00"), 60, "a"))
+        timeLogService.create(TimeLogInput(user2.id!!, project1.id!!, DateTimeUtil.getDateTime("2011-12-05T10:17:30+01:00"), 60, "b"))
+        timeLogService.create(TimeLogInput(user1.id!!, project2.id!!, DateTimeUtil.getDateTime("2011-12-05T10:18:30+01:00"), 60, "c"))
     }
-
-    private fun getDateTime(dt: String) : OffsetDateTime = OffsetDateTime.parse(dt,  DateTimeFormatter.ISO_OFFSET_DATE_TIME)
 }
