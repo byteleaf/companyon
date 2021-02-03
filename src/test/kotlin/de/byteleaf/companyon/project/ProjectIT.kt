@@ -5,8 +5,8 @@ import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectGQLResponse
-import de.byteleaf.companyon.project.dto.ProjectUpdateGQLResponse
 import de.byteleaf.companyon.project.dto.ProjectInput
+import de.byteleaf.companyon.project.dto.ProjectUpdateGQLResponse
 import de.byteleaf.companyon.project.entity.ProjectState
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT
@@ -51,7 +51,7 @@ class ProjectIT : AbstractIT("project") {
     @Test
     fun createProject() {
         val companyId = seedTestProjects()[0].company
-        val createdProject = performGQLByInput("CreateProject", "{ \"name\": \"A\", \"company\":\"$companyId\" }")
+        val createdProject = performGQLByInput("CreateProject", mapOf(Pair("name", "A"), Pair("company", companyId)))
             .get("$.data.createProject", targetClass)
         Assertions.assertThat(createdProject.name).isEqualTo("A")
         Assertions.assertThat(createdProject.state).isEqualTo(ProjectState.PLANNED)
@@ -82,8 +82,7 @@ class ProjectIT : AbstractIT("project") {
         val project = seedTestProjects()[0]
         val response = performGQLByIdAndInput(
             "UpdateProject",
-            project.id!!,
-            "{ \"name\": \"New name\", \"company\":\"${project.company}\" }"
+            project.id!!, mapOf(Pair("name", "New name"), Pair("company", project.company))
         )
         val updatedCompany = response.get("$.data.updateProject", targetClass)
         Assertions.assertThat(updatedCompany.name).isEqualTo("New name")

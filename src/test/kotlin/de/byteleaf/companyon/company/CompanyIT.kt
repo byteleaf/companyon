@@ -44,7 +44,7 @@ class CompanyIT : AbstractIT("company") {
 
     @Test
     fun createCompany() {
-        val createdCompany = performGQLByInput("CreateCompany", "{ \"name\": \"A\" }")
+        val createdCompany = performGQLByInput("CreateCompany", mapOf(Pair("name", "A")))
             .get("$.data.createCompany", targetClass)
         assertThat(createdCompany.name).isEqualTo("A")
         // Check if really existing
@@ -76,7 +76,7 @@ class CompanyIT : AbstractIT("company") {
     @Test
     fun updateCompany() {
         val company = seedTestCompany()
-        val response = performGQLByIdAndInput("UpdateCompany", company.id!!, "{ \"name\": \"New name\"}")
+        val response = performGQLByIdAndInput("UpdateCompany", company.id!!, mapOf(Pair("name", "New name")))
         val updatedCompany = response.get("$.data.updateCompany", targetClass)
         assertThat(updatedCompany.name).isEqualTo("New name")
     }

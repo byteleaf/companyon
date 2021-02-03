@@ -51,14 +51,15 @@ class UserIT : AbstractIT("user") {
     @Test
     fun updateUser() {
         val user = seedTestUser()
-        val updatedEntity = performGQLByIdAndInput("UpdateUser", user.id!!, "{ \"email\": \"jeff@byteleaf.de\", \"firstName\": \"a\", \"lastName\": \"b\" }")
+        val updatedEntity = performGQLByIdAndInput("UpdateUser", user.id!!,
+            mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b")))
             .get("$.data.updateUser", targetClass)
         Assertions.assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun createUser() {
-        val createdEntity = performGQLByInput("CreateUser", "{ \"email\": \"jeff@byteleaf.de\", \"firstName\": \"a\", \"lastName\": \"b\" }")
+        val createdEntity = performGQLByInput("CreateUser", mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b")))
             .get("$.data.createUser",targetClass)
         Assertions.assertThat(createdEntity.email).isEqualTo("jeff@byteleaf.de")
         // Check if really existing
