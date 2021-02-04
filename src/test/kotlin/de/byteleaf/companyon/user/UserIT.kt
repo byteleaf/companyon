@@ -51,9 +51,11 @@ class UserIT : AbstractIT("user") {
     @Test
     fun updateUser() {
         val user = seedTestUser()
-        val updatedEntity = performGQLByIdAndInput("UpdateUser", user.id!!, "{ \"email\": \"jeff@byteleaf.de\", \"firstName\": \"a\", \"lastName\": \"b\" }")
+        val updatedEntity = performGQLByIdAndInput("UpdateUser", user.id!!, "{ \"email\": \"jeff@byteleaf.de\", " +
+                "\"firstName\": \"a\", \"lastName\": \"b\", \"admin\": true }")
             .get("$.data.updateUser", targetClass)
         Assertions.assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
+        Assertions.assertThat(updatedEntity.admin).isTrue()
     }
 
     @Test
