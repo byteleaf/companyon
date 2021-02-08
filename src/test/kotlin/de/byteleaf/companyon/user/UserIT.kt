@@ -3,6 +3,7 @@ package de.byteleaf.companyon.user
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.user.dto.User
+import de.byteleaf.companyon.user.dto.UserGQLResponse
 import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
@@ -16,7 +17,7 @@ import org.springframework.test.context.TestPropertySource
 @TestPropertySource(properties = ["app.non-sec-user-admin=true"])
 class UserIT : AbstractIT("user") {
 
-    private val targetClass = User::class.java
+    private val targetClass = UserGQLResponse::class.java
 
     @Autowired
     protected lateinit var userService: UserService
