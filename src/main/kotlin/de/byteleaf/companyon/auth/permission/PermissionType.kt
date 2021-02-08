@@ -1,0 +1,6 @@
+package de.byteleaf.companyon.auth.permission
+
+enum class PermissionType {
+  PROJECT_READ,
+  PROJECT_WRITE
+}

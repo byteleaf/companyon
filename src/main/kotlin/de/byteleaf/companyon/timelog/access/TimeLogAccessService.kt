@@ -4,6 +4,7 @@ import de.byteleaf.companyon.timelog.dto.TimeLog
 import de.byteleaf.companyon.timelog.dto.TimeLogInput
 import de.byteleaf.companyon.timelog.logic.TimeLogService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
@@ -14,6 +15,7 @@ class TimeLogAccessService {
     private lateinit var timeLogService: TimeLogService
 
     // TODO isAdminOrCurrentUser
+    @PreAuthorize("hasPermission(#userId, 'isCurrentUser')")
     fun findTimeLogs(from: OffsetDateTime?, to: OffsetDateTime?, userId: String?, projectId: String?): List<TimeLog> =
         timeLogService.findTimeLogs(from, to, userId, projectId)
 

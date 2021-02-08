@@ -1,6 +1,6 @@
 package de.byteleaf.companyon.auth.configuration
 
-import de.byteleaf.companyon.auth.control.PermissionEvaluatorProxy
+import de.byteleaf.companyon.auth.permission.PermissionEvaluatorProxy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Configuration
@@ -25,12 +25,4 @@ class MethodSecurityConfiguration : GlobalMethodSecurityConfiguration() {
         expressionHandler.setApplicationContext(applicationContext)
         return expressionHandler
     }
-
-    // TODO SIT
-//    override fun runAsManager(): RunAsManager? {
-//        val runAsManager = RunAsManagerImpl()
-//        runAsManager.key = "MyRunAsKey"
-//        return runAsManager
-//    }
-
 }
