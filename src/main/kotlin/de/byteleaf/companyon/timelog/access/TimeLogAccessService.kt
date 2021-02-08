@@ -15,7 +15,7 @@ class TimeLogAccessService {
     private lateinit var timeLogService: TimeLogService
 
     // TODO isAdminOrCurrentUser
-    @PreAuthorize("hasPermission(#userId, 'isCurrentUser')")
+    @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #userId)")
     fun findTimeLogs(from: OffsetDateTime?, to: OffsetDateTime?, userId: String?, projectId: String?): List<TimeLog> =
         timeLogService.findTimeLogs(from, to, userId, projectId)
 

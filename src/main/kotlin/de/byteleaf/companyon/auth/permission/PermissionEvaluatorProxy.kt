@@ -14,8 +14,10 @@ class PermissionEvaluatorProxy : PermissionEvaluator {
     private lateinit var permissionHandler: PermissionHandler
 
     override fun hasPermission(authentication: Authentication?, param1: Any?, param2: Any?): Boolean {
-        if(param1 is PermissionType && param2 is String) {
-            return permissionHandler.hasPermission(param1, param2)
+        val a = param1 is PermissionType
+        val b = (param2 is String || param2 == null)
+        if(param1 is PermissionType && (param2 is String || param2 == null)) {
+            return permissionHandler.hasPermission(param1, param2 as String)
         }
         throw FatalException("Not implemented")
     }

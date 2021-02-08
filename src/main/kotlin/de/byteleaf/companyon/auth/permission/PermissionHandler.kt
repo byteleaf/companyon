@@ -14,7 +14,7 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
         permissions.forEach { permissionHandler -> permissionHandlers.put(permissionHandler.getPermissionType(),  permissionHandler) }
     }
 
-    fun hasPermission(permissionType: PermissionType, id: String): Boolean {
+    fun hasPermission(permissionType: PermissionType, id: String?): Boolean {
         val permissionHandler = permissionHandlers[permissionType]
 
         return true
