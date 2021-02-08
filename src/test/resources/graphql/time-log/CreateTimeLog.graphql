@@ -1,5 +1,15 @@
 mutation CreateTimeLog($input: TimeLogInput!) {
     createTimeLog(input: $input) {
-        id
+        id,
+        description,
+        start,
+        project {
+            name
+        },
+        user {
+            firstName
+        },
+        beakInMinutes,
+        durationInMinutes
     }
 }

@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.user.access
 
 import de.byteleaf.companyon.auth.annotation.IsAdmin
+import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserUpdate
@@ -20,6 +21,9 @@ class UserAccessService {
 
     @IsAdmin
     fun get(id: String): User = userService.get(id)
+
+    // TODO isAdmin or current user
+    fun getWithoutError(id: String?): User? = userService.getWithoutError(id)
 
     @IsAdmin
     fun create(input: UserInput): User = userService.create(input)

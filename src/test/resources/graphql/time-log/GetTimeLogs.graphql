@@ -1,8 +1,6 @@
 query GetTimeLogs($from: OffsetDateTime, $to: OffsetDateTime, $userId: String, $projectId: String) {
     timeLogs(from: $from, to: $to, userId: $userId, projectId: $projectId) {
         id
-        user,
-        project,
         start,
         description,
         beakInMinutes,

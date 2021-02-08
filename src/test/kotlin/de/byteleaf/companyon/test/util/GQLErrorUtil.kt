@@ -30,10 +30,14 @@ class GQLErrorUtil {
 
 
         fun validateResponse(response: GraphQLResponse): GraphQLResponse {
-            Assertions.assertThat(response.isOk).isTrue()
-            Assertions.assertThat(response.readTree().hasNonNull("errors"))
-                .describedAs("response has errors")
-                .isFalse()
+            if(!response.isOk) {
+                throw AssertionError("HTTP error response code: ${response.statusCode}")
+            }
+
+            val json = response.readTree()
+            if(json.hasNonNull("errors")) {
+                throw AssertionError("GraphQL Errors \r\n" + json.toPrettyString())
+            }
             return response
         }
     }

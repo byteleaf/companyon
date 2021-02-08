@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.project.access
 
+import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.ProjectInput
@@ -15,6 +16,8 @@ class ProjectAccessService {
     private lateinit var projectService: ProjectService
 
     fun get(id: String): Project = projectService.get(id)
+
+    fun getWithoutError(id: String?): Project? = projectService.getWithoutError(id)
 
     fun findAll(companies: Collection<String>?): List<Project> = projectService.findAll(companies)
 
