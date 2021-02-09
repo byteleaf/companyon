@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.user
 
+import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.test.util.GQLErrorUtil
 import de.byteleaf.companyon.user.logic.UserService
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 /**
  * All tests inside this class will be executed as user without ROLE_ADMIN!
  */
-class UserNoAdminIT : AbstractIT("user") {
+class UserAccessDeniedIT : AbstractIT("user") {
 
     @Autowired
     protected lateinit var userService: UserService
@@ -24,6 +25,6 @@ class UserNoAdminIT : AbstractIT("user") {
     @Test
     fun getUsers() {
         userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de", false))
-        GQLErrorUtil.expectAccessDenied(performGQL("GetUsers", null, true))
+        GQLErrorUtil.expectError(performGQL("GetUsers", null, true), ErrorCode.ACCESS_DENIED_NO_ADMIN)
     }
 }

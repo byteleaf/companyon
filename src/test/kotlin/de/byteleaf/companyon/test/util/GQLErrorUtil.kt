@@ -23,9 +23,9 @@ class GQLErrorUtil {
             Assertions.assertThat(errorExtensions.get("entityId").asText()).isEqualTo(expectedId)
         }
 
-        fun expectAccessDenied(response: GraphQLResponse) {
+        fun expectError(response: GraphQLResponse, expectedErrorCode: ErrorCode) {
             val errorExtensions = getErrorExtensions(response)
-            Assertions.assertThat(errorExtensions.get("code").asText()).isEqualTo(ErrorCode.ACCESS_DENIED_NO_ADMIN.name)
+            Assertions.assertThat(errorExtensions.get("code").asText()).isEqualTo(expectedErrorCode.name)
         }
 
 

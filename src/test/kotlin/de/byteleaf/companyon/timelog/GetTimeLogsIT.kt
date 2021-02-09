@@ -41,6 +41,9 @@ class GetTimeLogsIT : AbstractIT("time-log") {
 
     @BeforeEach
     fun init() {
+        userService.deleteAll()
+        projectService.deleteAll()
+        companyService.deleteAll()
         timeLogService.deleteAll()
         seedTestTimeLogs()
     }
