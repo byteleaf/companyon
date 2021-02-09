@@ -13,3 +13,12 @@ timeLogsByProject(id: ID!)
 + Validation event for companies etc -> page with errors? -> fire validation event isEntityExisting
 
 +   // @PreAuthorized(hasProject('DELETE', 'input.projectId'))
+
++ PermissionExceptions or change the code for all to PERMISSION_DENIED
+
+  "extensions" : {
+  "code" : "ACCESS_DENIED_NO_ADMIN",
+  "message" : "Zugriff verweigert",
+  "parameter": []Any,
+  "classification" : "DataFetchingException"
+  } -> error message api!!

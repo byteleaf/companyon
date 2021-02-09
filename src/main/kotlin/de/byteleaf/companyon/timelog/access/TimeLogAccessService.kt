@@ -14,17 +14,16 @@ class TimeLogAccessService {
     @Autowired
     private lateinit var timeLogService: TimeLogService
 
-    // TODO isAdminOrCurrentUser
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #userId)")
     fun findTimeLogs(from: OffsetDateTime?, to: OffsetDateTime?, userId: String?, projectId: String?): List<TimeLog> =
         timeLogService.findTimeLogs(from, to, userId, projectId)
 
-    // TODO isAdminOrCurrentUser
+    @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #input.user)")
     fun create(input: TimeLogInput): TimeLog = timeLogService.create(input)
 
-    // TODO isAdminOrCurrentUser
+    @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #id)")
     fun delete(id: String): TimeLog = timeLogService.delete(id)
 
-    // TODO isAdminOrCurrentUser
+    @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #id)")
     fun update(id: String, input: TimeLogInput): TimeLog = timeLogService.update(id, input)
 }

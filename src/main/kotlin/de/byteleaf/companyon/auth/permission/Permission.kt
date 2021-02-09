@@ -2,7 +2,7 @@ package de.byteleaf.companyon.auth.permission
 
 interface Permission {
 
-    fun hasPermission(): Boolean
+    fun hasPermission(id: String?): Boolean
 
     fun getPermissionType(): PermissionType
 }

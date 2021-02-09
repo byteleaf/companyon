@@ -17,7 +17,9 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.TestPropertySource
 
+@TestPropertySource(properties = ["app.non-sec-user-admin=true"])
 class GetTimeLogsIT : AbstractIT("time-log") {
 
     private val targetClass = TimeLogGQLResponse::class.java

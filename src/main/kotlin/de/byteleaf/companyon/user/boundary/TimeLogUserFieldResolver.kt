@@ -13,5 +13,5 @@ class TimeLogUserFieldResolver : GraphQLResolver<TimeLog> {
     @Autowired
     private lateinit var userAccessService: UserAccessService
 
-    fun getUser(timeLog: TimeLog): User? = userAccessService.getWithoutError(timeLog.user)
+    fun getUser(timeLog: TimeLog): User?  = userAccessService.getWithoutError(timeLog.user)
 }

@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.auth.permission
 
+import de.byteleaf.companyon.common.error.exception.FatalException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.util.*
@@ -16,8 +17,9 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
 
     fun hasPermission(permissionType: PermissionType, id: String?): Boolean {
         val permissionHandler = permissionHandlers[permissionType]
+            ?: throw FatalException("No permission handler found for type ${permissionType.name}")
 
-        return true
+        return permissionHandler.hasPermission(id)
     }
 
 
