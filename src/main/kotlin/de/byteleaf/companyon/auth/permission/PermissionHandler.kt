@@ -19,6 +19,8 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
         val permissionHandler = permissionHandlers[permissionType]
             ?: throw FatalException("No permission handler found for type ${permissionType.name}")
 
+        throw PermissionException(permissionType, "asdasd")
+
         return permissionHandler.hasPermission(id)
     }
 

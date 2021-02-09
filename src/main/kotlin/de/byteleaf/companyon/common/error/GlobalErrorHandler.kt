@@ -17,6 +17,7 @@ class GlobalErrorHandler {
         return listOf(ex.getGraphQLError(errorContext))
     }
 
+    // TODO throw a custom exception
     @ExceptionHandler(value = [AccessDeniedException::class])
     fun accessDenied(ex: AccessDeniedException, errorContext: ErrorContext): List<GraphQLError> {
         val extensions = mutableMapOf<String, Any>(Pair("code", ErrorCode.ACCESS_DENIED_NO_ADMIN.name),
