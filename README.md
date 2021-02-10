@@ -10,7 +10,7 @@ Companyon is a open source hr-system with several features:
 
 ## Setup
 
-[Click here to see more details](documentation/setup.md)
+[Click here to see more details](docs/setup.md)
 
 ## How to start
 
@@ -26,5 +26,5 @@ mvn spring-boot:run -Dspring-boot.run.profiles=non-sec
 
 ## Error handling
 
-[Click here to read more about the error handling](documentation/error-handling.md)
+[Click here to read more about the error handling](docs/error-handling.md)
 

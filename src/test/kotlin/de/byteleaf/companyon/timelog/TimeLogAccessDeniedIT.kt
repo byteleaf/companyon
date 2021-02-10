@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.timelog
 
-import de.byteleaf.companyon.common.error.ErrorCode
+import de.byteleaf.companyon.auth.permission.PermissionType
+import de.byteleaf.companyon.common.error.ErrorExtensionKey
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.test.util.GQLErrorUtil
 import org.junit.jupiter.api.Test
@@ -12,7 +13,12 @@ class TimeLogAccessDeniedIT: AbstractIT("time-log") {
      */
     @Test
     fun getTimeLogsByAllUsers() {
-        // TODO real error code!!!
-        GQLErrorUtil.expectError(performGQL("GetTimeLogs", mapOf(), true), ErrorCode.ACCESS_DENIED_NO_ADMIN)
+        GQLErrorUtil.expectNoPermission(performGQL("GetTimeLogs", mapOf(), true), PermissionType.ADMIN)
+    }
+
+    @Test
+    fun getTimeLogsFromOtherUser() {
+        GQLErrorUtil.expectNoPermission(performGQL("GetTimeLogs", mapOf(Pair("userId", "other_user_id")), true),
+            PermissionType.CURRENT_USER_OR_ADMIN, ErrorExtensionKey.TARGET_USER_ID, "other_user_id")
     }
 }

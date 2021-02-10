@@ -14,11 +14,8 @@ timeLogsByProject(id: ID!)
 
 +   // @PreAuthorized(hasProject('DELETE', 'input.projectId'))
 
-+ PermissionExceptions or change the code for all to PERMISSION_DENIED
-
-  "extensions" : {
-  "code" : "ACCESS_DENIED_NO_ADMIN",
-  "message" : "Zugriff verweigert",
-  "parameter": []Any,
-  "classification" : "DataFetchingException"
-  } -> error message api!!
++ Stack overflow question -> Spring SPEL -> is it possible to inherit #id via annotations? Is it possible to access class variables?
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
+@PreAuthorize("hasPermission('ROLE_ADMIN', #id)")
+annotation class IsCurrentUserOrAdmin(val id: String)

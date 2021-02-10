@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.user
 
+import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.test.util.GQLErrorUtil
@@ -25,6 +26,6 @@ class UserAccessDeniedIT : AbstractIT("user") {
     @Test
     fun getUsers() {
         userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de", false))
-        GQLErrorUtil.expectError(performGQL("GetUsers", null, true), ErrorCode.ACCESS_DENIED_NO_ADMIN)
+        GQLErrorUtil.expectNoPermission(performGQL("GetUsers", null, true), PermissionType.ADMIN)
     }
 }

@@ -15,14 +15,17 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
         permissions.forEach { permissionHandler -> permissionHandlers.put(permissionHandler.getPermissionType(),  permissionHandler) }
     }
 
-    fun hasPermission(permissionType: PermissionType, id: String?): Boolean {
+    /**
+     * To check if the current user has the permission
+     * @param permissionType the type of the permission to detect the convenient handler
+     * @param id the id of entity where the permission is requested
+     * @param skipError if set false will be returned instead of a exception
+     * @throws PermissionException will be thrown instead of a false return value if the [skipError] flag is not set
+     */
+    fun hasPermission(permissionType: PermissionType, id: String? = null, skipError: Boolean = false): Boolean {
         val permissionHandler = permissionHandlers[permissionType]
             ?: throw FatalException("No permission handler found for type ${permissionType.name}")
 
-        throw PermissionException(permissionType, "asdasd")
-
         return permissionHandler.hasPermission(id)
     }
-
-
 }
