@@ -43,14 +43,35 @@ class TimeLogIT : AbstractIT("time-log") {
 
     @Test
     fun create() {
-        val createdEntity = performGQLByInput("CreateTimeLog", mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
-            Pair("user", NonSecConfiguration.nonSecUserId),
-            Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("beakInMinutes", 15)))
-            .get("$.data.createTimeLog", targetClass)
+        val createdEntity = createTimeLog()
         Assertions.assertThat(createdEntity.description).isEqualTo("A")
         Assertions.assertThat(createdEntity.project!!.name).isEqualTo("Project A")
         Assertions.assertThat(createdEntity.user!!.firstName).isEqualTo("Jeff")
     }
+
+    @Test
+    fun delete() {
+        val createdEntity = createTimeLog()
+        Assertions.assertThat(timeLogService.findAll().size).isEqualTo(1)
+        performGQLById("DeleteTimeLog", createdEntity.id!!)
+        Assertions.assertThat(timeLogService.findAll().size).isEqualTo(0)
+    }
+
+    @Test
+    fun update() {
+        val createdEntity = createTimeLog()
+        val updatedEntity = performGQLByIdAndInput("UpdateTimeLog", createdEntity.id!!,
+            mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
+                Pair("user", NonSecConfiguration.nonSecUserId),
+                Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 37)))
+            .get("$.data.updateTimeLog", targetClass)
+        Assertions.assertThat(updatedEntity.durationInMinutes).isEqualTo(37)
+    }
+
+    private fun createTimeLog() = performGQLByInput("CreateTimeLog", mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
+        Pair("user", NonSecConfiguration.nonSecUserId),
+        Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("beakInMinutes", 15)))
+        .get("$.data.createTimeLog", targetClass)
 
     private fun seedTestTimeLogs() {
         project1 = projectService.create(ProjectInput("Project A",  companyService.create(CompanyInput("Company A")).id!!))

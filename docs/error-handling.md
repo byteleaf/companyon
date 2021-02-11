@@ -73,4 +73,6 @@ User don't has the permission for a resource or action
 
 **_Additional fields:_**:
 + **permissionType:** the type of the missing permission. [Here](../src/main/kotlin/de/byteleaf/companyon/auth/permission/PermissionType.kt) you can find all available permissions.
-+ **permissionArguments:** a map (or object in javascript - key & value) with aditional informations about the violated permission. It dpen  
++ **currentUserId:** the id of the current user, who usually the user with the missing permission
++ **targetUserId:** If the current user tired to read or modify the data of this target user and is not allowed to.
+  This field is only present for these permissions: CURRENT_USER_OR_ADMIN

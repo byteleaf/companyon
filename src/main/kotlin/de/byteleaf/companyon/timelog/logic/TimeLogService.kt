@@ -24,5 +24,4 @@ class TimeLogService :
     fun findTimeLogs(from: OffsetDateTime?, to: OffsetDateTime?, userId: String?, projectId: String?): List<TimeLog> =
         timeLogQueryRepository.findTimeLogs(from, to, userId, projectId).map { entityToOutput(it) }
 
-
 }

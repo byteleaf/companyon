@@ -14,6 +14,8 @@ timeLogsByProject(id: ID!)
 
 +   // @PreAuthorized(hasProject('DELETE', 'input.projectId'))
 
++ subscription for timelogs
+
 + Stack overflow question -> Spring SPEL -> is it possible to inherit #id via annotations? Is it possible to access class variables?
 @Target(AnnotationTarget.FUNCTION, AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)

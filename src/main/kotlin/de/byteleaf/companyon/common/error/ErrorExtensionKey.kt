@@ -6,7 +6,6 @@ enum class ErrorExtensionKey(val value: String) {
     CURRENT_USER_ID("currentUserId"),
     TARGET_USER_ID("targetUserId"),
     PERMISSION_TYPE("permissionType"),
-    PERMISSION_ARGUMENTS("permissionArguments"),
     ENTITY_ID("entityId"),
     ENTITY_TYPE("entityType")
 }
