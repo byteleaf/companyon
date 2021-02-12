@@ -54,5 +54,4 @@ class SampleData : ApplicationRunner {
 
     }
 
-
 }
