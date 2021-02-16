@@ -19,7 +19,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 class NonSecConfiguration : WebSecurityConfigurerAdapter() {
 
     companion object {
-        const val nonSecUserId = "602266b0aa3acc1a0fc4f349"
+        const val NON_SEC_USER_ID = "602266b0aa3acc1a0fc4f349"
     }
 
     @Autowired
@@ -27,7 +27,6 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
 
     @Autowired
     private lateinit var userRepository: UserRepository
-
 
     @Value("\${app.non-sec-user-oauth2-subject}")
     private lateinit var nonSecUserOAuth2Subject: String
@@ -38,10 +37,9 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         val nonSecUser = createNonSecUser()
         http.cors().and().authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .and().csrf { csrf -> csrf.disable() }
+            .antMatchers("/**").permitAll()
+            .and().csrf { csrf -> csrf.disable() }
             .anonymous().principal(nonSecUser).authorities(nonSecUser.getRoles())
-
     }
 
     /**
@@ -49,10 +47,9 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
      */
     private fun createNonSecUser(): User {
         val nonSecUser = userService.findByOAuth2Subject(nonSecUserOAuth2Subject)
-        return if (nonSecUser != null) nonSecUser else
-        {
+        return if (nonSecUser != null) nonSecUser else {
             val entity = UserEntity(nonSecUserOAuth2Subject, "Jeff", "Bytezos", "jeff@byteleaf.de", nonSecUserAdmin, null, null)
-            entity.id = nonSecUserId
+            entity.id = NON_SEC_USER_ID
             userRepository.insert(entity)
             return userService.findByOAuth2Subject(nonSecUserOAuth2Subject)!!
         }

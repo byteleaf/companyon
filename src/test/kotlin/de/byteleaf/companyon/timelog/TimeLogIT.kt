@@ -35,7 +35,7 @@ class TimeLogIT : AbstractIT("time-log") {
 
     @BeforeEach
     fun init() {
-        userService.deleteAll(NonSecConfiguration.nonSecUserId)
+        userService.deleteAll(NonSecConfiguration.NON_SEC_USER_ID)
         timeLogService.deleteAll()
         seedTestTimeLogs()
     }
@@ -61,7 +61,7 @@ class TimeLogIT : AbstractIT("time-log") {
         val createdEntity = createTimeLog()
         val updatedEntity = performGQLByIdAndInput("UpdateTimeLog", createdEntity.id!!,
             mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
-                Pair("user", NonSecConfiguration.nonSecUserId),
+                Pair("user", NonSecConfiguration.NON_SEC_USER_ID),
                 Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 37)))
             .get("$.data.updateTimeLog", targetClass)
         Assertions.assertThat(updatedEntity.durationInMinutes).isEqualTo(37)
@@ -78,7 +78,7 @@ class TimeLogIT : AbstractIT("time-log") {
 
 
     private fun createTimeLog() = performGQLByInput("CreateTimeLog", mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
-        Pair("user", NonSecConfiguration.nonSecUserId),
+        Pair("user", NonSecConfiguration.NON_SEC_USER_ID),
         Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("beakInMinutes", 15)))
         .get("$.data.createTimeLog", targetClass)
 

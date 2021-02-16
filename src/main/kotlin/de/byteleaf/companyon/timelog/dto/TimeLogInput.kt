@@ -1,6 +1,5 @@
 package de.byteleaf.companyon.timelog.dto
 
-import de.byteleaf.companyon.project.entity.ProjectState
 import java.time.OffsetDateTime
 
 class TimeLogInput(
@@ -8,6 +7,6 @@ class TimeLogInput(
     val project: String,
     val start: OffsetDateTime,
     val durationInMinutes: Int,
-    var description: String? = null,
+    var description: String?,
     val beakInMinutes: Int = 0
 )

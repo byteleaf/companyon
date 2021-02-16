@@ -37,7 +37,7 @@ class GQLErrorUtil {
             val errorExtensions = getErrorExtensions(response)
             Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.CODE.value).asText()).isEqualTo(ErrorCode.NO_PERMISSION.name)
             Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.PERMISSION_TYPE.value).asText()).isEqualTo(permissionType.name)
-            Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.CURRENT_USER_ID.value).asText()).isEqualTo(NonSecConfiguration.nonSecUserId)
+            Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.CURRENT_USER_ID.value).asText()).isEqualTo(NonSecConfiguration.NON_SEC_USER_ID)
             if(key1 != null) Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.TARGET_USER_ID.value).asText()).isEqualTo(value1)
         }
 
