@@ -55,6 +55,20 @@ class ProjectIT : AbstractIT("project") {
         // Check if really existing
         val getResponse = performGQLById("GetProject", createdProject.id!!).get("$.data.project", targetClass)
         Assertions.assertThat(getResponse.name).isEqualTo("A")
+        Assertions.assertThat(getResponse.company!!.name).isEqualTo("Company A")
+    }
+
+    /**
+     * In real live the company should exist every case! This is just a technically test, to make sure that even null values would be resolved correctly
+     * by the FieldResolver!
+     */
+    @Test
+    fun getProjectWithoutCompany() {
+        val createdProject = performGQLByInput("CreateProject", mapOf(Pair("name", "A"), Pair("company", "INVALID_ID")))
+            .get("$.data.createProject", targetClass)
+        val getResponse = performGQLById("GetProject", createdProject.id!!).get("$.data.project", targetClass)
+        Assertions.assertThat(getResponse.name).isEqualTo("A")
+        Assertions.assertThat(getResponse.company).isNull()
     }
 
     /**

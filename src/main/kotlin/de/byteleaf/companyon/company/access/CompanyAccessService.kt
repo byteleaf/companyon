@@ -7,6 +7,7 @@ import de.byteleaf.companyon.company.logic.CompanyService
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class CompanyAccessService {
@@ -16,7 +17,7 @@ class CompanyAccessService {
 
     fun get(id: String, skipError: Boolean = false): Company = companyService.get(id)
 
-    fun getWithoutError(id: String?): Company? = companyService.getWithoutError(id)
+    fun getNullable(id: String?): Optional<Company> = Optional.empty()
 
     fun findAll(): List<Company> = companyService.findAll()
 

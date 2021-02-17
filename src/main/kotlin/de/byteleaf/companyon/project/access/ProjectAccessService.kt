@@ -8,6 +8,7 @@ import de.byteleaf.companyon.project.logic.ProjectService
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class ProjectAccessService {
@@ -17,7 +18,7 @@ class ProjectAccessService {
 
     fun get(id: String): Project = projectService.get(id)
 
-    fun getWithoutError(id: String?): Project? = projectService.getWithoutError(id)
+    fun getNullable(id: String?): Optional<Project> = projectService.getNullable(id)
 
     fun findAll(companies: Collection<String>?): List<Project> = projectService.findAll(companies)
 

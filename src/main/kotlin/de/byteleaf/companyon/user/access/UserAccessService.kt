@@ -9,6 +9,7 @@ import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class UserAccessService {
@@ -23,7 +24,7 @@ class UserAccessService {
     fun get(id: String): User = userService.get(id)
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #id)")
-    fun getWithoutError(id: String?): User? = userService.getWithoutError(id)
+    fun getNullable(id: String?): Optional<User> = userService.getNullable(id)
 
     @IsAdmin
     fun create(input: UserInput): User = userService.create(input)

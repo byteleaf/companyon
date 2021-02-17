@@ -6,6 +6,7 @@ import de.byteleaf.companyon.user.dto.User
 import graphql.kickstart.tools.GraphQLResolver
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
+import java.util.*
 
 @Controller
 class TimeLogUserFieldResolver : GraphQLResolver<TimeLog> {
@@ -13,5 +14,5 @@ class TimeLogUserFieldResolver : GraphQLResolver<TimeLog> {
     @Autowired
     private lateinit var userAccessService: UserAccessService
 
-    fun getUser(timeLog: TimeLog): User? = userAccessService.getWithoutError(timeLog.user)
+    fun getUser(timeLog: TimeLog): Optional<User> = userAccessService.getNullable(timeLog.user)
 }

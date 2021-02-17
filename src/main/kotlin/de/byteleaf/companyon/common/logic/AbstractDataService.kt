@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.data.mongodb.repository.MongoRepository
+import java.util.*
 
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
 abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepository<E, String>> {
@@ -55,8 +56,8 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     fun get(id: String): O = repository.findById(id).map { entityToOutput(it) }
         .orElseThrow { EntityNotFoundException(id, getEntityType()) }
 
-    fun getWithoutError(id: String?): O? =
-        if (id != null) repository.findById(id).map { entityToOutput(it) }.orElse(null) else null
+    fun getNullable(id: String?): Optional<O> =
+        if (id != null) repository.findById(id).map { entityToOutput(it) } else Optional.empty()
 
     fun delete(id: String): O {
         val dto = get(id)
