@@ -56,8 +56,7 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     fun get(id: String): O = repository.findById(id).map { entityToOutput(it) }
         .orElseThrow { EntityNotFoundException(id, getEntityType()) }
 
-    fun getNullable(id: String?): Optional<O> =
-        if (id != null) repository.findById(id).map { entityToOutput(it) } else Optional.empty()
+    fun getNullable(id: String?): Optional<O> = if (id != null) repository.findById(id).map { entityToOutput(it) } else Optional.empty()
 
     fun delete(id: String): O {
         val dto = get(id)

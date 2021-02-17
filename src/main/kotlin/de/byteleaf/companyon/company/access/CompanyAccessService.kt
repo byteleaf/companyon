@@ -17,7 +17,7 @@ class CompanyAccessService {
 
     fun get(id: String, skipError: Boolean = false): Company = companyService.get(id)
 
-    fun getNullable(id: String?): Optional<Company> = Optional.empty()
+    fun getNullable(id: String?): Optional<Company> = companyService.getNullable(id)
 
     fun findAll(): List<Company> = companyService.findAll()
 
