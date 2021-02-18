@@ -1,11 +1,6 @@
-enum EntityUpdateType {
-    DELETED,
-    UPDATED,
-    CREATED
-}
-
 type Subscription {
     companyUpdate: CompanyUpdate!,
     projectUpdate: ProjectUpdate!
     userUpdate: UserUpdate!
+    timeLogUpdate: TimeLogUpdate!
 }

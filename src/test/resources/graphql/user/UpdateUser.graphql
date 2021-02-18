@@ -3,7 +3,6 @@ mutation UpdateUser($id: ID!, $input: UserInput!) {
         id,
         firstName,
         lastName,
-        email,
-        admin
+        email
     }
 }

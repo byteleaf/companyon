@@ -9,6 +9,7 @@ class OAuth2AuthenticationToken private constructor(
     private val principal: User,
     authorities: Collection<GrantedAuthority>?
 ) : AbstractAuthenticationToken(authorities) {
+
     override fun getCredentials(): Any {
         return Any()
     }
@@ -18,7 +19,6 @@ class OAuth2AuthenticationToken private constructor(
     }
 
     companion object {
-        // TODO remove details ??
         internal fun create(user: User, details: Any?): OAuth2AuthenticationToken {
             val result = OAuth2AuthenticationToken(user, user.getRoles())
             result.isAuthenticated = true

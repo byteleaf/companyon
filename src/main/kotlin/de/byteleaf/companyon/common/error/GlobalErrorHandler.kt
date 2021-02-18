@@ -12,21 +12,8 @@ import org.springframework.security.access.AccessDeniedException
 @Component
 class GlobalErrorHandler {
 
-    @ExceptionHandler(value = [AbstractException::class, FatalException::class])
+    @ExceptionHandler(value = [AbstractException::class])
     fun entityNotFound(ex: AbstractException, errorContext: ErrorContext): List<GraphQLError> {
         return listOf(ex.getGraphQLError(errorContext))
-    }
-
-    @ExceptionHandler(value = [AccessDeniedException::class])
-    fun accessDenied(ex: AccessDeniedException, errorContext: ErrorContext): List<GraphQLError> {
-        val extensions = mutableMapOf<String, Any>(Pair("code", ErrorCode.ACCESS_DENIED_NO_ADMIN.name),
-        Pair("message", ex.message!!));
-        return listOf(GraphqlErrorBuilder.newError()
-            .message(ex.message)
-            .extensions(extensions)
-            .errorType(errorContext.errorType)
-            .locations(errorContext.locations)
-            .path(errorContext.path)
-            .build())
     }
 }

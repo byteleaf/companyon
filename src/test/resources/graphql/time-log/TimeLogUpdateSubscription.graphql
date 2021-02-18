@@ -1,0 +1,12 @@
+subscription {
+    timeLogUpdate {
+        type,
+        entity {
+            id,
+            beakInMinutes,
+            user {
+                firstName
+            }
+        }
+    }
+}

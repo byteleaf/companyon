@@ -2,6 +2,7 @@ package de.byteleaf.companyon.common.error.exception
 
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
+import de.byteleaf.companyon.common.error.ErrorExtensionKey
 import graphql.GraphQLError
 import graphql.kickstart.spring.error.ErrorContext
 
@@ -9,6 +10,6 @@ class EntityNotFoundException(val id: String, val entityType: EntityType) : Abst
         "Entity with id $id and type ${entityType.name} could not be found.") {
 
     override fun getGraphQLError(errorContext: ErrorContext): GraphQLError = getGraphQLBaseError(errorContext, mutableMapOf(
-            Pair("entityId", id), Pair("entityType", entityType.name)
+            Pair(ErrorExtensionKey.ENTITY_ID, id), Pair(ErrorExtensionKey.ENTITY_TYPE, entityType.name)
     ))
 }

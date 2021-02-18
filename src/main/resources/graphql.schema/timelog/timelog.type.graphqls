@@ -1,0 +1,9 @@
+type TimeLog {
+    id: ID!,
+    user: User,
+    project: Project,
+    description: String,
+    start: OffsetDateTime!,
+    durationInMinutes: Int!,
+    beakInMinutes: Int
+}

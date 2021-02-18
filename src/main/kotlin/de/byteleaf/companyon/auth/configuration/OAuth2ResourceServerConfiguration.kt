@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Profile("!non-sec")
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 class OAuth2ResourceServerConfiguration : WebSecurityConfigurerAdapter() {
 
     @Autowired

@@ -3,7 +3,7 @@ package de.byteleaf.companyon.project.boundary
 import de.byteleaf.companyon.project.access.ProjectAccessService
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
-import de.byteleaf.companyon.project.dto.input.ProjectInput
+import de.byteleaf.companyon.project.dto.ProjectInput
 import graphql.kickstart.tools.GraphQLMutationResolver
 import graphql.kickstart.tools.GraphQLQueryResolver
 import graphql.kickstart.tools.GraphQLSubscriptionResolver

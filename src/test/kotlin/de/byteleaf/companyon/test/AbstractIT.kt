@@ -36,20 +36,31 @@ abstract class AbstractIT(val gqlFolder: String) {
     protected fun performGQLByIdAndInput(
         gqlOperation: String,
         id: String,
-        inputPayload: String,
+        input: Map<String, Any>,
         skipValidation: Boolean = false
     ): GraphQLResponse =
-        performGQL(gqlOperation, "{ \"input\": $inputPayload, \"id\": \"$id\" }", skipValidation)
+        performGQL(
+            gqlOperation,
+            "{ \"input\": ${objectMapper.writeValueAsString(input)}, \"id\": \"$id\" }",
+            skipValidation
+        )
 
     protected fun performGQLByInput(
         gqlOperation: String,
-        inputPayload: String,
+        input: Map<String, Any>,
         skipValidation: Boolean = false
     ): GraphQLResponse =
-        performGQL(gqlOperation, "{ \"input\": $inputPayload }", skipValidation)
+        performGQL(gqlOperation, "{ \"input\":  ${objectMapper.writeValueAsString(input)} }", skipValidation)
 
     protected fun performGQLById(gqlOperation: String, id: String, skipValidation: Boolean = false): GraphQLResponse =
         performGQL(gqlOperation, "{ \"id\": \"$id\" }", skipValidation)
+
+
+    protected fun performGQL(
+        gqlOperation: String,
+        variables: Map<String, Any>,
+        skipValidation: Boolean = false
+    ): GraphQLResponse = performGQL(gqlOperation, objectMapper.writeValueAsString(variables), skipValidation)
 
 
     protected fun performGQL(
@@ -78,7 +89,7 @@ abstract class AbstractIT(val gqlFolder: String) {
      * If the [gqlOperation] contains no slash the default folder will be appended
      */
     protected fun getGQLResource(gqlOperation: String): String {
-        if(!gqlOperation.contains("/")) {
+        if (!gqlOperation.contains("/")) {
             return "graphql/$gqlFolder/$gqlOperation.graphql"
         }
         return "graphql/$gqlOperation.graphql"

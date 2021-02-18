@@ -2,7 +2,7 @@ package de.byteleaf.companyon
 
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.logic.CompanyService
-import de.byteleaf.companyon.project.dto.input.ProjectInput
+import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
@@ -53,6 +53,5 @@ class SampleData : ApplicationRunner {
         userService.create(UserInput("Stefan", "Sauterleute", "stefan.sauterleute@byteleaf.de", true))
 
     }
-
 
 }
