@@ -1,6 +1,5 @@
 package de.byteleaf.companyon.common.logic
 
-import de.byteleaf.companyon.auth.logic.SecurityContextService
 import de.byteleaf.companyon.common.dto.BaseDTO
 import de.byteleaf.companyon.common.dto.BaseUpdateDTO
 import de.byteleaf.companyon.common.dto.EntityUpdateType
@@ -12,7 +11,6 @@ import io.reactivex.rxjava3.core.Emitter
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observables.ConnectableObservable
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.event.EventListener
 import org.springframework.data.mongodb.repository.MongoRepository
 
@@ -22,9 +20,6 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
     private val POSITION_ENTITY_UPDATED_DTO = 2
     private var eventEmitter: Emitter<U>? = null
     private var eventPublisher: Flowable<U>
-
-    @Autowired
-    private lateinit var securityContextService: SecurityContextService
 
     init {
         @Suppress("UNCHECKED_CAST")
@@ -41,7 +36,6 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
     @EventListener
     fun onEntityEvent(event: EntityEvent<*>) {
         if (event.entityType === getEntityType()) {
-           // val t = securityContextService.getCurrentUser()
             val updatedEntity = GenericSupportUtil.createInstanceFromGeneric<U>(this, POSITION_ENTITY_UPDATED_DTO)
             @Suppress("UNCHECKED_CAST")
             updatedEntity.entity = event.entity as O
