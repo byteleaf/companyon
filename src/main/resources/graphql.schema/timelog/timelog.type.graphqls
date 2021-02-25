@@ -5,5 +5,5 @@ type TimeLog {
     description: String,
     start: OffsetDateTime!,
     durationInMinutes: Int!,
-    beakInMinutes: Int
+    breakInMinutes: Int
 }

@@ -72,14 +72,14 @@ class TimeLogIT : AbstractIT("time-log") {
         val projectUpdated = performGQLSubscription("TimeLogUpdateSubscription", { createTimeLog() })
             .get("$.data.timeLogUpdate", TimeLogUpdateGQLResponse::class.java)
         Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
-        Assertions.assertThat(projectUpdated.entity.beakInMinutes).isEqualTo(15)
+        Assertions.assertThat(projectUpdated.entity.breakInMinutes).isEqualTo(15)
         Assertions.assertThat(projectUpdated.entity.user!!.firstName).isEqualTo("Jeff")
     }
 
 
     private fun createTimeLog() = performGQLByInput("CreateTimeLog", mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
         Pair("user", NonSecConfiguration.NON_SEC_USER_ID),
-        Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("beakInMinutes", 15)))
+        Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("breakInMinutes", 15)))
         .get("$.data.createTimeLog", targetClass)
 
     private fun seedTestTimeLogs() {

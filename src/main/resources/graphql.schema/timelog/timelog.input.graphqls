@@ -4,5 +4,5 @@ input TimeLogInput {
     start: OffsetDateTime!,
     description: String,
     durationInMinutes: Int!,
-    beakInMinutes: Int
+    breakInMinutes: Int
 }

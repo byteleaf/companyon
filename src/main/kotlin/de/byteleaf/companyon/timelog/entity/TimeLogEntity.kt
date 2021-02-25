@@ -13,5 +13,5 @@ class TimeLogEntity(
     val start: OffsetDateTime,
     val description: String?,
     val durationInMinutes: Int,
-    val beakInMinutes: Int
+    val breakInMinutes: Int
 ): BaseEntity()
