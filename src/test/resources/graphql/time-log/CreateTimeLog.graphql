@@ -9,7 +9,7 @@ mutation CreateTimeLog($input: TimeLogInput!) {
         user {
             firstName
         },
-        beakInMinutes,
+        breakInMinutes,
         durationInMinutes
     }
 }
