@@ -1,11 +1,12 @@
 package de.byteleaf.companyon.user
 
-import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
-import de.byteleaf.companyon.user.logic.UserService
+import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.user.dto.User
+import de.byteleaf.companyon.user.dto.UserGQLResponse
 import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,10 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.TestPropertySource
 
 
-@TestPropertySource(properties = arrayOf("app.non-sec-user-admin=true"))
+@TestPropertySource(properties = ["app.non-sec-user-admin=true"])
 class UserIT : AbstractIT("user") {
 
-    private val targetClass = User::class.java
+    private val targetClass = UserGQLResponse::class.java
 
     @Autowired
     protected lateinit var userService: UserService
@@ -51,14 +52,15 @@ class UserIT : AbstractIT("user") {
     @Test
     fun updateUser() {
         val user = seedTestUser()
-        val updatedEntity = performGQLByIdAndInput("UpdateUser", user.id!!, "{ \"email\": \"jeff@byteleaf.de\", \"firstName\": \"a\", \"lastName\": \"b\" }")
+        val updatedEntity = performGQLByIdAndInput("UpdateUser", user.id!!,
+            mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b")))
             .get("$.data.updateUser", targetClass)
         Assertions.assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun createUser() {
-        val createdEntity = performGQLByInput("CreateUser", "{ \"email\": \"jeff@byteleaf.de\", \"firstName\": \"a\", \"lastName\": \"b\" }")
+        val createdEntity = performGQLByInput("CreateUser", mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b")))
             .get("$.data.createUser",targetClass)
         Assertions.assertThat(createdEntity.email).isEqualTo("jeff@byteleaf.de")
         // Check if really existing

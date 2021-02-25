@@ -11,4 +11,8 @@ type Mutation {
     createUser(input: UserInput!): User!
     updateUser(id: ID!, input: UserInput!): User!
     deleteUser(id: ID!): User!
+    # time log
+    createTimeLog(input: TimeLogInput!): TimeLog!
+    updateTimeLog(id: ID!, input: TimeLogInput!): TimeLog!
+    deleteTimeLog(id: ID!): TimeLog!
 }

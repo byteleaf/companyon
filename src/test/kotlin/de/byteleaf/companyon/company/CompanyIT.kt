@@ -1,19 +1,17 @@
 package de.byteleaf.companyon.company
 
-import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
-import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.company.dto.CompanyUpdate
 import de.byteleaf.companyon.company.dto.input.CompanyInput
-import de.byteleaf.companyon.project.dto.ProjectUpdate
+import de.byteleaf.companyon.company.logic.CompanyService
+import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.dto.ProjectUpdateGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
-import de.byteleaf.companyon.project.dto.input.ProjectInput
+import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.test.util.GQLErrorUtil
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -46,7 +44,7 @@ class CompanyIT : AbstractIT("company") {
 
     @Test
     fun createCompany() {
-        val createdCompany = performGQLByInput("CreateCompany", "{ \"name\": \"A\" }")
+        val createdCompany = performGQLByInput("CreateCompany", mapOf(Pair("name", "A")))
             .get("$.data.createCompany", targetClass)
         assertThat(createdCompany.name).isEqualTo("A")
         // Check if really existing
@@ -78,7 +76,7 @@ class CompanyIT : AbstractIT("company") {
     @Test
     fun updateCompany() {
         val company = seedTestCompany()
-        val response = performGQLByIdAndInput("UpdateCompany", company.id!!, "{ \"name\": \"New name\"}")
+        val response = performGQLByIdAndInput("UpdateCompany", company.id!!, mapOf(Pair("name", "New name")))
         val updatedCompany = response.get("$.data.updateCompany", targetClass)
         assertThat(updatedCompany.name).isEqualTo("New name")
     }

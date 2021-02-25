@@ -1,9 +1,14 @@
 type Query {
+    # company
     company(id: ID!): Company!
     companies: [Company!]!
+    # project
     project(id: ID!): Project!
     projects(companies: [ID!]): [Project!]!
+    # user
     user(id: ID!): User!
     users: [User!]!
     currentUser: User!
+    # time log
+    timeLogs(from: OffsetDateTime, to: OffsetDateTime, userId: String, projectId: String): [TimeLog!]!
 }

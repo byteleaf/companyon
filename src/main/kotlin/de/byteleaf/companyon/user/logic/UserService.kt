@@ -48,4 +48,6 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
         applicationEventPublisher.publishEvent(EntityCreatedEvent(getEntityType(), dto))
         return dto
     }
+
+    fun deleteAll(vararg excludedIds: String) = repository.deleteAllByIdNotIn(excludedIds.asList())
 }

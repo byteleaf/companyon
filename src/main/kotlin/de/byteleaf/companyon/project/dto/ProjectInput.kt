@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.project.dto.input
+package de.byteleaf.companyon.project.dto
 
 import de.byteleaf.companyon.project.entity.ProjectState
 

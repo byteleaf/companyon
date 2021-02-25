@@ -1,0 +1,6 @@
+mutation UpdateTimeLog($id: ID!, $input: TimeLogInput!) {
+    updateTimeLog(id: $id, input: $input) {
+        id,
+        durationInMinutes
+    }
+}
