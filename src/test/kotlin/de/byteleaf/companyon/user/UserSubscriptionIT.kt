@@ -11,14 +11,17 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Import
+import org.springframework.context.annotation.PropertySource
+import org.springframework.test.context.TestPropertySource
 
+// TODO gql supscriptionIT
+@TestPropertySource(properties = ["app.non-sec-user-admin=true"])
 @Import(SecurityContextServiceMock::class)
 class UserSubscriptionIT : AbstractIT("user") {
 
     @Autowired
     protected lateinit var userService: UserService
 
-    // TODO
     @Test
     fun updatedSubscription() {
         val user = seedTestUser()
