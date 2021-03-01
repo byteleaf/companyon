@@ -1,5 +1,7 @@
 package de.byteleaf.companyon.common.logic
 
+import de.byteleaf.companyon.auth.permission.PermissionHandler
+import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.common.dto.BaseDTO
 import de.byteleaf.companyon.common.dto.BaseUpdateDTO
 import de.byteleaf.companyon.common.dto.EntityUpdateType
@@ -11,6 +13,7 @@ import io.reactivex.rxjava3.core.Emitter
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observables.ConnectableObservable
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.event.EventListener
 import org.springframework.data.mongodb.repository.MongoRepository
 
@@ -20,6 +23,8 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
     private val POSITION_ENTITY_UPDATED_DTO = 2
     private var eventEmitter: Emitter<U>? = null
     private var eventPublisher: Flowable<U>
+    @Autowired
+    private lateinit var permissionHandler: PermissionHandler
 
     init {
         @Suppress("UNCHECKED_CAST")
@@ -29,8 +34,10 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
         eventPublisher = connectableObservable.toFlowable(BackpressureStrategy.MISSING)
     }
 
-    fun getPublisher(): Flowable<U> {
-        return eventPublisher
+    fun getPublisher(vararg permissions: Pair<PermissionType, String?>): Flowable<U> {
+        return eventPublisher.filter {
+            permissionHandler.hasPermissions(permissions)
+        }
     }
 
     @EventListener

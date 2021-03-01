@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.TestPropertySource
 
-
 @TestPropertySource(properties = ["app.non-sec-user-admin=true"])
 class UserIT : AbstractIT("user") {
 
@@ -70,6 +69,8 @@ class UserIT : AbstractIT("user") {
 
     @Test
     fun updatedSubscription() {
+        // TODO
+
         val user = seedTestUser()
         val projectUpdated = performGQLSubscription("UserUpdateSubscription", { userService.update(user.id!!, UserInput("a", "b", "c", false)) }
         ).get("$.data.userUpdate", UserUpdate::class.java)

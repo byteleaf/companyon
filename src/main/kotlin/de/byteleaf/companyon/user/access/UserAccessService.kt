@@ -41,7 +41,6 @@ class UserAccessService {
 
     // TODO try to subscribe without login -> anthony test?
     fun getPublisher(): Publisher<UserUpdate> = userService.getPublisher().filter {
-        // TODO check if working
         currentUserOrAdminPermission.hasPermission(it.entity!!.id)
     }
 }
