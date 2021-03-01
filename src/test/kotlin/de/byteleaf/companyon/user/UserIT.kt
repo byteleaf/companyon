@@ -1,10 +1,8 @@
 package de.byteleaf.companyon.user
 
-import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserGQLResponse
-import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions
@@ -65,17 +63,6 @@ class UserIT : AbstractIT("user") {
         // Check if really existing
         val getResponse = performGQLById("GetUser", createdEntity.id!!).get("$.data.user", targetClass)
         Assertions.assertThat(getResponse.firstName).isEqualTo("a")
-    }
-
-    @Test
-    fun updatedSubscription() {
-        // TODO
-
-        val user = seedTestUser()
-        val projectUpdated = performGQLSubscription("UserUpdateSubscription", { userService.update(user.id!!, UserInput("a", "b", "c", false)) }
-        ).get("$.data.userUpdate", UserUpdate::class.java)
-        Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.UPDATED)
-        Assertions.assertThat(projectUpdated.entity!!.lastName).isEqualTo("b")
     }
 
     private fun seedTestUser(): User =

@@ -11,7 +11,7 @@ class AdminPermissionTest : AbstractAuthenticatedTest() {
 
     @Test
     fun hasPermissionSuccess() {
-        setSecurityContext(true)
+        securityContextMock.set(true)
         assertTrue(permissionHandler.hasPermission(PermissionType.ADMIN))
     }
 

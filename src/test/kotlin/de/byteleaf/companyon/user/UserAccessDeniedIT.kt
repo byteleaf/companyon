@@ -1,11 +1,10 @@
 package de.byteleaf.companyon.user
 
 import de.byteleaf.companyon.auth.permission.PermissionType
-import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.test.util.GQLErrorUtil
-import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.logic.UserService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

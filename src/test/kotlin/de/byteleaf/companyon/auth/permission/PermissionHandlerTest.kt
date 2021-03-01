@@ -18,28 +18,28 @@ class PermissionHandlerTest : AbstractAuthenticatedTest() {
 
     @Test
     fun emptyPermissionList() {
-        assertTrue(permissionHandler.hasPermissions(emptyArray()))
+        assertTrue(permissionHandler.hasPermissions(emptyList()))
     }
 
     @Test
     fun onePermissionSuccess() {
-        setSecurityContext(true)
-        assertTrue(permissionHandler.hasPermissions(arrayOf(Pair(PermissionType.ADMIN, null))))
+        securityContextMock.set(true)
+        assertTrue(permissionHandler.hasPermissions(listOf(Pair(PermissionType.ADMIN, null))))
     }
 
     @Test
     fun onePermissionFail() {
-        assertFalse(permissionHandler.hasPermissions(arrayOf(Pair(PermissionType.ADMIN, null))))
+        assertFalse(permissionHandler.hasPermissions(listOf(Pair(PermissionType.ADMIN, null))))
     }
 
     @Test
     fun twoPermissionSuccess() {
-        setSecurityContext(true)
-        assertTrue(permissionHandler.hasPermissions(arrayOf(Pair(PermissionType.ADMIN, null), Pair(PermissionType.CURRENT_USER_OR_ADMIN, null))))
+        securityContextMock.set(true)
+        assertTrue(permissionHandler.hasPermissions(listOf(Pair(PermissionType.ADMIN, null), Pair(PermissionType.CURRENT_USER_OR_ADMIN, null))))
     }
 
     @Test
     fun oneSuccessOneFail() {
-        assertFalse(permissionHandler.hasPermissions(arrayOf(Pair(PermissionType.ADMIN, null), Pair(PermissionType.CURRENT_USER_OR_ADMIN, NonSecConfiguration.NON_SEC_USER_ID))))
+        assertFalse(permissionHandler.hasPermissions(listOf(Pair(PermissionType.ADMIN, null), Pair(PermissionType.CURRENT_USER_OR_ADMIN, NonSecConfiguration.NON_SEC_USER_ID))))
     }
 }

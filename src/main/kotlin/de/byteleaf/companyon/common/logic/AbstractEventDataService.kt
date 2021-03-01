@@ -34,9 +34,10 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
         eventPublisher = connectableObservable.toFlowable(BackpressureStrategy.MISSING)
     }
 
-    fun getPublisher(vararg permissions: Pair<PermissionType, String?>): Flowable<U> {
-        return eventPublisher.filter {
-            permissionHandler.hasPermissions(permissions)
+    fun getPublisher(vararg permissions: PermissionType): Flowable<U> {
+        return eventPublisher.filter { event ->
+            val mappings = permissions.map { Pair(it, event.entity?.id) }
+            permissionHandler.hasPermissions(mappings)
         }
     }
 

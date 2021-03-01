@@ -11,7 +11,7 @@ internal class CurrentUserOrAdminPermissionTest : AbstractAuthenticatedTest() {
 
     @Test
     fun adminAllUsers() {
-        setSecurityContext(true)
+        securityContextMock.set(true)
         assertTrue(permissionHandler.hasPermission(PermissionType.CURRENT_USER_OR_ADMIN))
     }
 
@@ -32,7 +32,7 @@ internal class CurrentUserOrAdminPermissionTest : AbstractAuthenticatedTest() {
 
     @Test
     fun adminNotCurrentUser() {
-        setSecurityContext(true)
+        securityContextMock.set(true)
         assertTrue(permissionHandler.hasPermission(PermissionType.CURRENT_USER_OR_ADMIN, "123"))
     }
 }

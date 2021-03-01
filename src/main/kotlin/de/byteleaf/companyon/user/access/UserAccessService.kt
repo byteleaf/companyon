@@ -1,7 +1,7 @@
 package de.byteleaf.companyon.user.access
 
 import de.byteleaf.companyon.auth.annotation.IsAdmin
-import de.byteleaf.companyon.auth.permission.handler.CurrentUserOrAdminPermission
+import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
@@ -17,9 +17,6 @@ class UserAccessService {
 
     @Autowired
     private lateinit var userService: UserService
-
-    @Autowired
-    private lateinit var currentUserOrAdminPermission: CurrentUserOrAdminPermission
 
     @IsAdmin
     fun findAll(): List<User> = userService.findAll()
@@ -39,8 +36,5 @@ class UserAccessService {
     @IsAdmin
     fun delete(id: String): User = userService.delete(id)
 
-    // TODO try to subscribe without login -> anthony test?
-    fun getPublisher(): Publisher<UserUpdate> = userService.getPublisher().filter {
-        currentUserOrAdminPermission.hasPermission(it.entity!!.id)
-    }
+    fun getPublisher(): Publisher<UserUpdate> = userService.getPublisher(PermissionType.CURRENT_USER_OR_ADMIN)
 }

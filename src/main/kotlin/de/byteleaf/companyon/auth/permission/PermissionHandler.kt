@@ -17,11 +17,11 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
         permissions.forEach { permissionHandler -> permissionHandlers.put(permissionHandler.getPermissionType(),  permissionHandler) }
     }
 
-    fun hasPermissions(permissions: Array<out Pair<PermissionType, String?>> = emptyArray(), skipError: Boolean = false): Boolean {
+    fun hasPermissions(permissions: List<Pair<PermissionType, String?>>? = emptyList(), skipError: Boolean = false): Boolean {
         // Make sure the user is really logged in, if not an IllegalState exception will be thrown!
         securityContextService.getCurrentUser()
 
-        if(permissions.isEmpty()) return true
+        if(permissions.isNullOrEmpty()) return true
 
         return !permissions.any {
             !hasPermission(it.first, it.second, true)

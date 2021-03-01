@@ -11,13 +11,15 @@ import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.dto.ProjectUpdateGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT
+import de.byteleaf.companyon.test.mock.SecurityContextMock
 import de.byteleaf.companyon.test.util.GQLErrorUtil
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Import
 
-
+@Import(SecurityContextMock::class)
 class CompanyIT : AbstractIT("company") {
 
     private val targetClass = Company::class.java
@@ -27,6 +29,9 @@ class CompanyIT : AbstractIT("company") {
 
     @Autowired
     protected lateinit var projectService: ProjectService
+
+    @Autowired
+    protected lateinit var securityContextMock: SecurityContextMock
 
     @BeforeEach
     fun init() {
@@ -66,6 +71,7 @@ class CompanyIT : AbstractIT("company") {
 
     @Test
     fun deleteCompanyTestProjectSubscription() {
+        securityContextMock.set()
         val company = seedTestCompany()
         val projectUpdated = performGQLSubscription("project/ProjectUpdateSubscription", { companyService.delete(company.id!!) })
                 .get("$.data.projectUpdate", ProjectUpdateGQLResponse::class.java)
