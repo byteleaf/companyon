@@ -4,7 +4,10 @@ import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.logic.CompanyService
-import de.byteleaf.companyon.project.dto.*
+import de.byteleaf.companyon.project.dto.Project
+import de.byteleaf.companyon.project.dto.ProjectInput
+import de.byteleaf.companyon.project.dto.TimeLogGQLResponse
+import de.byteleaf.companyon.project.dto.TimeLogUpdateGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.timelog.logic.TimeLogService

@@ -72,17 +72,24 @@ abstract class AbstractIT(val gqlFolder: String) {
         return if (skipValidation) response else GQLErrorUtil.validateResponse(response)
     }
 
-    protected fun performGQLSubscription(
-        gqlOperation: String,
-        eventFunc: () -> Unit,
-        payload: String? = null,
-        skipValidation: Boolean = false
-    ): GraphQLResponse {
+    protected fun performGQLSubscription(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null, skipValidation: Boolean = false): GraphQLResponse {
         graphQLTestSubscription.reset()
-        val firstResponse = graphQLTestSubscription.start(getGQLResource(gqlOperation))
-        Executors.newScheduledThreadPool(1).schedule(eventFunc, 100, TimeUnit.MILLISECONDS)
-        val secondResponse = firstResponse.awaitAndGetNextResponse(5000, true)
-        return if (skipValidation) secondResponse else GQLErrorUtil.validateResponse(secondResponse)
+        val subscription = startGQLSubscription(gqlOperation, eventFunc, payload)
+        val response = subscription.awaitAndGetNextResponse(1000, true)
+        return if (skipValidation) response else GQLErrorUtil.validateResponse(response)
+    }
+
+    protected fun performGQLSubscriptionNoResponse(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null) {
+        val subscription = startGQLSubscription(gqlOperation, eventFunc, payload)
+        subscription.waitAndExpectNoResponse(1000)
+    }
+
+    protected fun startGQLSubscription(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null): GraphQLTestSubscription {
+        graphQLTestSubscription.reset()
+        val subscription = graphQLTestSubscription.start(getGQLResource(gqlOperation))
+        // delay should not be to short (20 was too less !!!)
+        Executors.newScheduledThreadPool(1).schedule(eventFunc, 200, TimeUnit.MILLISECONDS)
+        return subscription
     }
 
     /**

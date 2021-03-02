@@ -1,10 +1,10 @@
 package de.byteleaf.companyon.test
 
+import de.byteleaf.companyon.test.mock.SecurityContextMock
 import de.byteleaf.companyon.auth.logic.SecurityContextService
 import de.byteleaf.companyon.auth.permission.PermissionHandler
 import de.byteleaf.companyon.auth.permission.handler.AdminPermission
 import de.byteleaf.companyon.auth.permission.handler.CurrentUserOrAdminPermission
-import de.byteleaf.companyon.test.mock.SecurityContextMock
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
  * Base class for all unittests which require a user, authentication and permission context!
  */
 @Import(PermissionHandler::class, AdminPermission::class, CurrentUserOrAdminPermission::class, SecurityContextService::class, SecurityContextMock::class)
-@ActiveProfiles(profiles = ["test"])
+@ActiveProfiles(profiles = ["non-sec", "test"])
 @ExtendWith(SpringExtension::class)
 @PropertySource("classpath:/application-test.properties")
 abstract class AbstractAuthenticatedTest {

@@ -3,15 +3,15 @@ package de.byteleaf.companyon.test.mock
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.auth.oauth.OAuth2AuthenticationToken
 import de.byteleaf.companyon.user.dto.User
+import de.byteleaf.companyon.user.entity.UserEntity
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.Profile
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
+@Profile("non-sec")
 @Component
 class SecurityContextMock {
-
-    @Value("\${app.non-sec-user-oauth2-subject}")
-    private lateinit var nonSecUserOAuth2Subject: String
 
     @Value("\${app.non-sec-user-admin}")
     private var nonSecUserAdmin: Boolean = false
@@ -23,7 +23,7 @@ class SecurityContextMock {
     }
 
     fun getUser(isAdmin: Boolean = nonSecUserAdmin): User {
-        val user = User(nonSecUserOAuth2Subject, "Jeff", "Bytezos", "jeff@byteleaf.de", isAdmin, null, null)
+        val user = User(NonSecConfiguration.NON_SEC_OAUTH_SUBJECT, NonSecConfiguration.NON_SEC_FIRST_NAME, NonSecConfiguration.NON_SEC_LAST_NAME, NonSecConfiguration.NON_SEC_EMAIL, isAdmin, null, null)
         user.id = NonSecConfiguration.NON_SEC_USER_ID
         return user
     }
