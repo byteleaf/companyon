@@ -24,6 +24,6 @@ class AbstractTimeLogSubscription : AbstractIT("time-log") {
 
     protected fun createTimeLog(userId: String = NonSecConfiguration.NON_SEC_USER_ID) = performGQLByInput("CreateTimeLog", mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
         Pair("user", userId),
-        Pair("project", "55645"), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("beakInMinutes", 15)))
+        Pair("project", "55645"), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("breakInMinutes", 15)))
         .get("$.data.createTimeLog", TimeLogGQLResponse::class.java)
 }

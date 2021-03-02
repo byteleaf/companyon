@@ -35,7 +35,6 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
 
     fun getPublisher(filter: ((permissionHandler: PermissionHandler, event: U) -> Boolean)? = null): Flowable<U> {
         return eventPublisher.filter { event ->
-            val a = permissionHandler.hasPermissions()
             // Make sure the user is authenticated & evaluate custom permissions if present
             permissionHandler.hasPermissions() && filter?.invoke(permissionHandler, event) ?: true
         }
