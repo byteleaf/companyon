@@ -4,11 +4,9 @@ import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.auth.oauth.OAuth2AuthenticationToken
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.annotation.Profile
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
-@Profile("non-sec")
 @Component
 class SecurityContextMock {
 

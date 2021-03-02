@@ -6,7 +6,7 @@ import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.dto.TimeLogGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
-import de.byteleaf.companyon.test.AbstractIT
+import de.byteleaf.companyon.test.AbstractQueryMutationIT
 import de.byteleaf.companyon.test.util.DateTimeUtil
 import de.byteleaf.companyon.timelog.dto.TimeLogInput
 import de.byteleaf.companyon.timelog.logic.TimeLogService
@@ -20,16 +20,19 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.TestPropertySource
 
 @TestPropertySource(properties = ["app.non-sec-user-admin=true"])
-class GetTimeLogsIT : AbstractIT("time-log") {
+class GetTimeLogsIT : AbstractQueryMutationIT("time-log") {
 
     private val targetClass = TimeLogGQLResponse::class.java
 
     @Autowired
     private lateinit var timeLogService: TimeLogService
+
     @Autowired
     private lateinit var projectService: ProjectService
+
     @Autowired
     private lateinit var userService: UserService
+
     @Autowired
     private lateinit var companyService: CompanyService
 

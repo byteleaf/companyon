@@ -8,6 +8,7 @@ import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.dto.TimeLogGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT
+import de.byteleaf.companyon.test.AbstractQueryMutationIT
 import de.byteleaf.companyon.timelog.logic.TimeLogService
 import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions
@@ -15,7 +16,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-class TimeLogIT : AbstractIT("time-log") {
+class TimeLogIT : AbstractQueryMutationIT("time-log") {
 
     private val targetClass = TimeLogGQLResponse::class.java
 

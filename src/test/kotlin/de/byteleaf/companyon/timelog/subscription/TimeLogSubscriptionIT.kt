@@ -13,7 +13,6 @@ class TimeLogSubscriptionIT : AbstractTimeLogSubscription() {
             .get("$.data.timeLogUpdate", TimeLogUpdateGQLResponse::class.java)
         Assertions.assertThat(updatedEntity.type).isEqualTo(EntityUpdateType.CREATED)
         Assertions.assertThat(updatedEntity.entity.breakInMinutes).isEqualTo(15)
-        Assertions.assertThat(updatedEntity.entity.user!!.firstName).isEqualTo("Jeff")
     }
 
     @Test

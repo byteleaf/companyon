@@ -1,7 +1,7 @@
 package de.byteleaf.companyon.user.subscription
 
 import de.byteleaf.companyon.common.dto.EntityUpdateType
-import de.byteleaf.companyon.test.AbstractIT
+import de.byteleaf.companyon.test.AbstractSubscriptionIT
 import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.TestPropertySource
 
 @TestPropertySource(properties = ["app.non-sec-user-admin=true"])
-class UserSubscriptionAdminIT : AbstractIT("user") {
+class UserSubscriptionAdminIT : AbstractSubscriptionIT("user") {
 
     @Autowired
     private lateinit var userService: UserService
