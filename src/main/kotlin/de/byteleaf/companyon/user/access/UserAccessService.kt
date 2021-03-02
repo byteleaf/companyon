@@ -36,5 +36,7 @@ class UserAccessService {
     @IsAdmin
     fun delete(id: String): User = userService.delete(id)
 
-    fun getPublisher(): Publisher<UserUpdate> = userService.getPublisher(PermissionType.CURRENT_USER_OR_ADMIN)
+    fun getPublisher(): Publisher<UserUpdate> = userService.getPublisher { permissionHandler, event ->
+        permissionHandler.hasPermission(PermissionType.CURRENT_USER_OR_ADMIN, event.entity!!.id, true)
+    }
 }

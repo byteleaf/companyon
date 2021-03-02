@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.test
+package de.byteleaf.companyon.auth.permission
 
 import de.byteleaf.companyon.test.mock.SecurityContextMock
 import de.byteleaf.companyon.auth.logic.SecurityContextService

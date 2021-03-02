@@ -1,13 +1,11 @@
 package de.byteleaf.companyon.timelog
 
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
-import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.dto.TimeLogGQLResponse
-import de.byteleaf.companyon.project.dto.TimeLogUpdateGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.timelog.logic.TimeLogService
@@ -70,18 +68,8 @@ class TimeLogIT : AbstractIT("time-log") {
         Assertions.assertThat(updatedEntity.durationInMinutes).isEqualTo(37)
     }
 
-    @Test
-    fun updateSubscription() {
-        val projectUpdated = performGQLSubscription("TimeLogUpdateSubscription", { createTimeLog() })
-            .get("$.data.timeLogUpdate", TimeLogUpdateGQLResponse::class.java)
-        Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
-        Assertions.assertThat(projectUpdated.entity.beakInMinutes).isEqualTo(15)
-        Assertions.assertThat(projectUpdated.entity.user!!.firstName).isEqualTo("Jeff")
-    }
-
-
-    private fun createTimeLog() = performGQLByInput("CreateTimeLog", mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
-        Pair("user", NonSecConfiguration.NON_SEC_USER_ID),
+    private fun createTimeLog(userId: String = NonSecConfiguration.NON_SEC_USER_ID) = performGQLByInput("CreateTimeLog", mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
+        Pair("user", userId),
         Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("beakInMinutes", 15)))
         .get("$.data.createTimeLog", targetClass)
 

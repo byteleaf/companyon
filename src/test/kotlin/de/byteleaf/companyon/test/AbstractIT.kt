@@ -87,7 +87,7 @@ abstract class AbstractIT(val gqlFolder: String) {
     protected fun startGQLSubscription(gqlOperation: String, eventFunc: () -> Unit, payload: String? = null): GraphQLTestSubscription {
         graphQLTestSubscription.reset()
         val subscription = graphQLTestSubscription.start(getGQLResource(gqlOperation))
-        // delay should not be to short (20 was too less !!!)
+        // delay should not be to short (20 ms was tooo short !!!)
         Executors.newScheduledThreadPool(1).schedule(eventFunc, 200, TimeUnit.MILLISECONDS)
         return subscription
     }

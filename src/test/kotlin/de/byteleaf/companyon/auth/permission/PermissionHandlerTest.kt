@@ -1,8 +1,6 @@
 package de.byteleaf.companyon.auth.permission
 
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
-import de.byteleaf.companyon.test.mock.SecurityContextMock
-import de.byteleaf.companyon.test.AbstractAuthenticatedTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.security.core.context.SecurityContextHolder

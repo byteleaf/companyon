@@ -2,7 +2,7 @@ package de.byteleaf.companyon.auth.permission.handler
 
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.auth.permission.PermissionType
-import de.byteleaf.companyon.test.AbstractAuthenticatedTest
+import de.byteleaf.companyon.auth.permission.AbstractAuthenticatedTest
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test

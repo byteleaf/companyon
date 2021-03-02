@@ -1,7 +1,6 @@
 package de.byteleaf.companyon.common.logic
 
 import de.byteleaf.companyon.auth.permission.PermissionHandler
-import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.common.dto.BaseDTO
 import de.byteleaf.companyon.common.dto.BaseUpdateDTO
 import de.byteleaf.companyon.common.dto.EntityUpdateType
@@ -34,10 +33,11 @@ abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpd
         eventPublisher = connectableObservable.toFlowable(BackpressureStrategy.MISSING)
     }
 
-    fun getPublisher(vararg permissions: PermissionType): Flowable<U> {
+    fun getPublisher(filter: ((permissionHandler: PermissionHandler, event: U) -> Boolean)? = null): Flowable<U> {
         return eventPublisher.filter { event ->
-            val mappings = permissions.map { Pair(it, event.entity?.id) }
-            permissionHandler.hasPermissions(mappings)
+            val a = permissionHandler.hasPermissions()
+            // Make sure the user is authenticated & evaluate custom permissions if present
+            permissionHandler.hasPermissions() && filter?.invoke(permissionHandler, event) ?: true
         }
     }
 
