@@ -11,5 +11,5 @@ class TimeLogGQLResponse(
     val start: String?,
     val description: String?,
     val durationInMinutes: Int?,
-    val beakInMinutes: Int?
+    val breakInMinutes: Int?
 )

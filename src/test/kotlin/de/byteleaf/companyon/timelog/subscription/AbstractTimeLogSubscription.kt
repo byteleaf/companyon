@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired
 
 class AbstractTimeLogSubscription : AbstractIT("time-log") {
 
-    protected val targetClass = TimeLogGQLResponse::class.java
-
     @Autowired
     private lateinit var timeLogService: TimeLogService
 

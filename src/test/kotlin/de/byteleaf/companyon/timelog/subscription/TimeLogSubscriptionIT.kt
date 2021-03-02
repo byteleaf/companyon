@@ -9,11 +9,11 @@ class TimeLogSubscriptionIT : AbstractTimeLogSubscription() {
 
     @Test
     fun currentUser() {
-        val projectUpdated = performGQLSubscription("TimeLogUpdateSubscription", { createTimeLog() })
+        val updatedEntity = performGQLSubscription("TimeLogUpdateSubscription", { createTimeLog() })
             .get("$.data.timeLogUpdate", TimeLogUpdateGQLResponse::class.java)
-        Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
-        Assertions.assertThat(projectUpdated.entity.beakInMinutes).isEqualTo(15)
-        Assertions.assertThat(projectUpdated.entity.user!!.firstName).isEqualTo("Jeff")
+        Assertions.assertThat(updatedEntity.type).isEqualTo(EntityUpdateType.CREATED)
+        Assertions.assertThat(updatedEntity.entity.breakInMinutes).isEqualTo(15)
+        Assertions.assertThat(updatedEntity.entity.user!!.firstName).isEqualTo("Jeff")
     }
 
     @Test

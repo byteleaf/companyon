@@ -8,5 +8,5 @@ class TimeLogInput(
     val start: OffsetDateTime,
     val durationInMinutes: Int,
     var description: String?,
-    val beakInMinutes: Int = 0
+    val breakInMinutes: Int = 0
 )
