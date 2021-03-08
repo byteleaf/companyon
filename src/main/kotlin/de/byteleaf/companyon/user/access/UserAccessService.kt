@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.user.access
 
 import de.byteleaf.companyon.auth.annotation.IsAdmin
+import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
@@ -35,5 +36,7 @@ class UserAccessService {
     @IsAdmin
     fun delete(id: String): User = userService.delete(id)
 
-    fun getPublisher(): Publisher<UserUpdate> = userService.getPublisher()
+    fun getPublisher(): Publisher<UserUpdate> = userService.getPublisher { permissionHandler, event ->
+        permissionHandler.hasPermission(PermissionType.CURRENT_USER_OR_ADMIN, event.entity!!.id, true)
+    }
 }
