@@ -1,0 +1,4 @@
+type TaskUpdate {
+  type: EntityUpdateType!
+  entity: Task!
+}

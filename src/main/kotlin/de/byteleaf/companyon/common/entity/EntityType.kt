@@ -5,4 +5,5 @@ enum class EntityType {
     PROJECT,
     USER,
     TIME_LOG,
+    TASK,
 }

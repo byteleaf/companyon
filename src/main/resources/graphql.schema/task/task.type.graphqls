@@ -1,0 +1,6 @@
+type Task {
+  id: ID!
+  user: User
+  description: String!
+  status: TaskState!
+}
