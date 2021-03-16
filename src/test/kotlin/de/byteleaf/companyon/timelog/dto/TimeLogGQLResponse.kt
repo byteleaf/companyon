@@ -1,8 +1,6 @@
 package de.byteleaf.companyon.project.dto
 
-import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserGQLResponse
-import java.time.OffsetDateTime
 
 class TimeLogGQLResponse(
     var id: String?,
@@ -11,5 +9,5 @@ class TimeLogGQLResponse(
     val start: String?,
     val description: String?,
     val durationInMinutes: Int?,
-    val beakInMinutes: Int?
+    val breakInMinutes: Int?
 )

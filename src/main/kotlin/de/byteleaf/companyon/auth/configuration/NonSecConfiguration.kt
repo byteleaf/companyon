@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 
-
 @Profile("non-sec")
 @Configuration
 @EnableWebSecurity
@@ -20,6 +19,10 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
 
     companion object {
         const val NON_SEC_USER_ID = "602266b0aa3acc1a0fc4f349"
+        const val NON_SEC_FIRST_NAME = "Jeff"
+        const val NON_SEC_LAST_NAME = "Bytezos"
+        const val NON_SEC_EMAIL = "jeff@byteleaf.de"
+        const val NON_SEC_OAUTH_SUBJECT = "non-sec-user-oauth2-subject"
     }
 
     @Autowired
@@ -28,14 +31,12 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
     @Autowired
     private lateinit var userRepository: UserRepository
 
-    @Value("\${app.non-sec-user-oauth2-subject}")
-    private lateinit var nonSecUserOAuth2Subject: String
-
     @Value("\${app.non-sec-user-admin}")
     private var nonSecUserAdmin: Boolean = false
 
+
     override fun configure(http: HttpSecurity) {
-        val nonSecUser = createNonSecUser()
+        val nonSecUser = createAndPersistNonSecUser()
         http.cors().and().authorizeRequests()
             .antMatchers("/**").permitAll()
             .and().csrf { csrf -> csrf.disable() }
@@ -43,15 +44,15 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
     }
 
     /**
-     * Create the non sec user if it is still no existing
+     * Create the non sec user and persists it, if it is still no existing
      */
-    private fun createNonSecUser(): User {
-        val nonSecUser = userService.findByOAuth2Subject(nonSecUserOAuth2Subject)
+    fun createAndPersistNonSecUser(): User {
+        val nonSecUser = userService.findByOAuth2Subject(NON_SEC_OAUTH_SUBJECT)
         return if (nonSecUser != null) nonSecUser else {
-            val entity = UserEntity(nonSecUserOAuth2Subject, "Jeff", "Bytezos", "jeff@byteleaf.de", nonSecUserAdmin, null, null)
+            val entity = UserEntity(NON_SEC_OAUTH_SUBJECT, NON_SEC_FIRST_NAME, NON_SEC_LAST_NAME, NON_SEC_EMAIL, nonSecUserAdmin, null, null)
             entity.id = NON_SEC_USER_ID
             userRepository.insert(entity)
-            return userService.findByOAuth2Subject(nonSecUserOAuth2Subject)!!
+            return userService.findByOAuth2Subject(NON_SEC_OAUTH_SUBJECT)!!
         }
     }
 }

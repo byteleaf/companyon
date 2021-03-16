@@ -1,18 +1,31 @@
 package de.byteleaf.companyon.auth.permission
 
+import de.byteleaf.companyon.auth.logic.SecurityContextService
 import de.byteleaf.companyon.common.error.exception.FatalException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import java.util.*
 
-
 @Component
 class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
 
     private var permissionHandlers: HashMap<PermissionType, Permission> = HashMap()
+    @Autowired
+    private lateinit var securityContextService: SecurityContextService
 
     init {
         permissions.forEach { permissionHandler -> permissionHandlers.put(permissionHandler.getPermissionType(),  permissionHandler) }
+    }
+
+    fun hasPermissions(permissions: List<Pair<PermissionType, String?>>? = emptyList(), skipError: Boolean = false): Boolean {
+        // Make sure the user is really logged in, if not an IllegalState exception will be thrown!
+        securityContextService.getCurrentUser()
+
+        if(permissions.isNullOrEmpty()) return true
+
+        return !permissions.any {
+            !hasPermission(it.first, it.second, true)
+        }
     }
 
     /**
@@ -26,6 +39,6 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
         val permissionHandler = permissionHandlers[permissionType]
             ?: throw FatalException("No permission handler found for type ${permissionType.name}")
 
-        return permissionHandler.hasPermission(id)
+        return permissionHandler.hasPermission(id, skipError)
     }
 }

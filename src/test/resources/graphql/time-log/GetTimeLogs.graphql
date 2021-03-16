@@ -3,7 +3,7 @@ query GetTimeLogs($from: OffsetDateTime, $to: OffsetDateTime, $userId: String, $
         id
         start,
         description,
-        beakInMinutes,
+        breakInMinutes,
         durationInMinutes
     }
 }

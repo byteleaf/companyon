@@ -1,10 +1,12 @@
 package de.byteleaf.companyon.timelog.access
 
+import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.timelog.dto.TimeLog
 import de.byteleaf.companyon.timelog.dto.TimeLogInput
 import de.byteleaf.companyon.timelog.dto.TimeLogUpdate
 import de.byteleaf.companyon.timelog.logic.TimeLogService
+import de.byteleaf.companyon.user.dto.UserUpdate
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
@@ -39,5 +41,7 @@ class TimeLogAccessService {
     private fun update(id: String, input: TimeLogInput, currentOwnerId: String): TimeLog = timeLogService.update(id, input)
 
 
-    fun getPublisher(): Publisher<TimeLogUpdate> = timeLogService.getPublisher()
+    fun getPublisher(): Publisher<TimeLogUpdate> = timeLogService.getPublisher { permissionHandler, event ->
+        permissionHandler.hasPermission(PermissionType.CURRENT_USER_OR_ADMIN, event.entity!!.user, true)
+    }
 }

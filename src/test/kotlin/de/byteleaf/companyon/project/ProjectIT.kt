@@ -1,19 +1,20 @@
 package de.byteleaf.companyon.project
 
-import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.logic.CompanyService
-import de.byteleaf.companyon.project.dto.*
+import de.byteleaf.companyon.project.dto.Project
+import de.byteleaf.companyon.project.dto.ProjectGQLResponse
+import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.entity.ProjectState
 import de.byteleaf.companyon.project.logic.ProjectService
-import de.byteleaf.companyon.test.AbstractIT
+import de.byteleaf.companyon.test.AbstractQueryMutationIT
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
 
-class ProjectIT : AbstractIT("project") {
+class ProjectIT : AbstractQueryMutationIT("project") {
 
     private val targetClass = ProjectGQLResponse::class.java
 
@@ -94,17 +95,6 @@ class ProjectIT : AbstractIT("project") {
         val response = performGQLByIdAndInput("UpdateProject", project.id!!, mapOf(Pair("name", "New name"), Pair("company", project.company)))
         val updatedCompany = response.get("$.data.updateProject", targetClass)
         Assertions.assertThat(updatedCompany.name).isEqualTo("New name")
-    }
-
-    @Test
-    fun projectUpdatedSubscription() {
-        val companyId = seedTestProjects()[0].company
-        val projectUpdated = performGQLSubscription(
-            "ProjectUpdateSubscription",
-            { projectService.create(ProjectInput("New project", companyId)) })
-            .get("$.data.projectUpdate", ProjectUpdateGQLResponse::class.java)
-        Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
-        Assertions.assertThat(projectUpdated.entity.name).isEqualTo("New project")
     }
 
     private fun seedTestProjects(): List<Project> {

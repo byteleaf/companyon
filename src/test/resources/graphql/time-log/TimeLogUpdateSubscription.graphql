@@ -3,7 +3,7 @@ subscription {
         type,
         entity {
             id,
-            beakInMinutes,
+            breakInMinutes,
             user {
                 firstName
             }

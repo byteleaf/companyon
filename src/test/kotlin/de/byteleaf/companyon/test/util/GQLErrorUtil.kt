@@ -7,6 +7,7 @@ import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.common.error.ErrorExtensionKey
+import de.byteleaf.companyon.test.mock.SecurityContextMock
 import org.assertj.core.api.Assertions
 
 class GQLErrorUtil {
