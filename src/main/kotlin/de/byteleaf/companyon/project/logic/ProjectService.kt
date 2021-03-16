@@ -7,7 +7,7 @@ import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.entity.ProjectEntity
-import de.byteleaf.companyon.project.respository.ProjectRepository
+import de.byteleaf.companyon.project.repository.ProjectRepository
 import org.springframework.stereotype.Service
 import java.util.*
 

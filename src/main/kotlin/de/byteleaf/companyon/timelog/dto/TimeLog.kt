@@ -8,6 +8,7 @@ import java.time.OffsetDateTime
 
 @NoArgConstructor
 class TimeLog(
+    override val id: String,
     val user: String,
     val project: String,
     val start: OffsetDateTime,

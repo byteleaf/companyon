@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.project.respository
+package de.byteleaf.companyon.project.repository
 
 import de.byteleaf.companyon.project.entity.ProjectEntity
 import org.springframework.data.mongodb.repository.DeleteQuery

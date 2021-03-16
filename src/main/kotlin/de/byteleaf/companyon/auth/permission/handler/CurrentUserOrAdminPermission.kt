@@ -21,7 +21,7 @@ class CurrentUserOrAdminPermission : Permission() {
             return adminPermission.hasPermission(id, skipError)
         }
 
-        return if(id.equals(currentUser.id!!)) true
+        return if(id.equals(currentUser.id)) true
         else noPermission( skipError, "The current user is not allowed to access or modify data from user $id.", ErrorExtensionKey.TARGET_USER_ID, id)
     }
 

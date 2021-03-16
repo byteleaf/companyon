@@ -4,4 +4,4 @@ import de.byteleaf.companyon.common.annotation.NoArgConstructor
 import de.byteleaf.companyon.common.dto.BaseDTO
 
 @NoArgConstructor
-data class Company(val name: String) : BaseDTO()
+data class Company(override val id: String, val name: String) : BaseDTO()
