@@ -16,6 +16,6 @@ class ProjectEventListener {
      */
     @EventListener(condition = "#event.entityType == T(de.byteleaf.companyon.common.entity.EntityType).COMPANY")
     fun onCompanyDeleted(event: EntityDeletedEvent<*>) {
-        projectService.deleteByCompany(event.entity.id!!)
+        projectService.deleteByCompany(event.entity.id)
     }
 }

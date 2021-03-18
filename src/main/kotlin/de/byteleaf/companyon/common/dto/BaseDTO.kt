@@ -1,3 +1,5 @@
 package de.byteleaf.companyon.common.dto
 
-abstract class BaseDTO(var id: String? = null)
+abstract class BaseDTO {
+    abstract val id: String
+}

@@ -19,9 +19,6 @@ class SecurityContextMock {
         SecurityContextHolder.setContext(securityContext)
     }
 
-    fun getUser(isAdmin: Boolean = nonSecUserAdmin): User {
-        val user = User(NonSecConfiguration.NON_SEC_OAUTH_SUBJECT, NonSecConfiguration.NON_SEC_FIRST_NAME, NonSecConfiguration.NON_SEC_LAST_NAME, NonSecConfiguration.NON_SEC_EMAIL, isAdmin, null, null)
-        user.id = NonSecConfiguration.NON_SEC_USER_ID
-        return user
-    }
+    fun getUser(isAdmin: Boolean = nonSecUserAdmin): User =
+        User(NonSecConfiguration.NON_SEC_USER_ID, NonSecConfiguration.NON_SEC_OAUTH_SUBJECT, NonSecConfiguration.NON_SEC_FIRST_NAME, NonSecConfiguration.NON_SEC_LAST_NAME, NonSecConfiguration.NON_SEC_EMAIL, isAdmin, null, null)
 }

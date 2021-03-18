@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 
 @NoArgConstructor
 data class User(
+    override val id: String,
     val oauth2Subject: String?,
     val firstName: String,
     val lastName: String,
