@@ -1,0 +1,5 @@
+input TaskInput {
+  user: ID!
+  description: String!
+  status: TaskState
+}
