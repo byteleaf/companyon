@@ -1,0 +1,151 @@
+{
+  "name": "companyon-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
+    "test:visual": "yarn loki test",
+    "update:deps": "npx npm-check -u",
+    "update:visual": "yarn loki update",
+    "approve:visual": "yarn loki approve",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "prettier": "prettier --write .",
+    "generate": "run-p generate:css generate:graphql",
+    "generate:css": "postcss src/tailwind.scss -o src/styles.css",
+    "generate:graphql": "graphql-codegen --config graphql-codegen.yml",
+    "generate:i18n": "i18next 'src/**/*.tsx' -c ./i18next-parser.config.js"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.6",
+    "@auth0/auth0-react": "^1.2.0",
+    "@reach/combobox": "^0.12.1",
+    "@tailwindcss/ui": "^0.6.2",
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.6.0",
+    "date-fns": "^2.18.0",
+    "formik": "^2.2.6",
+    "graphql": "^15.4.0",
+    "history": "^5.0.0",
+    "http-proxy-middleware": "^1.0.6",
+    "i18next": "^19.8.4",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-http-backend": "^1.0.21",
+    "lodash": "^4.17.20",
+    "match-sorter": "^6.1.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.2",
+    "react": "^17.0.1",
+    "react-datepicker": "^3.3.0",
+    "react-dom": "^17.0.1",
+    "react-i18next": "^11.8.5",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.1",
+    "react-spring": "^8.0.27",
+    "sass": "^1.32.2",
+    "styled-components": "^5.2.1",
+    "subscriptions-transport-ws": "^0.9.18",
+    "tailwindcss": "^1.9.3",
+    "tailwindcss-pseudo": "^1.0.3",
+    "twin.macro": "^1.10.0",
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@graphql-codegen/cli": "^1.20.0",
+    "@graphql-codegen/fragment-matcher": "^2.0.1",
+    "@graphql-codegen/introspection": "^1.18.1",
+    "@graphql-codegen/near-operation-file-preset": "^1.17.13",
+    "@graphql-codegen/schema-ast": "^1.18.1",
+    "@graphql-codegen/typescript": "^1.20.0",
+    "@graphql-codegen/typescript-operations": "^1.17.13",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.1",
+    "@storybook/addon-actions": "^6.1.11",
+    "@storybook/addon-backgrounds": "^6.1.11",
+    "@storybook/addon-essentials": "^6.1.11",
+    "@storybook/addon-links": "^6.1.11",
+    "@storybook/addon-storyshots": "^6.1.11",
+    "@storybook/addon-viewport": "^6.1.11",
+    "@storybook/node-logger": "^6.1.11",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "^6.1.11",
+    "@types/jest": "^26.0.20",
+    "@types/lodash": "^4.14.167",
+    "@types/match-sorter": "^6.0.0",
+    "@types/node": "^14.14.20",
+    "@types/react": "^17.0.0",
+    "@types/react-datepicker": "^3.1.2",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-test-renderer": "^17.0.0",
+    "@types/styled-components": "^5.1.7",
+    "babel-plugin-styled-components": "^1.12.0",
+    "babel-plugin-tailwind-components": "^0.5.10",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "graphql-tools": "^7.0.2",
+    "husky": "^4.3.7",
+    "i18next-parser": "^3.6.0",
+    "jest-css-modules": "^2.1.0",
+    "jest-specific-snapshot": "^4.0.0",
+    "jest-styled-components": "^7.0.3",
+    "jest-transform-graphql": "^2.1.0",
+    "lint-staged": "^10.5.3",
+    "loki": "^0.27.0",
+    "postcss-cli": "^8.3.1",
+    "postcss-scss": "^3.0.4",
+    "prettier": "^2.2.1",
+    "react-is": "^17.0.1",
+    "react-test-renderer": "^17.0.1",
+    "ts-jest": "^26.4.1",
+    "webpack-graphql-loader": "^1.0.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.docker",
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      },
+      "chrome.iphone7": {
+        "target": "chrome.docker",
+        "preset": "iPhone 7"
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

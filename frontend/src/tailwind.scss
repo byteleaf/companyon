@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+
+/* Custom CSS Should go BEFORE the tailwind utilities import */
+
+@import './components/Molecules/Input/DateTimePicker/DateTimePicker.css';
+
+:root {
+  --reach-combobox: 1;
+}
+
+@tailwind utilities;

@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Organisms/Company/AddCompanyBar Default 1`] = `
+.c7 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+}
+
+.c6 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(88,80,236,var(--bg-opacity));
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.c6:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c6:hover {
+  --bg-opacity: 1;
+  background-color: rgba(104,117,245,var(--bg-opacity));
+}
+
+.c6:focus {
+  --border-opacity: 1;
+  border-color: rgba(81,69,205,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c6:active {
+  --bg-opacity: 1;
+  background-color: rgba(81,69,205,var(--bg-opacity));
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c3 {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c4 {
+  margin-top: 0.25rem;
+  position: relative;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.c5 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border-color: #d2d6dc;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+}
+
+.c5::-webkit-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c5::-moz-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c5:-ms-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c5::placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c5:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+  border-color: #a4cafe;
+}
+
+.c0 {
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+@media (min-width:640px) {
+  .c5 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (min-width:640px) {
+  .c0 {
+    border-radius: 0.375rem;
+  }
+}
+
+<div
+  className="c0"
+>
+  <form
+    className="c1"
+    onSubmit={[Function]}
+  >
+    <div>
+      <div
+        className="c2"
+      >
+        <label
+          className="c3"
+          htmlFor="text-input-company-name"
+        >
+          Company name
+        </label>
+      </div>
+      <div
+        className="c4"
+      >
+        <input
+          className="c5"
+          id="text-input-company-name"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <button
+      className="c6"
+      color="primary"
+      disabled={true}
+      type="submit"
+    >
+      <div
+        className="c7"
+        color="primary"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 4v16m8-8H4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+    </button>
+  </form>
+</div>
+`;

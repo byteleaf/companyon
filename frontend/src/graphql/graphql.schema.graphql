@@ -1,0 +1,155 @@
+type Company {
+  id: ID!
+  name: String!
+}
+
+input CompanyInput {
+  name: String!
+}
+
+type CompanyUpdate {
+  type: EntityUpdateType!
+  entity: Company!
+}
+
+enum EntityUpdateType {
+  DELETED
+  UPDATED
+  CREATED
+}
+
+type FileMeta {
+  id: String!
+  url: String!
+  mimeType: String!
+}
+
+input FileMetaInput {
+  id: String!
+  url: String!
+  mimeType: String!
+}
+
+type Mutation {
+  """company"""
+  createCompany(input: CompanyInput!): Company!
+  updateCompany(id: ID!, input: CompanyInput!): Company!
+  deleteCompany(id: ID!): Company!
+
+  """project"""
+  createProject(input: ProjectInput!): Project!
+  updateProject(id: ID!, input: ProjectInput!): Project!
+  deleteProject(id: ID!): Project!
+
+  """user"""
+  createUser(input: UserInput!): User!
+  updateUser(id: ID!, input: UserInput!): User!
+  deleteUser(id: ID!): User!
+
+  """time log"""
+  createTimeLog(input: TimeLogInput!): TimeLog!
+  updateTimeLog(id: ID!, input: TimeLogInput!): TimeLog!
+  deleteTimeLog(id: ID!): TimeLog!
+}
+
+""""""
+scalar OffsetDateTime
+
+type Project {
+  id: ID!
+  name: String!
+  state: ProjectState!
+  company: Company
+}
+
+input ProjectInput {
+  name: String!
+  company: ID!
+  state: ProjectState
+}
+
+enum ProjectState {
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+  POST_PROCESSING
+}
+
+type ProjectUpdate {
+  type: EntityUpdateType!
+  entity: Project!
+}
+
+type Query {
+  """company"""
+  company(id: ID!): Company!
+  companies: [Company!]!
+
+  """project"""
+  project(id: ID!): Project!
+  projects(companies: [ID!]): [Project!]!
+
+  """user"""
+  user(id: ID!): User!
+  users: [User!]!
+  currentUser: User!
+
+  """time log"""
+  timeLogs(from: OffsetDateTime, to: OffsetDateTime, userId: String, projectId: String): [TimeLog!]!
+}
+
+type Subscription {
+  companyUpdate: CompanyUpdate!
+  projectUpdate: ProjectUpdate!
+  userUpdate: UserUpdate!
+  timeLogUpdate: TimeLogUpdate!
+}
+
+type TimeLog {
+  id: ID!
+  user: User
+  project: Project
+  description: String
+  start: OffsetDateTime!
+  durationInMinutes: Int!
+  breakInMinutes: Int
+}
+
+input TimeLogInput {
+  user: String!
+  project: String!
+  start: OffsetDateTime!
+  description: String
+  durationInMinutes: Int!
+  breakInMinutes: Int
+}
+
+type TimeLogUpdate {
+  type: EntityUpdateType!
+  entity: TimeLog!
+}
+
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  admin: Boolean
+  signature: FileMeta
+  avatar: FileMeta
+}
+
+input UserInput {
+  firstName: String!
+  lastName: String
+  email: String!
+  admin: Boolean
+  signature: FileMetaInput
+  avatar: FileMetaInput
+}
+
+type UserUpdate {
+  type: EntityUpdateType!
+  entity: User!
+}

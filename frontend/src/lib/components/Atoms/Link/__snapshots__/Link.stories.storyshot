@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Atoms/Link Inline 1`] = `
+Array [
+  "I am an inline Link, so",
+  " ",
+  .c0 {
+  --text-opacity: 1;
+  color: rgba(88,80,236,var(--text-opacity));
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0:hover {
+  --text-opacity: 1;
+  color: rgba(54,47,120,var(--text-opacity));
+}
+
+.c0:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+<a
+    className="c0"
+    href="/"
+    inline={true}
+    onClick={[Function]}
+  >
+    click me
+  </a>,
+  " ",
+  "please!",
+]
+`;
+
+exports[`Storyshots Atoms/Link Primary 1`] = `
+.c0 {
+  --text-opacity: 1;
+  color: rgba(88,80,236,var(--text-opacity));
+}
+
+.c0:hover {
+  --text-opacity: 1;
+  color: rgba(54,47,120,var(--text-opacity));
+}
+
+<a
+  className="c0"
+  href="/"
+  onClick={[Function]}
+>
+  Click me!
+</a>
+`;

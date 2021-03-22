@@ -1,0 +1,7 @@
+/node_modules
+/build
+src/styles.css
+src/graphql/graphql.schema.json
+src/graphql/graphql.schema.graphql
+**/__generated__/*.tsx
+src/graphql/types.ts
