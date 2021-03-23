@@ -1,0 +1,13 @@
+query GetTasks($user: ID, $status: TaskState) {
+    tasks(user: $user, status: $status) {
+        id
+        user {
+            id
+            firstName,
+            lastName,
+            email
+        }
+        description
+        status
+    }
+}

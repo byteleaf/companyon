@@ -1,0 +1,16 @@
+subscription {
+    taskUpdate {
+        type,
+        entity {
+            id
+            user {
+                id
+                firstName,
+                lastName,
+                email
+            }
+            description
+            status
+        }
+    }
+}
