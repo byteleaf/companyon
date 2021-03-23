@@ -1,0 +1,7 @@
+/node_modules
+/build
+babel-plugin-macros.config.js
+postcss.config.js
+
+**/__generated__/*.tsx
+src/graphql/types.ts

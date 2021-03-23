@@ -1,0 +1,119 @@
+{
+  "components": {
+    "atoms": {
+      "avatar": {
+        "alt": "Avatar"
+      }
+    },
+    "molecules": {
+      "input": {
+        "required": "Pflichtfeld",
+        "noData": "Keine Ergebnisse gefunden"
+      },
+      "profileLink": {
+        "avatar": {
+          "alt": "Avatar"
+        },
+        "logout": "Ausloggen"
+      }
+    },
+    "organisms": {
+      "addCompanyBar": {
+        "companyName": "Firmenname"
+      },
+      "addProjectBar": {
+        "companiesLoading": "Firmen werden geladen...",
+        "companyName": "Firmenname",
+        "projectName": "Projektname"
+      },
+      "addUserBar": {
+        "usersLoading": "Benutzer werden geladen...",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail"
+      },
+      "dataTable": {
+        "header": {
+          "actions": "Aktionen"
+        }
+      },
+      "logWork": {
+        "what": "Was wurde gemacht?",
+        "where": "Wo",
+        "from": "Von",
+        "to": "Bis",
+        "break": "Pause (h)"
+      },
+      "sidebar": {
+        "dashboard": "Überblick",
+        "log-work": "Arbeit eintragen",
+        "companies": "Firmen",
+        "projects": "Projekte",
+        "team": "Team"
+      }
+    }
+  },
+  "common": {
+    "actions": {
+      "view": "Anzeigen",
+      "delete": "Löschen"
+    },
+    "errors": {
+      "alreadyExists": "{{object}} existiert bereits",
+      "entityNotFound": "Eintrag nicht gefunden"
+    }
+  },
+  "pages": {
+    "companies": {
+      "header": {
+        "name": "Name"
+      },
+      "title": "Firmen",
+      "company": {
+        "title": "Firma"
+      }
+    },
+    "dashboard": {
+      "title": "Überblick"
+    },
+    "log-work": {
+      "title": "Arbeit eintragen"
+    },
+    "profile": {
+      "subtitle": "Profilinformationen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
+      "title": "Profil"
+    },
+    "projects": {
+      "header": {
+        "name": "Name",
+        "company": "Firma"
+      },
+      "project": {
+        "id": "ID",
+        "name": "Name",
+        "state": "State",
+        "companyName": "Firmenname",
+        "title": "Projekt"
+      },
+      "title": "Projekte"
+    },
+    "team": {
+      "header": {
+        "name": "Name",
+        "email": "E-Mail"
+      },
+      "title": "Team",
+      "user": {
+        "id": "ID",
+        "admin": "Admin",
+        "title": "Benutzer",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail"
+      }
+    }
+  }
+}

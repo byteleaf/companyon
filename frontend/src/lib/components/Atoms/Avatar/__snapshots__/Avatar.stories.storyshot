@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Atoms/Avatar Default 1`] = `
+.c0 {
+  display: inline-block;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 9999px;
+}
+
+<img
+  alt="Avatar"
+  className="c0"
+  src="/img/testing_thumb.jpg"
+/>
+`;
+
+exports[`Storyshots Atoms/Avatar Placeholder 1`] = `
+.c0 {
+  display: inline-block;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 9999px;
+}
+
+<img
+  alt="Avatar"
+  className="c0"
+  src="/img/avatar_placeholder.png"
+/>
+`;

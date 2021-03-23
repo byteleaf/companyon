@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Organisms/EditableField Default 1`] = `
+.c2 {
+  --text-opacity: 1;
+  color: rgba(88,80,236,var(--text-opacity));
+  cursor: pointer;
+}
+
+.c2:hover {
+  --text-opacity: 1;
+  color: rgba(54,47,120,var(--text-opacity));
+}
+
+.c2:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.c1 {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    Jeff
+  </div>
+  <button
+    className="c2"
+    onClick={[Function]}
+  >
+    Edit
+  </button>
+</div>
+`;
+
+exports[`Storyshots Organisms/EditableField Disabled 1`] = `
+.c2 {
+  --text-opacity: 1;
+  color: rgba(88,80,236,var(--text-opacity));
+  cursor: pointer;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.c2:hover {
+  --text-opacity: 1;
+  color: rgba(54,47,120,var(--text-opacity));
+}
+
+.c2:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.c1 {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    Jeff
+  </div>
+  <button
+    className="c2"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Edit
+  </button>
+</div>
+`;
+
+exports[`Storyshots Organisms/EditableField Hidden 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.c1 {
+  white-space: nowrap;
+  font-size: 0.875rem;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    Jeff
+  </div>
+</div>
+`;

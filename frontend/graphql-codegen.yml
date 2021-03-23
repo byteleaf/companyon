@@ -1,0 +1,37 @@
+schema: 'http://localhost:8080/graphql'
+documents: 'src/graphql/**/*.ts'
+generates:
+  src/graphql/fragmentTypes.json:
+    plugins:
+      - fragment-matcher
+    config:
+      apolloClientVersion: 3
+  src/graphql/types.ts:
+    config:
+      typesPrefix: Gql
+    plugins:
+      - typescript
+      - add:
+          content: '/* eslint-disable */'
+  src/graphql/:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: types.ts
+      extension: .tsx
+      folder: __generated__
+    config:
+      typesPrefix: Gql
+      withHOC: false
+      withHooks: true
+      reactApolloVersion: 3
+    plugins:
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+      - add:
+          content: '/* eslint-disable */'
+  src/graphql/graphql.schema.json:
+    plugins:
+      - 'introspection'
+  src/graphql/graphql.schema.graphql:
+    plugins:
+      - schema-ast

@@ -1,0 +1,746 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Molecules/Input/Text Input Classic 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c2 {
+  margin-top: 0.25rem;
+  position: relative;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.c3 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border-color: #d2d6dc;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+}
+
+.c3::-webkit-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3::-moz-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3:-ms-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3::placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+  border-color: #a4cafe;
+}
+
+@media (min-width:640px) {
+  .c3 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <label
+      className="c1"
+      htmlFor="text-input-storybook-classic"
+    >
+      Name
+    </label>
+  </div>
+  <div
+    className="c2"
+  >
+    <input
+      className="c3"
+      id="text-input-storybook-classic"
+      onChange={[Function]}
+      placeholder="Jeff"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Molecules/Input/Text Input Error 1`] = `
+.c5 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(240,82,82,var(--text-opacity));
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c2 {
+  margin-top: 0.25rem;
+  position: relative;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.c3 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border-color: #d2d6dc;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+  padding-right: 2.5rem;
+  --border-opacity: 1;
+  border-color: rgba(248,180,180,var(--border-opacity));
+  --text-opacity: 1;
+  color: rgba(119,29,29,var(--text-opacity));
+}
+
+.c3::-webkit-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3::-moz-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3:-ms-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3::placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+  border-color: #a4cafe;
+}
+
+.c3::-webkit-input-placeholder {
+  --placeholder-opacity: 1;
+  color: rgba(248,180,180,var(--placeholder-opacity));
+}
+
+.c3::-moz-placeholder {
+  --placeholder-opacity: 1;
+  color: rgba(248,180,180,var(--placeholder-opacity));
+}
+
+.c3:-ms-input-placeholder {
+  --placeholder-opacity: 1;
+  color: rgba(248,180,180,var(--placeholder-opacity));
+}
+
+.c3::placeholder {
+  --placeholder-opacity: 1;
+  color: rgba(248,180,180,var(--placeholder-opacity));
+}
+
+.c3:focus {
+  --border-opacity: 1;
+  border-color: rgba(248,180,180,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(248,180,180,0.45);
+}
+
+.c4 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-right: 0.75rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.c6 {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  --text-opacity: 1;
+  color: rgba(224,36,36,var(--text-opacity));
+}
+
+@media (min-width:640px) {
+  .c3 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <label
+      className="c1"
+      htmlFor="text-input-storybook-error"
+    >
+      My Phone Number
+    </label>
+  </div>
+  <div
+    className="c2"
+  >
+    <input
+      className="c3"
+      id="text-input-storybook-error"
+      onChange={[Function]}
+      type="text"
+      value="098766"
+    />
+    <div
+      className="c4"
+    >
+      <div
+        className="c5"
+        color="alert"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <p
+    className="c6"
+    role="alert"
+  >
+    That's not my number!
+  </p>
+</div>
+`;
+
+exports[`Storyshots Molecules/Input/Text Input Number 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c2 {
+  margin-top: 0.25rem;
+  position: relative;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.c3 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border-color: #d2d6dc;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+}
+
+.c3::-webkit-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3::-moz-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3:-ms-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3::placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c3:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+  border-color: #a4cafe;
+}
+
+@media (min-width:640px) {
+  .c3 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <label
+      className="c1"
+      htmlFor="text-input-storybook-classic"
+    >
+      Name
+    </label>
+  </div>
+  <div
+    className="c2"
+  >
+    <input
+      className="c3"
+      id="text-input-storybook-classic"
+      onChange={[Function]}
+      type="number"
+      value="20"
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Molecules/Input/Text Input Required 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c2 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c3 {
+  margin-top: 0.25rem;
+  position: relative;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.c4 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border-color: #d2d6dc;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+}
+
+.c4::-webkit-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c4::-moz-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c4:-ms-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c4::placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c4:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+  border-color: #a4cafe;
+}
+
+@media (min-width:640px) {
+  .c4 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <label
+      className="c1"
+      htmlFor="text-input-storybook-required"
+    >
+      Name
+    </label>
+    <span
+      className="c2"
+    >
+      Required
+    </span>
+  </div>
+  <div
+    className="c3"
+  >
+    <input
+      className="c4"
+      id="text-input-storybook-required"
+      onChange={[Function]}
+      placeholder="Jeff"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Molecules/Input/Text Input With Icon 1`] = `
+.c4 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(159,166,178,var(--text-opacity));
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c3 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding-left: 0.75rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.c2 {
+  margin-top: 0.25rem;
+  position: relative;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.c5 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border-color: #d2d6dc;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+  padding-left: 2.5rem;
+}
+
+.c5::-webkit-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c5::-moz-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c5:-ms-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c5::placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c5:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+  border-color: #a4cafe;
+}
+
+@media (min-width:640px) {
+  .c5 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <label
+      className="c1"
+      htmlFor="text-input-storybook-with-icon"
+    >
+      Name
+    </label>
+  </div>
+  <div
+    className="c2"
+  >
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
+        color="gray"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+    </div>
+    <input
+      className="c5"
+      id="text-input-storybook-with-icon"
+      onChange={[Function]}
+      placeholder="Jeff"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Molecules/Input/Text Input Without Label 1`] = `
+.c0 {
+  margin-top: 0.25rem;
+  position: relative;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.c1 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border-color: #d2d6dc;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: block;
+  width: 100%;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c1::-moz-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c1:-ms-input-placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c1::placeholder {
+  color: #9fa6b2;
+  opacity: 1;
+}
+
+.c1:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+  border-color: #a4cafe;
+}
+
+@media (min-width:640px) {
+  .c1 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <input
+      className="c1"
+      id="text-input-storybook-classic"
+      onChange={[Function]}
+      placeholder="Jeff"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;

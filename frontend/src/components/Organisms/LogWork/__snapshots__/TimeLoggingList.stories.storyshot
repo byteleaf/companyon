@@ -1,0 +1,442 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Organisms/Time Logging/List Default 1`] = `
+.c12 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.c9 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #276749;
+  border-color: #276749;
+}
+
+.c10 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #5aeda8;
+  border-color: #276749;
+  background-color: #276749;
+}
+
+.c2 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  --text-opacity: 1;
+  color: rgba(88,80,236,var(--text-opacity));
+}
+
+.c4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.c5 {
+  margin-top: 0.5rem;
+}
+
+.c8 {
+  margin-right: 0.5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c11 {
+  margin-top: 0.5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c6 {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c0 {
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.c1 {
+  border-bottom-width: 1px;
+  --border-opacity: 1;
+  border-color: rgba(229,231,235,var(--border-opacity));
+  display: block;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+}
+
+.c1:hover {
+  --bg-opacity: 1;
+  background-color: rgba(249,250,251,var(--bg-opacity));
+}
+
+.c1:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --bg-opacity: 1;
+  background-color: rgba(249,250,251,var(--bg-opacity));
+}
+
+@media (min-width:640px) {
+  .c2 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width:640px) {
+  .c5 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width:640px) {
+  .c7 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:640px) {
+  .c11 {
+    margin-top: 0;
+  }
+}
+
+@media (min-width:640px) {
+  .c0 {
+    border-radius: 0.375rem;
+  }
+}
+
+<div
+  className="c0"
+>
+  <ul>
+    <li>
+      <a
+        className="c1"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
+          >
+            <div
+              className="c4"
+            >
+              Developed time logging feature
+            </div>
+            <div>
+              12:00 - 16:30
+            </div>
+          </div>
+          <div
+            className="c5"
+          >
+            <label
+              className="c6"
+            >
+              Project - Company
+            </label>
+            <div
+              className="c7"
+            >
+              <div
+                className="c8"
+              >
+                <span
+                  className="c9"
+                >
+                  Companyon
+                </span>
+              </div>
+              <div
+                className="c8"
+              >
+                <span
+                  className="c10"
+                >
+                  Byteleaf
+                </span>
+              </div>
+            </div>
+            <div
+              className="c11"
+            >
+              <div
+                className="c12 mr-1.5"
+              >
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                  />
+                </svg>
+              </div>
+              <span>
+                <time
+                  dateTime="2020-01-07"
+                >
+                  January 7, 2020
+                </time>
+              </span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a
+        className="c1"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
+          >
+            <div
+              className="c4"
+            >
+              Developed something else
+            </div>
+            <div>
+              12:00 - 16:30
+            </div>
+          </div>
+          <div
+            className="c5"
+          >
+            <label
+              className="c6"
+            >
+              Project - Company
+            </label>
+            <div
+              className="c7"
+            >
+              <div
+                className="c8"
+              >
+                <span
+                  className="c9"
+                >
+                  Companyon
+                </span>
+              </div>
+              <div
+                className="c8"
+              >
+                <span
+                  className="c10"
+                >
+                  Byteleaf
+                </span>
+              </div>
+            </div>
+            <div
+              className="c11"
+            >
+              <div
+                className="c12 mr-1.5"
+              >
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                  />
+                </svg>
+              </div>
+              <span>
+                <time
+                  dateTime="2020-01-07"
+                >
+                  January 7, 2020
+                </time>
+              </span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a
+        className="c1"
+      >
+        <div
+          className="c2"
+        >
+          <div
+            className="c3"
+          >
+            <div
+              className="c4"
+            >
+              blabla
+            </div>
+            <div>
+              12:00 - 16:30
+            </div>
+          </div>
+          <div
+            className="c5"
+          >
+            <label
+              className="c6"
+            >
+              Project - Company
+            </label>
+            <div
+              className="c7"
+            >
+              <div
+                className="c8"
+              >
+                <span
+                  className="c9"
+                >
+                  Companyon
+                </span>
+              </div>
+              <div
+                className="c8"
+              >
+                <span
+                  className="c10"
+                >
+                  Byteleaf
+                </span>
+              </div>
+            </div>
+            <div
+              className="c11"
+            >
+              <div
+                className="c12 mr-1.5"
+              >
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                  />
+                </svg>
+              </div>
+              <span>
+                <time
+                  dateTime="2020-01-07"
+                >
+                  January 7, 2020
+                </time>
+              </span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+`;

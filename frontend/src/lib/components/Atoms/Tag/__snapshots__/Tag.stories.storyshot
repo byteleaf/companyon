@@ -1,0 +1,274 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Atoms/Tag With Color Prop 1`] = `
+.c1 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #000000;
+  border-color: #1bcb19;
+  background-color: #1bcb19;
+}
+
+.c2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #000000;
+  border-color: #90a4fa;
+  background-color: #90a4fa;
+}
+
+.c3 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #d6d4ff;
+  border-color: #5d5c96;
+  background-color: #5d5c96;
+}
+
+.c4 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #3ed1ff;
+  border-color: #1b5b79;
+  background-color: #1b5b79;
+}
+
+.c5 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #e48aff;
+  border-color: #633c79;
+  background-color: #633c79;
+}
+
+.c6 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #000000;
+  border-color: #eb4034;
+  background-color: #eb4034;
+}
+
+.c7 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #000000;
+  border-color: #e8d905;
+  background-color: #e8d905;
+}
+
+.c8 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #71ff05;
+  border-color: #319e02;
+  background-color: #319e02;
+}
+
+.c9 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #000000;
+  border-color: #00b588;
+  background-color: #00b588;
+}
+
+.c0 {
+  max-width: 20rem;
+}
+
+.c0 span {
+  margin: 0.25rem;
+}
+
+<div
+  className="c0"
+>
+  <span
+    className="c1"
+  >
+    Colored Tag
+  </span>
+  <span
+    className="c2"
+  >
+    Colored Tag
+  </span>
+  <span
+    className="c3"
+  >
+    Colored Tag
+  </span>
+  <span
+    className="c4"
+  >
+    Colored Tag
+  </span>
+  <span
+    className="c5"
+  >
+    Colored Tag
+  </span>
+  <span
+    className="c6"
+  >
+    Colored Tag
+  </span>
+  <span
+    className="c7"
+  >
+    Colored Tag
+  </span>
+  <span
+    className="c8"
+  >
+    Colored Tag
+  </span>
+  <span
+    className="c9"
+  >
+    Colored Tag
+  </span>
+</div>
+`;
+
+exports[`Storyshots Atoms/Tag With Outline Prop 1`] = `
+.c0 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #633c79;
+  border-color: #633c79;
+}
+
+<span
+  className="c0"
+>
+  Outline Tag
+</span>
+`;
+
+exports[`Storyshots Atoms/Tag Without Color Prop 1`] = `
+.c0 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border-style: solid;
+  border-width: 1px;
+  color: #000000;
+  border-color: #bbb;
+  background-color: #bbb;
+}
+
+<span
+  className="c0"
+>
+  Tag Text
+</span>
+`;

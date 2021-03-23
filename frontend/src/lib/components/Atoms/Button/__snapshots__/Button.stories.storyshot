@@ -1,0 +1,1223 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Atoms/Button Disabled 1`] = `
+Array [
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+}
+
+.c2 {
+  margin-left: -0.25rem;
+  margin-right: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(88,80,236,var(--bg-opacity));
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(104,117,245,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(81,69,205,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(81,69,205,var(--bg-opacity));
+}
+
+<div
+    className="mb-4"
+  >
+    <button
+      className="c0"
+      color="primary"
+      disabled={true}
+      type="button"
+    >
+      <div
+        className="c1 c2"
+        color="primary"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+      Click me!
+    </button>
+  </div>,
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(81,69,205,var(--text-opacity));
+}
+
+.c2 {
+  margin-left: -0.25rem;
+  margin-right: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(81,69,205,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(229,237,255,var(--bg-opacity));
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(240,245,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(180,198,252,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(205,219,254,var(--bg-opacity));
+}
+
+<div
+    className="mb-4"
+  >
+    <button
+      className="c0"
+      color="secondary"
+      disabled={true}
+      type="button"
+    >
+      <div
+        className="c1 c2"
+        color="secondary"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+      Click me!
+    </button>
+  </div>,
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c2 {
+  margin-left: -0.25rem;
+  margin-right: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  --border-opacity: 1;
+  border-color: rgba(210,214,220,var(--border-opacity));
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(164,202,254,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+}
+
+.c0:active {
+  --text-opacity: 1;
+  color: rgba(37,47,63,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(249,250,251,var(--bg-opacity));
+}
+
+<div>
+    <button
+      className="c0"
+      color="white"
+      disabled={true}
+      type="button"
+    >
+      <div
+        className="c1 c2"
+        color="white"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+      Click me!
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Atoms/Button Prefix Icon 1`] = `
+Array [
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+}
+
+.c2 {
+  margin-left: -0.25rem;
+  margin-right: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(88,80,236,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(104,117,245,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(81,69,205,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(81,69,205,var(--bg-opacity));
+}
+
+<div
+    className="mb-4"
+  >
+    <button
+      className="c0"
+      color="primary"
+      type="button"
+    >
+      <div
+        className="c1 c2"
+        color="primary"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+      Click me!
+    </button>
+  </div>,
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(81,69,205,var(--text-opacity));
+}
+
+.c2 {
+  margin-left: -0.25rem;
+  margin-right: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(81,69,205,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(229,237,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(240,245,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(180,198,252,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(205,219,254,var(--bg-opacity));
+}
+
+<div
+    className="mb-4"
+  >
+    <button
+      className="c0"
+      color="secondary"
+      type="button"
+    >
+      <div
+        className="c1 c2"
+        color="secondary"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+      Click me!
+    </button>
+  </div>,
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c2 {
+  margin-left: -0.25rem;
+  margin-right: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  --border-opacity: 1;
+  border-color: rgba(210,214,220,var(--border-opacity));
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(164,202,254,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+}
+
+.c0:active {
+  --text-opacity: 1;
+  color: rgba(37,47,63,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(249,250,251,var(--bg-opacity));
+}
+
+<div>
+    <button
+      className="c0"
+      color="white"
+      type="button"
+    >
+      <div
+        className="c1 c2"
+        color="white"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+      Click me!
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Atoms/Button Primary 1`] = `
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(88,80,236,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(104,117,245,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(81,69,205,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(81,69,205,var(--bg-opacity));
+}
+
+<button
+  className="c0"
+  color="primary"
+  type="button"
+>
+  Click me!
+</button>
+`;
+
+exports[`Storyshots Atoms/Button Secondary 1`] = `
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(81,69,205,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(229,237,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(240,245,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(180,198,252,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(205,219,254,var(--bg-opacity));
+}
+
+<button
+  className="c0"
+  color="secondary"
+  type="button"
+>
+  Click me!
+</button>
+`;
+
+exports[`Storyshots Atoms/Button Submit 1`] = `
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(88,80,236,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(104,117,245,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(81,69,205,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(81,69,205,var(--bg-opacity));
+}
+
+<button
+  className="c0"
+  color="primary"
+  type="submit"
+>
+  Click me!
+</button>
+`;
+
+exports[`Storyshots Atoms/Button Suffix Icon 1`] = `
+Array [
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+}
+
+.c2 {
+  margin-right: -0.25rem;
+  margin-left: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(88,80,236,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(104,117,245,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(81,69,205,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(81,69,205,var(--bg-opacity));
+}
+
+<div
+    className="mb-4"
+  >
+    <button
+      className="c0"
+      color="primary"
+      type="button"
+    >
+      Click me!
+      <div
+        className="c1 c2"
+        color="primary"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+    </button>
+  </div>,
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(81,69,205,var(--text-opacity));
+}
+
+.c2 {
+  margin-right: -0.25rem;
+  margin-left: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(81,69,205,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(229,237,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(240,245,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(180,198,252,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(205,219,254,var(--bg-opacity));
+}
+
+<div
+    className="mb-4"
+  >
+    <button
+      className="c0"
+      color="secondary"
+      type="button"
+    >
+      Click me!
+      <div
+        className="c1 c2"
+        color="secondary"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+    </button>
+  </div>,
+  .c1 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c2 {
+  margin-right: -0.25rem;
+  margin-left: 0.5rem;
+}
+
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  --border-opacity: 1;
+  border-color: rgba(210,214,220,var(--border-opacity));
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(164,202,254,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+}
+
+.c0:active {
+  --text-opacity: 1;
+  color: rgba(37,47,63,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(249,250,251,var(--bg-opacity));
+}
+
+<div>
+    <button
+      className="c0"
+      color="white"
+      type="button"
+    >
+      Click me!
+      <div
+        className="c1 c2"
+        color="white"
+      >
+        <svg
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </svg>
+      </div>
+    </button>
+  </div>,
+]
+`;
+
+exports[`Storyshots Atoms/Button Text 1`] = `
+.c0 {
+  --text-opacity: 1;
+  color: rgba(88,80,236,var(--text-opacity));
+  cursor: pointer;
+}
+
+.c0:hover {
+  --text-opacity: 1;
+  color: rgba(54,47,120,var(--text-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+<button
+  className="c0"
+  onClick={[Function]}
+>
+  Click me!
+</button>
+`;
+
+exports[`Storyshots Atoms/Button White 1`] = `
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  --border-opacity: 1;
+  border-color: rgba(210,214,220,var(--border-opacity));
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(164,202,254,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+}
+
+.c0:active {
+  --text-opacity: 1;
+  color: rgba(37,47,63,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(249,250,251,var(--bg-opacity));
+}
+
+<button
+  className="c0"
+  color="white"
+  type="button"
+>
+  Click me!
+</button>
+`;
+
+exports[`Storyshots Atoms/Button With On Click Event 1`] = `
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  border-color: transparent;
+  --text-opacity: 1;
+  color: rgba(255,255,255,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(88,80,236,var(--bg-opacity));
+}
+
+.c0:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c0:hover {
+  --bg-opacity: 1;
+  background-color: rgba(104,117,245,var(--bg-opacity));
+}
+
+.c0:focus {
+  --border-opacity: 1;
+  border-color: rgba(81,69,205,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(180,198,252,0.45);
+}
+
+.c0:active {
+  --bg-opacity: 1;
+  background-color: rgba(81,69,205,var(--bg-opacity));
+}
+
+<button
+  className="c0"
+  color="primary"
+  onClick={[Function]}
+  type="button"
+>
+  Click me!
+</button>
+`;

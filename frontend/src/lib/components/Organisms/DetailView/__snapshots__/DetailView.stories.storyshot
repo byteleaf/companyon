@@ -1,0 +1,997 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Organisms/DetailView Default 1`] = `
+.c1 {
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom-width: 1px;
+  --border-opacity: 1;
+  border-color: rgba(229,231,235,var(--border-opacity));
+}
+
+.c2 {
+  margin-left: -1rem;
+  margin-top: -1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c3 {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+.c5 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c6 {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c0 {
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.c7 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.c8 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.c8:first-child {
+  margin-top: 0;
+}
+
+.c9 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c10 {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+@media (min-width:640px) {
+  .c1 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width:640px) {
+  .c2 {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width:640px) {
+  .c0 {
+    border-radius: 0.5rem;
+  }
+}
+
+@media (min-width:640px) {
+  .c7 {
+    padding: 0;
+  }
+}
+
+@media (min-width:640px) {
+  .c8 {
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-top-width: 1px;
+    --border-opacity: 1;
+    border-color: rgba(229,231,235,var(--border-opacity));
+  }
+
+  .c8:first-child {
+    border-top-width: 0;
+  }
+}
+
+@media (min-width:640px) {
+  .c10 {
+    margin-top: 0;
+    grid-column: span 2 / span 2;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className=""
+        >
+          <h3
+            className="c4"
+          >
+            Title
+          </h3>
+          <p
+            className="c5"
+          >
+            Subtitle
+          </p>
+        </div>
+      </div>
+      <div
+        className="c6"
+      />
+    </div>
+  </div>
+  <div
+    className="c7"
+  >
+    <dl
+      className=""
+    >
+      <div
+        className="c8"
+      >
+        <dt
+          className="c9"
+        >
+          key1
+        </dt>
+        <dd
+          className="c10"
+        >
+          value1
+        </dd>
+      </div>
+      <div
+        className="c8"
+      >
+        <dt
+          className="c9"
+        >
+          key2
+        </dt>
+        <dd
+          className="c10"
+        >
+          value2
+        </dd>
+      </div>
+      <div
+        className="c8"
+      >
+        <dt
+          className="c9"
+        >
+          key3
+        </dt>
+        <dd
+          className="c10"
+        >
+          value3
+        </dd>
+      </div>
+      <div
+        className="c8"
+      >
+        <dt
+          className="c9"
+        >
+          key4
+        </dt>
+        <dd
+          className="c10"
+        >
+          value4
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Organisms/DetailView With Avatar 1`] = `
+.c5 {
+  display: inline-block;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 9999px;
+}
+
+.c1 {
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom-width: 1px;
+  --border-opacity: 1;
+  border-color: rgba(229,231,235,var(--border-opacity));
+}
+
+.c2 {
+  margin-left: -1rem;
+  margin-top: -1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c3 {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.c6 {
+  margin-left: 1rem;
+}
+
+.c7 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+.c8 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c9 {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c0 {
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.c10 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.c11 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.c11:first-child {
+  margin-top: 0;
+}
+
+.c12 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c13 {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+@media (min-width:640px) {
+  .c1 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width:640px) {
+  .c2 {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width:640px) {
+  .c0 {
+    border-radius: 0.5rem;
+  }
+}
+
+@media (min-width:640px) {
+  .c10 {
+    padding: 0;
+  }
+}
+
+@media (min-width:640px) {
+  .c11 {
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-top-width: 1px;
+    --border-opacity: 1;
+    border-color: rgba(229,231,235,var(--border-opacity));
+  }
+
+  .c11:first-child {
+    border-top-width: 0;
+  }
+}
+
+@media (min-width:640px) {
+  .c13 {
+    margin-top: 0;
+    grid-column: span 2 / span 2;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <img
+            alt="Avatar"
+            className="c5"
+            src="/img/avatar_placeholder.png"
+          />
+        </div>
+        <div
+          className="c6"
+        >
+          <h3
+            className="c7"
+          >
+            Title
+          </h3>
+          <p
+            className="c8"
+          >
+            Subtitle
+          </p>
+        </div>
+      </div>
+      <div
+        className="c9"
+      />
+    </div>
+  </div>
+  <div
+    className="c10"
+  >
+    <dl
+      className=""
+    >
+      <div
+        className="c11"
+      >
+        <dt
+          className="c12"
+        >
+          key1
+        </dt>
+        <dd
+          className="c13"
+        >
+          value1
+        </dd>
+      </div>
+      <div
+        className="c11"
+      >
+        <dt
+          className="c12"
+        >
+          key2
+        </dt>
+        <dd
+          className="c13"
+        >
+          value2
+        </dd>
+      </div>
+      <div
+        className="c11"
+      >
+        <dt
+          className="c12"
+        >
+          key3
+        </dt>
+        <dd
+          className="c13"
+        >
+          value3
+        </dd>
+      </div>
+      <div
+        className="c11"
+      >
+        <dt
+          className="c12"
+        >
+          key4
+        </dt>
+        <dd
+          className="c13"
+        >
+          value4
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Organisms/DetailView With Avatar And Actions 1`] = `
+.c12 svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+}
+
+.c13 {
+  margin-left: -0.25rem;
+  margin-right: 0.5rem;
+}
+
+.c11 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 2.375rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,-webkit-transform;
+  -webkit-transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+  -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+  -webkit-transition-duration: 150ms;
+  transition-duration: 150ms;
+  --border-opacity: 1;
+  border-color: rgba(210,214,220,var(--border-opacity));
+  --text-opacity: 1;
+  color: rgba(55,65,81,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+}
+
+.c11:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.c11:hover {
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c11:focus {
+  --border-opacity: 1;
+  border-color: rgba(164,202,254,var(--border-opacity));
+  box-shadow: 0 0 0 3px rgba(164,202,254,0.45);
+}
+
+.c11:active {
+  --text-opacity: 1;
+  color: rgba(37,47,63,var(--text-opacity));
+  --bg-opacity: 1;
+  background-color: rgba(249,250,251,var(--bg-opacity));
+}
+
+.c5 {
+  display: inline-block;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 9999px;
+}
+
+.c1 {
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom-width: 1px;
+  --border-opacity: 1;
+  border-color: rgba(229,231,235,var(--border-opacity));
+}
+
+.c2 {
+  margin-left: -1rem;
+  margin-top: -1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c3 {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.c6 {
+  margin-left: 1rem;
+}
+
+.c7 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+.c8 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c9 {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c10 {
+  margin-left: 0.75rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+.c10:first-child {
+  margin-left: 0;
+}
+
+.c0 {
+  --bg-opacity: 1;
+  background-color: rgba(255,255,255,var(--bg-opacity));
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.c14 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.c15 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.c15:first-child {
+  margin-top: 0;
+}
+
+.c16 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  --text-opacity: 1;
+  color: rgba(107,114,128,var(--text-opacity));
+}
+
+.c17 {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --text-opacity: 1;
+  color: rgba(22,30,46,var(--text-opacity));
+}
+
+@media (min-width:640px) {
+  .c1 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width:640px) {
+  .c2 {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width:640px) {
+  .c0 {
+    border-radius: 0.5rem;
+  }
+}
+
+@media (min-width:640px) {
+  .c14 {
+    padding: 0;
+  }
+}
+
+@media (min-width:640px) {
+  .c15 {
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-top-width: 1px;
+    --border-opacity: 1;
+    border-color: rgba(229,231,235,var(--border-opacity));
+  }
+
+  .c15:first-child {
+    border-top-width: 0;
+  }
+}
+
+@media (min-width:640px) {
+  .c17 {
+    margin-top: 0;
+    grid-column: span 2 / span 2;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+    >
+      <div
+        className="c3"
+      >
+        <div
+          className="c4"
+        >
+          <img
+            alt="Avatar"
+            className="c5"
+            src="/img/avatar_placeholder.png"
+          />
+        </div>
+        <div
+          className="c6"
+        >
+          <h3
+            className="c7"
+          >
+            Title
+          </h3>
+          <p
+            className="c8"
+          >
+            Subtitle
+          </p>
+        </div>
+      </div>
+      <div
+        className="c9"
+      >
+        <span
+          className="c10"
+        >
+          <button
+            className="c11"
+            color="white"
+            type="button"
+          >
+            <div
+              className="c12 c13"
+              color="white"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                />
+              </svg>
+            </div>
+            Action 1
+          </button>
+        </span>
+        <span
+          className="c10"
+        >
+          <button
+            className="c11"
+            color="white"
+            type="button"
+          >
+            <div
+              className="c12 c13"
+              color="white"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                />
+              </svg>
+            </div>
+            Action 2
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="c14"
+  >
+    <dl
+      className=""
+    >
+      <div
+        className="c15"
+      >
+        <dt
+          className="c16"
+        >
+          key1
+        </dt>
+        <dd
+          className="c17"
+        >
+          value1
+        </dd>
+      </div>
+      <div
+        className="c15"
+      >
+        <dt
+          className="c16"
+        >
+          key2
+        </dt>
+        <dd
+          className="c17"
+        >
+          value2
+        </dd>
+      </div>
+      <div
+        className="c15"
+      >
+        <dt
+          className="c16"
+        >
+          key3
+        </dt>
+        <dd
+          className="c17"
+        >
+          value3
+        </dd>
+      </div>
+      <div
+        className="c15"
+      >
+        <dt
+          className="c16"
+        >
+          key4
+        </dt>
+        <dd
+          className="c17"
+        >
+          value4
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+`;
