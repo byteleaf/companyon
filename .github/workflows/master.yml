@@ -3,8 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
-      - develop
+      - master
 
 env:
   NODE_VERSION: 14.x
@@ -21,9 +20,12 @@ jobs:
       image: byteleaf/node-aws-k8s:latest
 
     env:
-      DOCKER_IMAGE_SUFFIX: "${{ github.ref == 'refs/heads/main' && '.prod' || '.dev' }}"
-      BUILD_ENV: "${{ github.ref == 'refs/heads/main' && 'main' || 'develop' }}"
-      KUBERNETES_HOST: "${{ github.ref == 'refs/heads/main' && 'demo.companyon.io' || 'companyon.byteleaf-dev.de' }}"
+      #DOCKER_IMAGE_SUFFIX: "${{ github.ref == 'refs/heads/master' && '.prod' || '.dev' }}"
+      #BUILD_ENV: "${{ github.ref == 'refs/heads/master' && 'master' || 'develop' }}"
+      #KUBERNETES_HOST: "${{ github.ref == 'refs/heads/master' && 'demo.companyon.io' || 'companyon.byteleaf-dev.de' }}"
+      DOCKER_IMAGE_SUFFIX: '.prod'
+      BUILD_ENV: 'master'
+      KUBERNETES_HOST: 'companyon.byteleaf-dev.de'
 
     steps:
       - name: Checkout
