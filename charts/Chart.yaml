@@ -1,0 +1,9 @@
+apiVersion: v2
+name: Companyon
+description: Companyon, the open source HR tool. 
+
+type: application
+
+version: 0.1.3
+
+appVersion: 0.1.0

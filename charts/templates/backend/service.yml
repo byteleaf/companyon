@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    env: {{ .Values.env }}
+  name: companyon-backend-service-{{ .Values.env }}
+  namespace: {{ .Values.namespace }}
+spec:
+  externalIPs: []
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: companyon
+    env: {{ .Values.env }}
+    tier: backend
+  type: NodePort

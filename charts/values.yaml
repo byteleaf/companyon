@@ -1,0 +1,17 @@
+namespace: companyon
+
+replicaCount: 1
+
+dockerImage:
+  version: latest
+  prefix: byteleaf/
+  pullSecrets: dockerconfig
+  # registry: docker.pkg.github.com
+  # prefix: docker.pkg.github.com/byteleaf/companyon-deployment/
+  # pullSecrets: dockerconfigjson-github-com
+
+env: dev
+host: companyon.byteleaf-dev.de
+ingress: alb
+
+oauthUrl: https://byteleaf.eu.auth0.com

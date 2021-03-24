@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: companyon
+    env: {{ .Values.env }}
+    tier: backend
+  name: companyon-backend-{{ .Values.env }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: companyon
+      env: {{ .Values.env }}
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: companyon
+        env: {{ .Values.env }}
+        tier: backend
+      namespace: {{ .Values.namespace }}
+    spec:
+      containers:
+        - env:
+            - name: MONGODB_HOST
+              value: companyon-mongodb-service-{{ .Values.env }}
+            - name: OAUTH_URL
+              value: {{ .Values.oauthUrl }}
+          image: {{ .Values.dockerImage.prefix }}companyon:{{ .Values.dockerImage.version }}
+          imagePullPolicy: Always
+          name: companyon-backend
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: {{ .Values.dockerImage.pullSecrets }}
