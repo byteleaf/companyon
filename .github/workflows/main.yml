@@ -1,26 +1,33 @@
-# Basic workflow for github actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - main
+      - develop
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  NODE_VERSION: 14.x
+  DOCKER_IMAGE_NAME: byteleaf/companyon
+  # DOCKER_REGISTRY: docker.pkg.github.com
+  # DOCKER_IMAGE_NAME: docker.pkg.github.com/byteleaf/companyon-deployment/companyon
+  DOCKER_IMAGE_VERSION: ${{ github.run_number }}
+
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    container:
+      image: byteleaf/node-aws-k8s:latest
+
+    env:
+      DOCKER_IMAGE_SUFFIX: "${{ github.ref == 'refs/heads/main' && '.prod' || '.dev' }}"
+      BUILD_ENV: "${{ github.ref == 'refs/heads/main' && 'main' || 'develop' }}"
+      KUBERNETES_HOST: "${{ github.ref == 'refs/heads/main' && 'demo.companyon.io' || 'companyon.byteleaf-dev.de' }}"
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
 
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
@@ -30,3 +37,77 @@ jobs:
       - name: Run Maven
         working-directory: ./backend
         run: mvn -B verify
+
+      # prepare the frontend
+
+      - name: Generate .env for frontend
+        working-directory: ./frontend
+        run: |
+          echo "" > .env
+          echo "REACT_APP_AUTH_DOMAIN=$AUTH_DOMAIN" >> .env
+          echo "REACT_APP_AUTH_AUDIENCE=$AUTH_AUDIENCE" >> .env
+          echo "REACT_APP_AUTH_CLIENT_ID=$AUTH_CLIENT_ID" >> .env
+        env:
+          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
+          AUTH_AUDIENCE: ${{ secrets.AUTH_AUDIENCE }}
+          AUTH_CLIENT_ID: ${{ secrets.AUTH_CLIENT_ID }}
+          GITHUB_REF: ${{ github.ref }}
+
+      - name: Fetch frontend dependencies
+        working-directory: ./frontend
+        run: |
+          npm install
+
+      - name: Lint frontend
+        working-directory: ./frontend
+        run: |
+          npm run lint
+
+      - name: Test frontend
+        working-directory: ./frontend
+        run: |
+          npm test
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: |
+          npm run build
+          cp -rf build/* ../backend/src/main/resources/frontend
+
+      - name: Build backend
+        working-directory: ./backend
+        run: |
+          # Login
+          echo ${DOCKER_REGISTRY_PASSWORD} | docker login ${DOCKER_REGISTRY} --username "${DOCKER_REGISTRY_USERNAME}" --password-stdin
+
+          # try to pull container, to save some time creating new one
+          docker pull ${DOCKER_IMAGE_NAME} || true
+
+          # build container image
+          docker build -t ${DOCKER_IMAGE_NAME} ./ -f ./docker/Dockerfile
+
+          # annotate image
+          docker tag ${DOCKER_IMAGE_NAME} ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}${DOCKER_IMAGE_SUFFIX}
+
+          # push so we can deploy it later
+          docker push ${DOCKER_IMAGE_NAME}
+        env:
+          DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Deploy to EKS
+        run: |
+          # Add K8s cluster to kubectl config
+          aws eks --region ${AWS_REGION} update-kubeconfig --name ${AWS_EKS_CLUSTER_NAME}
+
+          # Set AWS IAM Role in kubectl
+          aws eks update-kubeconfig --name ${AWS_EKS_CLUSTER_NAME} --region ${AWS_REGION} --role-arn ${AWS_ROLE_ARN}
+
+          # Install/Upgrade Helm Chart
+          helm upgrade companyon-${BUILD_ENV} charts --install --namespace companyon --create-namespace --set dockerImage.version=${DOCKER_IMAGE_VERSION}${DOCKER_IMAGE_SUFFIX} --set env=${BUILD_ENV} --set host=${KUBERNETES_HOST}
+        env:
+          AWS_REGION: eu-central-1
+          AWS_EKS_CLUSTER_NAME: byteleaf-1
+          AWS_ROLE_ARN: arn:aws:iam::796441604026:role/CICDRole
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

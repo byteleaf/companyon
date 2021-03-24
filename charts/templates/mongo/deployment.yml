@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: companyon
+    env: {{ .Values.env }}
+    tier: mongodb
+  name: companyon-mongodb-{{ .Values.env }}
+  namespace: companyon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: companyon
+      env: {{ .Values.env }}
+      tier: mongodb
+  template:
+    metadata:
+      labels:
+        app: companyon
+        env: {{ .Values.env }}
+        tier: mongodb
+    spec:
+      containers:
+        - env:
+            - name: MONGO_INITDB_DATABASE
+              value: companyon
+          image: mongo:latest
+          imagePullPolicy: Always
+          name: companyon-mongodb-{{ .Values.env }}
+          ports:
+            - containerPort: 27017
+      terminationGracePeriodSeconds: 10
