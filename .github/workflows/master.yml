@@ -32,25 +32,22 @@ jobs:
       - name: Run Maven
         working-directory: ./backend
         run: mvn -B verify
+
   check-frontend:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
       - name: Run Linting and Tests
         working-directory: ./frontend
         run: |
           npm i
           npm run lint
           npm test
+
   build-and-deploy:
     runs-on: ubuntu-latest
     needs: ['check-backend', 'check-frontend']
