@@ -2,13 +2,13 @@ package de.byteleaf.companyon.task.repository
 
 import de.byteleaf.companyon.task.entity.TaskEntity
 import de.byteleaf.companyon.task.entity.TaskState
-import java.util.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria.where
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.isEqualTo
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 class TaskQueryRepository {

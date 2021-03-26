@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.user
+package de.byteleaf.companyon.user.subscription
 
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.common.dto.EntityUpdateType
@@ -23,8 +23,10 @@ class UserSubscriptionIT : AbstractSubscriptionIT("user") {
 
     @Test
     fun getCurrentUser() {
-        val entityUpdated = performGQLSubscription("UserUpdateSubscription",
-            { userService.update(NonSecConfiguration.NON_SEC_USER_ID, UserInput("a", "b", "c", false)) })
+        val entityUpdated = performGQLSubscription(
+            "UserUpdateSubscription",
+            { userService.update(NonSecConfiguration.NON_SEC_USER_ID, UserInput("a", "b", "c", false)) }
+        )
             .get("$.data.userUpdate", UserUpdate::class.java)
         assertThat(entityUpdated.type).isEqualTo(EntityUpdateType.UPDATED)
         assertThat(entityUpdated.entity!!.lastName).isEqualTo("b")
@@ -33,7 +35,9 @@ class UserSubscriptionIT : AbstractSubscriptionIT("user") {
     @Test
     fun getDifferentUser() {
         val user = userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de", false))
-        performGQLSubscriptionNoResponse("UserUpdateSubscription",
-            { userService.update(user.id!!, UserInput("a", "b", "c", false)) })
+        performGQLSubscriptionNoResponse(
+            "UserUpdateSubscription",
+            { userService.update(user.id, UserInput("a", "b", "c", false)) }
+        )
     }
 }

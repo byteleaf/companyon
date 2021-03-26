@@ -7,4 +7,4 @@ import org.springframework.data.mongodb.core.mapping.Document
 @NoArgConstructor
 @Document(collection = "tasks")
 data class TaskEntity(val user: String, val description: String, val status: TaskState) :
-                BaseEntity()
+    BaseEntity()

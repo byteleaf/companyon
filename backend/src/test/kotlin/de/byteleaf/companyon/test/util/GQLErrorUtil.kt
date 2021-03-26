@@ -7,7 +7,6 @@ import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.common.error.ErrorExtensionKey
-import de.byteleaf.companyon.test.mock.SecurityContextMock
 import org.assertj.core.api.Assertions
 
 class GQLErrorUtil {
@@ -39,16 +38,16 @@ class GQLErrorUtil {
             Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.CODE.value).asText()).isEqualTo(ErrorCode.NO_PERMISSION.name)
             Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.PERMISSION_TYPE.value).asText()).isEqualTo(permissionType.name)
             Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.CURRENT_USER_ID.value).asText()).isEqualTo(NonSecConfiguration.NON_SEC_USER_ID)
-            if(key1 != null) Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.TARGET_USER_ID.value).asText()).isEqualTo(value1)
+            if (key1 != null) Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.TARGET_USER_ID.value).asText()).isEqualTo(value1)
         }
 
         fun validateResponse(response: GraphQLResponse): GraphQLResponse {
-            if(!response.isOk) {
+            if (!response.isOk) {
                 throw AssertionError("HTTP error response code: ${response.statusCode}")
             }
 
             val json = response.readTree()
-            if(json.hasNonNull("errors")) {
+            if (json.hasNonNull("errors")) {
                 throw AssertionError("GraphQL Errors \r\n" + json.toPrettyString())
             }
             return response

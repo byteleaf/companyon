@@ -2,7 +2,7 @@ package de.byteleaf.companyon.user.dto
 
 import de.byteleaf.companyon.fileupload.dto.FileMeta
 
-class UserGQLResponse (
+class UserGQLResponse(
     val id: String?,
     val oauth2Subject: String?,
     val firstName: String?,

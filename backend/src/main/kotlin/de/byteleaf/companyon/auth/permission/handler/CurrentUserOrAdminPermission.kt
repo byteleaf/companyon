@@ -17,12 +17,12 @@ class CurrentUserOrAdminPermission : Permission() {
      */
     override fun hasPermission(id: String?, skipError: Boolean): Boolean {
         val currentUser = securityContextService.getCurrentUser()
-        if(id == null || currentUser.admin) {
+        if (id == null || currentUser.admin) {
             return adminPermission.hasPermission(id, skipError)
         }
 
-        return if(id.equals(currentUser.id)) true
-        else noPermission( skipError, "The current user is not allowed to access or modify data from user $id.", ErrorExtensionKey.TARGET_USER_ID, id)
+        return if (id.equals(currentUser.id)) true
+        else noPermission(skipError, "The current user is not allowed to access or modify data from user $id.", ErrorExtensionKey.TARGET_USER_ID, id)
     }
 
     override fun getPermissionType(): PermissionType = PermissionType.CURRENT_USER_OR_ADMIN

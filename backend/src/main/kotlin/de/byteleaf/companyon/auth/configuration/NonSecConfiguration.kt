@@ -34,7 +34,6 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
     @Value("\${app.non-sec-user-admin}")
     private var nonSecUserAdmin: Boolean = false
 
-
     override fun configure(http: HttpSecurity) {
         val nonSecUser = createAndPersistNonSecUser()
         http.cors().and().authorizeRequests()

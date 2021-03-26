@@ -1,10 +1,9 @@
 package de.byteleaf.companyon.auth.permission
 
-import de.byteleaf.companyon.test.mock.SecurityContextMock
 import de.byteleaf.companyon.auth.logic.SecurityContextService
-import de.byteleaf.companyon.auth.permission.PermissionHandler
 import de.byteleaf.companyon.auth.permission.handler.AdminPermission
 import de.byteleaf.companyon.auth.permission.handler.CurrentUserOrAdminPermission
+import de.byteleaf.companyon.test.mock.SecurityContextMock
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired

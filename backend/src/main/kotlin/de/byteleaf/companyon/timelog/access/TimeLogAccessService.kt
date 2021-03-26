@@ -1,12 +1,10 @@
 package de.byteleaf.companyon.timelog.access
 
 import de.byteleaf.companyon.auth.permission.PermissionType
-import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.timelog.dto.TimeLog
 import de.byteleaf.companyon.timelog.dto.TimeLogInput
 import de.byteleaf.companyon.timelog.dto.TimeLogUpdate
 import de.byteleaf.companyon.timelog.logic.TimeLogService
-import de.byteleaf.companyon.user.dto.UserUpdate
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
@@ -29,7 +27,7 @@ class TimeLogAccessService {
     fun delete(id: String): TimeLog = delete(id, timeLogService.get(id).user)
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #userId)")
-    private fun delete(id: String, userId: String): TimeLog = timeLogService.delete(id)
+    private fun delete(id: String, @Suppress("UNUSED_PARAMETER") userId: String): TimeLog = timeLogService.delete(id)
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #input.user)")
     fun update(id: String, input: TimeLogInput): TimeLog = update(id, input, timeLogService.get(id).user)
@@ -38,8 +36,7 @@ class TimeLogAccessService {
      * The current user must have the permission to for the new and old userId of the time log
      */
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #currentOwnerId)")
-    private fun update(id: String, input: TimeLogInput, currentOwnerId: String): TimeLog = timeLogService.update(id, input)
-
+    private fun update(id: String, input: TimeLogInput, @Suppress("UNUSED_PARAMETER") currentOwnerId: String): TimeLog = timeLogService.update(id, input)
 
     fun getPublisher(): Publisher<TimeLogUpdate> = timeLogService.getPublisher { permissionHandler, event ->
         permissionHandler.hasPermission(PermissionType.CURRENT_USER_OR_ADMIN, event.entity!!.user, true)

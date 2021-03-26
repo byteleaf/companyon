@@ -1,11 +1,11 @@
 package de.byteleaf.companyon.project.logic
 
-import de.byteleaf.companyon.common.logic.AbstractEventDataService
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.event.EntityDeletedEvent
+import de.byteleaf.companyon.common.logic.AbstractEventDataService
 import de.byteleaf.companyon.project.dto.Project
-import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.ProjectInput
+import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.entity.ProjectEntity
 import de.byteleaf.companyon.project.repository.ProjectRepository
 import org.springframework.stereotype.Service

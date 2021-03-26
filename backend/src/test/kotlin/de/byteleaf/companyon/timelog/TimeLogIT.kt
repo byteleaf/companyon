@@ -7,7 +7,6 @@ import de.byteleaf.companyon.project.dto.Project
 import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.dto.TimeLogGQLResponse
 import de.byteleaf.companyon.project.logic.ProjectService
-import de.byteleaf.companyon.test.AbstractIT
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
 import de.byteleaf.companyon.timelog.logic.TimeLogService
 import de.byteleaf.companyon.user.logic.UserService
@@ -61,20 +60,29 @@ class TimeLogIT : AbstractQueryMutationIT("time-log") {
     @Test
     fun update() {
         val createdEntity = createTimeLog()
-        val updatedEntity = performGQLByIdAndInput("UpdateTimeLog", createdEntity.id!!,
-            mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
+        val updatedEntity = performGQLByIdAndInput(
+            "UpdateTimeLog", createdEntity.id!!,
+            mapOf(
+                Pair("start", "2011-12-03T10:15:30+01:00"),
                 Pair("user", NonSecConfiguration.NON_SEC_USER_ID),
-                Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 37)))
+                Pair("project", project1.id), Pair("description", "A"), Pair("durationInMinutes", 37)
+            )
+        )
             .get("$.data.updateTimeLog", targetClass)
         Assertions.assertThat(updatedEntity.durationInMinutes).isEqualTo(37)
     }
 
-    private fun createTimeLog(userId: String = NonSecConfiguration.NON_SEC_USER_ID) = performGQLByInput("CreateTimeLog", mapOf(Pair("start", "2011-12-03T10:15:30+01:00"),
-        Pair("user", userId),
-        Pair("project", project1.id!!), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("breakInMinutes", 15)))
+    private fun createTimeLog(userId: String = NonSecConfiguration.NON_SEC_USER_ID) = performGQLByInput(
+        "CreateTimeLog",
+        mapOf(
+            Pair("start", "2011-12-03T10:15:30+01:00"),
+            Pair("user", userId),
+            Pair("project", project1.id), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("breakInMinutes", 15)
+        )
+    )
         .get("$.data.createTimeLog", targetClass)
 
     private fun seedTestTimeLogs() {
-        project1 = projectService.create(ProjectInput("Project A",  companyService.create(CompanyInput("Company A")).id!!))
+        project1 = projectService.create(ProjectInput("Project A", companyService.create(CompanyInput("Company A")).id))
     }
 }

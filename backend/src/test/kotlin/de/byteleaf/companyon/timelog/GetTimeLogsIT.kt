@@ -54,9 +54,9 @@ class GetTimeLogsIT : AbstractQueryMutationIT("time-log") {
     @Test
     fun getTimeLogsUserAndProject() {
         assertTimeLogs(mapOf(), 3)
-        assertTimeLogs(mapOf(Pair("projectId", project2.id!!)), 2)
-        assertTimeLogs(mapOf(Pair("userId", user2.id!!)), 2)
-        assertTimeLogs(mapOf(Pair("projectId", project2.id!!), Pair("userId", user2.id!!)), 1)
+        assertTimeLogs(mapOf(Pair("projectId", project2.id)), 2)
+        assertTimeLogs(mapOf(Pair("userId", user2.id)), 2)
+        assertTimeLogs(mapOf(Pair("projectId", project2.id), Pair("userId", user2.id)), 1)
     }
 
     @Test
@@ -80,21 +80,20 @@ class GetTimeLogsIT : AbstractQueryMutationIT("time-log") {
 
     @Test
     fun getTimeLogs() {
-        assertTimeLogs(mapOf(Pair("from", "2011-12-03T10:15:31+01:00"), Pair("to", "2011-12-05T10:18:30+01:00"), Pair("userId", user2.id!!)), 1)
+        assertTimeLogs(mapOf(Pair("from", "2011-12-03T10:15:31+01:00"), Pair("to", "2011-12-05T10:18:30+01:00"), Pair("userId", user2.id)), 1)
     }
 
     private fun assertTimeLogs(parameter: Map<String, String>, expectedLogs: Int) =
         Assertions.assertThat(performGQL("GetTimeLogs", parameter).getList("$.data.timeLogs", targetClass).size).isEqualTo(expectedLogs)
 
-
     private fun seedTestTimeLogs() {
         user1 = userService.create(UserInput("Joe", "Byten", "joe@byteleaf.de"))
         user2 = userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de"))
-        val companyId = companyService.create(CompanyInput("Company A")).id!!
+        val companyId = companyService.create(CompanyInput("Company A")).id
         project1 = projectService.create(ProjectInput("Project A", companyId))
         project2 = projectService.create(ProjectInput("Project B", companyId))
-        timeLogService.create(TimeLogInput(user2.id!!, project2.id!!, DateTimeUtil.getDateTime("2011-12-03T10:15:30+01:00"), 60, "a"))
-        timeLogService.create(TimeLogInput(user2.id!!, project1.id!!, DateTimeUtil.getDateTime("2011-12-05T10:17:30+01:00"), 60, "b"))
-        timeLogService.create(TimeLogInput(user1.id!!, project2.id!!, DateTimeUtil.getDateTime("2011-12-05T10:18:30+01:00"), 60, "c"))
+        timeLogService.create(TimeLogInput(user2.id, project2.id, DateTimeUtil.getDateTime("2011-12-03T10:15:30+01:00"), 60, "a"))
+        timeLogService.create(TimeLogInput(user2.id, project1.id, DateTimeUtil.getDateTime("2011-12-05T10:17:30+01:00"), 60, "b"))
+        timeLogService.create(TimeLogInput(user1.id, project2.id, DateTimeUtil.getDateTime("2011-12-05T10:18:30+01:00"), 60, "c"))
     }
 }

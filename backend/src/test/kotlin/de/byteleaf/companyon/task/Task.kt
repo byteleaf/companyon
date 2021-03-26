@@ -46,14 +46,18 @@ class TaskIT : AbstractQueryMutationIT("task") {
     @Test
     fun update() {
         val createdEntity = createTask()
-        val updatedEntity = performGQLByIdAndInput("UpdateTask", createdEntity.id!!,
-            mapOf(Pair("description", "new description"),
+        val updatedEntity = performGQLByIdAndInput(
+            "UpdateTask", createdEntity.id!!,
+            mapOf(
+                Pair("description", "new description"),
                 Pair("user", NonSecConfiguration.NON_SEC_USER_ID),
-                Pair("status", TaskState.DONE))).get("$.data.updateTask", targetClass)
+                Pair("status", TaskState.DONE)
+            )
+        ).get("$.data.updateTask", targetClass)
 
         Assertions.assertThat(updatedEntity.description).isEqualTo("new description")
         Assertions.assertThat(updatedEntity.status).isEqualTo(TaskState.DONE)
     }
 
-    private fun createTask(userId: String = NonSecConfiguration.NON_SEC_USER_ID) = performGQLByInput("CreateTask", mapOf(Pair("user", userId), Pair("description","test task"))).get("$.data.createTask", targetClass)
+    private fun createTask(userId: String = NonSecConfiguration.NON_SEC_USER_ID) = performGQLByInput("CreateTask", mapOf(Pair("user", userId), Pair("description", "test task"))).get("$.data.createTask", targetClass)
 }

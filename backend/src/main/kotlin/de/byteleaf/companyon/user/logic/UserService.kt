@@ -13,7 +13,6 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException
 import org.springframework.security.oauth2.server.resource.BearerTokenError
 import org.springframework.stereotype.Service
 
-
 @Service
 class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserInput, UserRepository>() {
 
@@ -30,7 +29,8 @@ class UserService : AbstractEventDataService<UserEntity, User, UserUpdate, UserI
      */
     fun activateNewUser(email: String, oauth2Subject: String): User {
         val entity = repository.findByEmailIgnoreCase(email) ?: throw OAuth2AuthenticationException(
-            BearerTokenError("NO_USER_FOUND_FOR_EMAIL", HttpStatus.FORBIDDEN, "No user found for the delivered email address!", ""))
+            BearerTokenError("NO_USER_FOUND_FOR_EMAIL", HttpStatus.FORBIDDEN, "No user found for the delivered email address!", "")
+        )
         if (entity.oauth2Subject != null) throw OAuth2AuthenticationException(
             BearerTokenError("USER_ALREADY_EXISTING", HttpStatus.FORBIDDEN, "A user with identical email address is already existing!", "")
         )

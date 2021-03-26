@@ -14,14 +14,14 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
     private lateinit var securityContextService: SecurityContextService
 
     init {
-        permissions.forEach { permissionHandler -> permissionHandlers.put(permissionHandler.getPermissionType(),  permissionHandler) }
+        permissions.forEach { permissionHandler -> permissionHandlers.put(permissionHandler.getPermissionType(), permissionHandler) }
     }
 
     fun hasPermissions(permissions: List<Pair<PermissionType, String?>>? = emptyList(), skipError: Boolean = false): Boolean {
         // Make sure the user is really logged in, if not an IllegalState exception will be thrown!
         securityContextService.getCurrentUser()
 
-        if(permissions.isNullOrEmpty()) return true
+        if (permissions.isNullOrEmpty()) return true
 
         return !permissions.any {
             !hasPermission(it.first, it.second, true)

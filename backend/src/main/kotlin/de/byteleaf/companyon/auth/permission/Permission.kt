@@ -20,11 +20,10 @@ abstract class Permission {
      * @throws PermissionException if [skipError] is false
      */
     fun noPermission(skipError: Boolean, message: String, key1: ErrorExtensionKey? = null, value1: String? = null, permissionType: PermissionType? = null): Boolean {
-        if(skipError) return false
+        if (skipError) return false
         val parameters = mutableMapOf<ErrorExtensionKey, Any?>()
         if (key1 != null && value1 != null) parameters[key1] = value1
         parameters[ErrorExtensionKey.CURRENT_USER_ID] = securityContextService.getCurrentUser().id
         throw PermissionException(permissionType ?: getPermissionType(), message, parameters)
     }
-
 }

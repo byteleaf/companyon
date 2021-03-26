@@ -13,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-
 class ProjectIT : AbstractQueryMutationIT("project") {
 
     private val targetClass = ProjectGQLResponse::class.java
@@ -77,7 +76,7 @@ class ProjectIT : AbstractQueryMutationIT("project") {
      */
     @Test
     fun getProject() {
-        val getResponse = performGQLById("GetProject", seedTestProjects()[0].id!!).get("$.data.project", targetClass)
+        val getResponse = performGQLById("GetProject", seedTestProjects()[0].id).get("$.data.project", targetClass)
         Assertions.assertThat(getResponse.company!!.name).isEqualTo("Company A")
     }
 
@@ -85,14 +84,14 @@ class ProjectIT : AbstractQueryMutationIT("project") {
     fun deleteCompany() {
         val projects = seedTestProjects()
         Assertions.assertThat(projectService.findAll().size).isEqualTo(2)
-        performGQLById("DeleteProject", projects[0].id!!)
+        performGQLById("DeleteProject", projects[0].id)
         Assertions.assertThat(projectService.findAll().size).isEqualTo(1)
     }
 
     @Test
     fun updateProject() {
         val project = seedTestProjects()[0]
-        val response = performGQLByIdAndInput("UpdateProject", project.id!!, mapOf(Pair("name", "New name"), Pair("company", project.company)))
+        val response = performGQLByIdAndInput("UpdateProject", project.id, mapOf(Pair("name", "New name"), Pair("company", project.company)))
         val updatedCompany = response.get("$.data.updateProject", targetClass)
         Assertions.assertThat(updatedCompany.name).isEqualTo("New name")
     }
@@ -101,11 +100,11 @@ class ProjectIT : AbstractQueryMutationIT("project") {
         val p1 = projectService.create(
             ProjectInput(
                 "Project A",
-                companyService.create(CompanyInput("Company A")).id!!,
+                companyService.create(CompanyInput("Company A")).id,
                 ProjectState.IN_PROGRESS
             )
         )
-        val p2 = projectService.create(ProjectInput("Project B", companyService.create(CompanyInput("Company B")).id!!))
+        val p2 = projectService.create(ProjectInput("Project B", companyService.create(CompanyInput("Company B")).id))
         return listOf(p1, p2)
     }
 }
