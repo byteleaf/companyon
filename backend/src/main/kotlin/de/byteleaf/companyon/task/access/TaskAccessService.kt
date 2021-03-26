@@ -39,9 +39,11 @@ class TaskAccessService {
                         "hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #input.user)")
         fun update(id: String, input: TaskInput): Task = taskService.update(id, input)
 
+        fun delete(id: String): Task = deleteWithUser(id, taskService.get(id).user)
+
         @PreAuthorize(
-                        "hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #id)")
-        fun delete(id: String): Task = taskService.delete(id)
+            "hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #userId)")
+        private fun deleteWithUser(id: String, userId: String): Task = taskService.delete(id)
 
         fun getPublisher(): Publisher<TaskUpdate> =
                         taskService.getPublisher { permissionHandler, event ->

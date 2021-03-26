@@ -1,0 +1,13 @@
+mutation DeleteTask($id: ID!) {
+    deleteTask(id: $id) {
+        id
+        user {
+            id
+            firstName,
+            lastName,
+            email
+        }
+        description
+        status
+    }
+}
