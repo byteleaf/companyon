@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
 
 @Service
-class TimeLogService :
-    AbstractEventDataService<TimeLogEntity, TimeLog, TimeLogUpdate, TimeLogInput, TimeLogRepository>() {
+class TimeLogService : AbstractEventDataService<TimeLogEntity, TimeLog, TimeLogUpdate, TimeLogInput, TimeLogRepository>() {
 
     @Autowired
     private lateinit var timeLogQueryRepository: TimeLogQueryRepository
