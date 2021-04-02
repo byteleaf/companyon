@@ -7,7 +7,8 @@ import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
-
+// TODO https://github.com/byteleaf/companyon/issues/70
+@Suppress("DEPRECATION")
 @Component
 class GraphQLOffsetDateTime @JvmOverloads constructor(name: String? = DEFAULT_NAME) :
     GraphQLScalarType(name, "OffsetDateTime", object : Coercing<OffsetDateTime, String> {
@@ -44,6 +45,7 @@ class GraphQLOffsetDateTime @JvmOverloads constructor(name: String? = DEFAULT_NA
                 ?: throw CoercingParseLiteralException("Invalid value '$input' for OffsetDateTime")
         }
     }) {
+
     companion object {
         private const val DEFAULT_NAME = "OffsetDateTime"
     }

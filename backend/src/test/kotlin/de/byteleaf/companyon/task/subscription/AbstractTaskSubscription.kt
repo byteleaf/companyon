@@ -5,13 +5,10 @@ import de.byteleaf.companyon.task.dto.Task
 import de.byteleaf.companyon.task.dto.TaskInput
 import de.byteleaf.companyon.task.logic.TaskService
 import de.byteleaf.companyon.test.AbstractSubscriptionIT
-import de.byteleaf.companyon.timelog.dto.TimeLog
-import de.byteleaf.companyon.timelog.dto.TimeLogInput
 import de.byteleaf.companyon.timelog.logic.TimeLogService
 import de.byteleaf.companyon.user.logic.UserService
 import org.junit.jupiter.api.BeforeEach
 import org.springframework.beans.factory.annotation.Autowired
-import java.time.OffsetDateTime
 
 class AbstractTaskSubscription : AbstractSubscriptionIT("task") {
 

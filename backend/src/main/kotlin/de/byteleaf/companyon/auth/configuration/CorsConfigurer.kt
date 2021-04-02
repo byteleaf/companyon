@@ -20,9 +20,8 @@ class CorsConfigurer : WebMvcConfigurer {
         }
 
         registry.addMapping("/**")
-                .allowedHeaders("origin", "authorization", "content-type")
-                .allowedOrigins(*allowedOrigins)
-                .allowedMethods("GET", "POST")
-
+            .allowedHeaders("origin", "authorization", "content-type")
+            .allowedOrigins(*allowedOrigins)
+            .allowedMethods("GET", "POST")
     }
 }

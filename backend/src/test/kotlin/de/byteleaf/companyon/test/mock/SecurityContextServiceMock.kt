@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Primary
 
 @Primary
-class SecurityContextServiceMock: SecurityContextService() {
+class SecurityContextServiceMock : SecurityContextService() {
 
     @Autowired
     private lateinit var securityContextMock: SecurityContextMock

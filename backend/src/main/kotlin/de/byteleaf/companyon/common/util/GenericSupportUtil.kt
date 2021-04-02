@@ -12,7 +12,7 @@ object GenericSupportUtil {
      */
     fun getClassFromGeneric(parent: Any, genericPosition: Int = 0): Class<*> {
         return (parent.javaClass.genericSuperclass as ParameterizedType)
-        .actualTypeArguments[genericPosition] as Class<*>
+            .actualTypeArguments[genericPosition] as Class<*>
     }
 
     fun <T : Any> createInstanceFromGeneric(parent: Any, genericPosition: Int = 0): T {

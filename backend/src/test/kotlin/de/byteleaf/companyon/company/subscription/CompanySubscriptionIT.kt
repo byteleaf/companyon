@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-class CompanySubscriptionIT: AbstractSubscriptionIT("company") {
+class CompanySubscriptionIT : AbstractSubscriptionIT("company") {
 
     @Autowired
     protected lateinit var companyService: CompanyService
@@ -31,18 +31,17 @@ class CompanySubscriptionIT: AbstractSubscriptionIT("company") {
     @Test
     fun deleteCompanyTestProjectSubscription() {
         val company = seedTestCompany()
-        val projectUpdated = performGQLSubscription("project/ProjectUpdateSubscription", { companyService.delete(company.id!!) })
+        val projectUpdated = performGQLSubscription("project/ProjectUpdateSubscription", { companyService.delete(company.id) })
             .get("$.data.projectUpdate", ProjectUpdateGQLResponse::class.java)
         assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.DELETED)
         assertThat(projectUpdated.entity.name).isEqualTo("Project A")
     }
 
-
     @Test
     fun companyUpdatedSubscription() {
         val company = seedTestCompany()
         val companyUpdated =
-            performGQLSubscription("CompanyUpdateSubscription", { companyService.delete(company.id!!) })
+            performGQLSubscription("CompanyUpdateSubscription", { companyService.delete(company.id) })
                 .get("$.data.companyUpdate", CompanyUpdate::class.java)
         assertThat(companyUpdated.type).isEqualTo(EntityUpdateType.DELETED)
         assertThat(companyUpdated.entity!!.id).isEqualTo(company.id)
@@ -50,8 +49,8 @@ class CompanySubscriptionIT: AbstractSubscriptionIT("company") {
 
     private fun seedTestCompany(): Company {
         val companyA = companyService.create(CompanyInput("Company A Ltd."))
-        projectService.create(ProjectInput("Project A", companyA.id!!))
-        projectService.create(ProjectInput("Project B", companyA.id!!))
+        projectService.create(ProjectInput("Project A", companyA.id))
+        projectService.create(ProjectInput("Project B", companyA.id))
         return companyA
     }
 }

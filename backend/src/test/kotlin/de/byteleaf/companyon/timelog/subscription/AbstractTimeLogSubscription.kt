@@ -32,5 +32,4 @@ class AbstractTimeLogSubscription : AbstractSubscriptionIT("time-log") {
             )
         )
     }
-
 }

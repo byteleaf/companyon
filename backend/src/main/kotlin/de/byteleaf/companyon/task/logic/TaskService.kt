@@ -9,19 +9,19 @@ import de.byteleaf.companyon.task.entity.TaskEntity
 import de.byteleaf.companyon.task.entity.TaskState
 import de.byteleaf.companyon.task.repository.TaskQueryRepository
 import de.byteleaf.companyon.task.repository.TaskRepository
-import java.util.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class TaskService :
-                AbstractEventDataService<
-                                TaskEntity, Task, TaskUpdate, TaskInput, TaskRepository>() {
+    AbstractEventDataService<
+        TaskEntity, Task, TaskUpdate, TaskInput, TaskRepository>() {
 
-        @Autowired private lateinit var taskQueryRepository: TaskQueryRepository
+    @Autowired private lateinit var taskQueryRepository: TaskQueryRepository
 
-        override fun getEntityType(): EntityType = EntityType.TASK
+    override fun getEntityType(): EntityType = EntityType.TASK
 
-        fun findTasks(user: String?, status: TaskState?): List<Task> =
-                        taskQueryRepository.findTasks(user, status).map { entityToOutput(it) }
+    fun findTasks(user: String?, status: TaskState?): List<Task> =
+        taskQueryRepository.findTasks(user, status).map { entityToOutput(it) }
 }

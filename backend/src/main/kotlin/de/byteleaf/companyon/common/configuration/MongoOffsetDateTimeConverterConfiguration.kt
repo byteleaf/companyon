@@ -8,7 +8,6 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.*
 
-
 @Configuration
 class MongoOffsetDateTimeConverterConfiguration {
 

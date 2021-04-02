@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.repository.DeleteQuery
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.data.mongodb.repository.Query
 
-
 interface ProjectRepository : MongoRepository<ProjectEntity, String> {
 
     @DeleteQuery

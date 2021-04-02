@@ -9,4 +9,3 @@ class CompanyonApplication
 fun main(args: Array<String>) {
     runApplication<CompanyonApplication>(*args)
 }
-

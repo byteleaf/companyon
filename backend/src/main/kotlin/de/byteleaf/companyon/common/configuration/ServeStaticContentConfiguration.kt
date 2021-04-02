@@ -14,39 +14,39 @@ import org.springframework.web.servlet.resource.PathResourceResolver
 class ServeStaticContentConfiguration : WebMvcConfigurer {
     override fun addViewControllers(registry: ViewControllerRegistry) {
         registry.addViewController("/")
-                .setViewName("forward:/index.html")
+            .setViewName("forward:/index.html")
     }
 
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
         registry.addResourceHandler("/**")
-                // path to frontend must always come last, otherwise we will override files from e.g. GraphQL playground
-                .addResourceLocations("classpath:/static/", "classpath:/public/", "classpath:/frontend/")
-                .resourceChain(true)
-                .addResolver(object : PathResourceResolver() {
-                    override fun getResource(resourcePath: String, location: Resource): Resource? {
-                        val requestedResource = location.createRelative(resourcePath)
+            // path to frontend must always come last, otherwise we will override files from e.g. GraphQL playground
+            .addResourceLocations("classpath:/static/", "classpath:/public/", "classpath:/frontend/")
+            .resourceChain(true)
+            .addResolver(object : PathResourceResolver() {
+                override fun getResource(resourcePath: String, location: Resource): Resource? {
+                    val requestedResource = location.createRelative(resourcePath)
 
                         /*
                          * the routing is done on the client side, if the resource doesn't exist,
                          * let the client handle everything
                          */
-                        if (requestedResource.exists() && requestedResource.isReadable) {
-                            return requestedResource
-                        }
+                    if (requestedResource.exists() && requestedResource.isReadable) {
+                        return requestedResource
+                    }
 
                         /*
                          * make sure we only fallback if the file actually exists,
                          * thus all resource locations are checked first,
                          * and only in the end we serve our frontend code/fallback file
                          */
-                        val fallbackResource = location.createRelative("/index.html")
+                    val fallbackResource = location.createRelative("/index.html")
 
-                        if (fallbackResource.exists() && fallbackResource.isReadable) {
-                            return fallbackResource
-                        }
-
-                        return null
+                    if (fallbackResource.exists() && fallbackResource.isReadable) {
+                        return fallbackResource
                     }
-                })
+
+                    return null
+                }
+            })
     }
 }

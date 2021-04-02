@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit
 @Import(SecurityContextServiceMock::class)
 abstract class AbstractSubscriptionIT(gqlFolder: String) : AbstractIT(gqlFolder) {
 
-
     companion object {
         const val SUBSCRIPTION_TIMEOUT = 1000
         const val SUBSCRIPTION_DELAY_BEFORE_TRIGGER_EVENT = 200L

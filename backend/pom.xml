@@ -161,6 +161,7 @@
                 <configuration>
                     <args>
                         <arg>-Xjsr305=strict</arg>
+                        <arg>-Werror</arg> <!-- build will break on each warning -->
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
@@ -171,7 +172,6 @@
                         <option>no-arg:annotation=de.byteleaf.companyon.common.annotation.NoArgConstructor</option>
                     </pluginOptions>
                 </configuration>
-
                 <dependencies>
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
@@ -201,6 +201,19 @@
                                     <version>${project.parent.version}</version>
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
+                        </configuration>
+                    </execution>
+                    <!-- Without this execution [WARNING] Duplicate source root: /target/generated-sources/kapt/compile occurs-->
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>src/main/kotlin</sourceDir>
+                            </sourceDirs>
                         </configuration>
                     </execution>
                 </executions>

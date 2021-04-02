@@ -34,7 +34,7 @@ class UserAdminIT : AbstractQueryMutationIT("user") {
     @Test
     fun getUser() {
         val createdUser = seedTestUser()
-        val response = performGQLById("GetUser", createdUser.id!!).get("$.data.user", targetClass)
+        val response = performGQLById("GetUser", createdUser.id).get("$.data.user", targetClass)
         Assertions.assertThat(response.email).isEqualTo("hans@byteleaf.de")
     }
 
@@ -42,15 +42,17 @@ class UserAdminIT : AbstractQueryMutationIT("user") {
     fun deleteUser() {
         val createdUser = seedTestUser()
         Assertions.assertThat(userService.findAll().size).isEqualTo(1)
-        performGQLById("DeleteUser", createdUser.id!!)
+        performGQLById("DeleteUser", createdUser.id)
         Assertions.assertThat(userService.findAll().size).isEqualTo(0)
     }
 
     @Test
     fun updateUser() {
         val user = seedTestUser()
-        val updatedEntity = performGQLByIdAndInput("UpdateUser", user.id!!,
-            mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b")))
+        val updatedEntity = performGQLByIdAndInput(
+            "UpdateUser", user.id,
+            mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b"))
+        )
             .get("$.data.updateUser", targetClass)
         Assertions.assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
     }
@@ -58,7 +60,7 @@ class UserAdminIT : AbstractQueryMutationIT("user") {
     @Test
     fun createUser() {
         val createdEntity = performGQLByInput("CreateUser", mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b")))
-            .get("$.data.createUser",targetClass)
+            .get("$.data.createUser", targetClass)
         Assertions.assertThat(createdEntity.email).isEqualTo("jeff@byteleaf.de")
         // Check if really existing
         val getResponse = performGQLById("GetUser", createdEntity.id!!).get("$.data.user", targetClass)

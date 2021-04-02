@@ -39,10 +39,10 @@ class SampleData : ApplicationRunner {
 
         // Projects
         projectService.deleteAll()
-        projectService.create(ProjectInput("Project A", companyA.id!!))
-        projectService.create(ProjectInput("Project B", companyA.id!!))
-        projectService.create(ProjectInput("Project C", companyB.id!!))
-        projectService.create(ProjectInput("Project D", companyB.id!!))
+        projectService.create(ProjectInput("Project A", companyA.id))
+        projectService.create(ProjectInput("Project B", companyA.id))
+        projectService.create(ProjectInput("Project C", companyB.id))
+        projectService.create(ProjectInput("Project D", companyB.id))
 
         // Users
         userService.deleteAll()
@@ -51,7 +51,5 @@ class SampleData : ApplicationRunner {
         userService.create(UserInput("Anthony", "Potdevin", "anthony.potdevin@byteleaf.de", true))
         userService.create(UserInput("Paul", "Tolstoi", "paul.tolstoi@byteleaf.de", true))
         userService.create(UserInput("Stefan", "Sauterleute", "stefan.sauterleute@byteleaf.de", true))
-
     }
-
 }

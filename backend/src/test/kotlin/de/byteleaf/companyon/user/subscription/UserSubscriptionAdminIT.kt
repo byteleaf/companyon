@@ -19,8 +19,10 @@ class UserSubscriptionAdminIT : AbstractSubscriptionIT("user") {
     @Test
     fun getDifferentUser() {
         val user = userService.create(UserInput("Hans", "Bytezos", "hans@byteleaf.de", false))
-        val projectUpdated = performGQLSubscription("UserUpdateSubscription",
-            { userService.update(user.id!!, UserInput("a", "b", "c", false)) })
+        val projectUpdated = performGQLSubscription(
+            "UserUpdateSubscription",
+            { userService.update(user.id, UserInput("a", "b", "c", false)) }
+        )
             .get("$.data.userUpdate", UserUpdate::class.java)
         Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.UPDATED)
         Assertions.assertThat(projectUpdated.entity!!.lastName).isEqualTo("b")

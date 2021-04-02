@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-
 class CompanyIT : AbstractQueryMutationIT("company") {
 
     private val targetClass = Company::class.java
@@ -45,34 +44,34 @@ class CompanyIT : AbstractQueryMutationIT("company") {
             .get("$.data.createCompany", targetClass)
         assertThat(createdCompany.name).isEqualTo("A")
         // Check if really existing
-        val getResponse = performGQLById("GetCompany", createdCompany.id!!).get("$.data.company", targetClass)
+        val getResponse = performGQLById("GetCompany", createdCompany.id).get("$.data.company", targetClass)
         assertThat(getResponse.name).isEqualTo("A")
     }
 
     @Test
     fun deleteCompany() {
         val company = seedTestCompany()
-        assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(2)
-        performGQLById("DeleteCompany", company.id!!)
+        assertThat(projectService.findAll(listOf(company.id)).size).isEqualTo(2)
+        performGQLById("DeleteCompany", company.id)
         // Make sure company is not existing anymore
-        val response = performGQLById("GetCompany", company.id!!, true)
-        GQLErrorUtil.expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, company.id!!)
+        val response = performGQLById("GetCompany", company.id, true)
+        GQLErrorUtil.expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.COMPANY, company.id)
         // Check if projects assigned to this company have been deleted too!
-        assertThat(projectService.findAll(listOf(company.id!!)).size).isEqualTo(0)
+        assertThat(projectService.findAll(listOf(company.id)).size).isEqualTo(0)
     }
 
     @Test
     fun updateCompany() {
         val company = seedTestCompany()
-        val response = performGQLByIdAndInput("UpdateCompany", company.id!!, mapOf(Pair("name", "New name")))
+        val response = performGQLByIdAndInput("UpdateCompany", company.id, mapOf(Pair("name", "New name")))
         val updatedCompany = response.get("$.data.updateCompany", targetClass)
         assertThat(updatedCompany.name).isEqualTo("New name")
     }
 
     private fun seedTestCompany(): Company {
         val companyA = companyService.create(CompanyInput("Company A Ltd."))
-        projectService.create(ProjectInput("Project A", companyA.id!!))
-        projectService.create(ProjectInput("Project B", companyA.id!!))
+        projectService.create(ProjectInput("Project A", companyA.id))
+        projectService.create(ProjectInput("Project B", companyA.id))
         return companyA
     }
 }

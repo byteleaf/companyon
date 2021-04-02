@@ -1,9 +1,8 @@
 package de.byteleaf.companyon.project.access
 
-import de.byteleaf.companyon.company.dto.Company
 import de.byteleaf.companyon.project.dto.Project
-import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.dto.ProjectInput
+import de.byteleaf.companyon.project.dto.ProjectUpdate
 import de.byteleaf.companyon.project.logic.ProjectService
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired

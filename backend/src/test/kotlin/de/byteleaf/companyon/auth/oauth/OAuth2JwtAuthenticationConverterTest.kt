@@ -1,8 +1,8 @@
 package de.byteleaf.companyon.auth.oauth
 
 import de.byteleaf.companyon.auth.logic.AuthInfoService
-import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -14,13 +14,10 @@ import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataM
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.HttpStatus
-import org.springframework.security.authentication.InsufficientAuthenticationException
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException
 import org.springframework.security.oauth2.server.resource.BearerTokenError
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ActiveProfiles
-import java.lang.Exception
 
 @ActiveProfiles(profiles = ["test", "non-sec"])
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -28,7 +25,6 @@ import java.lang.Exception
 // needed, otherwise embedded mongo db will produce a "Could not start process: <EOF>" after executing multiple tests in a row
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 class OAuth2JwtAuthenticationConverterTest {
-
 
     @MockBean
     private lateinit var authInfoService: AuthInfoService
@@ -63,12 +59,12 @@ class OAuth2JwtAuthenticationConverterTest {
     }
 
     @Test
-    fun activateNewUserEmailNotFound() = expectOAuthError("NO_USER_FOUND_FOR_EMAIL") {converter.convert(JwtMock("test-subject"))  }
+    fun activateNewUserEmailNotFound() = expectOAuthError("NO_USER_FOUND_FOR_EMAIL") { converter.convert(JwtMock("test-subject")) }
 
     @Test
     fun loginAsExistingUser() {
         userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), "test-subject")
-        expectOAuthError("USER_ALREADY_EXISTING") {converter.convert(JwtMock("other-subject"))  }
+        expectOAuthError("USER_ALREADY_EXISTING") { converter.convert(JwtMock("other-subject")) }
     }
 
     private fun expectOAuthError(oauthErrorCode: String, executable: () -> kotlin.Unit) {

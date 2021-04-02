@@ -14,4 +14,4 @@ class TimeLogEntity(
     val description: String?,
     val durationInMinutes: Int,
     val breakInMinutes: Int
-): BaseEntity()
+) : BaseEntity()

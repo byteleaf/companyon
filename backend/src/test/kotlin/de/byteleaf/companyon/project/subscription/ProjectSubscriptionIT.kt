@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-class ProjectSubscriptionIT: AbstractSubscriptionIT("project") {
+class ProjectSubscriptionIT : AbstractSubscriptionIT("project") {
 
     @Autowired
     protected lateinit var companyService: CompanyService
@@ -33,7 +33,8 @@ class ProjectSubscriptionIT: AbstractSubscriptionIT("project") {
         val companyId = seedTestProjects()[0].company
         val projectUpdated = performGQLSubscription(
             "ProjectUpdateSubscription",
-            { projectService.create(ProjectInput("New project", companyId)) })
+            { projectService.create(ProjectInput("New project", companyId)) }
+        )
             .get("$.data.projectUpdate", ProjectUpdateGQLResponse::class.java)
         Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
         Assertions.assertThat(projectUpdated.entity.name).isEqualTo("New project")
@@ -43,11 +44,11 @@ class ProjectSubscriptionIT: AbstractSubscriptionIT("project") {
         val p1 = projectService.create(
             ProjectInput(
                 "Project A",
-                companyService.create(CompanyInput("Company A")).id!!,
+                companyService.create(CompanyInput("Company A")).id,
                 ProjectState.IN_PROGRESS
             )
         )
-        val p2 = projectService.create(ProjectInput("Project B", companyService.create(CompanyInput("Company B")).id!!))
+        val p2 = projectService.create(ProjectInput("Project B", companyService.create(CompanyInput("Company B")).id))
         return listOf(p1, p2)
     }
 }

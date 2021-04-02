@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
-
 @Configuration
 class ModelMapperConfiguration {
 
@@ -12,9 +11,9 @@ class ModelMapperConfiguration {
     fun createModelMapper(): ModelMapper {
         val modelMapper = ModelMapper()
         modelMapper.configuration
-                .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
-                .setSkipNullEnabled(true)
-                .isFieldMatchingEnabled = true // TODO remove this option -> can make problems
+            .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
+            .setSkipNullEnabled(true)
+            .isFieldMatchingEnabled = true // TODO remove this option -> can make problems
 
         return modelMapper
     }

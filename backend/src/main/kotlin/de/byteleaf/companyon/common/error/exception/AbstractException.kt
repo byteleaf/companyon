@@ -7,7 +7,7 @@ import graphql.GraphqlErrorBuilder
 import graphql.kickstart.spring.error.ErrorContext
 
 abstract class AbstractException(val errorCode: ErrorCode, message: String) : RuntimeException(
-        "Error code: $errorCode. $message"
+    "Error code: $errorCode. $message"
 ) {
 
     protected fun getGraphQLBaseError(errorContext: ErrorContext, extensions: MutableMap<ErrorExtensionKey, Any?> = mutableMapOf<ErrorExtensionKey, Any?>()): GraphQLError {
@@ -16,12 +16,12 @@ abstract class AbstractException(val errorCode: ErrorCode, message: String) : Ru
         val finalExtensions = extensions.filter { it.value != null }.mapKeys { it.key.value }
 
         return GraphqlErrorBuilder.newError()
-                .message(message)
-                .extensions(finalExtensions)
-                .errorType(errorContext.errorType)
-                .locations(errorContext.locations)
-                .path(errorContext.path)
-                .build()
+            .message(message)
+            .extensions(finalExtensions)
+            .errorType(errorContext.errorType)
+            .locations(errorContext.locations)
+            .path(errorContext.path)
+            .build()
     }
 
     abstract fun getGraphQLError(errorContext: ErrorContext): GraphQLError

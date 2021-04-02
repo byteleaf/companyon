@@ -5,7 +5,6 @@ import de.byteleaf.companyon.user.dto.User
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-
 class SecurityContextIT : AbstractQueryMutationIT("auth") {
 
     @Test

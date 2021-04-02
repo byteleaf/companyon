@@ -11,7 +11,6 @@ abstract class AbstractQueryMutationIT(gqlFolder: String) : AbstractIT(gqlFolder
     @Autowired
     protected lateinit var graphQLTestTemplate: GraphQLTestTemplate
 
-
     protected fun performGQLByIdAndInput(
         gqlOperation: String,
         id: String,
@@ -34,13 +33,11 @@ abstract class AbstractQueryMutationIT(gqlFolder: String) : AbstractIT(gqlFolder
     protected fun performGQLById(gqlOperation: String, id: String, skipValidation: Boolean = false): GraphQLResponse =
         performGQL(gqlOperation, "{ \"id\": \"$id\" }", skipValidation)
 
-
     protected fun performGQL(
         gqlOperation: String,
         variables: Map<String, Any>,
         skipValidation: Boolean = false
     ): GraphQLResponse = performGQL(gqlOperation, objectMapper.writeValueAsString(variables), skipValidation)
-
 
     protected fun performGQL(
         gqlOperation: String,

@@ -1,6 +1,5 @@
 package de.byteleaf.companyon.auth.oauth
 
-
 import de.byteleaf.companyon.user.dto.User
 import org.springframework.security.authentication.AbstractAuthenticationToken
 import org.springframework.security.core.GrantedAuthority
