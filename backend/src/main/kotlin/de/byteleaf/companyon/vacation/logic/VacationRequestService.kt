@@ -17,5 +17,6 @@ class VacationRequestService : AbstractEventDataService<VacationRequestEntity, V
 
     fun findVacationRequests(from: OffsetDateTime?, to: OffsetDateTime?, userIds: Collection<String>?, approved: Boolean): List<VacationRequest> {
         // TODO
+        return emptyList()
     }
 }

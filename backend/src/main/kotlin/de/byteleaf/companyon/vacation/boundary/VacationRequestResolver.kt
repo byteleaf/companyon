@@ -19,8 +19,8 @@ class VacationRequestResolver : GraphQLQueryResolver, GraphQLMutationResolver, G
     @Autowired
     private lateinit var vacationRequestAccessService: VacationRequestAccessService
 
-    fun vacationRequests(from: OffsetDateTime?, to: OffsetDateTime?, userIds: Collection<String>?, approved: Boolean = false): List<VacationRequest> =
-        vacationRequestAccessService.findTimeLogs(from, to, userId, projectId)
+    fun getVacationRequests(from: OffsetDateTime?, to: OffsetDateTime?, userIds: Collection<String>?, approved: Boolean = false): List<VacationRequest> =
+        vacationRequestAccessService.getVacationRequests(from, to, userIds, approved)
 
     fun createVacationRequest(input: VacationRequestInput): TimeLog = vacationRequestAccessService.create(input)
 

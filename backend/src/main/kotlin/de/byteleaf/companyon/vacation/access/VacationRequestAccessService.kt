@@ -19,14 +19,14 @@ class VacationRequestAccessService {
 // TODO NullOrAdmin access right
 // TODO IsUserIdInList access right
 // TODO List off access rights
-    fun findVacationRequests(from: OffsetDateTime?, to: OffsetDateTime?, userIds: Collection<String>?, approved: Boolean = false): List<VacationRequest> =
+    fun findAll(from: OffsetDateTime?, to: OffsetDateTime?, userIds: Collection<String>?, approved: Boolean = false): List<VacationRequest> =
         vacationRequestService.findVacationRequests(from, to, userIds, approved)
 
-    fun createVacationRequest(input: VacationRequestInput): VacationRequest = vacationRequestService.create(input)
+    fun create(input: VacationRequestInput): VacationRequest = vacationRequestService.create(input)
 
-    fun deleteVacationRequest(id: String): VacationRequest = vacationRequestService.delete(id)
+    fun delete(id: String): VacationRequest = vacationRequestService.delete(id)
 
-    fun updateVacationRequest(id: String, input: VacationRequestInput): VacationRequest = vacationRequestService.update(id, input)
+    fun update(id: String, input: VacationRequestInput): VacationRequest = vacationRequestService.update(id, input)
 
-    fun vacationRequestUpdate(): Publisher<VacationRequestUpdate> = vacationRequestService.getPublisher()
+    fun getPublisher(): Publisher<VacationRequestUpdate> = vacationRequestService.getPublisher()
 }
