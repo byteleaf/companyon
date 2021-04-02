@@ -10,6 +10,7 @@ import java.util.*
 class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
 
     private var permissionHandlers: HashMap<PermissionType, Permission> = HashMap()
+
     @Autowired
     private lateinit var securityContextService: SecurityContextService
 
@@ -17,14 +18,20 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
         permissions.forEach { permissionHandler -> permissionHandlers.put(permissionHandler.getPermissionType(), permissionHandler) }
     }
 
-    fun hasPermissions(permissions: List<Pair<PermissionType, String?>>? = emptyList(), skipError: Boolean = false): Boolean {
+    fun hasPermissions(permissions: List<Pair<PermissionType, *>>? = emptyList(), skipError: Boolean = false): Boolean {
         // Make sure the user is really logged in, if not an IllegalState exception will be thrown!
         securityContextService.getCurrentUser()
 
         if (permissions.isNullOrEmpty()) return true
 
         return !permissions.any {
-            !hasPermission(it.first, it.second, true)
+            @Suppress("UNCHECKED_CAST")
+            return when (it.second) {
+                null -> hasPermission(it.first, null, skipError)
+                is String -> hasPermission(it.first, it.second as String, skipError)
+                is Collection<*> -> hasPermissionForMultiple(it.first, it.second as Collection<String>, skipError)
+                else -> throw FatalException("No permission handler found for delivered type of the id parameter")
+            }
         }
     }
 
@@ -40,5 +47,27 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
             ?: throw FatalException("No permission handler found for type ${permissionType.name}")
 
         return permissionHandler.hasPermission(id, skipError)
+    }
+
+    /**
+     * To check if the current user has the permissions for a list of ids
+     * @param permissionType the type of the permission to detect the convenient handler
+     * @param ids a list of entity ids where the permission are requested for
+     * @param skipError if set false will be returned instead of a exception
+     * @throws PermissionException will be thrown instead of a false return value if the [skipError] flag is not set
+     */
+    fun hasPermissionForMultiple(permissionType: PermissionType, ids: Collection<String>? = null, skipError: Boolean = false): Boolean {
+        if (ids == null || ids.isEmpty()) {
+            return hasPermission(permissionType, null, skipError)
+        }
+
+//        val a = listOf(true, false).all {
+//            it
+//        }
+
+
+        return ids.all {
+            hasPermission(permissionType, it, skipError)
+        }
     }
 }
