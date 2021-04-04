@@ -1,12 +1,14 @@
 package de.byteleaf.companyon.absence.dto.input
 
-import java.time.OffsetDateTime
+import de.byteleaf.companyon.absence.constant.AbsenceType
+import java.time.LocalDate
 
 class AbsenceRequestInput(
     val description: String,
     val user: String,
-    val from: OffsetDateTime,
+    val type: AbsenceType,
+    val from: LocalDate,
     var absenceFirstDayInMinutes: Int?,
-    val to: OffsetDateTime,
+    val to: LocalDate,
     var absenceLastDayInMinutes: Int?
 )

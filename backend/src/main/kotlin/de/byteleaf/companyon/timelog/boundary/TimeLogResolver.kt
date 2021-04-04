@@ -18,7 +18,7 @@ class TimeLogResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSu
     @Autowired
     private lateinit var timeLogAccessService: TimeLogAccessService
 
-    fun timeLogs(from: OffsetDateTime?, to: OffsetDateTime?, userId: String?, projectId: String?): List<TimeLog> = timeLogAccessService.findTimeLogs(from, to, userId, projectId)
+    fun getTimeLogs(from: OffsetDateTime?, to: OffsetDateTime?, userId: String?, projectId: String?): List<TimeLog> = timeLogAccessService.findTimeLogs(from, to, userId, projectId)
 
     fun createTimeLog(input: TimeLogInput): TimeLog = timeLogAccessService.create(input)
 

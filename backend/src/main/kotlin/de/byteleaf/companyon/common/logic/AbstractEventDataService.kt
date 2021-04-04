@@ -16,12 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.event.EventListener
 import org.springframework.data.mongodb.repository.MongoRepository
 
-abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpdateDTO<O>, I, R : MongoRepository<E, String>> :
-    AbstractDataService<E, O, I, R>() {
+abstract class AbstractEventDataService<E : BaseEntity, O : BaseDTO, U : BaseUpdateDTO<O>, I, R : MongoRepository<E, String>> : AbstractDataService<E, O, I, R>() {
 
     private val POSITION_ENTITY_UPDATED_DTO = 2
     private var eventEmitter: Emitter<U>? = null
     private var eventPublisher: Flowable<U>
+
     @Autowired
     private lateinit var permissionHandler: PermissionHandler
 

@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.absence.entity
+package de.byteleaf.companyon.absence.constant
 
 enum class AbsenceType {
     SICKNESS,

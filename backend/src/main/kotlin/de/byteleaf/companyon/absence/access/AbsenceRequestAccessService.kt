@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.absence.access
 
+import de.byteleaf.companyon.absence.constant.ApprovedQueryState
 import de.byteleaf.companyon.absence.dto.input.AbsenceRequestInput
 import de.byteleaf.companyon.absence.dto.output.AbsenceRequest
 import de.byteleaf.companyon.absence.dto.update.AbsenceRequestUpdate
@@ -9,31 +10,30 @@ import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Service
-import java.time.OffsetDateTime
+import java.time.LocalDate
 
 @Service
 class AbsenceRequestAccessService {
 
     @Autowired
-    private lateinit var vacationRequestService: AbsenceRequestService
+    private lateinit var absenceRequestService: AbsenceRequestService
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #userIds)")
-    fun findAll(from: OffsetDateTime?, to: OffsetDateTime?, userIds: Collection<String>?, approved: Boolean = false): List<AbsenceRequest> =
-        vacationRequestService.findAll(from, to, userIds, approved)
+    fun findAll(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, approved: ApprovedQueryState): List<AbsenceRequest> =
+        absenceRequestService.findAll(from, to, userIds, approved)
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #input.user)")
-    fun create(input: AbsenceRequestInput): AbsenceRequest = vacationRequestService.create(input)
+    fun create(input: AbsenceRequestInput): AbsenceRequest = absenceRequestService.create(input)
 
-    fun delete(id: String): AbsenceRequest = vacationRequestService.delete(id)
+    fun delete(id: String): AbsenceRequest = delete(id, absenceRequestService.get(id).user)
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #userId)")
-    private fun delete(id: String, @Suppress("UNUSED_PARAMETER") userId: String): AbsenceRequest = vacationRequestService.delete(id)
+    private fun delete(id: String, @Suppress("UNUSED_PARAMETER") userId: String): AbsenceRequest = absenceRequestService.delete(id)
 
-    // verganegen nur admin start zeitpunkt past,  approved muss reseted werden
+    @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #input.user)")
+    fun update(id: String, input: AbsenceRequestInput): AbsenceRequest = absenceRequestService.update(id, input)
 
-    fun update(id: String, input: AbsenceRequestInput): AbsenceRequest = vacationRequestService.update(id, input)
-
-    fun getPublisher(): Publisher<AbsenceRequestUpdate> = vacationRequestService.getPublisher { permissionHandler, event ->
+    fun getPublisher(): Publisher<AbsenceRequestUpdate> = absenceRequestService.getPublisher { permissionHandler, event ->
         permissionHandler.hasPermission(PermissionType.CURRENT_USER_OR_ADMIN, event.entity!!.user, true)
     }
 }

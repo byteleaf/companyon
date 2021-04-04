@@ -43,9 +43,12 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
         return dto
     }
 
-    fun update(id: String, input: I): O {
+    open fun update(id: String, input: I): O = update(id, input, null)
+
+    protected open fun update(id: String, input: I, updateEntity: ((entity: E) -> Unit)?): O {
         val entity = inputToEntity(input)
         entity.id = id
+        updateEntity?.invoke(entity)
         val dto = entityToOutput(repository.save(entity))
         applicationEventPublisher.publishEvent(EntityUpdatedEvent(getEntityType(), dto))
         return dto
@@ -58,7 +61,7 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
 
     fun getNullable(id: String?): Optional<O> = if (id != null) repository.findById(id).map { entityToOutput(it) } else Optional.empty()
 
-    fun delete(id: String): O {
+    open fun delete(id: String): O {
         val dto = get(id)
         repository.deleteById(id)
         applicationEventPublisher.publishEvent(EntityDeletedEvent(getEntityType(), dto))
