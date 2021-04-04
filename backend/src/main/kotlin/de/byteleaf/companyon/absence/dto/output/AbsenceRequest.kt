@@ -1,17 +1,19 @@
-package de.byteleaf.companyon.vacation.dto.output
+package de.byteleaf.companyon.absence.dto.output
 
+import de.byteleaf.companyon.absence.entity.AbsenceType
 import de.byteleaf.companyon.common.annotation.NoArgConstructor
 import de.byteleaf.companyon.common.dto.BaseDTO
 import java.time.OffsetDateTime
 
 @NoArgConstructor
-class VacationRequest(
+class AbsenceRequest(
     override val id: String,
     val description: String,
+    val user: String,
+    val type: AbsenceType,
     val from: OffsetDateTime,
-    // TODO if not set the default should be calculated by the default work hours per week of each employee
-    val vacationMinutesFirstDay: Int,
+    val absenceFirstDayInMinutes: Int,
     val to: OffsetDateTime,
-    val vacationMinutesLastDay: Int,
-    val approvedBy: String
+    val absenceLastDayInMinutes: Int,
+    val approvedBy: String?
 ) : BaseDTO()

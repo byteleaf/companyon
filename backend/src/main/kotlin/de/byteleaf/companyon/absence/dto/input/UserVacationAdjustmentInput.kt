@@ -1,6 +1,5 @@
-package de.byteleaf.companyon.vacation.dto.input
+package de.byteleaf.companyon.absence.dto.input
 
 class UserVacationAdjustmentInput(
-    val user: String,
     val vacationAdjustmentInMinutes: Int
 )

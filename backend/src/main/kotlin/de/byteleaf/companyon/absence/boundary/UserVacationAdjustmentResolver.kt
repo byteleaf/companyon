@@ -1,9 +1,9 @@
-package de.byteleaf.companyon.vacation.boundary
+package de.byteleaf.companyon.absence.boundary
 
-import de.byteleaf.companyon.timelog.dto.TimeLog
-import de.byteleaf.companyon.vacation.access.UserVacationAdjustmentAccessService
-import de.byteleaf.companyon.vacation.dto.input.UserVacationAdjustmentInput
-import de.byteleaf.companyon.vacation.dto.output.UserVacationAdjustment
+import de.byteleaf.companyon.absence.access.UserVacationAdjustmentAccessService
+import de.byteleaf.companyon.absence.dto.input.UserVacationAdjustmentInput
+import de.byteleaf.companyon.absence.dto.output.UserVacationAdjustment
+import de.byteleaf.companyon.absence.dto.update.UserVacationAdjustmentUpdate
 import graphql.kickstart.tools.GraphQLMutationResolver
 import graphql.kickstart.tools.GraphQLQueryResolver
 import graphql.kickstart.tools.GraphQLSubscriptionResolver
@@ -19,7 +19,7 @@ class UserVacationAdjustmentResolver : GraphQLQueryResolver, GraphQLMutationReso
 
     fun getUserVacationAdjustments(userIds: Collection<String>?): List<UserVacationAdjustment> = userVacationAdjustmentAccessService.findAll(userIds)
 
-    fun updateUserVacationAdjustment(user: String, input: UserVacationAdjustmentInput): TimeLog = userVacationAdjustmentAccessService.update(user, input)
+    fun updateUserVacationAdjustment(user: String, input: UserVacationAdjustmentInput): UserVacationAdjustment = userVacationAdjustmentAccessService.update(user, input)
 
-    fun userVacationAdjustmentUpdate(): Publisher<UserVacationAdjustment> = userVacationAdjustmentAccessService.getPublisher()
+    fun userVacationAdjustmentUpdate(): Publisher<UserVacationAdjustmentUpdate> = userVacationAdjustmentAccessService.getPublisher()
 }
