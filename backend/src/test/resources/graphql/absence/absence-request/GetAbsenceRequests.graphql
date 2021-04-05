@@ -1,11 +1,11 @@
-query GetProjects($companies: [ID!]) {
-    projects(companies: $companies) {
-        id
-        name,
-        state,
-        company {
-            id,
-            name
-        }
-    }
-}
+#query GetAbsenceRequests($companies: [ID!]) {
+#    absenceRequests(companies: $companies) {
+#        id
+#        name,
+#        state,
+#        company {
+#            id,
+#            name
+#        }
+#    }
+#}

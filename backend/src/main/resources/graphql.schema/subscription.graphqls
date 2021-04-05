@@ -1,7 +1,8 @@
 type Subscription {
-  companyUpdate: CompanyUpdate!
-  projectUpdate: ProjectUpdate!
-  userUpdate: UserUpdate!
-  timeLogUpdate: TimeLogUpdate!
-  taskUpdate: TaskUpdate!
+    companyUpdate: CompanyUpdate!
+    projectUpdate: ProjectUpdate!
+    userUpdate: UserUpdate!
+    timeLogUpdate: TimeLogUpdate!
+    taskUpdate: TaskUpdate!
+    #    absenceRequestUpdate: AbsenceRequestUpdate!
 }

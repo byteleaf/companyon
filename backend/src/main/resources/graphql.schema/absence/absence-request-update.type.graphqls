@@ -1,4 +1,0 @@
-type AbsenceRequestUpdate {
-    type: AbsenceRequestUpdate!
-    entity: Task!
-}

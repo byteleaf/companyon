@@ -8,13 +8,13 @@ import de.byteleaf.companyon.absence.entity.AbsenceRequestEntity
 import de.byteleaf.companyon.absence.repository.AbsenceRequestQueryRepository
 import de.byteleaf.companyon.absence.repository.AbsenceRequestRepository
 import de.byteleaf.companyon.auth.logic.SecurityContextService
-import de.byteleaf.companyon.auth.permission.PermissionException
-import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.error.exception.InputValidationException
 import de.byteleaf.companyon.common.logic.AbstractEventDataService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Service
 class AbsenceRequestService : AbstractEventDataService<AbsenceRequestEntity, AbsenceRequest, AbsenceRequestUpdate, AbsenceRequestInput, AbsenceRequestRepository>() {
@@ -30,16 +30,16 @@ class AbsenceRequestService : AbstractEventDataService<AbsenceRequestEntity, Abs
     fun findAll(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, approved: ApprovedQueryState): List<AbsenceRequest> =
         absenceRequestQueryRepository.findAbsenceRequests(from, to, userIds, approved).map { entityToOutput(it) }
 
-    override fun delete(id: String): AbsenceRequest {
-        checkIfStartsInPast(id)
-        return super.delete(id)
+    override fun create(input: AbsenceRequestInput): AbsenceRequest {
+        validateFromTo(input)
+        return super.create(input)
     }
 
     /**
      * If the current user isn't a admin, the [AbsenceRequestEntity.approvedBy] will be reset
      */
     override fun update(id: String, input: AbsenceRequestInput): AbsenceRequest {
-        checkIfStartsInPast(id)
+        validateFromTo(input)
         return super.update(id, input) {
             if (!securityContextService.getCurrentUser().admin) {
                 it.approvedBy = null
@@ -47,14 +47,9 @@ class AbsenceRequestService : AbstractEventDataService<AbsenceRequestEntity, Abs
         }
     }
 
-    /**
-     * Ony admin users are allowed to modify [AbsenceRequest] which started in the past
-     * @throws PermissionException
-     */
-    private fun checkIfStartsInPast(absenceRequestId: String) {
-        if (get(absenceRequestId).from.isAfter(LocalDate.now()) && !securityContextService.getCurrentUser().admin) throw PermissionException(
-            PermissionType.ADMIN,
-            "Only a admin users are allowed to modify or delete AbsenceRequests from the past"
-        )
+    private fun validateFromTo(input: AbsenceRequestInput) {
+        if (input.from.isEqual(input.to) && input.absenceLastDayInMinutes != null) {
+            throw InputValidationException(getEntityType(), "[from] and [to] (${DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(input.from)}) are one the same day, [absenceLastDayInMinutes] should not be defined")
+        }
     }
 }

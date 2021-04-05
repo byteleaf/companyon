@@ -1,9 +1,13 @@
 package de.byteleaf.companyon.absence
 
+import de.byteleaf.companyon.absence.constant.AbsenceType
 import de.byteleaf.companyon.absence.dto.AbsenceRequestGQLResponse
+import de.byteleaf.companyon.absence.logic.AbsenceRequestService
+import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
-import de.byteleaf.companyon.user.logic.UserService
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
 class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
@@ -11,25 +15,30 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
     private val targetClass = AbsenceRequestGQLResponse::class.java
 
     @Autowired
-    protected lateinit var userService: UserService
+    protected lateinit var absenceRequestService: AbsenceRequestService
 
     @BeforeEach
     fun init() {
-
+        absenceRequestService.deleteAll()
     }
-//
-//    @Test
-//    fun create() {
-//        performGQLByInput(
-//            "CreateTimeLog",
-//            mapOf(
-//                Pair("start", "2011-12-03T10:15:30+01:00"),
-//                Pair("user", userId),
-//                Pair("project", project1.id), Pair("description", "A"), Pair("durationInMinutes", 60), Pair("breakInMinutes", 15)
-//            )
-//        ).get("$.data.createTimeLog", targetClass)
-//    }
-//
+
+    @Test
+    fun create() {
+        val response = performGQLByInput(
+            "CreateAbsenceRequest", mapOf(
+                Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in italy"), Pair("type", AbsenceType.VACATION.name),
+                Pair("from", "2021-03-05"), Pair("absenceFirstDayInMinutes", 60), Pair("to", "2021-03-07"), Pair("absenceLastDayInMinutes", 60)
+            )
+        ).get("$.data.createAbsenceRequest", targetClass)
+        Assertions.assertThat(response.absenceFirstDayInMinutes).isEqualTo(60)
+    }
+
+    // TODO test absenceFirstDayInMinutes not defined
+
+    // TODO test same day absenceLastDayInMinutes defined error
+
+    // TEST validation error
+
 //    @Test
 //    fun delete() {
 //        val createdEntity = createTimeLog()

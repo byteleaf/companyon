@@ -14,6 +14,7 @@ class AbsenceRequest(
     val from: LocalDate,
     val absenceFirstDayInMinutes: Int,
     val to: LocalDate,
-    val absenceLastDayInMinutes: Int,
-    val approvedBy: String?
+    val absenceLastDayInMinutes: Int
+    // TODO
+//    val approvedBy: String?
 ) : BaseDTO()

@@ -1,11 +1,11 @@
 type AbsenceRequest {
     id: ID!
-    user: User!
+    user: User
     description: String!
     type: AbsenceType!
-    from: OffsetDateTime!
+    from: LocalDate!
     absenceFirstDayInMinutes: Int!
-    to: OffsetDateTime!
+    to: LocalDate!
     absenceLastDayInMinutes: Int!
-    approvedBy: User
+    # TODO approvedBy: User
 }

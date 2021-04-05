@@ -1,22 +1,26 @@
 type Mutation {
-  # company
-  createCompany(input: CompanyInput!): Company!
-  updateCompany(id: ID!, input: CompanyInput!): Company!
-  deleteCompany(id: ID!): Company!
-  # project
-  createProject(input: ProjectInput!): Project!
-  updateProject(id: ID!, input: ProjectInput!): Project!
-  deleteProject(id: ID!): Project!
-  # user
-  createUser(input: UserInput!): User!
-  updateUser(id: ID!, input: UserInput!): User!
-  deleteUser(id: ID!): User!
-  # time log
-  createTimeLog(input: TimeLogInput!): TimeLog!
-  updateTimeLog(id: ID!, input: TimeLogInput!): TimeLog!
-  deleteTimeLog(id: ID!): TimeLog!
-  # task
-  createTask(input: TaskInput!): Task!
-  updateTask(id: ID!, input: TaskInput!): Task!
-  deleteTask(id: ID!): Task!
+    # company
+    createCompany(input: CompanyInput!): Company!
+    updateCompany(id: ID!, input: CompanyInput!): Company!
+    deleteCompany(id: ID!): Company!
+    # project
+    createProject(input: ProjectInput!): Project!
+    updateProject(id: ID!, input: ProjectInput!): Project!
+    deleteProject(id: ID!): Project!
+    # user
+    createUser(input: UserInput!): User!
+    updateUser(id: ID!, input: UserInput!): User!
+    deleteUser(id: ID!): User!
+    # time log
+    createTimeLog(input: TimeLogInput!): TimeLog!
+    updateTimeLog(id: ID!, input: TimeLogInput!): TimeLog!
+    deleteTimeLog(id: ID!): TimeLog!
+    # task
+    createTask(input: TaskInput!): Task!
+    updateTask(id: ID!, input: TaskInput!): Task!
+    deleteTask(id: ID!): Task!
+    # absence request
+    createAbsenceRequest(input: AbsenceRequestInput!): AbsenceRequest!
+    #    updateAbsenceRequest(id: ID!, input: AbsenceRequestInput!): AbsenceRequest!
+    #    deleteAbsenceRequest(id: ID!): AbsenceRequest!
 }

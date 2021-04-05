@@ -1,5 +1,5 @@
-mutation DeleteProject($id: ID!) {
-    deleteProject(id: $id) {
+mutation DeleteAbsenceRequest($id: ID!) {
+    deleteAbsenceRequest(id: $id) {
         id
     }
 }

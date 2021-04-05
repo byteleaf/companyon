@@ -1,6 +1,5 @@
-mutation CreateAbsenceRequest($input: AbsenceRequestInput!) {
-    createAbsenceRequest(input: $input) {
-        id
+mutation UpdateAbsenceRequest($id: ID!, $input: AbsenceRequestInput!) {
+    updateAbsenceRequest(id: $id, input: $input) {
         user {
             firstName,
             lastName

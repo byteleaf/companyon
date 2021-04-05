@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.user.boundary
+package de.byteleaf.companyon.user.boundary.fieldresolver
 
 import de.byteleaf.companyon.task.dto.Task
 import de.byteleaf.companyon.user.access.UserAccessService

@@ -2,8 +2,8 @@ input AbsenceRequestInput {
     user: ID!
     description: String!
     type: AbsenceType!
-    from: OffsetDateTime!
+    from: LocalDate!
     absenceFirstDayInMinutes: Int
-    to: OffsetDateTime!
+    to: LocalDate!
     absenceLastDayInMinutes: Int
 }
