@@ -3,7 +3,7 @@ package de.byteleaf.companyon.user.subscription
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.test.AbstractSubscriptionIT
-import de.byteleaf.companyon.user.dto.UserUpdate
+import de.byteleaf.companyon.user.dto.UserUpdateGQLResponse
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions.assertThat
@@ -27,9 +27,9 @@ class UserSubscriptionIT : AbstractSubscriptionIT("user") {
             "UserUpdateSubscription",
             { userService.update(NonSecConfiguration.NON_SEC_USER_ID, UserInput("a", "b", "c", false)) }
         )
-            .get("$.data.userUpdate", UserUpdate::class.java)
+            .get("$.data.userUpdate", UserUpdateGQLResponse::class.java)
         assertThat(entityUpdated.type).isEqualTo(EntityUpdateType.UPDATED)
-        assertThat(entityUpdated.entity!!.lastName).isEqualTo("b")
+        assertThat(entityUpdated.entity.lastName).isEqualTo("b")
     }
 
     @Test
