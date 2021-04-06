@@ -13,6 +13,8 @@ class CurrentUserOrAdminPermission : Permission() {
     private lateinit var adminPermission: AdminPermission
 
     /**
+     * If the #id is null usually no filter on a user is set, this means give me the data from all users. Only admins
+     * are allowed to get the data from other users!
      * @param id if null the user must be admin! If not null the id must be the id of the current user.
      */
     override fun hasPermission(id: String?, skipError: Boolean): Boolean {
