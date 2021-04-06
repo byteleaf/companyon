@@ -8,7 +8,7 @@ class AbsenceRequestInput(
     val user: String,
     val type: AbsenceType,
     val from: LocalDate,
-    var absenceFirstDayInMinutes: Int?,
+    val workingScheduleFirstDayInPercent: Int = 100,
     val to: LocalDate,
-    var absenceLastDayInMinutes: Int?
+    val workingScheduleLastDayInPercent: Int = 100
 )
