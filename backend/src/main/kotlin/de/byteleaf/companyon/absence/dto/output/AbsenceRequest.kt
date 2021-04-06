@@ -15,6 +15,7 @@ class AbsenceRequest(
     val absenceFirstDayInMinutes: Int,
     val to: LocalDate,
     val absenceLastDayInMinutes: Int
+//    val workShedulePerDay
     // TODO
 //    val approvedBy: String?
 ) : BaseDTO()

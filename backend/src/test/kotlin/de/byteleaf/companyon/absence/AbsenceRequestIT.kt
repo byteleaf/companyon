@@ -27,10 +27,11 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
         val response = performGQLByInput(
             "CreateAbsenceRequest", mapOf(
                 Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in italy"), Pair("type", AbsenceType.VACATION.name),
-                Pair("from", "2021-03-05"), Pair("absenceFirstDayInMinutes", 60), Pair("to", "2021-03-07"), Pair("absenceLastDayInMinutes", 60)
+                Pair("from", "2021-03-05"), Pair("absenceFirstDayInMinutes", 60), Pair("to", "2021-03-07"), Pair("absenceLastDayInMinutes", 100)
             )
         ).get("$.data.createAbsenceRequest", targetClass)
         Assertions.assertThat(response.absenceFirstDayInMinutes).isEqualTo(60)
+        Assertions.assertThat(response.absenceLastDayInMinutes).isEqualTo(100)
     }
 
     // TODO test absenceFirstDayInMinutes not defined
