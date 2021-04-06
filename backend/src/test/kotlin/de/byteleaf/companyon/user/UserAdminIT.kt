@@ -1,11 +1,13 @@
 package de.byteleaf.companyon.user
 
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
+import de.byteleaf.companyon.user.constant.Country
+import de.byteleaf.companyon.user.constant.ProvinceGermany
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserGQLResponse
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,22 +30,22 @@ class UserAdminIT : AbstractQueryMutationIT("user") {
     fun getUsers() {
         seedTestUser()
         val projects = performGQL("GetUsers").getList("$.data.users", targetClass)
-        Assertions.assertThat(projects.size).isEqualTo(1)
+        assertThat(projects.size).isEqualTo(1)
     }
 
     @Test
     fun getUser() {
         val createdUser = seedTestUser()
         val response = performGQLById("GetUser", createdUser.id).get("$.data.user", targetClass)
-        Assertions.assertThat(response.email).isEqualTo("hans@byteleaf.de")
+        assertThat(response.email).isEqualTo("hans@byteleaf.de")
     }
 
     @Test
     fun deleteUser() {
         val createdUser = seedTestUser()
-        Assertions.assertThat(userService.findAll().size).isEqualTo(1)
+        assertThat(userService.findAll().size).isEqualTo(1)
         performGQLById("DeleteUser", createdUser.id)
-        Assertions.assertThat(userService.findAll().size).isEqualTo(0)
+        assertThat(userService.findAll().size).isEqualTo(0)
     }
 
     @Test
@@ -54,17 +56,21 @@ class UserAdminIT : AbstractQueryMutationIT("user") {
             mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b"))
         )
             .get("$.data.updateUser", targetClass)
-        Assertions.assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
+        assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun createUser() {
         val createdEntity = performGQLByInput("CreateUser", mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b")))
             .get("$.data.createUser", targetClass)
-        Assertions.assertThat(createdEntity.email).isEqualTo("jeff@byteleaf.de")
+        assertThat(createdEntity.email).isEqualTo("jeff@byteleaf.de")
         // Check if really existing
         val getResponse = performGQLById("GetUser", createdEntity.id!!).get("$.data.user", targetClass)
-        Assertions.assertThat(getResponse.firstName).isEqualTo("a")
+        assertThat(getResponse.firstName).isEqualTo("a")
+        assertThat(getResponse.vacationDaysPerYear).isEqualTo(30)
+        assertThat(getResponse.weeklyWorkingMinutes).isEqualTo(2400)
+        assertThat(getResponse.country).isEqualTo(Country.GERMANY)
+        assertThat(getResponse.province).isEqualTo(ProvinceGermany.BAYERN)
     }
 
     private fun seedTestUser(): User =

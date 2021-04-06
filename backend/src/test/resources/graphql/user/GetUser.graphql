@@ -3,6 +3,10 @@ query GetUser($id: ID!) {
         id
         firstName,
         lastName,
-        email
+        email,
+        weeklyWorkingMinutes,
+        vacationDaysPerYear,
+        province,
+        country
     }
 }

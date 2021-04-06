@@ -1,9 +1,11 @@
 package de.byteleaf.companyon.auth.configuration
 
 import de.byteleaf.companyon.user.dto.User
+import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.repository.UserRepository
+import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration
@@ -31,6 +33,9 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
     @Autowired
     private lateinit var userRepository: UserRepository
 
+    @Autowired
+    protected lateinit var modelMapper: ModelMapper
+
     @Value("\${app.non-sec-user-admin}")
     private var nonSecUserAdmin: Boolean = false
 
@@ -48,8 +53,9 @@ class NonSecConfiguration : WebSecurityConfigurerAdapter() {
     fun createAndPersistNonSecUser(): User {
         val nonSecUser = userService.findByOAuth2Subject(NON_SEC_OAUTH_SUBJECT)
         return if (nonSecUser != null) nonSecUser else {
-            val entity = UserEntity(NON_SEC_OAUTH_SUBJECT, NON_SEC_FIRST_NAME, NON_SEC_LAST_NAME, NON_SEC_EMAIL, nonSecUserAdmin, null, null)
+            val entity = modelMapper.map(UserInput(NON_SEC_FIRST_NAME, NON_SEC_LAST_NAME, NON_SEC_EMAIL, nonSecUserAdmin), UserEntity::class.java)
             entity.id = NON_SEC_USER_ID
+            entity.oauth2Subject = NON_SEC_OAUTH_SUBJECT
             userRepository.insert(entity)
             return userService.findByOAuth2Subject(NON_SEC_OAUTH_SUBJECT)!!
         }
