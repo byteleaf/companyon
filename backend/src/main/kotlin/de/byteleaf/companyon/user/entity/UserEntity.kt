@@ -3,6 +3,8 @@ package de.byteleaf.companyon.user.entity
 import de.byteleaf.companyon.common.annotation.NoArgConstructor
 import de.byteleaf.companyon.common.entity.BaseEntity
 import de.byteleaf.companyon.fileupload.dto.FileMeta
+import de.byteleaf.companyon.user.constant.Country
+import de.byteleaf.companyon.user.constant.ProvinceGermany
 import org.springframework.data.mongodb.core.mapping.Document
 
 @NoArgConstructor
@@ -13,6 +15,10 @@ data class UserEntity(
     val lastName: String,
     val email: String,
     val admin: Boolean,
+    val weeklyWorkingMinutes: Int,
+    val vacationDaysPerYear: Int,
+    val country: Country,
+    val province: ProvinceGermany,
     val signature: FileMeta?,
     val avatar: FileMeta?
 ) : BaseEntity()

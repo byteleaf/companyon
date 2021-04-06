@@ -60,12 +60,6 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
         if (ids.isNullOrEmpty()) {
             return hasPermission(permissionType, null, skipError)
         }
-
-//        val a = listOf(true, false).all {
-//            it
-//        }
-
-
         return ids.all {
             hasPermission(permissionType, it, skipError)
         }

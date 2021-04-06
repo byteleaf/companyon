@@ -6,4 +6,8 @@ type User {
     admin: Boolean
     signature: FileMeta
     avatar: FileMeta
+    weeklyWorkingMinutes: Int!
+    vacationDaysPerYear: Int!
+    country: Country!
+    province: ProvinceGermany!
 }

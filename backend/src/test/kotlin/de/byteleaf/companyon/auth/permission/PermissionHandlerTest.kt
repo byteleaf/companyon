@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.security.core.context.SecurityContextHolder
 
 class PermissionHandlerTest : AbstractAuthenticatedTest() {
-
-    // hasPermissions & hasPermission (implicitly)
-
+    
     @Test
     fun notLoggedIn() {
         SecurityContextHolder.setContext(SecurityContextHolder.createEmptyContext())
@@ -51,8 +49,6 @@ class PermissionHandlerTest : AbstractAuthenticatedTest() {
     fun oneSuccessOneFail() {
         assertFalse(permissionHandler.hasPermissions(listOf(Pair(PermissionType.ADMIN, null), Pair(PermissionType.CURRENT_USER_OR_ADMIN, NonSecConfiguration.NON_SEC_USER_ID)), true))
     }
-
-    // hasPermissionForMultiple
 
     @Test
     fun hasPermissionForMultiple_IdsNull() {
