@@ -4,7 +4,9 @@ import de.byteleaf.companyon.absence.constant.AbsenceType
 import de.byteleaf.companyon.absence.dto.AbsenceRequestGQLResponse
 import de.byteleaf.companyon.absence.logic.AbsenceRequestService
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
+import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
+import de.byteleaf.companyon.test.util.GQLErrorUtil
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -24,21 +26,20 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
 
     @Test
     fun create() {
-        val response = performGQLByInput(
-            "CreateAbsenceRequest", mapOf(
-                Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in italy"), Pair("type", AbsenceType.VACATION.name),
-                Pair("from", "2021-03-05"), Pair("absenceFirstDayInMinutes", 60), Pair("to", "2021-03-07"), Pair("absenceLastDayInMinutes", 100)
-            )
-        ).get("$.data.createAbsenceRequest", targetClass)
-        Assertions.assertThat(response.absenceFirstDayInMinutes).isEqualTo(60)
-        Assertions.assertThat(response.absenceLastDayInMinutes).isEqualTo(100)
+        val response = performGQLByInput("CreateAbsenceRequest", mapOf(Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in italy"), Pair("type", AbsenceType.VACATION.name), Pair("from", "2021-03-05"), Pair("to", "2021-03-05"), Pair("workingScheduleFirstDayInPercent", 60)))
+            .get("$.data.createAbsenceRequest", targetClass)
+        Assertions.assertThat(response.workingScheduleFirstDayInPercent).isEqualTo(60)
+        Assertions.assertThat(response.workingScheduleLastDayInPercent).isEqualTo(100)
     }
 
-    // TODO test absenceFirstDayInMinutes not defined
+    @Test
+    fun createTestInputValidation() {
+        val response = performGQLByInput("CreateAbsenceRequest", mapOf(Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in italy"), Pair("type", AbsenceType.VACATION.name), Pair("from", "2021-03-05"), Pair("to", "2021-03-05"), Pair("workingScheduleFirstDayInPercent", 101)), true)
+        GQLErrorUtil.expectError(response, ErrorCode.INPUT_VALIDATION)
+    }
 
-    // TODO test same day absenceLastDayInMinutes defined error
 
-    // TEST validation error
+    // TEST checkIfStartsInPast
 
 //    @Test
 //    fun delete() {

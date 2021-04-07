@@ -3,7 +3,7 @@ input AbsenceRequestInput {
     description: String!
     type: AbsenceType!
     from: LocalDate!
-    absenceFirstDayInMinutes: Int
+    workingScheduleFirstDayInPercent: Int
     to: LocalDate!
-    absenceLastDayInMinutes: Int
+    workingScheduleLastDayInPercent: Int
 }

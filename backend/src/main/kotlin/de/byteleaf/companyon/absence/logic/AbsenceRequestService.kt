@@ -28,10 +28,6 @@ class AbsenceRequestService : AbstractEventDataService<AbsenceRequestEntity, Abs
     fun findAll(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, approved: ApprovedQueryState): List<AbsenceRequest> =
         absenceRequestQueryRepository.findAbsenceRequests(from, to, userIds, approved).map { entityToOutput(it) }
 
-    override fun create(input: AbsenceRequestInput): AbsenceRequest {
-        return super.create(input)
-    }
-
     /**
      * If the current user isn't a admin, the [AbsenceRequestEntity.approvedBy] will be reset
      */

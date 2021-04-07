@@ -10,7 +10,7 @@ abstract class AbstractException(val errorCode: ErrorCode, message: String) : Ru
     "Error code: $errorCode. $message"
 ) {
 
-    protected fun getGraphQLBaseError(errorContext: ErrorContext, extensions: MutableMap<ErrorExtensionKey, Any?> = mutableMapOf<ErrorExtensionKey, Any?>()): GraphQLError {
+    protected fun getGraphQLBaseError(errorContext: ErrorContext, extensions: MutableMap<ErrorExtensionKey, Any?> = mutableMapOf()): GraphQLError {
         extensions[ErrorExtensionKey.CODE] = errorCode.name
         extensions[ErrorExtensionKey.MESSAGE] = message!!
         val finalExtensions = extensions.filter { it.value != null }.mapKeys { it.key.value }

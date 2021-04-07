@@ -8,8 +8,8 @@ mutation CreateAbsenceRequest($input: AbsenceRequestInput!) {
         description,
         type,
         from,
-        absenceFirstDayInMinutes,
+        workingScheduleFirstDayInPercent,
         to,
-        absenceLastDayInMinutes,
+        workingScheduleLastDayInPercent,
     }
 }

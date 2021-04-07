@@ -15,5 +15,5 @@ class AbsenceRequestFieldResolver : GraphQLResolver<AbsenceRequest> {
     @Autowired
     private lateinit var userAccessService: UserAccessService
 
-    fun getUser(timeLog: AbsenceRequest): Optional<User> = userAccessService.getNullable(timeLog.user)
+    fun getUser(absenceRequest: AbsenceRequest): Optional<User> = userAccessService.getNullable(absenceRequest.user)
 }

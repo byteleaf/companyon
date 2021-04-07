@@ -4,8 +4,7 @@ type AbsenceRequest {
     description: String!
     type: AbsenceType!
     from: LocalDate!
-    absenceFirstDayInMinutes: Int!
+    workingScheduleFirstDayInPercent: Int!
     to: LocalDate!
-    absenceLastDayInMinutes: Int!
-    # TODO approvedBy: User
+    workingScheduleLastDayInPercent: Int!
 }

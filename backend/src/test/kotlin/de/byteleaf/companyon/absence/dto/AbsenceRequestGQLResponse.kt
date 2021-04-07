@@ -10,7 +10,7 @@ class AbsenceRequestGQLResponse(
     var user: UserGQLResponse?,
     var type: AbsenceType?,
     var from: LocalDate?,
-    var absenceFirstDayInMinutes: Int?,
+    var workingScheduleFirstDayInPercent: Int?,
     var to: LocalDate?,
-    var absenceLastDayInMinutes: Int?
+    var workingScheduleLastDayInPercent: Int?
 )

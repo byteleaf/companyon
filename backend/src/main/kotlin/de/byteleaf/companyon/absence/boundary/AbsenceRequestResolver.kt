@@ -11,8 +11,11 @@ import graphql.kickstart.tools.GraphQLSubscriptionResolver
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
+import org.springframework.validation.annotation.Validated
 import java.time.LocalDate
+import javax.validation.Valid
 
+@Validated
 @Controller
 class AbsenceRequestResolver : GraphQLQueryResolver, GraphQLMutationResolver, GraphQLSubscriptionResolver {
 
@@ -22,11 +25,11 @@ class AbsenceRequestResolver : GraphQLQueryResolver, GraphQLMutationResolver, Gr
     fun getAbsenceRequests(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, approved: ApprovedQueryState = ApprovedQueryState.ALL): List<AbsenceRequest> =
         absenceRequestAccessService.findAll(from, to, userIds, approved)
 
-    fun createAbsenceRequest(input: AbsenceRequestInput): AbsenceRequest = absenceRequestAccessService.create(input)
+    fun createAbsenceRequest(@Valid input: AbsenceRequestInput): AbsenceRequest = absenceRequestAccessService.create(input)
 
     fun deleteAbsenceRequest(id: String): AbsenceRequest = absenceRequestAccessService.delete(id)
 
-    fun updateAbsenceRequest(id: String, input: AbsenceRequestInput): AbsenceRequest = absenceRequestAccessService.update(id, input)
+    fun updateAbsenceRequest(id: String, @Valid input: AbsenceRequestInput): AbsenceRequest = absenceRequestAccessService.update(id, input)
 
     fun absenceRequestUpdate(): Publisher<AbsenceRequestUpdate> = absenceRequestAccessService.getPublisher()
 }
