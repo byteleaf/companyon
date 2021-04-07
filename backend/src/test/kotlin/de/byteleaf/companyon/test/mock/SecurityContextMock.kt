@@ -28,7 +28,7 @@ class SecurityContextMock {
 
     fun getUser(isAdmin: Boolean = nonSecUserAdmin): User {
         val entity =
-            modelMapper.map(UserInput(NonSecConfiguration.NON_SEC_FIRST_NAME, NonSecConfiguration.NON_SEC_LAST_NAME, NonSecConfiguration.NON_SEC_EMAIL, nonSecUserAdmin), UserEntity::class.java)
+            modelMapper.map(UserInput(NonSecConfiguration.NON_SEC_FIRST_NAME, NonSecConfiguration.NON_SEC_LAST_NAME, NonSecConfiguration.NON_SEC_EMAIL, isAdmin), UserEntity::class.java)
         entity.id = NonSecConfiguration.NON_SEC_USER_ID
         entity.oauth2Subject = NonSecConfiguration.NON_SEC_OAUTH_SUBJECT
         return modelMapper.map(entity, User::class.java)

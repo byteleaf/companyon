@@ -2,7 +2,7 @@ package de.byteleaf.companyon.user.subscription
 
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.test.AbstractSubscriptionIT
-import de.byteleaf.companyon.user.dto.UserUpdate
+import de.byteleaf.companyon.user.dto.UserUpdateGQLResponse
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions
@@ -23,8 +23,8 @@ class UserSubscriptionAdminIT : AbstractSubscriptionIT("user") {
             "UserUpdateSubscription",
             { userService.update(user.id, UserInput("a", "b", "c", false)) }
         )
-            .get("$.data.userUpdate", UserUpdate::class.java)
+            .get("$.data.userUpdate", UserUpdateGQLResponse::class.java)
         Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.UPDATED)
-        Assertions.assertThat(projectUpdated.entity!!.lastName).isEqualTo("b")
+        Assertions.assertThat(projectUpdated.entity.lastName).isEqualTo("b")
     }
 }
