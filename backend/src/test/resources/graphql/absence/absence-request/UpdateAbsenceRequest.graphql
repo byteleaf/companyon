@@ -1,14 +1,6 @@
 mutation UpdateAbsenceRequest($id: ID!, $input: AbsenceRequestInput!) {
     updateAbsenceRequest(id: $id, input: $input) {
-        user {
-            firstName,
-            lastName
-        },
         description,
-        type,
-        from,
-        workingScheduleFirstDayInPercent,
-        to,
-        workingScheduleLastDayInPercent,
+        type
     }
 }

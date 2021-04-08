@@ -11,4 +11,8 @@ class AdminPermission : Permission() {
         noPermission(skipError, "This action can only be performed by a user withe the admin role!")
 
     override fun getPermissionType(): PermissionType = PermissionType.ADMIN
+
+    fun throwException(message: String) {
+        noPermission(false, message)
+    }
 }

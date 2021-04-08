@@ -8,6 +8,7 @@ import de.byteleaf.companyon.absence.logic.AbsenceRequestService
 import de.byteleaf.companyon.auth.logic.SecurityContextService
 import de.byteleaf.companyon.auth.permission.PermissionException
 import de.byteleaf.companyon.auth.permission.PermissionType
+import de.byteleaf.companyon.auth.permission.handler.AdminPermission
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
@@ -22,6 +23,9 @@ class AbsenceRequestAccessService {
 
     @Autowired
     private lateinit var securityContextService: SecurityContextService
+
+    @Autowired
+    private lateinit var adminPermission: AdminPermission
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #userIds)")
     fun findAll(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, approved: ApprovedQueryState): List<AbsenceRequest> =
@@ -57,9 +61,7 @@ class AbsenceRequestAccessService {
      * @throws PermissionException
      */
     private fun checkIfStartsInPast(from: LocalDate) {
-        if (from.isAfter(LocalDate.now()) && !securityContextService.getCurrentUser().admin) throw PermissionException(
-            PermissionType.ADMIN,
-            "Only a admin users are allowed to create, modify or delete AbsenceRequests in the past"
-        )
+        if (from.isBefore(LocalDate.now()) && !securityContextService.getCurrentUser().admin)
+            adminPermission.throwException("Only a admin users are allowed to create, modify or delete AbsenceRequests in the past")
     }
 }
