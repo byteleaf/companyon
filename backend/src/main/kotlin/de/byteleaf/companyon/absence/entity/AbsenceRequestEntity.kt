@@ -14,7 +14,6 @@ class AbsenceRequestEntity(
     val type: AbsenceType,
     val from: LocalDate,
     val workingScheduleFirstDayInPercent: Int,
-    val to: LocalDate,
-    val workingScheduleLastDayInPercent: Int,
-    var approvedBy: String?
+    var to: LocalDate?,
+    val workingScheduleLastDayInPercent: Int
 ) : BaseEntity()

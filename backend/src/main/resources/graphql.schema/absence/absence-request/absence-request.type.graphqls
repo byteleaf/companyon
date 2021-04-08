@@ -5,6 +5,6 @@ type AbsenceRequest {
     type: AbsenceType!
     from: LocalDate!
     workingScheduleFirstDayInPercent: Int!
-    to: LocalDate!
+    to: LocalDate
     workingScheduleLastDayInPercent: Int!
 }

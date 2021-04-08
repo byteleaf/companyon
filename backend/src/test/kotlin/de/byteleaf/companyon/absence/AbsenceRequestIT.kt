@@ -12,6 +12,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import java.time.format.DateTimeFormatter
 
 class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
 
@@ -20,6 +21,12 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
     @Autowired
     protected lateinit var absenceRequestService: AbsenceRequestService
 
+    private val DESC = Pair("description", "vacations in italy")
+    private val USER = Pair("user", NonSecConfiguration.NON_SEC_USER_ID)
+    private val TYPE = Pair("type", AbsenceType.VACATION.name)
+    private val FROM = Pair("from", "2080-03-05")
+    private val TO = Pair("to", "2080-03-06")
+
     @BeforeEach
     fun init() {
         absenceRequestService.deleteAll()
@@ -27,29 +34,28 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
 
     @Test
     fun create() {
-        val response = createAbsenceRequest()
+        val response = performGQLByInput("CreateAbsenceRequest", mapOf(USER, DESC, TYPE, FROM, Pair("workingScheduleFirstDayInPercent", 60), TO)).get("$.data.createAbsenceRequest", targetClass)
+        assertThat(response.to!!.format(DateTimeFormatter.ISO_LOCAL_DATE)).isEqualTo("2080-03-06")
         assertThat(response.workingScheduleFirstDayInPercent).isEqualTo(60)
         assertThat(response.workingScheduleLastDayInPercent).isEqualTo(100)
     }
 
     @Test
     fun createTestInputValidation() {
-        val response = performGQLByInput("CreateAbsenceRequest", mapOf(Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in italy"), Pair("type", AbsenceType.VACATION.name), Pair("from", "2080-03-05"), Pair("to", "2080-03-05"), Pair("workingScheduleFirstDayInPercent", 101)), true)
+        val response = performGQLByInput("CreateAbsenceRequest", mapOf(USER, DESC, TYPE, FROM, Pair("workingScheduleFirstDayInPercent", 101)), true)
         GQLErrorUtil.expectError(response, ErrorCode.INPUT_VALIDATION)
     }
 
     @Test
     fun update() {
-        createAbsenceRequest()
-        val response = performGQLByInput("UpdateAbsenceRequest", mapOf(Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in spain"), Pair("type", AbsenceType.VACATION.name), Pair("from", "2080-03-05"), Pair("to", "2080-03-05")))
-            .get("$.data.createAbsenceRequest", targetClass)
+        val created = performGQLByInput("CreateAbsenceRequest", mapOf(USER, DESC, TYPE, FROM)).get("$.data.createAbsenceRequest", targetClass)
+        val response = performGQLByIdAndInput("UpdateAbsenceRequest", created.id!!, mapOf(USER, FROM, TYPE, Pair("description", "vacations in spain"))).get("$.data.updateAbsenceRequest", targetClass)
         assertThat(response.description).isEqualTo("vacations in spain")
     }
 
     @Test
-    fun updateStartInPast() {
-        val createResponse = createAbsenceRequest()
-        val response = performGQLByIdAndInput("UpdateAbsenceRequest", createResponse.id!!, mapOf(Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in italy"), Pair("type", AbsenceType.VACATION.name), Pair("from", "2020-03-05"), Pair("to", "2080-03-05")), true);
+    fun createStartInPast() {
+        val response = performGQLByInput("CreateAbsenceRequest", mapOf(USER, DESC, TYPE, Pair("from", "2020-03-05")), true);
         GQLErrorUtil.expectNoPermission(response, PermissionType.ADMIN)
     }
 
@@ -61,6 +67,4 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
 //        Assertions.assertThat(timeLogService.findAll().size).isEqualTo(0)
 //    }
 
-    private fun createAbsenceRequest() = performGQLByInput("CreateAbsenceRequest", mapOf(Pair("user", NonSecConfiguration.NON_SEC_USER_ID), Pair("description", "vacations in italy"), Pair("type", AbsenceType.VACATION.name), Pair("from", "2080-03-05"), Pair("to", "2080-03-05")))
-        .get("$.data.createAbsenceRequest", targetClass)
 }
