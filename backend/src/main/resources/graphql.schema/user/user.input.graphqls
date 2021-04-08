@@ -5,4 +5,8 @@ input UserInput {
     admin: Boolean
     signature: FileMetaInput
     avatar: FileMetaInput
+    weeklyWorkingMinutes: Int
+    vacationDaysPerYear: Int
+    country: Country
+    province: ProvinceGermany
 }
