@@ -24,6 +24,6 @@ abstract class Permission {
         val parameters = mutableMapOf<ErrorExtensionKey, Any?>()
         if (key1 != null && value1 != null) parameters[key1] = value1
         parameters[ErrorExtensionKey.CURRENT_USER_ID] = securityContextService.getCurrentUser().id
-        throw PermissionException(permissionType ?: getPermissionType(), message, parameters)
+        throw PermissionException(permissionType ?: getPermissionType(), "Violated permission type: ${getPermissionType()}. $message", parameters)
     }
 }

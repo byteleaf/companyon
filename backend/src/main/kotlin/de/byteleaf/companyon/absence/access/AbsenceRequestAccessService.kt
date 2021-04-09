@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.absence.access
 
+import de.byteleaf.companyon.absence.constant.AbsenceType
 import de.byteleaf.companyon.absence.constant.ApprovedQueryState
 import de.byteleaf.companyon.absence.dto.input.AbsenceRequestInput
 import de.byteleaf.companyon.absence.dto.output.AbsenceRequest
@@ -28,8 +29,8 @@ class AbsenceRequestAccessService {
     private lateinit var adminPermission: AdminPermission
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #userIds)")
-    fun findAll(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, approved: ApprovedQueryState): List<AbsenceRequest> =
-        absenceRequestService.findAll(from, to, userIds, approved)
+    fun findAll(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, types: Collection<AbsenceType>?, approved: ApprovedQueryState): List<AbsenceRequest> =
+        absenceRequestService.findAll(from, to, userIds, types, approved)
 
     @PreAuthorize("hasPermission(T(de.byteleaf.companyon.auth.permission.PermissionType).CURRENT_USER_OR_ADMIN, #input.user)")
     fun create(input: AbsenceRequestInput): AbsenceRequest {

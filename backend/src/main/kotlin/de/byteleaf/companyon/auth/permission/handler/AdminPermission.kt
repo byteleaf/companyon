@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 class AdminPermission : Permission() {
 
     override fun hasPermission(id: String?, skipError: Boolean): Boolean = if (securityContextService.getCurrentUser().admin) true else
-        noPermission(skipError, "This action can only be performed by a user withe the admin role!")
+        noPermission(skipError, "This action can only be performed by a user with admin role!")
 
     override fun getPermissionType(): PermissionType = PermissionType.ADMIN
 

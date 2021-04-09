@@ -13,7 +13,7 @@ import de.byteleaf.companyon.timelog.logic.TimeLogService
 import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -84,7 +84,7 @@ class GetTimeLogsIT : AbstractQueryMutationIT("time-log") {
     }
 
     private fun assertTimeLogs(parameter: Map<String, String>, expectedLogs: Int) =
-        Assertions.assertThat(performGQL("GetTimeLogs", parameter).getList("$.data.timeLogs", targetClass).size).isEqualTo(expectedLogs)
+        assertThat(performGQL("GetTimeLogs", parameter).getList("$.data.timeLogs", targetClass).size).isEqualTo(expectedLogs)
 
     private fun seedTestTimeLogs() {
         user1 = userService.create(UserInput("Joe", "Byten", "joe@byteleaf.de"))

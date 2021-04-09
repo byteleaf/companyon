@@ -4,5 +4,5 @@ type Subscription {
     userUpdate: UserUpdate!
     timeLogUpdate: TimeLogUpdate!
     taskUpdate: TaskUpdate!
-    #    absenceRequestUpdate: AbsenceRequestUpdate!
+    absenceRequestUpdate: AbsenceRequestUpdate!
 }

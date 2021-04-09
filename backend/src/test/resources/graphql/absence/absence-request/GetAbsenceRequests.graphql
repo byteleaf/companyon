@@ -1,11 +1,11 @@
-#query GetAbsenceRequests($companies: [ID!]) {
-#    absenceRequests(companies: $companies) {
-#        id
-#        name,
-#        state,
-#        company {
-#            id,
-#            name
-#        }
-#    }
-#}
+query GetAbsenceRequests($from: LocalDate, $to: LocalDate, $userIds: [ID], $types: [AbsenceType], $approved: ApprovedQueryState) {
+    absenceRequests(from: $from, to: $to, userIds: $userIds, types: $types, approved: $approved) {
+        id
+        description,
+        type,
+        from,
+        workingScheduleFirstDayInPercent,
+        to,
+        workingScheduleLastDayInPercent,
+    }
+}

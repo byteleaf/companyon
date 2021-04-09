@@ -20,10 +20,11 @@ type Query {
     task(id: ID!): Task!
     tasks(user: ID, status: TaskState): [Task!]!
     # absence requests
-    #    absenceRequests(
-    #        from: LocalDate
-    #        to: LocalDate
-    #        userIds: [ID]
-    #        approved: ApprovedQueryState
-    #    ): [AbsenceRequest!]!
+    absenceRequests(
+        from: LocalDate
+        to: LocalDate
+        userIds: [ID]
+        types: [AbsenceType]
+        approved: ApprovedQueryState
+    ): [AbsenceRequest!]!
 }

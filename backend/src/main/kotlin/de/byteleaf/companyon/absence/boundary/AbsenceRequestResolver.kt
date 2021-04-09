@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.absence.boundary
 
 import de.byteleaf.companyon.absence.access.AbsenceRequestAccessService
+import de.byteleaf.companyon.absence.constant.AbsenceType
 import de.byteleaf.companyon.absence.constant.ApprovedQueryState
 import de.byteleaf.companyon.absence.dto.input.AbsenceRequestInput
 import de.byteleaf.companyon.absence.dto.output.AbsenceRequest
@@ -19,8 +20,8 @@ class AbsenceRequestResolver : GraphQLQueryResolver, GraphQLMutationResolver, Gr
     @Autowired
     private lateinit var absenceRequestAccessService: AbsenceRequestAccessService
 
-    fun getAbsenceRequests(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, approved: ApprovedQueryState = ApprovedQueryState.ALL): List<AbsenceRequest> =
-        absenceRequestAccessService.findAll(from, to, userIds, approved)
+    fun getAbsenceRequests(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, types: Collection<AbsenceType>?, approved: ApprovedQueryState?): List<AbsenceRequest> =
+        absenceRequestAccessService.findAll(from, to, userIds, types, approved ?: ApprovedQueryState.ALL)
 
     fun createAbsenceRequest(input: AbsenceRequestInput): AbsenceRequest = absenceRequestAccessService.create(input)
 

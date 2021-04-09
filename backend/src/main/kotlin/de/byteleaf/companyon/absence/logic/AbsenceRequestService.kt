@@ -1,5 +1,6 @@
 package de.byteleaf.companyon.absence.logic
 
+import de.byteleaf.companyon.absence.constant.AbsenceType
 import de.byteleaf.companyon.absence.constant.ApprovedQueryState
 import de.byteleaf.companyon.absence.dto.input.AbsenceRequestInput
 import de.byteleaf.companyon.absence.dto.output.AbsenceRequest
@@ -25,8 +26,8 @@ class AbsenceRequestService : AbstractEventDataService<AbsenceRequestEntity, Abs
     @Autowired
     private lateinit var absenceRequestQueryRepository: AbsenceRequestQueryRepository
 
-    fun findAll(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, approved: ApprovedQueryState): List<AbsenceRequest> =
-        absenceRequestQueryRepository.findAbsenceRequests(from, to, userIds, approved).map { entityToOutput(it) }
+    fun findAll(from: LocalDate?, to: LocalDate?, userIds: Collection<String>?, types: Collection<AbsenceType>?, approved: ApprovedQueryState): List<AbsenceRequest> =
+        absenceRequestQueryRepository.findAbsenceRequests(from, to, userIds, types, approved).map { entityToOutput(it) }
 
     /**
      * If the current user isn't a admin, the [AbsenceRequestEntity.approvedBy] will be reset
