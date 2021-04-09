@@ -167,7 +167,7 @@
                 <configuration>
                     <args>
                         <arg>-Xjsr305=strict</arg>
-                        <!--        TODO                <arg>-Werror</arg> &lt;!&ndash; build will break on each warning &ndash;&gt;-->
+                        <!--  Can be uncommented fo refactorings <arg>-Werror</arg> &lt;!&ndash; build will break on each warning &ndash;&gt;-->
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>

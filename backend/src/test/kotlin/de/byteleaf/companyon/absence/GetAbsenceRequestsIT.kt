@@ -66,10 +66,4 @@ class GetAbsenceRequestsIT : AbstractQueryMutationIT("absence/absence-request") 
     fun fromAndTypes() {
         assertThat(performGQL("GetAbsenceRequests", mapOf(USER_IDS, FROM, TYPES)).getList("$.data.absenceRequests", targetClass).size).isEqualTo(1)
     }
-
-    // TODO
-//    @Test
-//    fun approved() {
-//        assertThat(performGQL("GetAbsenceRequests", mapOf(USER_IDS)).getList("$.data.absenceRequests", targetClass).size).isEqualTo(3)
-//    }
 }
