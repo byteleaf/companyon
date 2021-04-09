@@ -18,7 +18,7 @@ class AbsenceRequestInput(
     @field:Range(min = 0, max = 100)
     val workingScheduleFirstDayInPercent: Int = 100,
     // TODO must be bigger than from (if set) -> will be done during https://github.com/byteleaf/companyon/issues/65
-    var to: LocalDate?,
+    var to: LocalDate? = null,
     @field:Range(min = 0, max = 100)
     val workingScheduleLastDayInPercent: Int = 100
 )

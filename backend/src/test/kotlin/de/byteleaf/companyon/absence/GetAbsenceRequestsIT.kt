@@ -28,7 +28,7 @@ class GetAbsenceRequestsIT : AbstractQueryMutationIT("absence/absence-request") 
     @BeforeEach
     fun init() {
         absenceRequestService.deleteAll()
-        absenceRequestService.create(AbsenceRequestInput("a", NonSecConfiguration.NON_SEC_USER_ID, AbsenceType.VACATION, LocalDate.parse("2020-12-03"), 100, null, 100))
+        absenceRequestService.create(AbsenceRequestInput("a", NonSecConfiguration.NON_SEC_USER_ID, AbsenceType.VACATION, LocalDate.parse("2020-12-03")))
         absenceRequestService.create(AbsenceRequestInput("b", NonSecConfiguration.NON_SEC_USER_ID, AbsenceType.VACATION, LocalDate.parse("2020-12-04"), 100, LocalDate.parse("2020-12-06"), 100))
         absenceRequestService.create(AbsenceRequestInput("c", NonSecConfiguration.NON_SEC_USER_ID, AbsenceType.SICKNESS, LocalDate.parse("2020-12-05"), 100, LocalDate.parse("2020-12-07"), 100))
 

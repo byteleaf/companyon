@@ -3,12 +3,8 @@ subscription {
         type,
         entity {
             id,
-            name,
-            company {
-                id,
-                name
-            },
-            state
+            type,
+            description
         }
     }
 }
