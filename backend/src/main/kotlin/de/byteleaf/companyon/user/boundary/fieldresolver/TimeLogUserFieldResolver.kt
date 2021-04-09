@@ -2,7 +2,7 @@ package de.byteleaf.companyon.user.boundary.fieldresolver
 
 import de.byteleaf.companyon.timelog.dto.TimeLog
 import de.byteleaf.companyon.user.access.UserAccessService
-import de.byteleaf.companyon.user.dto.User
+import de.byteleaf.companyon.user.dto.output.User
 import graphql.kickstart.tools.GraphQLResolver
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller

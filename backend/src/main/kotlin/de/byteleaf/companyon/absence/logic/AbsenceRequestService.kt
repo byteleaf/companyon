@@ -10,6 +10,7 @@ import de.byteleaf.companyon.absence.repository.AbsenceRequestQueryRepository
 import de.byteleaf.companyon.absence.repository.AbsenceRequestRepository
 import de.byteleaf.companyon.auth.logic.SecurityContextService
 import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.error.exception.FatalException
 import de.byteleaf.companyon.common.logic.AbstractEventDataService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -39,5 +40,17 @@ class AbsenceRequestService : AbstractEventDataService<AbsenceRequestEntity, Abs
                 // it.approvedBy = null
             }
         }
+    }
+
+    fun approve(id: String, approved: Boolean): AbsenceRequest {
+        val entity = getEntity(id)
+        if (approved) {
+            if (entity.approval != null) throw FatalException("AbsenceRequest is already approved!")
+            entity.approval = securityContextService.generateApproval()
+        } else {
+            entity.approval ?: throw FatalException("AbsenceRequest is already unapproved!")
+            entity.approval = null
+        }
+        return super.updateEntity(entity)
     }
 }

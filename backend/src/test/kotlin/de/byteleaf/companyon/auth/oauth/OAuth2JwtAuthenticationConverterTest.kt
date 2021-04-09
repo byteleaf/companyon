@@ -3,7 +3,7 @@ package de.byteleaf.companyon.auth.oauth
 import de.byteleaf.companyon.auth.logic.AuthInfoService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -45,17 +45,17 @@ class OAuth2JwtAuthenticationConverterTest {
     fun authenticateByOAuthSubject() {
         userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true), "test-subject")
         val userToken = converter.convert(JwtMock("test-subject"))
-        Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
+        assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
     fun activateNewUser() {
         userService.create(UserInput("Jeff", "Bytezos", "jeff@byteleaf.de", true))
         val userToken = converter.convert(JwtMock("test-subject"))
-        Assertions.assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
+        assertThat(userToken.principal.email).isEqualTo("jeff@byteleaf.de")
         // Check if the subject was updated
         val updatedUser = userService.findByOAuth2Subject("test-subject")
-        Assertions.assertThat(updatedUser!!.email).isEqualTo("jeff@byteleaf.de")
+        assertThat(updatedUser!!.email).isEqualTo("jeff@byteleaf.de")
     }
 
     @Test
@@ -69,7 +69,7 @@ class OAuth2JwtAuthenticationConverterTest {
 
     private fun expectOAuthError(oauthErrorCode: String, executable: () -> kotlin.Unit) {
         val error = assertThrows<OAuth2AuthenticationException>(executable).error as BearerTokenError
-        Assertions.assertThat(error.httpStatus).isEqualTo(HttpStatus.FORBIDDEN)
-        Assertions.assertThat(error.errorCode).isEqualTo(oauthErrorCode)
+        assertThat(error.httpStatus).isEqualTo(HttpStatus.FORBIDDEN)
+        assertThat(error.errorCode).isEqualTo(oauthErrorCode)
     }
 }

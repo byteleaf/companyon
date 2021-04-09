@@ -6,6 +6,7 @@ import de.byteleaf.companyon.absence.dto.input.AbsenceRequestInput
 import de.byteleaf.companyon.absence.dto.output.AbsenceRequest
 import de.byteleaf.companyon.absence.dto.update.AbsenceRequestUpdate
 import de.byteleaf.companyon.absence.logic.AbsenceRequestService
+import de.byteleaf.companyon.auth.annotation.IsAdmin
 import de.byteleaf.companyon.auth.logic.SecurityContextService
 import de.byteleaf.companyon.auth.permission.PermissionException
 import de.byteleaf.companyon.auth.permission.PermissionType
@@ -62,7 +63,9 @@ class AbsenceRequestAccessService {
      * @throws PermissionException
      */
     private fun checkIfStartsInPast(from: LocalDate) {
-        if (from.isBefore(LocalDate.now()) && !securityContextService.getCurrentUser().admin)
-            adminPermission.throwException("Only a admin users are allowed to create, modify or delete AbsenceRequests in the past")
+        if (from.isBefore(LocalDate.now()) && !securityContextService.getCurrentUser().admin) adminPermission.throwException("Only a admin users are allowed to create, modify or delete AbsenceRequests in the past")
     }
+
+    @IsAdmin
+    fun approve(id: String, approved: Boolean): AbsenceRequest = absenceRequestService.approve(id, approved)
 }

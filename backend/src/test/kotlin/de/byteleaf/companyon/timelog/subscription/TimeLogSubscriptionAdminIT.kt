@@ -2,7 +2,7 @@ package de.byteleaf.companyon.timelog.subscription
 
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.project.dto.TimeLogUpdateGQLResponse
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.test.context.TestPropertySource
 
@@ -11,8 +11,7 @@ class TimeLogSubscriptionAdminIT : AbstractTimeLogSubscription() {
 
     @Test
     fun differentUser() {
-        val updatedEntity = performGQLSubscription("TimeLogUpdateSubscription", { createTimeLog("123") })
-            .get("$.data.timeLogUpdate", TimeLogUpdateGQLResponse::class.java)
-        Assertions.assertThat(updatedEntity.type).isEqualTo(EntityUpdateType.CREATED)
+        val updatedEntity = performGQLSubscription("TimeLogUpdateSubscription", { createTimeLog("123") }).get("$.data.timeLogUpdate", TimeLogUpdateGQLResponse::class.java)
+        assertThat(updatedEntity.type).isEqualTo(EntityUpdateType.CREATED)
     }
 }

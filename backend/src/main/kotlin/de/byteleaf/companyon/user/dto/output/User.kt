@@ -1,4 +1,4 @@
-package de.byteleaf.companyon.user.dto
+package de.byteleaf.companyon.user.dto.output
 
 import de.byteleaf.companyon.common.annotation.NoArgConstructor
 import de.byteleaf.companyon.common.dto.BaseDTO
@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 
 @NoArgConstructor
-data class User(
+class User(
     override val id: String,
     val oauth2Subject: String?,
     val firstName: String,

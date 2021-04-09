@@ -6,7 +6,7 @@ import de.byteleaf.companyon.task.entity.TaskState
 import de.byteleaf.companyon.task.logic.TaskService
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
 import de.byteleaf.companyon.user.logic.UserService
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,17 +30,17 @@ class TaskIT : AbstractQueryMutationIT("task") {
     @Test
     fun create() {
         val createdEntity = createTask()
-        Assertions.assertThat(createdEntity.description).isEqualTo("test task")
-        Assertions.assertThat(createdEntity.status).isEqualTo(TaskState.OPEN)
-        Assertions.assertThat(createdEntity.user!!.firstName).isEqualTo(NonSecConfiguration.NON_SEC_FIRST_NAME)
+        assertThat(createdEntity.description).isEqualTo("test task")
+        assertThat(createdEntity.status).isEqualTo(TaskState.OPEN)
+        assertThat(createdEntity.user!!.firstName).isEqualTo(NonSecConfiguration.NON_SEC_FIRST_NAME)
     }
 
     @Test
     fun delete() {
         val createdEntity = createTask()
-        Assertions.assertThat(taskService.findAll().size).isEqualTo(1)
+        assertThat(taskService.findAll().size).isEqualTo(1)
         performGQLById("DeleteTask", createdEntity.id!!)
-        Assertions.assertThat(taskService.findAll().size).isEqualTo(0)
+        assertThat(taskService.findAll().size).isEqualTo(0)
     }
 
     @Test
@@ -55,8 +55,8 @@ class TaskIT : AbstractQueryMutationIT("task") {
             )
         ).get("$.data.updateTask", targetClass)
 
-        Assertions.assertThat(updatedEntity.description).isEqualTo("new description")
-        Assertions.assertThat(updatedEntity.status).isEqualTo(TaskState.DONE)
+        assertThat(updatedEntity.description).isEqualTo("new description")
+        assertThat(updatedEntity.status).isEqualTo(TaskState.DONE)
     }
 
     private fun createTask(userId: String = NonSecConfiguration.NON_SEC_USER_ID) = performGQLByInput("CreateTask", mapOf(Pair("user", userId), Pair("description", "test task"))).get("$.data.createTask", targetClass)

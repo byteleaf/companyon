@@ -65,4 +65,10 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
         performGQLById("DeleteAbsenceRequest", created.id!!)
         assertThat(absenceRequestService.findAll().size).isEqualTo(0)
     }
+
+    @Test
+    fun approveUnauthorized() {
+        val response = performGQL("ApproveAbsenceRequest", mapOf(Pair("id", "123"), Pair("approved", true)), true)
+        GQLErrorUtil.expectNoPermission(response, PermissionType.ADMIN)
+    }
 }

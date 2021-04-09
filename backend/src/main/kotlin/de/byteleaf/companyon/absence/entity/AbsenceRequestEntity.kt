@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.absence.entity
 
 import de.byteleaf.companyon.absence.constant.AbsenceType
+import de.byteleaf.companyon.auth.dto.Approval
 import de.byteleaf.companyon.common.annotation.NoArgConstructor
 import de.byteleaf.companyon.common.entity.BaseEntity
 import org.springframework.data.mongodb.core.mapping.Document
@@ -15,5 +16,6 @@ class AbsenceRequestEntity(
     val from: LocalDate,
     val workingScheduleFirstDayInPercent: Int,
     var to: LocalDate?,
-    val workingScheduleLastDayInPercent: Int
+    val workingScheduleLastDayInPercent: Int,
+    var approval: Approval?
 ) : BaseEntity()

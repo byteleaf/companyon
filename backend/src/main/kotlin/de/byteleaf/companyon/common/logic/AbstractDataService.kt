@@ -48,10 +48,16 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
 
     open fun update(id: String, input: I): O = update(id, input, null)
 
-    protected open fun update(id: String, @Valid input: I, updateEntity: ((entity: E) -> Unit)?): O {
+    protected fun update(id: String, @Valid input: I, beforePersist: ((entity: E) -> Unit)?): O {
         val entity = inputToEntity(input)
         entity.id = id
-        updateEntity?.invoke(entity)
+        return updateEntity(entity, beforePersist)
+    }
+
+    protected fun updateEntity(entity: E): O = updateEntity(entity, null)
+
+    private fun updateEntity(entity: E, beforePersist: ((entity: E) -> Unit)?): O {
+        beforePersist?.invoke(entity)
         val dto = entityToOutput(repository.save(entity))
         applicationEventPublisher.publishEvent(EntityUpdatedEvent(getEntityType(), dto))
         return dto

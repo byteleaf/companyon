@@ -23,4 +23,5 @@ type Mutation {
     createAbsenceRequest(input: AbsenceRequestInput!): AbsenceRequest!
     updateAbsenceRequest(id: ID!, input: AbsenceRequestInput!): AbsenceRequest!
     deleteAbsenceRequest(id: ID!): AbsenceRequest!
+    approveAbsenceRequest(id: ID!, approved: Boolean!): AbsenceRequest!
 }
