@@ -59,12 +59,10 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
         GQLErrorUtil.expectNoPermission(response, PermissionType.ADMIN)
     }
 
-//    @Test
-//    fun delete() {
-//        val createdEntity = createTimeLog()
-//        Assertions.assertThat(timeLogService.findAll().size).isEqualTo(1)
-//        performGQLById("DeleteTimeLog", createdEntity.id!!)
-//        Assertions.assertThat(timeLogService.findAll().size).isEqualTo(0)
-//    }
-
+    @Test
+    fun delete() {
+        val created = performGQLByInput("CreateAbsenceRequest", mapOf(USER, DESC, TYPE, FROM)).get("$.data.createAbsenceRequest", targetClass)
+        performGQLById("DeleteAbsenceRequest", created.id!!)
+        assertThat(absenceRequestService.findAll().size).isEqualTo(0)
+    }
 }
