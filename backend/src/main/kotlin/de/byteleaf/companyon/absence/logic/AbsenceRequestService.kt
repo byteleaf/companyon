@@ -36,8 +36,7 @@ class AbsenceRequestService : AbstractEventDataService<AbsenceRequestEntity, Abs
     override fun update(id: String, input: AbsenceRequestInput): AbsenceRequest {
         return super.update(id, input) {
             if (!securityContextService.getCurrentUser().admin) {
-                // TODO https://github.com/byteleaf/companyon/issues/41
-                // it.approvedBy = null
+                it.approval = null
             }
         }
     }
