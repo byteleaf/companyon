@@ -8,13 +8,13 @@ import org.springframework.data.mongodb.core.query.Criteria.where
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.isEqualTo
 import org.springframework.stereotype.Repository
-import java.util.*
 
 @Repository
 class TaskQueryRepository {
 
-    @Autowired private lateinit var mongoTemplate: MongoTemplate
-
+    @Autowired
+    private lateinit var mongoTemplate: MongoTemplate
+    
     fun findTasks(user: String?, status: TaskState?): List<TaskEntity> {
         val query = Query()
         if (status != null) query.addCriteria(where("status").isEqualTo(status))

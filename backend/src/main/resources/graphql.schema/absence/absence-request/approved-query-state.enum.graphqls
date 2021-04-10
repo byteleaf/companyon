@@ -1,0 +1,5 @@
+enum ApprovedQueryState {
+    ALL,
+    APPROVED,
+    NOT_APPROVED
+}

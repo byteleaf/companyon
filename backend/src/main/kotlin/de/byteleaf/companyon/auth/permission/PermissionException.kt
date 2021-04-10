@@ -6,7 +6,7 @@ import de.byteleaf.companyon.common.error.exception.AbstractException
 import graphql.GraphQLError
 import graphql.kickstart.spring.error.ErrorContext
 
-class PermissionException(val type: PermissionType, message: String, private val parameters: Map<ErrorExtensionKey, Any?>) :
+class PermissionException(val type: PermissionType, message: String, private val parameters: Map<ErrorExtensionKey, Any?> = emptyMap()) :
     AbstractException(ErrorCode.NO_PERMISSION, message) {
 
     override fun getGraphQLError(errorContext: ErrorContext): GraphQLError {

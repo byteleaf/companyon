@@ -6,4 +6,7 @@ enum class EntityType {
     USER,
     TIME_LOG,
     TASK,
+    USER_VACATION_ADJUSTMENT,
+    USER_GROUP_VACATION_ADJUSTMENT,
+    ABSENCE_REQUEST
 }

@@ -1,0 +1,5 @@
+mutation DeleteAbsenceRequest($id: ID!) {
+    deleteAbsenceRequest(id: $id) {
+        id
+    }
+}

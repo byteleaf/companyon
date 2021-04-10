@@ -12,8 +12,11 @@ import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.validation.annotation.Validated
 import java.util.*
+import javax.validation.Valid
 
+@Validated
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
 abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepository<E, String>> {
 
@@ -37,15 +40,18 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     protected fun entityToOutput(entity: E): O =
         modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_OUTPUT_DTO)) as O
 
-    open fun create(input: I): O {
+    open fun create(@Valid input: I): O {
         val dto = entityToOutput(repository.insert(inputToEntity(input)))
         applicationEventPublisher.publishEvent(EntityCreatedEvent(getEntityType(), dto))
         return dto
     }
 
-    fun update(id: String, input: I): O {
+    open fun update(id: String, input: I): O = update(id, input, null)
+
+    protected open fun update(id: String, @Valid input: I, updateEntity: ((entity: E) -> Unit)?): O {
         val entity = inputToEntity(input)
         entity.id = id
+        updateEntity?.invoke(entity)
         val dto = entityToOutput(repository.save(entity))
         applicationEventPublisher.publishEvent(EntityUpdatedEvent(getEntityType(), dto))
         return dto
@@ -58,7 +64,7 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
 
     fun getNullable(id: String?): Optional<O> = if (id != null) repository.findById(id).map { entityToOutput(it) } else Optional.empty()
 
-    fun delete(id: String): O {
+    open fun delete(id: String): O {
         val dto = get(id)
         repository.deleteById(id)
         applicationEventPublisher.publishEvent(EntityDeletedEvent(getEntityType(), dto))

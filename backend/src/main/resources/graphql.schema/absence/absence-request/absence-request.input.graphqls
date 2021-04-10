@@ -1,0 +1,9 @@
+input AbsenceRequestInput {
+    user: ID!
+    description: String!
+    type: AbsenceType!
+    from: LocalDate!
+    workingScheduleFirstDayInPercent: Int
+    to: LocalDate
+    workingScheduleLastDayInPercent: Int
+}

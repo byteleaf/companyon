@@ -1,0 +1,4 @@
+type AbsenceRequestUpdate {
+    type: EntityUpdateType!
+    entity: AbsenceRequest!
+}

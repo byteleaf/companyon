@@ -1,0 +1,10 @@
+subscription {
+    absenceRequestUpdate {
+        type,
+        entity {
+            id,
+            type,
+            description
+        }
+    }
+}

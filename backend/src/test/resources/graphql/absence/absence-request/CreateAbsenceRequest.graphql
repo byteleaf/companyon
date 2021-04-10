@@ -1,0 +1,15 @@
+mutation CreateAbsenceRequest($input: AbsenceRequestInput!) {
+    createAbsenceRequest(input: $input) {
+        id
+        user {
+            firstName,
+            lastName
+        },
+        description,
+        type,
+        from,
+        workingScheduleFirstDayInPercent,
+        to,
+        workingScheduleLastDayInPercent,
+    }
+}

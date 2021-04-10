@@ -1,22 +1,30 @@
 type Query {
-  # company
-  company(id: ID!): Company!
-  companies: [Company!]!
-  # project
-  project(id: ID!): Project!
-  projects(companies: [ID!]): [Project!]!
-  # user
-  user(id: ID!): User!
-  users: [User!]!
-  currentUser: User!
-  # time log
-  timeLogs(
-    from: OffsetDateTime
-    to: OffsetDateTime
-    userId: String
-    projectId: String
-  ): [TimeLog!]!
-  # task
-  task(id: ID!): Task!
-  tasks(user: ID, status: TaskState): [Task!]!
+    # company
+    company(id: ID!): Company!
+    companies: [Company!]!
+    # project
+    project(id: ID!): Project!
+    projects(companies: [ID!]): [Project!]!
+    # user
+    user(id: ID!): User!
+    users: [User!]!
+    currentUser: User!
+    # time log
+    timeLogs(
+        from: OffsetDateTime
+        to: OffsetDateTime
+        userId: String
+        projectId: String
+    ): [TimeLog!]!
+    # task
+    task(id: ID!): Task!
+    tasks(user: ID, status: TaskState): [Task!]!
+    # absence requests
+    absenceRequests(
+        from: LocalDate
+        to: LocalDate
+        userIds: [ID]
+        types: [AbsenceType]
+        approved: ApprovedQueryState
+    ): [AbsenceRequest!]!
 }

@@ -57,7 +57,7 @@ class PermissionHandler constructor(@Autowired permissions: Set<Permission>) {
      * @throws PermissionException will be thrown instead of a false return value if the [skipError] flag is not set
      */
     fun hasPermissionForMultiple(permissionType: PermissionType, ids: Collection<String>? = null, skipError: Boolean = false): Boolean {
-        if (ids == null || ids.isEmpty()) {
+        if (ids.isNullOrEmpty()) {
             return hasPermission(permissionType, null, skipError)
         }
         return ids.all {
