@@ -1,3 +1,5 @@
+directive @admin on ARGUMENT_DEFINITION
+
 type Query {
     # company
     company(id: ID!): Company!
@@ -11,7 +13,7 @@ type Query {
     currentUser: User!
     # time log
     timeLogs(
-        from: OffsetDateTime
+        from: OffsetDateTime @admin
         to: OffsetDateTime
         userId: String
         projectId: String
