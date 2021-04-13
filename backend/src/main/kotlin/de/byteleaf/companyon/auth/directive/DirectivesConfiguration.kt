@@ -9,6 +9,6 @@ class DirectivesConfiguration {
 
     @Bean
     fun myCustomDirective(): SchemaDirective? {
-        return SchemaDirective("admin", AdminFieldDirective())
+        return SchemaDirective("admin", AdminDirective())
     }
 }

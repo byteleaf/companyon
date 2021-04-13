@@ -15,7 +15,7 @@ type Query {
     timeLogs(
         from: OffsetDateTime @admin
         to: OffsetDateTime
-        userId: String
+        userId: String @admin
         projectId: String
     ): [TimeLog!]!
     # task
