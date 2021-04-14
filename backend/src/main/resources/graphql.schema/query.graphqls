@@ -1,4 +1,4 @@
-directive @admin on ARGUMENT_DEFINITION
+directive @admin on ARGUMENT_DEFINITION | FIELD_DEFINITION
 
 type Query {
     # company
@@ -9,13 +9,13 @@ type Query {
     projects(companies: [ID!]): [Project!]!
     # user
     user(id: ID!): User!
-    users: [User!]!
+    users: [User!]! @admin
     currentUser: User!
     # time log
     timeLogs(
         from: OffsetDateTime @admin
         to: OffsetDateTime
-        userId: String @admin
+        userId: String
         projectId: String
     ): [TimeLog!]!
     # task
