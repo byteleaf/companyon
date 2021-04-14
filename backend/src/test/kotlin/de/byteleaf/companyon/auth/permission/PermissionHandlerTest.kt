@@ -1,19 +1,19 @@
 package de.byteleaf.companyon.auth.permission
 
+import com.mongodb.internal.connection.tlschannel.util.Util.assertTrue
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.test.util.ExceptionUtil
-import org.junit.jupiter.api.Assertions.*
+import graphql.Assert.assertFalse
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
 import org.springframework.security.core.context.SecurityContextHolder
 
 class PermissionHandlerTest : AbstractAuthenticatedTest() {
-    
+
     @Test
     fun notLoggedIn() {
         SecurityContextHolder.setContext(SecurityContextHolder.createEmptyContext())
-        assertThrows(IllegalStateException::class.java) {
-            permissionHandler.hasPermissions()
-        }
+        assertThrows(IllegalStateException::class.java) { permissionHandler.hasPermissions() }
     }
 
     @Test

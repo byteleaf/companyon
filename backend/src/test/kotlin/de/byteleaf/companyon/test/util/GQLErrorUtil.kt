@@ -7,7 +7,7 @@ import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.common.error.ErrorExtensionKey
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 
 class GQLErrorUtil {
     companion object {
@@ -23,22 +23,22 @@ class GQLErrorUtil {
             expectedId: String
         ) {
             val errorExtensions = getErrorExtensions(response)
-            Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.CODE.value).asText()).isEqualTo(expectedCode.name)
-            Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.ENTITY_TYPE.value).asText()).isEqualTo(expectedType.name)
-            Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.ENTITY_ID.value).asText()).isEqualTo(expectedId)
+            assertThat(errorExtensions.get(ErrorExtensionKey.CODE.value).asText()).isEqualTo(expectedCode.name)
+            assertThat(errorExtensions.get(ErrorExtensionKey.ENTITY_TYPE.value).asText()).isEqualTo(expectedType.name)
+            assertThat(errorExtensions.get(ErrorExtensionKey.ENTITY_ID.value).asText()).isEqualTo(expectedId)
         }
 
         fun expectError(response: GraphQLResponse, expectedErrorCode: ErrorCode) {
             val errorExtensions = getErrorExtensions(response)
-            Assertions.assertThat(errorExtensions.get("code").asText()).isEqualTo(expectedErrorCode.name)
+            assertThat(errorExtensions.get("code").asText()).isEqualTo(expectedErrorCode.name)
         }
 
         fun expectNoPermission(response: GraphQLResponse, permissionType: PermissionType, key1: ErrorExtensionKey? = null, value1: String? = null) {
             val errorExtensions = getErrorExtensions(response)
-            Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.CODE.value).asText()).isEqualTo(ErrorCode.NO_PERMISSION.name)
-            Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.PERMISSION_TYPE.value).asText()).isEqualTo(permissionType.name)
-            Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.CURRENT_USER_ID.value).asText()).isEqualTo(NonSecConfiguration.NON_SEC_USER_ID)
-            if (key1 != null) Assertions.assertThat(errorExtensions.get(ErrorExtensionKey.TARGET_USER_ID.value).asText()).isEqualTo(value1)
+            assertThat(errorExtensions.get(ErrorExtensionKey.CODE.value).asText()).isEqualTo(ErrorCode.NO_PERMISSION.name)
+            assertThat(errorExtensions.get(ErrorExtensionKey.PERMISSION_TYPE.value).asText()).isEqualTo(permissionType.name)
+            assertThat(errorExtensions.get(ErrorExtensionKey.CURRENT_USER_ID.value).asText()).isEqualTo(NonSecConfiguration.NON_SEC_USER_ID)
+            if (key1 != null) assertThat(errorExtensions.get(ErrorExtensionKey.TARGET_USER_ID.value).asText()).isEqualTo(value1)
         }
 
         fun validateResponse(response: GraphQLResponse): GraphQLResponse {

@@ -1,0 +1,10 @@
+mutation ApproveAbsenceRequest($id: ID!, $approved: Boolean!) {
+    approveAbsenceRequest(id: $id, approved: $approved) {
+        id,
+        description,
+        approval {
+            user,
+            timeStamp
+        }
+    }
+}

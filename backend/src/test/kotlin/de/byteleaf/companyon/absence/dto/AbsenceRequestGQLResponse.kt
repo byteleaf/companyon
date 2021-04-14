@@ -1,6 +1,7 @@
 package de.byteleaf.companyon.absence.dto
 
 import de.byteleaf.companyon.absence.constant.AbsenceType
+import de.byteleaf.companyon.auth.dto.Approval
 import de.byteleaf.companyon.user.dto.UserGQLResponse
 import java.time.LocalDate
 
@@ -12,5 +13,6 @@ class AbsenceRequestGQLResponse(
     var from: LocalDate?,
     var workingScheduleFirstDayInPercent: Int?,
     var to: LocalDate?,
-    var workingScheduleLastDayInPercent: Int?
+    var workingScheduleLastDayInPercent: Int?,
+    var approval: Approval?
 )

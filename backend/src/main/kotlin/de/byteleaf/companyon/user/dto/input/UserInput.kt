@@ -4,7 +4,7 @@ import de.byteleaf.companyon.fileupload.dto.input.FileMetaInput
 import de.byteleaf.companyon.user.constant.Country
 import de.byteleaf.companyon.user.constant.ProvinceGermany
 
-data class UserInput(
+class UserInput(
     val firstName: String,
     val lastName: String,
     val email: String,

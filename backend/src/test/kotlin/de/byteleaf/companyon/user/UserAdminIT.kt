@@ -3,9 +3,9 @@ package de.byteleaf.companyon.user
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
 import de.byteleaf.companyon.user.constant.Country
 import de.byteleaf.companyon.user.constant.ProvinceGermany
-import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.UserGQLResponse
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.dto.output.User
 import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach

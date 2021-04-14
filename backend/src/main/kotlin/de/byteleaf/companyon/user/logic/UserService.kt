@@ -3,9 +3,9 @@ package de.byteleaf.companyon.user.logic
 import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.event.EntityCreatedEvent
 import de.byteleaf.companyon.common.logic.AbstractEventDataService
-import de.byteleaf.companyon.user.dto.User
-import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.dto.output.User
+import de.byteleaf.companyon.user.dto.update.UserUpdate
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.repository.UserRepository
 import org.springframework.http.HttpStatus

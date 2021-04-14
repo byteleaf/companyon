@@ -2,18 +2,25 @@ package de.byteleaf.companyon.absence
 
 import de.byteleaf.companyon.absence.constant.AbsenceType
 import de.byteleaf.companyon.absence.dto.AbsenceRequestGQLResponse
+import de.byteleaf.companyon.absence.dto.input.AbsenceRequestInput
 import de.byteleaf.companyon.absence.logic.AbsenceRequestService
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.auth.permission.PermissionType
 import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
+import de.byteleaf.companyon.test.mock.SecurityContextServiceMock
 import de.byteleaf.companyon.test.util.GQLErrorUtil
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Import
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+@Import(SecurityContextServiceMock::class)
 class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
 
     private val targetClass = AbsenceRequestGQLResponse::class.java
@@ -64,5 +71,19 @@ class AbsenceRequestIT : AbstractQueryMutationIT("absence/absence-request") {
         val created = performGQLByInput("CreateAbsenceRequest", mapOf(USER, DESC, TYPE, FROM)).get("$.data.createAbsenceRequest", targetClass)
         performGQLById("DeleteAbsenceRequest", created.id!!)
         assertThat(absenceRequestService.findAll().size).isEqualTo(0)
+    }
+
+    @Test
+    fun approveUnauthorized() {
+        val response = performGQL("ApproveAbsenceRequest", mapOf(Pair("id", "123"), Pair("approved", true)), true)
+        GQLErrorUtil.expectNoPermission(response, PermissionType.ADMIN)
+    }
+
+    @Test
+    fun resetApprovalAfterUpdate() {
+        val created = absenceRequestService.create(AbsenceRequestInput("a", NonSecConfiguration.NON_SEC_USER_ID, AbsenceType.VACATION, LocalDate.parse("2080-12-03")))
+        assertNotNull(absenceRequestService.approve(created.id, true).approval)
+        val response = performGQLByIdAndInput("UpdateAbsenceRequest", created.id, mapOf(USER, FROM, TYPE, DESC)).get("$.data.updateAbsenceRequest", targetClass)
+        assertNull(response.approval)
     }
 }

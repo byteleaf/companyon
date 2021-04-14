@@ -2,9 +2,9 @@ package de.byteleaf.companyon.user.access
 
 import de.byteleaf.companyon.auth.annotation.IsAdmin
 import de.byteleaf.companyon.auth.permission.PermissionType
-import de.byteleaf.companyon.user.dto.User
-import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.dto.output.User
+import de.byteleaf.companyon.user.dto.update.UserUpdate
 import de.byteleaf.companyon.user.logic.UserService
 import org.reactivestreams.Publisher
 import org.springframework.beans.factory.annotation.Autowired

@@ -9,7 +9,7 @@ import de.byteleaf.companyon.project.dto.ProjectUpdateGQLResponse
 import de.byteleaf.companyon.project.entity.ProjectState
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractSubscriptionIT
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -36,8 +36,8 @@ class ProjectSubscriptionIT : AbstractSubscriptionIT("project") {
             { projectService.create(ProjectInput("New project", companyId)) }
         )
             .get("$.data.projectUpdate", ProjectUpdateGQLResponse::class.java)
-        Assertions.assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
-        Assertions.assertThat(projectUpdated.entity.name).isEqualTo("New project")
+        assertThat(projectUpdated.type).isEqualTo(EntityUpdateType.CREATED)
+        assertThat(projectUpdated.entity.name).isEqualTo("New project")
     }
 
     private fun seedTestProjects(): List<Project> {

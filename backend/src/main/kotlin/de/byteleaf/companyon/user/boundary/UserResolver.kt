@@ -1,9 +1,9 @@
 package de.byteleaf.companyon.user.boundary
 
 import de.byteleaf.companyon.user.access.UserAccessService
-import de.byteleaf.companyon.user.dto.User
-import de.byteleaf.companyon.user.dto.UserUpdate
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.dto.output.User
+import de.byteleaf.companyon.user.dto.update.UserUpdate
 import graphql.kickstart.tools.GraphQLMutationResolver
 import graphql.kickstart.tools.GraphQLQueryResolver
 import graphql.kickstart.tools.GraphQLSubscriptionResolver

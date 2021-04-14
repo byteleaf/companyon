@@ -1,6 +1,6 @@
 mutation CreateAbsenceRequest($input: AbsenceRequestInput!) {
     createAbsenceRequest(input: $input) {
-        id
+        id,
         user {
             firstName,
             lastName

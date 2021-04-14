@@ -1,7 +1,7 @@
 package de.byteleaf.companyon.auth.configuration
 
-import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.dto.output.User
 import de.byteleaf.companyon.user.entity.UserEntity
 import de.byteleaf.companyon.user.logic.UserService
 import de.byteleaf.companyon.user.repository.UserRepository

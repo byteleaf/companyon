@@ -10,8 +10,8 @@ import de.byteleaf.companyon.test.AbstractQueryMutationIT
 import de.byteleaf.companyon.test.util.DateTimeUtil
 import de.byteleaf.companyon.timelog.dto.TimeLogInput
 import de.byteleaf.companyon.timelog.logic.TimeLogService
-import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.dto.output.User
 import de.byteleaf.companyon.user.logic.UserService
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach

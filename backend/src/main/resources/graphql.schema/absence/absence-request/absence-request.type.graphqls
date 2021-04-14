@@ -7,4 +7,5 @@ type AbsenceRequest {
     workingScheduleFirstDayInPercent: Int!
     to: LocalDate
     workingScheduleLastDayInPercent: Int!
+    approval: Approval
 }

@@ -8,7 +8,7 @@ import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.entity.ProjectState
 import de.byteleaf.companyon.project.logic.ProjectService
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,7 +33,7 @@ class ProjectIT : AbstractQueryMutationIT("project") {
     fun getProjects() {
         seedTestProjects()
         val projects = performGQL("GetProjects").getList("$.data.projects", targetClass)
-        Assertions.assertThat(projects.size).isEqualTo(2)
+        assertThat(projects.size).isEqualTo(2)
     }
 
     @Test
@@ -42,7 +42,7 @@ class ProjectIT : AbstractQueryMutationIT("project") {
         val companyId = projects[0].company
         val projectsFiltered =
             performGQL("GetProjects", "{ \"companies\": [\"$companyId\"] }").getList("$.data.projects", targetClass)
-        Assertions.assertThat(projectsFiltered.size).isEqualTo(1)
+        assertThat(projectsFiltered.size).isEqualTo(1)
     }
 
     @Test
@@ -50,12 +50,12 @@ class ProjectIT : AbstractQueryMutationIT("project") {
         val companyId = seedTestProjects()[0].company
         val createdProject = performGQLByInput("CreateProject", mapOf(Pair("name", "A"), Pair("company", companyId)))
             .get("$.data.createProject", targetClass)
-        Assertions.assertThat(createdProject.name).isEqualTo("A")
-        Assertions.assertThat(createdProject.state).isEqualTo(ProjectState.PLANNED)
+        assertThat(createdProject.name).isEqualTo("A")
+        assertThat(createdProject.state).isEqualTo(ProjectState.PLANNED)
         // Check if really existing
         val getResponse = performGQLById("GetProject", createdProject.id!!).get("$.data.project", targetClass)
-        Assertions.assertThat(getResponse.name).isEqualTo("A")
-        Assertions.assertThat(getResponse.company!!.name).isEqualTo("Company A")
+        assertThat(getResponse.name).isEqualTo("A")
+        assertThat(getResponse.company!!.name).isEqualTo("Company A")
     }
 
     /**
@@ -67,8 +67,8 @@ class ProjectIT : AbstractQueryMutationIT("project") {
         val createdProject = performGQLByInput("CreateProject", mapOf(Pair("name", "A"), Pair("company", "INVALID_ID")))
             .get("$.data.createProject", targetClass)
         val getResponse = performGQLById("GetProject", createdProject.id!!).get("$.data.project", targetClass)
-        Assertions.assertThat(getResponse.name).isEqualTo("A")
-        Assertions.assertThat(getResponse.company).isNull()
+        assertThat(getResponse.name).isEqualTo("A")
+        assertThat(getResponse.company).isNull()
     }
 
     /**
@@ -77,15 +77,15 @@ class ProjectIT : AbstractQueryMutationIT("project") {
     @Test
     fun getProject() {
         val getResponse = performGQLById("GetProject", seedTestProjects()[0].id).get("$.data.project", targetClass)
-        Assertions.assertThat(getResponse.company!!.name).isEqualTo("Company A")
+        assertThat(getResponse.company!!.name).isEqualTo("Company A")
     }
 
     @Test
     fun deleteCompany() {
         val projects = seedTestProjects()
-        Assertions.assertThat(projectService.findAll().size).isEqualTo(2)
+        assertThat(projectService.findAll().size).isEqualTo(2)
         performGQLById("DeleteProject", projects[0].id)
-        Assertions.assertThat(projectService.findAll().size).isEqualTo(1)
+        assertThat(projectService.findAll().size).isEqualTo(1)
     }
 
     @Test
@@ -93,7 +93,7 @@ class ProjectIT : AbstractQueryMutationIT("project") {
         val project = seedTestProjects()[0]
         val response = performGQLByIdAndInput("UpdateProject", project.id, mapOf(Pair("name", "New name"), Pair("company", project.company)))
         val updatedCompany = response.get("$.data.updateProject", targetClass)
-        Assertions.assertThat(updatedCompany.name).isEqualTo("New name")
+        assertThat(updatedCompany.name).isEqualTo("New name")
     }
 
     private fun seedTestProjects(): List<Project> {

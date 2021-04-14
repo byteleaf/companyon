@@ -2,7 +2,7 @@ package de.byteleaf.companyon.timelog.subscription
 
 import de.byteleaf.companyon.common.dto.EntityUpdateType
 import de.byteleaf.companyon.project.dto.TimeLogUpdateGQLResponse
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class TimeLogSubscriptionIT : AbstractTimeLogSubscription() {
@@ -11,8 +11,8 @@ class TimeLogSubscriptionIT : AbstractTimeLogSubscription() {
     fun currentUser() {
         val updatedEntity = performGQLSubscription("TimeLogUpdateSubscription", { createTimeLog() })
             .get("$.data.timeLogUpdate", TimeLogUpdateGQLResponse::class.java)
-        Assertions.assertThat(updatedEntity.type).isEqualTo(EntityUpdateType.CREATED)
-        Assertions.assertThat(updatedEntity.entity.breakInMinutes).isEqualTo(15)
+        assertThat(updatedEntity.type).isEqualTo(EntityUpdateType.CREATED)
+        assertThat(updatedEntity.entity.breakInMinutes).isEqualTo(15)
     }
 
     @Test

@@ -2,8 +2,8 @@ package de.byteleaf.companyon.test.mock
 
 import de.byteleaf.companyon.auth.configuration.NonSecConfiguration
 import de.byteleaf.companyon.auth.oauth.OAuth2AuthenticationToken
-import de.byteleaf.companyon.user.dto.User
 import de.byteleaf.companyon.user.dto.input.UserInput
+import de.byteleaf.companyon.user.dto.output.User
 import de.byteleaf.companyon.user.entity.UserEntity
 import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired

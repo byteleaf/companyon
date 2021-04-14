@@ -29,5 +29,7 @@ class AbsenceRequestResolver : GraphQLQueryResolver, GraphQLMutationResolver, Gr
 
     fun updateAbsenceRequest(id: String, input: AbsenceRequestInput): AbsenceRequest = absenceRequestAccessService.update(id, input)
 
+    fun approveAbsenceRequest(id: String, approved: Boolean): AbsenceRequest = absenceRequestAccessService.approve(id, approved)
+
     fun absenceRequestUpdate(): Publisher<AbsenceRequestUpdate> = absenceRequestAccessService.getPublisher()
 }
