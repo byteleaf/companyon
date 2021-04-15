@@ -1,0 +1,9 @@
+version: "3"
+services:
+  database:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      MONGO_INITDB_DATABASE: companyon
+    ports:
+      - 27017:27017

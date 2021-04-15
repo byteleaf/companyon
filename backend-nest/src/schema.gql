@@ -1,0 +1,20 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Avatar {
+  url: String!
+}
+
+type Query {
+  currentUser: User!
+}
+
+type User {
+  admin: Boolean!
+  avatar: Avatar
+  email: String!
+  firstName: String!
+  id: String!
+  lastName: String!
+}

@@ -8,7 +8,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = function (app) {
   app.use(
     createProxyMiddleware('/graphql', {
-      target: 'http://localhost:8080',
+      target: 'http://localhost:4000',
 
       changeOrigin: true,
     }),
@@ -16,7 +16,7 @@ module.exports = function (app) {
 
   app.use(
     createProxyMiddleware('/subscription', {
-      target: 'http://localhost:8080',
+      target: 'http://localhost:4000',
 
       changeOrigin: true,
       ws: true,
