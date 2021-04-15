@@ -2,19 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Avatar {
-  url: String!
+type Mutation {
+  createUser(input: UserInput!): UserDTO!
 }
 
 type Query {
-  currentUser: User!
+  currentUser: UserDTO!
+  users: [UserDTO!]!
 }
 
-type User {
+type UserDTO {
   admin: Boolean!
-  avatar: Avatar
+  avatarUrl: String
   email: String!
   firstName: String!
   id: String!
+  lastName: String!
+}
+
+input UserInput {
+  admin: Boolean!
+  email: String!
+  firstName: String!
   lastName: String!
 }
