@@ -1,11 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { ObjectID } from 'typeorm';
 import { User } from './User.entity';
 
 @ObjectType()
 export class UserDTO {
-  @Field(() => String)
-  id: ObjectID;
+  @Field()
+  id: string;
 
   @Field()
   firstName: string;

@@ -1,17 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { ObjectID, Repository } from 'typeorm';
+import { UserRepository } from 'src/users/user.repository';
+import { ObjectID } from 'typeorm';
 import { UserDTO } from './User.dto';
-import { User } from './User.entity';
 import { UserInput } from './User.input';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectRepository(User) private usersRepository: Repository<User>) {}
+  constructor(private usersRepository: UserRepository) {}
 
   async currentUser(): Promise<UserDTO> {
     return {
-      id: ObjectID.createFromTime(1000),
+      id: '1',
       firstName: 'Markus',
       lastName: 'Heer',
       email: 'markus.heer@byteleaf.de',
@@ -29,5 +28,13 @@ export class UsersService {
     const newUser = await this.usersRepository.save(user);
 
     return new UserDTO(newUser);
+  }
+
+  async update(user: UserInput, id: string): Promise<UserDTO> {
+    await this.usersRepository.update(id, user);
+
+    const updatedUser = await this.usersRepository.findOneOrFail(id);
+
+    return new UserDTO(updatedUser);
   }
 }

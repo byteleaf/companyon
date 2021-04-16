@@ -25,4 +25,9 @@ export class UsersResolver {
   async createUser(@Args('input') user: UserInput) {
     return this.usersService.create(user);
   }
+
+  @Mutation(() => UserDTO)
+  async updateUser(@Args('input') user: UserInput, @Args('id') id: string) {
+    return this.usersService.update(user, id);
+  }
 }
