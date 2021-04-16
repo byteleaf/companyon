@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from 'src/users/user.repository';
-import { ObjectID } from 'typeorm';
 import { UserDTO } from './User.dto';
 import { UserInput } from './User.input';
 
@@ -10,7 +9,6 @@ export class UsersService {
 
   async currentUser(): Promise<UserDTO> {
     return {
-      id: '1',
       firstName: 'Markus',
       lastName: 'Heer',
       email: 'markus.heer@byteleaf.de',

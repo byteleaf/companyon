@@ -17,7 +17,6 @@ type UserDTO {
   avatarUrl: String
   email: String!
   firstName: String!
-  id: String!
   lastName: String!
 }
 

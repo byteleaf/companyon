@@ -1,4 +1,4 @@
-import { HistorizedEntity, User } from 'src/users/User.entity';
+import { HistorizedEntity, HistorizedUser, User } from 'src/users/User.entity';
 import {
   DeepPartial,
   EntityManager,
@@ -9,14 +9,13 @@ import {
   UpdateResult,
 } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
-import * as cuid from 'cuid';
 
 @EntityRepository()
 export class HistorizationRepository<Entity> {
-  entityClass: EntityTarget<HistorizedEntity<Entity>>;
+  entityClass: EntityTarget<HistorizedEntity>;
   private manager: EntityManager;
 
-  constructor(manager: EntityManager, entityClass: EntityTarget<HistorizedEntity<Entity>>) {
+  constructor(manager: EntityManager, entityClass: EntityTarget<HistorizedEntity>) {
     this.manager = manager;
     this.entityClass = entityClass;
   }
@@ -33,7 +32,7 @@ export class HistorizationRepository<Entity> {
 
   async save<T extends DeepPartial<Entity>>(entity: T, options?: SaveOptions): Promise<Entity> {
     const createdEntity = this.manager.create(this.entityClass, {
-      entity: { ...entity, id: cuid() } as any,
+      entity,
       activeFrom: new Date(),
     });
 
@@ -53,6 +52,6 @@ export class HistorizationRepository<Entity> {
 @EntityRepository(User)
 export class UserRepository extends HistorizationRepository<User> {
   constructor(manager: EntityManager) {
-    super(manager, HistorizedEntity);
+    super(manager, HistorizedUser);
   }
 }

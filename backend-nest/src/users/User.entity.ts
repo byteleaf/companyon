@@ -1,7 +1,7 @@
 import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
 
 @Entity()
-export class HistorizedEntity<Entity> {
+export abstract class HistorizedEntity {
   @ObjectIdColumn()
   id: ObjectID;
 
@@ -9,14 +9,11 @@ export class HistorizedEntity<Entity> {
   activeFrom: Date;
 
   @Column()
-  entity: Entity;
+  entity: any;
 }
 
 @Entity()
 export class User {
-  @Column()
-  id: string;
-
   @Column()
   sub?: string;
 
@@ -34,4 +31,16 @@ export class User {
 
   @Column()
   avatarUrl?: string;
+}
+
+@Entity()
+export class HistorizedUser extends HistorizedEntity {
+  @ObjectIdColumn()
+  id: ObjectID;
+
+  @Column()
+  activeFrom: Date;
+
+  @Column()
+  entity: User;
 }

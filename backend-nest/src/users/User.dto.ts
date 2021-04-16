@@ -4,9 +4,6 @@ import { User } from './User.entity';
 @ObjectType()
 export class UserDTO {
   @Field()
-  id: string;
-
-  @Field()
   firstName: string;
 
   @Field()
@@ -21,8 +18,7 @@ export class UserDTO {
   @Field({ nullable: true })
   avatarUrl?: string;
 
-  constructor({ id, firstName, lastName, email, admin, avatarUrl }: User) {
-    this.id = id;
+  constructor({ firstName, lastName, email, admin, avatarUrl }: User) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
