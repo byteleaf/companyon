@@ -1,14 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from 'src/users/user.repository';
-import { UserDTO } from './User.dto';
-import { UserInput } from './User.input';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { UserInput } from 'src/users/User.input';
+import { UserEntity, UserDocument } from 'src/users/User.schema';
+import { User } from './User.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(private usersRepository: UserRepository) {}
+  constructor(@InjectModel(UserEntity.name) private userModel: Model<UserDocument>) {}
 
-  async currentUser(): Promise<UserDTO> {
+  async currentUser(): Promise<User> {
     return {
+      id: '1',
       firstName: 'Markus',
       lastName: 'Heer',
       email: 'markus.heer@byteleaf.de',
@@ -16,23 +19,28 @@ export class UsersService {
     };
   }
 
-  async findAll(): Promise<UserDTO[]> {
-    const users = await this.usersRepository.find();
+  async findAll(): Promise<User[]> {
+    const users = await this.userModel.find();
 
-    return users.map((user) => new UserDTO(user));
+    return users.map((user) => new User(user));
   }
 
-  async create(user: UserInput): Promise<UserDTO> {
-    const newUser = await this.usersRepository.save(user);
+  async create(userInput: UserInput): Promise<User> {
+    const createdUser = await this.userModel.create(userInput);
 
-    return new UserDTO(newUser);
+    return new User(createdUser);
   }
 
-  async update(user: UserInput, id: string): Promise<UserDTO> {
-    await this.usersRepository.update(id, user);
+  async update(userInput: UserInput, id: string): Promise<User> {
+    await this.userModel.updateOne({ _id: id }, { $set: userInput });
 
-    const updatedUser = await this.usersRepository.findOneOrFail(id);
+    const user = await this.userModel.findById(id);
 
-    return new UserDTO(updatedUser);
+    if (!user) {
+      // TODO: Apollo Error handling
+      throw new Error('user not found');
+    }
+
+    return new User(user);
   }
 }

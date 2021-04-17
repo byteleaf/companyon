@@ -1,0 +1,20 @@
+{
+  "name": "companyon",
+  "version": "1.0.0",
+  "description": "Company is a web-based, open-source HR platform and covers all essential workflows for consulting firms and agencies. The main focus is currently on: - Time tracking - Project management - Vacations & absence - Appointments, tasks & reminders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:mongodb": "docker-compose -f docker/docker-compose.yml up -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://markus-heer:9ea00d80ba04dc2234970ee9782d5063fb1c79f8@github.com/byteleaf/companyon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byteleaf/companyon/issues"
+  },
+  "homepage": "https://github.com/byteleaf/companyon#readme"
+}

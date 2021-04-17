@@ -14,7 +14,7 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleRequest<T>(err: unknown, user: T, info: any): T {
-    // console.log(err, user, info);
+    console.log(err, user, info);
 
     // You can throw an exception based on either "info" or "err" arguments
     if (err || !user) {

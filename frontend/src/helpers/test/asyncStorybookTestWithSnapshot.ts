@@ -2,14 +2,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { RenderTree } from '@storybook/addon-storyshots/dist/frameworks/Loader';
 import { Stories2SnapsConverter } from '@storybook/addon-storyshots';
+
 import { act } from 'react-test-renderer';
 
 interface Args {
   story: any;
   context: any;
-  renderTree: RenderTree;
+  renderTree: any;
   options?: any;
   done: () => void;
   stories2snapsConverter: Stories2SnapsConverter;

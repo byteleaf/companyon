@@ -1,8 +1,17 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { User } from './User.entity';
+import { UserDocument } from './User.schema';
 
 @ObjectType()
-export class UserDTO {
+export class Avatar {
+  @Field()
+  url: string;
+}
+
+@ObjectType()
+export class User {
+  @Field()
+  id: string;
+
   @Field()
   firstName: string;
 
@@ -15,14 +24,15 @@ export class UserDTO {
   @Field()
   admin: boolean;
 
-  @Field({ nullable: true })
-  avatarUrl?: string;
+  @Field(() => Avatar, { nullable: true })
+  avatar?: Avatar;
 
-  constructor({ firstName, lastName, email, admin, avatarUrl }: User) {
+  constructor({ _id, firstName, lastName, email, admin, avatarUrl }: UserDocument) {
+    this.id = _id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.admin = admin || false;
-    this.avatarUrl = avatarUrl;
+    this.avatar = avatarUrl ? { url: avatarUrl } : undefined;
   }
 }
