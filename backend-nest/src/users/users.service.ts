@@ -30,13 +30,23 @@ export class UsersService {
     return users.map((user) => new User(user));
   }
 
+  async findOneById(id: string): Promise<User | null> {
+    const user = await this.usersRepository.findOneById(id);
+
+    return user ? new User(user) : user;
+  }
+
   async create(userInput: UserInput): Promise<User> {
     const user = await this.usersRepository.create(userInput);
 
     return new User(user);
   }
 
-  /* async update(userInput: UserInput, id: string): Promise<User> {
+  async update(userInput: UserInput, id: string): Promise<User> {
     return this.usersRepository.update(userInput, id);
-  } */
+  }
+
+  async delete(id: string): Promise<User> {
+    return this.usersRepository.delete(id);
+  }
 }

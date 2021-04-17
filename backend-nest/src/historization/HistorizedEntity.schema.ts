@@ -6,6 +6,12 @@ export type HistorizedEntityDocument<Entity> = HistorizedEntity<Entity> & Docume
 @Schema()
 export class HistorizedEntity<Entity> {
   @Prop()
+  id: string;
+
+  @Prop()
+  active: boolean;
+
+  @Prop()
   activeFrom: Date;
 
   @Prop({ type: Object })

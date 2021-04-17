@@ -8,10 +8,13 @@ type Avatar {
 
 type Mutation {
   createUser(input: UserInput!): User!
+  deleteUser(id: String!): User!
+  updateUser(id: String!, input: UserInput!): User!
 }
 
 type Query {
   currentUser: User!
+  user(id: String!): User!
   users: [User!]!
 }
 
