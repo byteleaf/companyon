@@ -110,6 +110,9 @@
     "ts-jest": "^26.4.1",
     "webpack-graphql-loader": "^1.0.2"
   },
+  "resolutions": {
+    "@storybook/**/babel-loader": "8.1.0"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
