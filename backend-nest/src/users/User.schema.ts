@@ -1,10 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { HistorizedEntity } from 'src/historization/HistorizedEntity.schema';
 
-export type UserDocument = UserEntity & Document;
+export type HistorizedUserDocument = HistorizedUserEntity & Document;
 
 @Schema()
 export class UserEntity {
+  @Prop()
+  id: string;
+
   @Prop()
   sub?: string;
 
@@ -24,4 +28,7 @@ export class UserEntity {
   avatarUrl?: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(UserEntity);
+@Schema()
+export class HistorizedUserEntity extends HistorizedEntity<UserEntity> {}
+
+export const HistorizedUserSchema = SchemaFactory.createForClass(HistorizedUserEntity);

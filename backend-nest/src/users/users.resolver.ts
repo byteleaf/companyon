@@ -26,8 +26,8 @@ export class UsersResolver {
     return this.usersService.create(user);
   }
 
-  @Mutation(() => User)
+  /* @Mutation(() => User)
   async updateUser(@Args('input') user: UserInput, @Args('id') id: string) {
     return this.usersService.update(user, id);
-  }
+  } */
 }

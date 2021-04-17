@@ -8,7 +8,6 @@ type Avatar {
 
 type Mutation {
   createUser(input: UserInput!): User!
-  updateUser(id: String!, input: UserInput!): User!
 }
 
 type Query {

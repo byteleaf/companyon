@@ -1,13 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { HistorizationRepository } from 'src/historization/historization.repository';
 import { UserInput } from 'src/users/User.input';
-import { UserEntity, UserDocument } from 'src/users/User.schema';
+import { HistorizedUserEntity, HistorizedUserDocument, UserEntity } from 'src/users/User.schema';
 import { User } from './User.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(UserEntity.name) private userModel: Model<UserDocument>) {}
+  usersRepository: HistorizationRepository<UserEntity, UserInput>;
+
+  constructor(@InjectModel(HistorizedUserEntity.name) private userModel: Model<HistorizedUserDocument>) {
+    this.usersRepository = new HistorizationRepository(this.userModel);
+  }
 
   async currentUser(): Promise<User> {
     return {
@@ -20,27 +25,18 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    const users = await this.userModel.find();
+    const users = await this.usersRepository.findAll();
 
     return users.map((user) => new User(user));
   }
 
   async create(userInput: UserInput): Promise<User> {
-    const createdUser = await this.userModel.create(userInput);
-
-    return new User(createdUser);
-  }
-
-  async update(userInput: UserInput, id: string): Promise<User> {
-    await this.userModel.updateOne({ _id: id }, { $set: userInput });
-
-    const user = await this.userModel.findById(id);
-
-    if (!user) {
-      // TODO: Apollo Error handling
-      throw new Error('user not found');
-    }
+    const user = await this.usersRepository.create(userInput);
 
     return new User(user);
   }
+
+  /* async update(userInput: UserInput, id: string): Promise<User> {
+    return this.usersRepository.update(userInput, id);
+  } */
 }

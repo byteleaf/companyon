@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { UserDocument } from './User.schema';
+import { UserEntity } from './User.schema';
 
 @ObjectType()
 export class Avatar {
@@ -27,8 +27,8 @@ export class User {
   @Field(() => Avatar, { nullable: true })
   avatar?: Avatar;
 
-  constructor({ _id, firstName, lastName, email, admin, avatarUrl }: UserDocument) {
-    this.id = _id;
+  constructor({ id, firstName, lastName, email, admin, avatarUrl }: UserEntity) {
+    this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
