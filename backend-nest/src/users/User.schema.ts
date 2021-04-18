@@ -31,4 +31,6 @@ export class UserEntity {
 @Schema()
 export class HistorizedUserEntity extends HistorizedEntity<UserEntity> {}
 
+export const HistorizedUserCollectionName = 'HistorizedUser';
+
 export const HistorizedUserSchema = SchemaFactory.createForClass(HistorizedUserEntity);
