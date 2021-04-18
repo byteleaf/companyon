@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { UsersModule } from './users/users.module';
+import { UserModule } from './user/user.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { LoggerMiddleware } from 'src/logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -19,7 +19,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       context: ({ req }) => ({ req }),
     }),
     AuthModule,
-    UsersModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

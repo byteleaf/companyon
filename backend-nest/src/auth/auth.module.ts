@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { HistorizationModule } from 'src/historization/historization.module';
-import { HistorizedUserCollectionName, HistorizedUserSchema } from 'src/users/User.schema';
+import { HistorizedUserCollectionName, HistorizedUserSchema } from 'src/user/model/User.schema';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({

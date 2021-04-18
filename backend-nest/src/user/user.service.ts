@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { HistorizationRepository } from 'src/historization/historization.repository';
-import { UserDTO } from 'src/users/User.dto';
-import { UserInput } from 'src/users/User.input';
-import { UserEntity } from 'src/users/User.schema';
+import { UserDTO } from 'src/user/model/User.dto';
+import { UserInput } from 'src/user/model/User.input';
+import { UserEntity } from 'src/user/model/User.schema';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(private userRepository: HistorizationRepository<UserEntity, UserInput>) {}
 
   async findAll(): Promise<UserDTO[]> {

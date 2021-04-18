@@ -5,9 +5,9 @@ import fetch from 'node-fetch';
 import jwt_decode from 'jwt-decode';
 import { AuthUser } from 'src/auth/types/AuthUser';
 import { HistorizationRepository } from 'src/historization/historization.repository';
-import { UserEntity } from 'src/users/User.schema';
+import { UserEntity } from 'src/user/model/User.schema';
+import { UserDTO } from 'src/user/model/User.dto';
 import { AuthenticationError } from 'apollo-server-express';
-import { UserDTO } from 'src/users/User.dto';
 
 @Injectable()
 export class GqlAuthGuard extends AuthGuard('jwt') {
