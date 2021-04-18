@@ -27,6 +27,9 @@ export class User {
   @Field(() => Avatar, { nullable: true })
   avatar?: Avatar;
 
+  sub: never;
+  avatarUrl: never;
+
   constructor({ id, firstName, lastName, email, admin, avatarUrl }: UserEntity) {
     this.id = id;
     this.firstName = firstName;

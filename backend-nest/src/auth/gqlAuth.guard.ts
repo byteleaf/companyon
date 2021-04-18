@@ -7,6 +7,7 @@ import { AuthUser } from 'src/auth/types/AuthUser';
 import { HistorizationRepository } from 'src/historization/historization.repository';
 import { UserEntity } from 'src/users/User.schema';
 import { AuthenticationError } from 'apollo-server-express';
+import { User } from 'src/users/User.dto';
 
 @Injectable()
 export class GqlAuthGuard extends AuthGuard('jwt') {
@@ -18,6 +19,10 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
     const ctx = GqlExecutionContext.create(context);
 
     return ctx.getContext().req;
+  }
+
+  setUser(context: ExecutionContext, user: UserEntity): void {
+    this.getRequest(context).user = new User(user);
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -46,7 +51,7 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
           userByEmail.id,
         );
 
-        this.getRequest(context).user = updatedUser;
+        this.setUser(context, updatedUser);
 
         return true;
       }
@@ -54,7 +59,7 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
       throw new AuthenticationError('userinfo response malformed');
     }
 
-    this.getRequest(context).user = userBySub;
+    this.setUser(context, userBySub);
 
     return true;
   }
