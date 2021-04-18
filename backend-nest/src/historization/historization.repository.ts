@@ -1,16 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Inject, Injectable } from '@nestjs/common';
+import { Model, Schema } from 'mongoose';
 import * as cuid from 'cuid';
-import { HistorizedEntity, HistorizedEntityDocument } from 'src/historization/HistorizedEntity.schema';
-import { InjectModel } from '@nestjs/mongoose';
-import { HistorizedUserDocument } from 'src/users/User.schema';
+import { HistorizedEntityDocument } from 'src/historization/HistorizedEntity.schema';
+import * as mongoose from 'mongoose';
+import { InjectConnection } from '@nestjs/mongoose';
 
 @Injectable()
 export class HistorizationRepository<Entity, EntityInput> {
-  model: Model<HistorizedEntityDocument<any>>;
+  private model: Model<HistorizedEntityDocument<any>>;
 
-  constructor(@InjectModel(HistorizedEntity.name) model: Model<HistorizedEntityDocument<any>>) {
-    this.model = model;
+  constructor(
+    @InjectConnection() private connection: mongoose.Connection,
+    @Inject('modelConfig') private modelConfig: { name: string; schema: Schema },
+  ) {
+    this.model = connection.model<HistorizedEntityDocument<any>>(
+      modelConfig.name,
+      modelConfig.schema,
+      modelConfig.name,
+    );
   }
 
   private createHistorizedEntity(entity: any): Promise<HistorizedEntityDocument<Entity>> {

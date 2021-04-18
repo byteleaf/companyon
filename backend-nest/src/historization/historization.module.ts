@@ -1,11 +1,23 @@
+import { DynamicModule } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { Schema } from 'mongoose';
 import { HistorizationRepository } from 'src/historization/historization.repository';
-import { HistorizedEntity, HistorizedEntitySchema } from 'src/historization/HistorizedEntity.schema';
 
-@Module({
-  imports: [MongooseModule.forFeature([{ name: HistorizedEntity.name, schema: HistorizedEntitySchema }])],
-  providers: [HistorizationRepository],
-  exports: [HistorizationRepository],
-})
-export class HistorizationModule {}
+@Module({})
+export class HistorizationModule {
+  static register(modelConfig: { name: string; schema: Schema }): DynamicModule {
+    return {
+      module: HistorizationModule,
+      imports: [MongooseModule.forFeature([{ name: modelConfig.name, schema: modelConfig.schema }])],
+      providers: [
+        HistorizationRepository,
+        {
+          provide: 'modelConfig',
+          useValue: modelConfig,
+        },
+      ],
+      exports: [HistorizationRepository],
+    };
+  }
+}
