@@ -8,16 +8,6 @@ import { User } from './User.dto';
 export class UsersService {
   constructor(private userRepository: HistorizationRepository<UserEntity, UserInput>) {}
 
-  async currentUser(): Promise<User> {
-    return {
-      id: '1',
-      firstName: 'Markus',
-      lastName: 'Heer',
-      email: 'markus.heer@byteleaf.de',
-      admin: true,
-    };
-  }
-
   async findAll(): Promise<User[]> {
     const users = await this.userRepository.findAll();
 

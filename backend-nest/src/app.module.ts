@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
-import { AuthenticationModule } from 'src/auth/auth.module';
+import { AuthModule } from 'src/auth/auth.module';
 import { LoggerMiddleware } from 'src/logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -18,14 +18,14 @@ import { MongooseModule } from '@nestjs/mongoose';
       sortSchema: true,
       context: ({ req }) => ({ req }),
     }),
-    AuthenticationModule,
+    AuthModule,
     UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
+  configure(consumer: MiddlewareConsumer): void {
     consumer.apply(LoggerMiddleware).forRoutes('graphql');
   }
 }

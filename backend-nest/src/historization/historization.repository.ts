@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Model, Schema } from 'mongoose';
+import { Connection, FilterQuery, Model, Schema } from 'mongoose';
 import * as cuid from 'cuid';
 import { HistorizedEntityDocument } from 'src/historization/HistorizedEntity.schema';
-import * as mongoose from 'mongoose';
 import { InjectConnection } from '@nestjs/mongoose';
 
 @Injectable()
@@ -10,7 +9,7 @@ export class HistorizationRepository<Entity, EntityInput> {
   private model: Model<HistorizedEntityDocument<any>>;
 
   constructor(
-    @InjectConnection() private connection: mongoose.Connection,
+    @InjectConnection() private connection: Connection,
     @Inject('modelConfig') private modelConfig: { name: string; schema: Schema },
   ) {
     this.model = connection.model<HistorizedEntityDocument<any>>(
@@ -29,6 +28,12 @@ export class HistorizationRepository<Entity, EntityInput> {
       activeFrom: Date.now(),
       entity: { ...entity, id },
     });
+  }
+
+  async findOne(filter: FilterQuery<Entity>): Promise<Entity | null> {
+    const historizedEntity = await this.model.findOne({ ...filter, active: true });
+
+    return historizedEntity?.entity || null;
   }
 
   async findOneById(id: string): Promise<Entity | null> {
