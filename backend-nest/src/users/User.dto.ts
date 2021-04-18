@@ -7,8 +7,8 @@ export class Avatar {
   url: string;
 }
 
-@ObjectType()
-export class User {
+@ObjectType('User')
+export class UserDTO {
   @Field()
   id: string;
 

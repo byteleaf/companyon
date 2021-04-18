@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export type HistorizedEntityDocument<Entity> = HistorizedEntity<Entity> & Document;
@@ -17,5 +17,3 @@ export class HistorizedEntity<Entity> {
   @Prop({ type: Object })
   entity: Entity;
 }
-
-export const HistorizedEntitySchema = SchemaFactory.createForClass(HistorizedEntity);

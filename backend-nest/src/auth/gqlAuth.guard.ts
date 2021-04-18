@@ -7,7 +7,7 @@ import { AuthUser } from 'src/auth/types/AuthUser';
 import { HistorizationRepository } from 'src/historization/historization.repository';
 import { UserEntity } from 'src/users/User.schema';
 import { AuthenticationError } from 'apollo-server-express';
-import { User } from 'src/users/User.dto';
+import { UserDTO } from 'src/users/User.dto';
 
 @Injectable()
 export class GqlAuthGuard extends AuthGuard('jwt') {
@@ -22,7 +22,7 @@ export class GqlAuthGuard extends AuthGuard('jwt') {
   }
 
   setUser(context: ExecutionContext, user: UserEntity): void {
-    this.getRequest(context).user = new User(user);
+    this.getRequest(context).user = new UserDTO(user);
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
