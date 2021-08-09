@@ -15,8 +15,8 @@
         <graphql-java-tools.version>6.3.0</graphql-java-tools.version>
         <modelmapper.version>2.3.8</modelmapper.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
-        <playground-spring-boot-starter.version>8.1.1</playground-spring-boot-starter.version>
-        <graphql-spring-boot-starter.version>8.1.1</graphql-spring-boot-starter.version>
+        <playground-spring-boot-starter.version>11.1.0</playground-spring-boot-starter.version>
+        <graphql-spring-boot-starter.version>11.1.0</graphql-spring-boot-starter.version>
         <rxkotlin.version>3.0.1</rxkotlin.version>
         <spring-security-oauth2-autoconfigure.version>2.4.0</spring-security-oauth2-autoconfigure.version>
         <graphql-java-extended-scalars.version>15.0.0</graphql-java-extended-scalars.version>

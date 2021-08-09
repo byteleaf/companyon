@@ -11,7 +11,7 @@ import java.util.*
 
 @Configuration
 @EnableMongoAuditing
-class JPAAuditingConfiguration {
+class MongoDBConfiguration {
     @Bean
     fun auditorProvider(): AuditorAware<String> {
         return CustomAuditorAware()

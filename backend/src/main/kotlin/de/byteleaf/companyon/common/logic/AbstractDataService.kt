@@ -58,7 +58,10 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
 
     private fun updateEntity(entity: E, beforePersist: ((entity: E) -> Unit)?): O {
         beforePersist?.invoke(entity)
-        val dto = entityToOutput(repository.save(entity))
+
+        //by setting id to null it's posible to generate a new id. TODO: This is not suitable for the API
+        entity.id = null;
+        val dto = entityToOutput(repository.insert(entity))
         applicationEventPublisher.publishEvent(EntityUpdatedEvent(getEntityType(), dto))
         return dto
     }
