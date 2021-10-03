@@ -3,9 +3,9 @@ type AbsenceRequest {
     user: User
     description: String!
     type: AbsenceType!
-    from: LocalDate!
+    from: Date!
     workingScheduleFirstDayInPercent: Int!
-    to: LocalDate
+    to: Date
     workingScheduleLastDayInPercent: Int!
     approval: Approval
 }

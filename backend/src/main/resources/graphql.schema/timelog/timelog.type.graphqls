@@ -3,7 +3,7 @@ type TimeLog {
     user: User,
     project: Project,
     description: String,
-    start: OffsetDateTime!,
+    start: DateTime!,
     durationInMinutes: Int!,
     breakInMinutes: Int
 }

@@ -11,8 +11,8 @@ type Query {
     currentUser: User!
     # time log
     timeLogs(
-        from: OffsetDateTime
-        to: OffsetDateTime
+        from: DateTime
+        to: DateTime
         userId: String
         projectId: String
     ): [TimeLog!]!
@@ -21,8 +21,8 @@ type Query {
     tasks(user: ID, status: TaskState): [Task!]!
     # absence requests
     absenceRequests(
-        from: LocalDate
-        to: LocalDate
+        from: Date
+        to: Date
         userIds: [ID]
         types: [AbsenceType]
         approved: ApprovedQueryState

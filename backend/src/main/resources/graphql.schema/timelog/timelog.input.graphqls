@@ -1,7 +1,7 @@
 input TimeLogInput {
     user: String!,
     project: String!,
-    start: OffsetDateTime!,
+    start: DateTime!,
     description: String,
     durationInMinutes: Int!,
     breakInMinutes: Int

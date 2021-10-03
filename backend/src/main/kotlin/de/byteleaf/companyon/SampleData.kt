@@ -4,6 +4,8 @@ import de.byteleaf.companyon.company.dto.input.CompanyInput
 import de.byteleaf.companyon.company.logic.CompanyService
 import de.byteleaf.companyon.project.dto.ProjectInput
 import de.byteleaf.companyon.project.logic.ProjectService
+import de.byteleaf.companyon.timelog.dto.TimeLogInput
+import de.byteleaf.companyon.timelog.logic.TimeLogService
 import de.byteleaf.companyon.user.dto.input.UserInput
 import de.byteleaf.companyon.user.logic.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
+import java.time.OffsetDateTime
 
 @Component
 class SampleData : ApplicationRunner {
@@ -27,6 +30,9 @@ class SampleData : ApplicationRunner {
     @Autowired
     private lateinit var projectService: ProjectService
 
+    @Autowired
+    private lateinit var timeLogService: TimeLogService
+
     override fun run(args: ApplicationArguments) {
         if (skipSampleData) {
             return
@@ -39,16 +45,21 @@ class SampleData : ApplicationRunner {
 
         // Projects
         projectService.deleteAll()
-        projectService.create(ProjectInput("Project A", companyA.id))
+        val projectA = projectService.create(ProjectInput("Project A", companyA.id))
         projectService.create(ProjectInput("Project B", companyA.id))
         projectService.create(ProjectInput("Project C", companyB.id))
         projectService.create(ProjectInput("Project D", companyB.id))
 
         // Users
         userService.deleteAll()
-        userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de", true))
+        val markus = userService.create(UserInput("Markus", "Heer", "markus.heer@byteleaf.de", true))
         userService.create(UserInput("Simon", "Ittmann", "simon.ittmann@byteleaf.de", true))
         userService.create(UserInput("Paul", "Tolstoi", "paul.tolstoi@byteleaf.de", true))
         userService.create(UserInput("Ulrich", "Horn", "ulrich.horn@byteleaf.de", true))
+
+        // TimeLogs
+        timeLogService.deleteAll()
+        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.now(), 480, "Learning react", 30))
+        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.now(), 120, "Learning angular"))
     }
 }

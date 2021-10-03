@@ -1,4 +1,4 @@
 type Approval{
     user: String,
-    timeStamp: OffsetDateTime
+    timeStamp: DateTime
 }
