@@ -14,6 +14,7 @@ import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
 import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 
 @Component
 class SampleData : ApplicationRunner {
@@ -59,7 +60,7 @@ class SampleData : ApplicationRunner {
 
         // TimeLogs
         timeLogService.deleteAll()
-        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.now(), 480, "Learning react", 30))
-        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.now(), 120, "Learning angular"))
+        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.parse("2021-08-03T10:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), 480, "Learning react", 30))
+        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.parse("2021-08-04T09:15:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), 120, "Learning angular"))
     }
 }
