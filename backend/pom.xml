@@ -11,9 +11,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <kotlin.version>1.5.31</kotlin.version>
-        <jackson-module-kotlin.version>2.9.8</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.13.0</jackson-module-kotlin.version>
         <graphql-java-tools.version>6.3.0</graphql-java-tools.version>
-        <modelmapper.version>2.3.8</modelmapper.version>
+        <modelmapper.version>2.4.4</modelmapper.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <playground-spring-boot-starter.version>8.1.1</playground-spring-boot-starter.version>
         <graphql-spring-boot-starter.version>8.1.1</graphql-spring-boot-starter.version>
