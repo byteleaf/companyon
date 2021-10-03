@@ -1,6 +1,9 @@
 package de.byteleaf.companyon.user
 
+import de.byteleaf.companyon.common.entity.EntityType
+import de.byteleaf.companyon.common.error.ErrorCode
 import de.byteleaf.companyon.test.AbstractQueryMutationIT
+import de.byteleaf.companyon.test.util.GQLErrorUtil
 import de.byteleaf.companyon.user.constant.Country
 import de.byteleaf.companyon.user.constant.ProvinceGermany
 import de.byteleaf.companyon.user.dto.UserGQLResponse
@@ -57,6 +60,16 @@ class UserAdminIT : AbstractQueryMutationIT("user") {
         )
             .get("$.data.updateUser", targetClass)
         assertThat(updatedEntity.email).isEqualTo("jeff@byteleaf.de")
+    }
+
+    /**
+     * https://github.com/byteleaf/companyon/issues/101
+     * Make sure update only works with existing ids!
+     */
+    @Test
+    fun updateWithFakeId() {
+        val response = performGQLByIdAndInput("UpdateUser", "123", mapOf(Pair("email", "jeff@byteleaf.de"), Pair("firstName", "a"), Pair("lastName", "b")), true);
+        GQLErrorUtil.expectError(response, ErrorCode.ENTITY_NOT_FOUND, EntityType.USER, "123")
     }
 
     @Test
