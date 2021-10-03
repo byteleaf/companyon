@@ -49,6 +49,8 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     open fun update(id: String, input: I): O = update(id, input, null)
 
     protected fun update(id: String, @Valid input: I, beforePersist: ((entity: E) -> Unit)?): O {
+        // make sure that a entity with this id is existing, by the default behaviour a new entity with this id would be created!
+        repository.existsById(id) || throw EntityNotFoundException(id, getEntityType())
         val entity = inputToEntity(input)
         entity.id = id
         return updateEntity(entity, beforePersist)

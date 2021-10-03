@@ -60,7 +60,7 @@ class SampleData : ApplicationRunner {
 
         // TimeLogs
         timeLogService.deleteAll()
-        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.parse("2021-08-03T10:00:00+02:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), 480, "Learning react", 30))
-        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.parse("2021-08-04T09:15:00+02:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), 120, "Learning angular"))
+        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.parse("2021-08-03T10:00:00+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME), 480, "Learning react", 30))
+        timeLogService.create(TimeLogInput(markus.id, projectA.id, OffsetDateTime.parse("2021-08-04T09:15:00+02:00", DateTimeFormatter.ISO_OFFSET_DATE_TIME), 120, "Learning angular"))
     }
 }
