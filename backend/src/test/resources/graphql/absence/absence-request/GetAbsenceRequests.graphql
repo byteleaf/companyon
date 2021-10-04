@@ -1,4 +1,4 @@
-query GetAbsenceRequests($from: LocalDate, $to: LocalDate, $userIds: [ID], $types: [AbsenceType], $approved: ApprovedQueryState) {
+query GetAbsenceRequests($from: Date, $to: Date, $userIds: [ID], $types: [AbsenceType], $approved: ApprovedQueryState) {
     absenceRequests(from: $from, to: $to, userIds: $userIds, types: $types, approved: $approved) {
         id
         description,

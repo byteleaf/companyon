@@ -1,2 +1,2 @@
-scalar OffsetDateTime
-scalar LocalDate
+scalar Date
+scalar DateTime

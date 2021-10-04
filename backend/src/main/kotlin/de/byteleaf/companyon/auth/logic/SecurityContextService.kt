@@ -12,7 +12,13 @@ class SecurityContextService {
     /**
      * To get the current logged in user
      */
-    fun getCurrentUser(): User = SecurityContextHolder.getContext().authentication.principal as User
+    fun getCurrentUser(): User {
+        try {
+            return SecurityContextHolder.getContext().authentication.principal as User
+        } catch (ex: Exception) {
+            throw IllegalStateException("No valid user context found!");
+        }
+    }
 
     fun generateApproval(): Approval = Approval(getCurrentUser().id, OffsetDateTime.now())
 }
