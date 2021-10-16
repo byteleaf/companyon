@@ -10,6 +10,9 @@ import java.time.LocalDate
 class AbsenceRequest(
     override val id: String,
     val description: String,
+    /**
+     * @see de.byteleaf.companyon.user.boundary.fieldresolver.AbsenceRequestFieldResolver.getUser
+     */
     val user: String,
     val type: AbsenceType,
     val from: LocalDate,

@@ -1,4 +1,4 @@
-type Approval{
+type Approval {
     user: String,
     timeStamp: DateTime
 }

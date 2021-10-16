@@ -7,7 +7,13 @@ import java.time.OffsetDateTime
 @NoArgConstructor
 class TimeLog(
     override val id: String,
+    /**
+     * @see de.byteleaf.companyon.user.boundary.fieldresolver.TimeLogUserFieldResolver.getUser
+     */
     val user: String,
+    /**
+     * @see de.byteleaf.companyon.project.boundary.TimeLogProjectFieldResolver.getProject
+     */
     val project: String,
     val start: OffsetDateTime,
     val description: String?,
