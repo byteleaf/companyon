@@ -2,7 +2,6 @@ package de.byteleaf.companyon.common.logic
 
 import de.byteleaf.companyon.common.dto.BaseDTO
 import de.byteleaf.companyon.common.entity.BaseEntity
-import de.byteleaf.companyon.common.entity.EntityType
 import de.byteleaf.companyon.common.error.exception.EntityNotFoundException
 import de.byteleaf.companyon.common.event.EntityCreatedEvent
 import de.byteleaf.companyon.common.event.EntityDeletedEvent
@@ -18,7 +17,7 @@ import javax.validation.Valid
 
 @Validated
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
-abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepository<E, String>> {
+abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepository<E, String>> : AbstractHistorizationDataService<E, R>() {
 
     @Autowired
     protected lateinit var repository: R
@@ -33,12 +32,10 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     private val POSITION_OUTPUT_DTO = 1
 
     @Suppress("UNCHECKED_CAST")
-    protected open fun inputToEntity(input: I): E =
-        modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_ENTITY) as Class<E>)
+    protected open fun inputToEntity(input: I): E = modelMapper.map(input, GenericSupportUtil.getClassFromGeneric(this, POSITION_ENTITY) as Class<E>)
 
     @Suppress("UNCHECKED_CAST")
-    protected fun entityToOutput(entity: E): O =
-        modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_OUTPUT_DTO)) as O
+    protected fun entityToOutput(entity: E): O = modelMapper.map(entity, GenericSupportUtil.getClassFromGeneric(this, POSITION_OUTPUT_DTO)) as O
 
     open fun create(@Valid input: I): O {
         val dto = entityToOutput(repository.insert(inputToEntity(input)))
@@ -60,6 +57,9 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
 
     private fun updateEntity(entity: E, beforePersist: ((entity: E) -> Unit)?): O {
         beforePersist?.invoke(entity)
+        // TODO check valid from
+        // TODO check for history version
+        // TODO move old entity to history
         val dto = entityToOutput(repository.save(entity))
         applicationEventPublisher.publishEvent(EntityUpdatedEvent(getEntityType(), dto))
         return dto
@@ -82,9 +82,4 @@ abstract class AbstractDataService<E : BaseEntity, O : BaseDTO, I, R : MongoRepo
     open fun findAll() = repository.findAll().map { entityToOutput(it) }
 
     fun deleteAll() = repository.deleteAll()
-
-    /**
-     * The type of the entity to make event listener conditions possible
-     */
-    abstract fun getEntityType(): EntityType
 }
