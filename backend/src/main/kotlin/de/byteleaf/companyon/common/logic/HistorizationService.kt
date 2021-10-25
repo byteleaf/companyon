@@ -9,4 +9,13 @@ class HistorizationService {
 
     @Autowired
     private lateinit var historyRepository: HistoryRepository
+
+
+    fun checkForNewerVersions() {
+
+    }
+
+    fun updateVersions() {
+        
+    }
 }

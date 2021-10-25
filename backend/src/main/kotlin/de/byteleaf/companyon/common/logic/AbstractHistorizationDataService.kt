@@ -12,6 +12,7 @@ abstract class AbstractHistorizationDataService<E : BaseEntity, R : MongoReposit
     // move into history table
 
     // check history table if newer version is available
+    // fun checkForNewerVersions
 
 
     /**
